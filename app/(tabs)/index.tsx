@@ -1,14 +1,21 @@
 import "@/global.css";
-import { Text, View } from "react-native";
+import { useState } from "react";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 
-export default function HomeScreen() {
+export default function LoginScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    // Placeholder login function
+    console.log("Email:", email);
+    console.log("Password:", password);
+    // Navigate to home after successful login
+  };
+
   return (
-    <View className="bg-yellow-500 w-full h-screen flex-1 p-3">
-      <View className="flex-1 bg-white rounded-xl pt-6 items-center justify-center">
-        <Text className="text-4xl font-bold text-zinc-900 text-center">
-          Swastik <Text className="italic ml-1 text-green-600">Kalachuda</Text>
-        </Text>
-      </View>
+    <View  className="flex-1 justify-center items-center">
+      <Text className="text-1 text-white">welcome</Text>
     </View>
   );
 }
