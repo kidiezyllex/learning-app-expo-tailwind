@@ -15,7 +15,7 @@ export default function LoginScreen() {
 
   return (
     <View  className="flex-1 justify-center items-center bg-white">
-      <Text className="text-1 text-primary text-5xl font-bold">welcome</Text>
+      <Text className="text-1 text-dark-200 text-5xl font-bold">welcome</Text>
     </View>
   );
 }
