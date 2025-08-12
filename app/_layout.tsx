@@ -1,15 +1,15 @@
 import { Stack } from "expo-router";
-import './global.css'
+import '../global.css'
 
 export default function RootLayout(){
   return <Stack>
     <Stack.Screen
-    name="(tabs)"
+    name="tabs"
     options= {{headerShown: false}}
     />
 
     <Stack.Screen
-    name="movies/[id]"
+    name="movies/["
     options= {{headerShown: false}}
     />
   </Stack>
