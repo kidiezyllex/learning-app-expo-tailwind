@@ -19,6 +19,13 @@ export const getScaleFactor = (): number => {
   return scaleFactor;
 };
 
+// Calculate scale factor for height (allows different height scaling)
+export const getHeightScaleFactor = (): number => {
+  const { height: deviceHeight } = getDeviceDimensions();
+  const heightScaleFactor = deviceHeight / BASE_VIEWPORT.height;
+  return heightScaleFactor;
+};
+
 // Get scaled size for any dimension
 export const scaleSize = (size: number): number => {
   const scaleFactor = getScaleFactor();
@@ -44,14 +51,16 @@ export const scaleDimensions = (width: number, height: number) => {
 export const getViewportInfo = () => {
   const device = getDeviceDimensions();
   const scaleFactor = getScaleFactor();
+  const heightScaleFactor = getHeightScaleFactor();
 
   return {
     device,
     baseViewport: BASE_VIEWPORT,
     scaleFactor,
+    heightScaleFactor,
     scaledViewport: {
       width: device.width,
-      height: BASE_VIEWPORT.height * scaleFactor,
+      height: device.height,
     },
   };
 };

@@ -1,13 +1,8 @@
+import CourseCard from "@/components/Home/CourseCard";
+import TabSelector from "@/components/Home/TabSelector";
+import { mockCourses } from "@/components/Home/mock-data";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
-
-// Components
-import BlogCard from "@/components/Home/BlogCard";
-import TabSelector from "@/components/Home/TabSelector";
-
-import { mockBlogs } from "@/components/Home/mock-data";
-import { mockCourses } from "@/data/mockData";
-
 interface HomeScreenProps {
   // Header đã được move lên root level
 }
@@ -30,16 +25,9 @@ export default function HomeScreen({ }: HomeScreenProps) {
     }
   };
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
 
   const handleCoursePress = (courseId: string) => {
     console.log("Course pressed:", courseId);
-  };
-
-  const handleBlogPress = (blogId: string) => {
-    console.log("Blog pressed:", blogId);
   };
 
   const onRefresh = useCallback(() => {
@@ -49,23 +37,11 @@ export default function HomeScreen({ }: HomeScreenProps) {
     }, 2000);
   }, []);
 
-  const filteredCourses = mockCourses.filter(course =>
-    course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    course.userName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Sort courses based on active tab
-  const sortedCourses = [...filteredCourses].sort((a, b) => {
-    if (activeTab === "saved") {
-      return b.completionRate - a.completionRate; // Sort by completion rate for saved
-    } else if (activeTab === "new") {
-      return b.completedTests - a.completedTests; // Sort by completed tests for new
-    }
-    return 0; // Default for recommended
-  });
+  const [scrollViewHeight, setScrollViewHeight] = useState(0);
+  const [contentHeight, setContentHeight] = useState(0);
 
   return (
-    <View className="flex-1 bg-neutral-100 pt-[102px]">
+    <View className="flex-1">
       <View style={{
         position: 'absolute',
         top: 0,
@@ -89,12 +65,20 @@ export default function HomeScreen({ }: HomeScreenProps) {
       </View>
       {/* Scrollable Content */}
       <ScrollView
-        className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180 }}
+        style={{ height: contentHeight }}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
+        onLayout={(event) => {
+          const { height } = event.nativeEvent.layout;
+          console.log("ScrollView height:", height);
+          setScrollViewHeight(height);
+        }}
+        onContentSizeChange={(contentWidth, contentHeight) => {
+          console.log("Content height:", contentHeight);
+          setContentHeight(contentHeight);
+        }}
       >
         <View>
           {/* Tab Selector */}
@@ -108,15 +92,15 @@ export default function HomeScreen({ }: HomeScreenProps) {
           {/* Blogs list */}
           <View className="px-6 mt-6">
             <View className="grid flex-row flex-wrap grid-cols-2 gap-6 justify-between">
-              {mockBlogs.map((blog) => (
-                <View key={blog.id} className="">
-                  <BlogCard
-                    blog={blog}
-                    onPress={handleBlogPress}
+              {mockCourses.map((course) => (
+                <View key={course.id} className="">
+                  <CourseCard
+                    course={course}
+                    onPress={() => handleCoursePress(course.id)}
                   />
                 </View>
               ))}
-            </View>
+            </View> 
           </View>
         </View>
       </ScrollView>

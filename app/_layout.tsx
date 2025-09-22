@@ -3,27 +3,19 @@ import ErrorBoundary from '@/components/Common/ErrorBoundary';
 import ViewportScaler from '@/components/Common/ViewportScaler';
 import { NavigationProvider, useNavigation } from '@/contexts/NavigationContext';
 import { Stack } from 'expo-router';
+import { View } from 'react-native';
 import '../global.css';
 
 function AppContent() {
   const { activeTab, setActiveTab } = useNavigation();
 
   const handleNavigationTabPress = (tabId: string) => {
-    console.log("Navigation tab pressed:", tabId);
     setActiveTab(tabId);
   };
 
-  const handleNotificationPress = () => {
-    console.log("Notification pressed");
-  };
-
-  const handleAvatarPress = () => {
-    console.log("Avatar pressed");
-  };
-
   return (
-    <>
-      <ViewportScaler>
+    <ViewportScaler>
+      <View style={{ flex: 1 }}>
         <Stack
           screenOptions={{
             headerShown: false,
@@ -36,14 +28,13 @@ function AppContent() {
             }}
           />
         </Stack>
-      </ViewportScaler>
 
-      {/* Bottom Navigation - nằm ngoài ViewportScaler để không bị scale */}
-      <AbsoluteBottomNavigation
-        activeTab={activeTab}
-        onTabPress={handleNavigationTabPress}
-      />
-    </>
+        <AbsoluteBottomNavigation
+          activeTab={activeTab}
+          onTabPress={handleNavigationTabPress}
+        />
+      </View>
+    </ViewportScaler>
   );
 }
 

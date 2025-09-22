@@ -1,4 +1,4 @@
-export interface Blog {
+export interface Course {
   id: string;
   title: string;
   description: string;
@@ -10,7 +10,7 @@ export interface Blog {
   isSave?: boolean;
 }
 
-export const mockBlogs: Blog[] = [
+export const mockCourses: Course[] = [
   {
     id: "1",
     title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
