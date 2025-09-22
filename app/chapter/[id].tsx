@@ -1,12 +1,11 @@
 import TabSelector from '@/components/Common/TabSelector';
 import { getChaptersByCourseId } from '@/data/chaptersMockData';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ChapterDetailsScreen() {
     const { id } = useLocalSearchParams<{ id: string }>();
-    const router = useRouter();
     const [activeTab, setActiveTab] = useState("overview");
     
     // Tìm chapter theo ID

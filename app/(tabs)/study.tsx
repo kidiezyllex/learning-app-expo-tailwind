@@ -1,7 +1,13 @@
-import { Redirect } from 'expo-router';
+import "@/global.css";
+import { View } from "react-native";
+
+// Screen Components
+import StudyScreen from "@/components/Screens/StudyScreen";
 
 export default function StudyTab() {
-  // Since this app uses custom navigation through the main index.tsx,
-  // we redirect to the main tabs route where the custom navigation handles the study screen
-  return <Redirect href="/(tabs)" />;
+  return (
+    <View className="flex-1 bg-neutral-100">
+      <StudyScreen />
+    </View>
+  );
 }

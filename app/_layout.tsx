@@ -1,10 +1,10 @@
 import AbsoluteBottomNavigation from '@/components/Common/AbsoluteBottomNavigation';
 import ErrorBoundary from '@/components/Common/ErrorBoundary';
 import ViewportScaler from '@/components/Common/ViewportScaler';
-import { NavigationProvider, useNavigation } from '@/contexts/NavigationContext';
+import { NavigationProvider } from '@/contexts/NavigationContext';
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
-import { NavigationContainer } from '@react-navigation/native';
-import { Slot, SplashScreen } from 'expo-router';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { View } from 'react-native';
 import '../global.css';
@@ -12,8 +12,7 @@ import '../global.css';
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
-function AppContent() {
-  const { activeTab, setActiveTab } = useNavigation();
+export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -31,31 +30,20 @@ function AppContent() {
     return null;
   }
 
-  const handleNavigationTabPress = (tabId: string) => {
-    setActiveTab(tabId);
-  };
-
   return (
-    <ViewportScaler>
-      <View style={{ flex: 1 }}>
-        <Slot />
-        <AbsoluteBottomNavigation
-          activeTab={activeTab}
-          onTabPress={handleNavigationTabPress}
-        />
-      </View>
-    </ViewportScaler>
-  );
-}
-
-export default function RootLayout() {
-  return (
-    <NavigationContainer>
-      <ErrorBoundary>
-        <NavigationProvider>
-          <AppContent />
-        </NavigationProvider>
-      </ErrorBoundary>
-    </NavigationContainer>
+    <ErrorBoundary>
+      <NavigationProvider>
+        <ViewportScaler>
+          <View style={{ flex: 1 }}>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+              }}
+            />
+            <AbsoluteBottomNavigation />
+          </View>
+        </ViewportScaler>
+      </NavigationProvider>
+    </ErrorBoundary>
   );
 }

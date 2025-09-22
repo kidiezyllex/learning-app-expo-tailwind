@@ -1,15 +1,13 @@
 import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Home/CourseCard";
 import { mockCourses } from "@/components/Home/mock-data";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 interface HomeScreenProps {
-  // Header đã được move lên root level
 }
 
 export default function HomeScreen({ }: HomeScreenProps) {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -29,11 +27,7 @@ export default function HomeScreen({ }: HomeScreenProps) {
 
 
   const handleCoursePress = (courseId: string) => {
-    try {
-      router.push(`/course/${courseId}`);
-    } catch (error) {
-      console.error('Navigation error:', error);
-    }
+    router.push(`/course/${courseId}`);
   };
 
   const onRefresh = useCallback(() => {

@@ -1,7 +1,13 @@
-import { Redirect } from 'expo-router';
+import "@/global.css";
+import { View } from "react-native";
+
+// Screen Components
+import GroupScreen from "@/components/Screens/GroupScreen";
 
 export default function GroupTab() {
-  // Since this app uses custom navigation through the main index.tsx,
-  // we redirect to the main tabs route where the custom navigation handles the group screen
-  return <Redirect href="/(tabs)" />;
+  return (
+    <View className="flex-1 bg-neutral-100">
+      <GroupScreen />
+    </View>
+  );
 }

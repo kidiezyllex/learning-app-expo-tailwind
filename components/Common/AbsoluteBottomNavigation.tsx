@@ -1,54 +1,62 @@
 import * as Haptics from 'expo-haptics';
+import { router, usePathname } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native';
-
-interface AbsoluteBottomNavigationProps {
-  onTabPress?: (tabId: string) => void;
-  activeTab?: string;
-}
 
 export const navigationTabs = [
   {
     id: "home",
     label: "Trang chủ",
     icon: require('../../assets/icons/home.png'),
-    isActive: true,
+    route: "/(tabs)/",
     size: 59
   },
   {
     id: "group",
     label: "Nhóm",
     icon: require('../../assets/icons/archive-book.png'),
-    isActive: false,
+    route: "/(tabs)/group",
     size: 58
   },
   {
     id: "study",
     label: "Học",
     icon: require('../../assets/icons/book-saved.png'),
-    isActive: false,
+    route: "/(tabs)/study",
     size: 65
   },
   {
     id: "results",
     label: "Kết quả",
     icon: require('../../assets/icons/chart.png'),
-    isActive: false,
+    route: "/(tabs)/results",
     size: 54
   },
   {
     id: "profile",
     label: "Bạn",
     icon: require('../../assets/icons/user.png'),
-    isActive: false,
+    route: "/(tabs)/profile",
     size: 49
   }
 ];
 
-export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propActiveTab }: AbsoluteBottomNavigationProps) {
+export default function AbsoluteBottomNavigation() {
   const [pressedTab, setPressedTab] = useState<string | null>(null);
-  const activeTab = propActiveTab || "home";
+  const pathname = usePathname();
   const floatAnimation = useRef(new Animated.Value(0)).current;
+
+  // Determine active tab based on current pathname
+  const getActiveTab = () => {
+    if (pathname === "/(tabs)/" || pathname === "/(tabs)") return "home";
+    if (pathname === "/(tabs)/group") return "group";
+    if (pathname === "/(tabs)/study") return "study";
+    if (pathname === "/(tabs)/results") return "results";
+    if (pathname === "/(tabs)/profile") return "profile";
+    return "home";
+  };
+
+  const activeTab = getActiveTab();
 
   // Floating animation effect
   useEffect(() => {
@@ -72,11 +80,11 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
     startFloating();
   }, [floatAnimation]);
 
-  const handleTabPress = (tabId: string) => {
+  const handleTabPress = (tab: typeof navigationTabs[0]) => {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    onTabPress?.(tabId);
+    router.push(tab.route as any);
   };
 
   return (
@@ -93,7 +101,7 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
           {navigationTabs.map((tab, index) => (
             <Pressable
               key={tab.id}
-              onPress={() => handleTabPress(tab.id)}
+              onPress={() => handleTabPress(tab)}
               onPressIn={() => setPressedTab(tab.id)}
               onPressOut={() => setPressedTab(null)}
               className={`flex-1 transform transition-transform ${pressedTab === tab.id ? 'scale-95' : 'scale-100'

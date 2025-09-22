@@ -1,5 +1,13 @@
-import { Redirect } from 'expo-router';
+import "@/global.css";
+import { View } from "react-native";
+
+// Screen Components
+import ResultsScreen from "@/components/Screens/ResultsScreen";
 
 export default function ResultsTab() {
-  return <Redirect href="/(tabs)" />;
+  return (
+    <View className="flex-1 bg-neutral-100">
+      <ResultsScreen />
+    </View>
+  );
 }

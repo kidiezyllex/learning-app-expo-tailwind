@@ -3,13 +3,12 @@ import ChaptersTab from '@/components/Course/ChaptersTab';
 import CourseInfoTab from '@/components/Course/CourseInfoTab';
 import { mockCourses } from '@/components/Home/mock-data';
 import { getCourseDetailById } from '@/data/courseDetailsMockData';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function CourseDetailsScreen() {
     const { id } = useLocalSearchParams<{ id: string }>();
-    const router = useRouter();
     const [activeTab, setActiveTab] = useState("course");
     
     // Tìm course theo ID
