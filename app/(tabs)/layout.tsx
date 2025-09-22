@@ -1,7 +1,6 @@
 import { Tabs } from 'expo-router'
-import React from 'react'
 
-const layout = () => {
+export default function Layout() {
   return (
     <Tabs
       screenOptions={{
@@ -39,5 +38,3 @@ const layout = () => {
     </Tabs>
   )
 }
-
-export default layout

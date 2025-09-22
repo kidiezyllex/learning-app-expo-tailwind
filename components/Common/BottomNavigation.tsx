@@ -1,6 +1,6 @@
 import * as Haptics from 'expo-haptics';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 interface BottomNavigationProps {
   onTabPress?: (tabId: string) => void;
@@ -71,7 +71,9 @@ export default function BottomNavigation({ onTabPress, activeTab: propActiveTab 
   }, [floatAnimation]);
 
   const handleTabPress = (tabId: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
     onTabPress?.(tabId);
   };
 

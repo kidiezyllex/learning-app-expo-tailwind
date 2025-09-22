@@ -1,7 +1,6 @@
 import ErrorBoundary from '@/components/Common/ErrorBoundary';
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
 import '../global.css';
-
 export default function RootLayout() {
   return (
     <ErrorBoundary>
@@ -14,7 +13,7 @@ export default function RootLayout() {
           name="(tabs)"
           options={{ headerShown: false }}
         />
-      </Stack>
+      </Stack>  
     </ErrorBoundary>
   )
 }

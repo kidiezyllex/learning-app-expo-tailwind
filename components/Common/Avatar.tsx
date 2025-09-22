@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 
 interface AvatarProps {
@@ -20,15 +19,23 @@ export default function Avatar({
     large: 'w-20 h-20'
   };
 
-  const Component = onPress ? TouchableOpacity : View;
-
   return (
-    <Component onPress={onPress}>
-      <Image
-        source={{ uri: source }}
-        className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
-        resizeMode="cover"
-      />
-    </Component>
+    onPress ? (
+      <TouchableOpacity onPress={onPress}>
+        <Image
+          source={{ uri: source }}
+          className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
+          resizeMode="cover"
+        />
+      </TouchableOpacity>
+    ) : (
+      <View>
+        <Image
+          source={{ uri: source }}
+          className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
+          resizeMode="cover"
+        />
+      </View>
+    )
   );
 }
