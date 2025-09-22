@@ -13,12 +13,12 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
             className="w-full bg-neutral-100 rounded-[10px] shadow-[0px_1px_5px_0px_rgba(0,0,0,0.25)]"
         >
             {/* Thumbnail Image Container */}
-            <View className="relative h-56">
-
+            <View className="relative" style={{ height: 225 }}>
                 <Image
-                    source={{ uri: course.thumbnail }}
-                    className="h-56 w-full rounded-tl-[10px] rounded-tr-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
+                    source={course.thumbnail}
+                    className="w-full rounded-tl-[10px] rounded-tr-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
                     resizeMode="cover"
+                    style={{ width: '100%', maxWidth: '100%', height: 225 }}
                 />
 
                 {/* New Badge */}
@@ -33,7 +33,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 {/* Checked */}
                 <Image
                     source={require("../../assets/icons/checked.png")}
-                    className="absolute top-4 right-4 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.50)]"
+                    className="absolute top-4 right-4"
                     style={{ width: 28, height: 28}}
                     resizeMode="cover"
                 />
@@ -41,7 +41,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 {/* Play/Live Button */}
                 <Image
                     source={course.isSave ? require("../../assets/icons/saved.png") : require("../../assets/icons/save.png")}
-                    className="absolute bottom-4 left-4 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.50)]"
+                    className="absolute bottom-4 left-4"
                     style={{ width: 24, height: 27 }}
                     resizeMode="cover"
                 />

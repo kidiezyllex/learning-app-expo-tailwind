@@ -185,20 +185,22 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                         {course.reviews.map((review) => (
                             <View
                                 key={review.id}
-                                className="bg-white rounded-[10px] p-4"
-                                style={{
-                                    shadowColor: '#000',
-                                    shadowOffset: { width: 0, height: 2 },
-                                    shadowOpacity: 0.25,
-                                    shadowRadius: 10,
-                                    elevation: 5
-                                }}
+                                className="bg-white rounded-[10px] p-4 mb-4"
                             >
                                 <View className="flex-row justify-between items-center mb-3">
                                     <View className="flex-row flex-1 items-center">
                                         <View
-                                            className="flex justify-center items-center mr-3 rounded-full border-2 border-stone-500"
-                                            style={{ width: 48, height: 48, minWidth: 48, minHeight: 48, borderRadius: 100 }}
+                                            className="flex flex-shrink-0 justify-center items-center mr-3 rounded-full border-2 border-stone-500"
+                                            style={{ 
+                                                width: 48, 
+                                                height: 48, 
+                                                minWidth: 48, 
+                                                minHeight: 48, 
+                                                maxWidth: 48,
+                                                maxHeight: 48,
+                                                borderRadius: 100,
+                                                flexBasis: 48
+                                            }}
                                         >
                                             <Image
                                                 source={require('../../assets/icons/user.png')}

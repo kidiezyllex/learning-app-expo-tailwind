@@ -110,8 +110,8 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
                   style={{
                     width: tab.size,
                     height: tab.size,
-                    tintColor: activeTab === tab.id ? '#ffffff' : '#646464'
                   }}
+                  tintColor={activeTab === tab.id ? '#ffffff' : '#646464'}
                   resizeMode="contain"
                 />
 

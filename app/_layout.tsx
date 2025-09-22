@@ -3,8 +3,8 @@ import ErrorBoundary from '@/components/Common/ErrorBoundary';
 import ViewportScaler from '@/components/Common/ViewportScaler';
 import { NavigationProvider, useNavigation } from '@/contexts/NavigationContext';
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import { View } from 'react-native';
 import '../global.css';
@@ -38,19 +38,7 @@ function AppContent() {
   return (
     <ViewportScaler>
       <View style={{ flex: 1 }}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen
-            name="(tabs)"
-            options={{
-              headerShown: false
-            }}
-          />
-        </Stack>
-
+        <Slot />
         <AbsoluteBottomNavigation
           activeTab={activeTab}
           onTabPress={handleNavigationTabPress}
@@ -62,10 +50,12 @@ function AppContent() {
 
 export default function RootLayout() {
   return (
-    <ErrorBoundary>
-      <NavigationProvider>
-        <AppContent />
-      </NavigationProvider>
-    </ErrorBoundary>
+    <NavigationContainer>
+      <ErrorBoundary>
+        <NavigationProvider>
+          <AppContent />
+        </NavigationProvider>
+      </ErrorBoundary>
+    </NavigationContainer>
   );
 }

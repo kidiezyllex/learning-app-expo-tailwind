@@ -83,7 +83,6 @@ export default function CourseDetailsScreen() {
                        <CourseInfoTab 
                            course={courseDetail}
                            onEditPress={() => {
-                               // Handle edit press
                                console.log('Edit course pressed');
                            }}
                        />
@@ -95,7 +94,8 @@ export default function CourseDetailsScreen() {
                            courseId={id || ''}
                            onChapterPress={(chapterId) => {
                                console.log('Chapter pressed:', chapterId);
-                               // Handle chapter navigation here
+                               // Navigate to ChapterDetailsScreen
+                               router.push(`/chapter/${chapterId}`);
                            }}
                        />
                    )}

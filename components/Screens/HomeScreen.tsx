@@ -29,7 +29,11 @@ export default function HomeScreen({ }: HomeScreenProps) {
 
 
   const handleCoursePress = (courseId: string) => {
-    router.push(`/course/${courseId}` as any);
+    try {
+      router.push(`/course/${courseId}`);
+    } catch (error) {
+      console.error('Navigation error:', error);
+    }
   };
 
   const onRefresh = useCallback(() => {
