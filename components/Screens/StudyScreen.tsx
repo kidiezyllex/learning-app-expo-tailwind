@@ -5,8 +5,8 @@ import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 
 import EmptyState from "@/components/Common/EmptyState";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SearchBar from "@/components/Common/SearchBar";
+import TabSelector from "@/components/Common/TabSelector";
 import ProgressBar from "@/components/Home/ProgressBar";
-import TabSelector from "@/components/Home/TabSelector";
 
 interface StudyScreenProps {
   // Header đã được move lên root level

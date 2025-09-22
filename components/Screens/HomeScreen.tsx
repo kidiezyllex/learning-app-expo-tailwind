@@ -1,6 +1,7 @@
+import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Home/CourseCard";
-import TabSelector from "@/components/Home/TabSelector";
 import { mockCourses } from "@/components/Home/mock-data";
+import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 interface HomeScreenProps {
@@ -8,6 +9,7 @@ interface HomeScreenProps {
 }
 
 export default function HomeScreen({ }: HomeScreenProps) {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -27,7 +29,7 @@ export default function HomeScreen({ }: HomeScreenProps) {
 
 
   const handleCoursePress = (courseId: string) => {
-    console.log("Course pressed:", courseId);
+    router.push(`/course/${courseId}` as any);
   };
 
   const onRefresh = useCallback(() => {
@@ -41,14 +43,9 @@ export default function HomeScreen({ }: HomeScreenProps) {
   const [contentHeight, setContentHeight] = useState(0);
 
   return (
-    <View className="flex-1">
-      <View style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9999, // Đảm bảo nằm trên cùng
-      }}>
+    <View className="flex-1 pt-[102px] pb-32">
+      {/* Header */}
+      <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row justify-between items-center h-[102px] px-6 bg-[#1877F2]">
           <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
             Home
@@ -72,11 +69,9 @@ export default function HomeScreen({ }: HomeScreenProps) {
         }
         onLayout={(event) => {
           const { height } = event.nativeEvent.layout;
-          console.log("ScrollView height:", height);
           setScrollViewHeight(height);
         }}
         onContentSizeChange={(contentWidth, contentHeight) => {
-          console.log("Content height:", contentHeight);
           setContentHeight(contentHeight);
         }}
       >
@@ -90,10 +85,10 @@ export default function HomeScreen({ }: HomeScreenProps) {
           </View>
 
           {/* Blogs list */}
-          <View className="px-6 mt-6">
-            <View className="grid flex-row flex-wrap grid-cols-2 gap-6 justify-between">
+          <View className="px-6">
+            <View className="flex-row flex-wrap justify-between">
               {mockCourses.map((course) => (
-                <View key={course.id} className="">
+                <View key={course.id} className="w-[48%] mb-6">
                   <CourseCard
                     course={course}
                     onPress={() => handleCoursePress(course.id)}

@@ -5,8 +5,8 @@ import { RefreshControl, ScrollView, View } from "react-native";
 import EmptyState from "@/components/Common/EmptyState";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SearchBar from "@/components/Common/SearchBar";
+import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Group/CourseCard";
-import TabSelector from "@/components/Home/TabSelector";
 
 // Data
 import { mockCourses } from "@/data/mockData";

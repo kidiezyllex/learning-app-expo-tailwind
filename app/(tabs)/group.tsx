@@ -9,7 +9,7 @@ const GroupTab = () => {
 
   return (
     <View className="flex-1 bg-neutral-100">
-      <GroupScreen onNotificationPress={handleNotificationPress} />
+      <GroupScreen />
     </View>
   );
 }

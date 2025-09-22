@@ -73,4 +73,14 @@ export const mockCourses: Course[] = [
     isNew: false,
     isLive: false,
   },
+  {
+    id: "7",
+    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
+    description: "Là quá trình giao tiếp, trao...",
+    thumbnail: "../../assets/images/home/blog6.png",
+    rating: 4.5,
+    duration: "60m",
+    isNew: false,
+    isLive: false,
+  },
 ];
