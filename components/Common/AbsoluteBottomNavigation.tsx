@@ -13,35 +13,35 @@ export const navigationTabs = [
     label: "Trang chủ",
     icon: require('../../assets/icons/home.png'),
     isActive: true,
-    size: 39
+    size: 59
   },
   {
     id: "group",
     label: "Nhóm",
     icon: require('../../assets/icons/archive-book.png'),
     isActive: false,
-    size: 39
+    size: 58
   },
   {
     id: "study",
     label: "Học",
     icon: require('../../assets/icons/book-saved.png'),
     isActive: false,
-    size: 39
+    size: 65
   },
   {
     id: "results",
     label: "Kết quả",
     icon: require('../../assets/icons/chart.png'),
     isActive: false,
-    size: 39
+    size: 54
   },
   {
     id: "profile",
     label: "Bạn",
     icon: require('../../assets/icons/user.png'),
     isActive: false,
-    size: 33
+    size: 49
   }
 ];
 
@@ -89,7 +89,7 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
     }}>
       {/* Main Navigation Bar */}
       <View className="bg-white shadow-sm">
-        <View className="flex-row h-[82px]">
+        <View className="flex-row h-[124px]">
           {navigationTabs.map((tab, index) => (
             <Pressable
               key={tab.id}
@@ -101,8 +101,8 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
             >
               {/* Tab Container */}
               <View className={`flex items-center justify-center gap-0.5 ${activeTab === tab.id
-                  ? 'h-[96px] bg-blue-600 rounded-[21px] rounded-b-none transform translate-y-[-14px] shadow-sm'
-                  : 'h-[82px]'
+                  ? 'h-[142px] bg-blue-600 rounded-[21px] rounded-b-none transform translate-y-[-14px] shadow-sm'
+                  : 'h-[124px]'
                 }`}>
                 <Image
                   source={tab.icon}
@@ -131,7 +131,7 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
         style={{
           position: 'absolute',
           right: 24,
-          bottom: 96,
+          bottom: 148,
           transform: [{ translateY: floatAnimation }]
         }}
       >
@@ -139,8 +139,8 @@ export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propAc
           <Image
             source={require('../../assets/icons/messenger-button.png')}
             style={{
-              width: 59,
-              height: 59,
+              width: 88,
+              height: 88,
             }}
             resizeMode="contain"
           />
