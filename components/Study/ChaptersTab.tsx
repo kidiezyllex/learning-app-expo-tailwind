@@ -13,9 +13,7 @@ export default function ChaptersTab({ courseId, onChapterPress }: ChaptersTabPro
   const handleChapterPress = (chapterId: string) => {
     if (onChapterPress) {
       onChapterPress(chapterId);
-    } else {
-      console.log('Chapter pressed:', chapterId);
-    }
+    } 
   };
 
   return (

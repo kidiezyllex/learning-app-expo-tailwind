@@ -73,7 +73,6 @@ export default function ResultsScreen({}: ResultsScreenProps) {
   };
 
   const handleResultPress = (resultId: string) => {
-    console.log("Result pressed:", resultId);
   };
 
   const onRefresh = useCallback(() => {

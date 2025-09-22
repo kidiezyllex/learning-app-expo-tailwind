@@ -1,5 +1,6 @@
-import TabSelector from '@/components/Common/TabSelector';
+import LessonCard from '@/components/Study/LessonCard';
 import { getChaptersByCourseId } from '@/data/chaptersMockData';
+import { getLessonsByChapterId } from '@/data/lessonsMockData';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -11,6 +12,9 @@ export default function ChapterDetailsScreen() {
     // Tìm chapter theo ID
     const allChapters = getChaptersByCourseId('1'); // Get all chapters and find by ID
     const chapter = allChapters.find(c => c.id === id);
+    
+    // Get lessons for this chapter
+    const lessons = getLessonsByChapterId(id);
 
     const tabOptions = [
         { id: "overview", label: "Overview", isActive: activeTab === "overview" },
@@ -55,8 +59,17 @@ export default function ChapterDetailsScreen() {
                     </TouchableOpacity>
 
                     <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
-                        Chapter Details
+                        Chapter 1
                     </Text>
+                    <TouchableOpacity
+                        className="absolute right-6"
+                    >
+                        <Image
+                            style={{ width: 28, height: 28 }}
+                            source={require('../../assets/icons/download2.png')}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -65,117 +78,16 @@ export default function ChapterDetailsScreen() {
                 showsVerticalScrollIndicator={false}
                 className="flex-1"
             >
-                <View>
-                    {/* Tab Selector */}
-                    <View className="px-6">
-                        <TabSelector
-                            tabs={tabOptions}
-                            onTabPress={handleTabPress}
+                {/* Lessons List */}
+                <View className="px-6 py-4">
+                    {lessons.map((lesson) => (
+                        <LessonCard
+                            key={lesson.id}
+                            lesson={lesson}
+                            onPress={() => {
+                            }}
                         />
-                    </View>
-
-                   {/* Overview Tab Content */}
-                   {activeTab === "overview" && (
-                       <View className="px-6 py-8">
-                           <View className="p-6 bg-white rounded-lg shadow-sm">
-                               <Text className="mb-4 text-2xl font-bold text-black">
-                                   {chapter.title}
-                               </Text>
-                               
-                               <View className="flex-row items-center mb-4">
-                                   <Image
-                                       source={require('../../assets/icons/study.png')}
-                                       style={{ width: 24, height: 24 }}
-                                       resizeMode="contain"
-                                   />
-                                   <Text className="ml-2 text-lg text-gray-600">
-                                       {chapter.type === 'exam' ? 'Exam' : 'Chapter'}
-                                   </Text>
-                               </View>
-
-                               {chapter.videoCount > 0 && (
-                                   <View className="flex-row items-center mb-4">
-                                       <Image
-                                           source={require('../../assets/icons/clock.png')}
-                                           style={{ width: 24, height: 24 }}
-                                           resizeMode="contain"
-                                       />
-                                       <Text className="ml-2 text-lg text-gray-600">
-                                           {chapter.videoCount} videos
-                                       </Text>
-                                   </View>
-                               )}
-
-                               {chapter.certificate && (
-                                   <View className="flex-row items-center mb-4">
-                                       <Image
-                                           source={require('../../assets/icons/checked.png')}
-                                           style={{ width: 24, height: 24 }}
-                                           resizeMode="contain"
-                                       />
-                                       <Text className="ml-2 text-lg text-gray-600">
-                                           {chapter.certificate}
-                                       </Text>
-                                   </View>
-                               )}
-
-                               <View className="mt-6">
-                                   <Text className="mb-2 text-lg font-semibold text-black">
-                                       Progress
-                                   </Text>
-                                   <View className="w-full h-4 rounded-lg bg-zinc-300">
-                                       <View
-                                           className="h-full bg-blue-500 rounded-lg"
-                                           style={{ width: `${chapter.progress}%` }}
-                                       />
-                                   </View>
-                                   <Text className="mt-1 text-sm text-gray-600">
-                                       {chapter.progress}% completed
-                                   </Text>
-                               </View>
-
-                               <View className="mt-6">
-                                   <Text className="mb-2 text-lg font-semibold text-black">
-                                       Status
-                                   </Text>
-                                   <View className="flex-row items-center">
-                                       <View className={`w-3 h-3 rounded-full mr-2 ${
-                                           chapter.isCompleted ? 'bg-green-500' : 
-                                           chapter.isLocked ? 'bg-gray-400' : 'bg-blue-500'
-                                       }`} />
-                                       <Text className="text-gray-600">
-                                           {chapter.isCompleted ? 'Completed' : 
-                                            chapter.isLocked ? 'Locked' : 'Available'}
-                                       </Text>
-                                   </View>
-                               </View>
-                           </View>
-                       </View>
-                   )}
-
-                   {/* Videos Tab Content */}
-                   {activeTab === "videos" && (
-                       <View className="px-6 py-8">
-                           <Text 
-                               className="text-center text-gray-500"
-                               style={{ fontSize: 20 }}
-                           >
-                               Videos content coming soon...
-                           </Text>
-                       </View>
-                   )}
-
-                   {/* Resources Tab Content */}
-                   {activeTab === "resources" && (
-                       <View className="px-6 py-8">
-                           <Text 
-                               className="text-center text-gray-500"
-                               style={{ fontSize: 20 }}
-                           >
-                               Resources content coming soon...
-                           </Text>
-                       </View>
-                   )}
+                    ))}
                 </View>
             </ScrollView>
         </View>

@@ -70,7 +70,6 @@ export default function StudyScreen({}: StudyScreenProps) {
   };
 
   const handleCoursePress = (courseId: string) => {
-    console.log("Study course pressed:", courseId);
   };
 
   const onRefresh = useCallback(() => {

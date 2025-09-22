@@ -1,40 +1,40 @@
 import * as Haptics from 'expo-haptics';
-import { router, usePathname } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 export const navigationTabs = [
   {
     id: "home",
-    label: "Trang chủ",
+    label: "Home",
     icon: require('../../assets/icons/home.png'),
     route: "/(tabs)/",
     size: 59
   },
   {
     id: "group",
-    label: "Nhóm",
+    label: "Group",
     icon: require('../../assets/icons/archive-book.png'),
     route: "/(tabs)/group",
     size: 58
   },
   {
     id: "study",
-    label: "Học",
+    label: "Study",
     icon: require('../../assets/icons/book-saved.png'),
     route: "/(tabs)/study",
     size: 65
   },
   {
     id: "results",
-    label: "Kết quả",
+    label: "Result",
     icon: require('../../assets/icons/chart.png'),
     route: "/(tabs)/results",
     size: 54
   },
   {
     id: "profile",
-    label: "Bạn",
+    label: "Profile",
     icon: require('../../assets/icons/user.png'),
     route: "/(tabs)/profile",
     size: 49
@@ -44,6 +44,7 @@ export const navigationTabs = [
 export default function AbsoluteBottomNavigation() {
   const [pressedTab, setPressedTab] = useState<string | null>(null);
   const pathname = usePathname();
+  const navigationRouter = useRouter();
   const floatAnimation = useRef(new Animated.Value(0)).current;
 
   // Determine active tab based on current pathname
@@ -53,6 +54,9 @@ export default function AbsoluteBottomNavigation() {
     if (pathname === "/(tabs)/study") return "study";
     if (pathname === "/(tabs)/results") return "results";
     if (pathname === "/(tabs)/profile") return "profile";
+    if (pathname === "/group") return "group";
+    if (pathname.startsWith("/course/")) return "study";
+    if (pathname.startsWith("/chapter/")) return "study";
     return "home";
   };
 
@@ -84,7 +88,16 @@ export default function AbsoluteBottomNavigation() {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    router.push(tab.route as any);
+    
+    try {
+      if (tab.route === "/(tabs)/") {
+        navigationRouter.navigate("/(tabs)/");
+      } else {
+        navigationRouter.navigate(tab.route as any);
+      }
+    } catch (error) {
+      navigationRouter.push(tab.route as any);
+    }
   };
 
   return (
@@ -124,7 +137,9 @@ export default function AbsoluteBottomNavigation() {
                 />
 
                 {/* Tab Label */}
-                <Text className={`text-[13px] font-medium ${activeTab === tab.id ? 'text-white' : 'text-[#646464]'
+                <Text 
+                style={{ fontSize: 20 }}
+                className={`font-medium ${activeTab === tab.id ? 'text-white' : 'text-[#646464]'
                   }`}>
                   {tab.label}
                 </Text>

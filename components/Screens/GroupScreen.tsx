@@ -8,14 +8,10 @@ import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Group/CourseCard";
 
-// Data
 import { mockCourses } from "@/data/mockData";
 
-interface GroupScreenProps {
-  // Header đã được move lên root level
-}
-
-export default function GroupScreen({}: GroupScreenProps) {
+export default function GroupScreen() {
+  
   const [activeTab, setActiveTab] = useState("courses");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -35,7 +31,6 @@ export default function GroupScreen({}: GroupScreenProps) {
   };
 
   const handleCoursePress = (courseId: string) => {
-    console.log("Course pressed:", courseId);
   };
 
   const onRefresh = useCallback(() => {

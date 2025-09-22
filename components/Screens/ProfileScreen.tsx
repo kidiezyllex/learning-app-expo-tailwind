@@ -62,10 +62,7 @@ export default function ProfileScreen({}: ProfileScreenProps) {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const handleMenuPress = (itemId: string) => {
-    console.log("Menu item pressed:", itemId);
     if (itemId === "logout") {
-      // Handle logout
-      console.log("Logout pressed");
     }
   };
 

@@ -1,7 +1,7 @@
 import TabSelector from '@/components/Common/TabSelector';
-import ChaptersTab from '@/components/Course/ChaptersTab';
-import CourseInfoTab from '@/components/Course/CourseInfoTab';
 import { mockCourses } from '@/components/Home/mock-data';
+import ChaptersTab from '@/components/Study/ChaptersTab';
+import CourseInfoTab from '@/components/Study/CourseInfoTab';
 import { getCourseDetailById } from '@/data/courseDetailsMockData';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -82,7 +82,6 @@ export default function CourseDetailsScreen() {
                        <CourseInfoTab 
                            course={courseDetail}
                            onEditPress={() => {
-                               console.log('Edit course pressed');
                            }}
                        />
                    )}
@@ -92,8 +91,6 @@ export default function CourseDetailsScreen() {
                        <ChaptersTab 
                            courseId={id || ''}
                            onChapterPress={(chapterId) => {
-                               console.log('Chapter pressed:', chapterId);
-                               // Navigate to ChapterDetailsScreen
                                router.push(`/chapter/${chapterId}`);
                            }}
                        />
