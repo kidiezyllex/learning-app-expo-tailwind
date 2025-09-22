@@ -1,4 +1,5 @@
 import TabSelector from '@/components/Common/TabSelector';
+import ChaptersTab from '@/components/Course/ChaptersTab';
 import CourseInfoTab from '@/components/Course/CourseInfoTab';
 import { mockCourses } from '@/components/Home/mock-data';
 import { getCourseDetailById } from '@/data/courseDetailsMockData';
@@ -90,14 +91,13 @@ export default function CourseDetailsScreen() {
 
                    {/* Chapters Tab Content */}
                    {activeTab === "chapters" && (
-                       <View className="px-6 py-8">
-                           <Text 
-                               className="text-center text-gray-500"
-                               style={{ fontSize: 20 }}
-                           >
-                               Chapters content coming soon...
-                           </Text>
-                       </View>
+                       <ChaptersTab 
+                           courseId={id || ''}
+                           onChapterPress={(chapterId) => {
+                               console.log('Chapter pressed:', chapterId);
+                               // Handle chapter navigation here
+                           }}
+                       />
                    )}
 
                    {/* Scores Tab Content */}

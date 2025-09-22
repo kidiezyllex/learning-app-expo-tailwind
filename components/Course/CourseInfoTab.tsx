@@ -46,7 +46,7 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                                         <Image
                                             source={require('../../assets/icons/user.png')}
                                             style={{ width: 30, height: 30 }}
-                                            resizeMode="cover"
+                                            resizeMode="contain"
                                         />
                                     </View>
                                     <Text
@@ -62,7 +62,7 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                                         <Image
                                             source={require('../../assets/icons/clock2.png')}
                                             style={{ width: 36, height: 36 }}
-                                            resizeMode="cover"
+                                            resizeMode="contain"
                                         />
                                     </View>
                                     <Text
