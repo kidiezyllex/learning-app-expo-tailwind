@@ -1,35 +1,33 @@
-import React, { useCallback, useState } from "react";
-import { RefreshControl, ScrollView, View } from "react-native";
+import { useCallback, useState } from "react";
+import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 // Components
-import EmptyState from "@/components/Common/EmptyState";
-import Header from "@/components/Common/Header";
-import LoadingSpinner from "@/components/Common/LoadingSpinner";
-import SearchBar from "@/components/Common/SearchBar";
-import CourseCard from "@/components/Home/CourseCard";
+import BlogCard from "@/components/Home/BlogCard";
 import TabSelector from "@/components/Home/TabSelector";
 
-// Data
-import { mockCourses, mockUser } from "@/data/mockData";
+import { mockBlogs } from "@/components/Home/mock-data";
+import { mockCourses } from "@/data/mockData";
 
 interface HomeScreenProps {
-  onNotificationPress: () => void;
+  // Header đã được move lên root level
 }
 
-export default function HomeScreen({ onNotificationPress }: HomeScreenProps) {
-  const [activeTab, setActiveTab] = useState("trending");
+export default function HomeScreen({ }: HomeScreenProps) {
+  const [activeTab, setActiveTab] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const tabOptions = [
-    { id: "trending", label: "Xu hướng", isActive: activeTab === "trending" },
     { id: "recommended", label: "Đề xuất", isActive: activeTab === "recommended" },
-    { id: "recent", label: "Gần đây", isActive: activeTab === "recent" }
+    { id: "new", label: "Mới", isActive: activeTab === "new" },
+    { id: "saved", label: "Đã lưu", isActive: activeTab === "saved" },
   ];
 
   const handleTabPress = (tabId: string) => {
-    setActiveTab(tabId);
+    if (tabId !== activeTab) {
+      setActiveTab(tabId);
+    }
   };
 
   const handleSearch = (query: string) => {
@@ -38,6 +36,10 @@ export default function HomeScreen({ onNotificationPress }: HomeScreenProps) {
 
   const handleCoursePress = (courseId: string) => {
     console.log("Course pressed:", courseId);
+  };
+
+  const handleBlogPress = (blogId: string) => {
+    console.log("Blog pressed:", blogId);
   };
 
   const onRefresh = useCallback(() => {
@@ -54,24 +56,39 @@ export default function HomeScreen({ onNotificationPress }: HomeScreenProps) {
 
   // Sort courses based on active tab
   const sortedCourses = [...filteredCourses].sort((a, b) => {
-    if (activeTab === "trending") {
-      return b.completionRate - a.completionRate; // Sort by completion rate for trending
-    } else if (activeTab === "recent") {
-      return b.completedTests - a.completedTests; // Sort by completed tests for recent
+    if (activeTab === "saved") {
+      return b.completionRate - a.completionRate; // Sort by completion rate for saved
+    } else if (activeTab === "new") {
+      return b.completedTests - a.completedTests; // Sort by completed tests for new
     }
     return 0; // Default for recommended
   });
 
   return (
-    <View className="flex-1 bg-neutral-100">
-      {/* Header */}
-      <Header 
-        user={mockUser}
-        onNotificationPress={onNotificationPress}
-      />
-
+    <View className="flex-1 bg-neutral-100 pt-[102px]">
+      <View style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999, // Đảm bảo nằm trên cùng
+      }}>
+        <View className="flex relative flex-row justify-between items-center h-[102px] px-6 bg-[#1877F2]">
+          <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
+            Home
+          </Text>
+          {/* Notification and Settings */}
+          <TouchableOpacity className="absolute right-6">
+            <Image
+              style={{ width: 50.8, height: 50.8 }}
+              source={require('../../assets/icons/active-search.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
       {/* Scrollable Content */}
-      <ScrollView 
+      <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 180 }}
@@ -82,38 +99,24 @@ export default function HomeScreen({ onNotificationPress }: HomeScreenProps) {
         <View>
           {/* Tab Selector */}
           <View className="px-6">
-            <TabSelector 
+            <TabSelector
               tabs={tabOptions}
               onTabPress={handleTabPress}
             />
           </View>
 
-          {/* Search Bar */}
-          <View className="px-6">
-            <SearchBar 
-              placeholder="Tìm kiếm khóa học..."
-              onSearch={handleSearch}
-            />
-          </View>
-
-          {/* Course Cards */}
-          <View className="px-6 mt-3">
-            {isLoading ? (
-              <LoadingSpinner size="large" />
-            ) : sortedCourses.length > 0 ? (
-              sortedCourses.map((course) => (
-                <CourseCard
-                  key={course.id}
-                  course={course}
-                  onPress={() => handleCoursePress(course.id)}
-                />
-              ))
-            ) : (
-              <EmptyState 
-                title="Không tìm thấy khóa học"
-                subtitle="Thử tìm kiếm với từ khóa khác"
-              />
-            )}
+          {/* Blogs list */}
+          <View className="px-6 mt-6">
+            <View className="grid flex-row flex-wrap grid-cols-2 gap-6 justify-between">
+              {mockBlogs.map((blog) => (
+                <View key={blog.id} className="">
+                  <BlogCard
+                    blog={blog}
+                    onPress={handleBlogPress}
+                  />
+                </View>
+              ))}
+            </View>
           </View>
         </View>
       </ScrollView>

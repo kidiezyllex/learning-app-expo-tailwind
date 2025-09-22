@@ -1,22 +1,21 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
 
 // Components
 import EmptyState from "@/components/Common/EmptyState";
-import Header from "@/components/Common/Header";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SearchBar from "@/components/Common/SearchBar";
 import CourseCard from "@/components/Home/CourseCard";
 import TabSelector from "@/components/Home/TabSelector";
 
 // Data
-import { mockCourses, mockUser } from "@/data/mockData";
+import { mockCourses } from "@/data/mockData";
 
 interface GroupScreenProps {
-  onNotificationPress: () => void;
+  // Header đã được move lên root level
 }
 
-export default function GroupScreen({ onNotificationPress }: GroupScreenProps) {
+export default function GroupScreen({}: GroupScreenProps) {
   const [activeTab, setActiveTab] = useState("courses");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -52,13 +51,7 @@ export default function GroupScreen({ onNotificationPress }: GroupScreenProps) {
   );
 
   return (
-    <View className="flex-1 bg-neutral-100">
-      {/* Header */}
-      <Header 
-        user={mockUser}
-        onNotificationPress={onNotificationPress}
-      />
-
+    <View className="flex-1 bg-neutral-100 pt-[102px]">
       {/* Scrollable Content */}
       <ScrollView 
         className="flex-1"

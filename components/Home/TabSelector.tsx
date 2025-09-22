@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 interface TabOption {
@@ -16,22 +16,23 @@ export default function TabSelector({ tabs, onTabPress }: TabSelectorProps) {
   const [pressedTab, setPressedTab] = useState<string | null>(null);
 
   return (
-    <View className="flex flex-row justify-center my-5 space-x-[14px]">
+    <View className="grid grid-cols-3 gap-[14px] my-5">
       {tabs.map((tab) => (
         <Pressable
           key={tab.id}
-          onPress={() => onTabPress?.(tab.id)}
-          onPressIn={() => setPressedTab(tab.id)}
-          onPressOut={() => setPressedTab(null)}
-          className={`w-[132px] h-11 rounded-[100px] border-2 justify-center items-center transform transition-transform ${
-            pressedTab === tab.id ? 'scale-95' : 'scale-100'
+          onPress={() => !tab.isActive && onTabPress?.(tab.id)}
+          onPressIn={() => !tab.isActive && setPressedTab(tab.id)}
+          onPressOut={() => !tab.isActive && setPressedTab(null)}
+          disabled={tab.isActive}
+          className={`min-h-[65px] rounded-[100px] border-2 justify-center items-center transform transition-transform ${
+            pressedTab === tab.id && !tab.isActive ? 'scale-95' : 'scale-100'
           } ${
-            tab.isActive 
-              ? 'bg-blue-600 border-blue-600' 
+            tab.isActive
+              ? 'bg-blue-500 border-blue-500'
               : 'bg-transparent border-zinc-500'
           }`}
         >
-          <Text className={`text-lg font-semibold ${
+          <Text className={`text-xl font-semibold ${
             tab.isActive ? 'text-white' : 'text-zinc-500'
           }`}>
             {tab.label}

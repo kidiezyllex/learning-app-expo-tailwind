@@ -2,10 +2,11 @@ import * as Haptics from 'expo-haptics';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
-interface BottomNavigationProps {
+interface AbsoluteBottomNavigationProps {
   onTabPress?: (tabId: string) => void;
   activeTab?: string;
 }
+
 export const navigationTabs = [
   {
     id: "home",
@@ -43,7 +44,8 @@ export const navigationTabs = [
     size: 33
   }
 ];
-export default function BottomNavigation({ onTabPress, activeTab: propActiveTab }: BottomNavigationProps) {
+
+export default function AbsoluteBottomNavigation({ onTabPress, activeTab: propActiveTab }: AbsoluteBottomNavigationProps) {
   const [pressedTab, setPressedTab] = useState<string | null>(null);
   const activeTab = propActiveTab || "home";
   const floatAnimation = useRef(new Animated.Value(0)).current;
@@ -78,9 +80,15 @@ export default function BottomNavigation({ onTabPress, activeTab: propActiveTab 
   };
 
   return (
-    <View className="relative">
+    <View style={{
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      zIndex: 9999, // Đảm bảo nằm trên cùng
+    }}>
       {/* Main Navigation Bar */}
-      <View className="absolute right-0 bottom-0 left-0 bg-white shadow-sm">
+      <View className="bg-white shadow-sm">
         <View className="flex-row h-[82px]">
           {navigationTabs.map((tab, index) => (
             <Pressable
@@ -119,7 +127,7 @@ export default function BottomNavigation({ onTabPress, activeTab: propActiveTab 
       </View>
 
       {/* Floating Action Button */}
-      <Animated.View 
+      <Animated.View
         style={{
           position: 'absolute',
           right: 24,

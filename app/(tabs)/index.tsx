@@ -1,9 +1,6 @@
+import { useNavigation } from "@/contexts/NavigationContext";
 import "@/global.css";
-import { useState } from "react";
 import { View } from "react-native";
-
-// Components
-import BottomNavigation from "@/components/Common/BottomNavigation";
 
 // Screen Components
 import GroupScreen from "@/components/Screens/GroupScreen";
@@ -13,44 +10,29 @@ import ResultsScreen from "@/components/Screens/ResultsScreen";
 import StudyScreen from "@/components/Screens/StudyScreen";
 
 export default function MainScreen() {
-  const [activeNavigationTab, setActiveNavigationTab] = useState("home");
-
-  const handleNotificationPress = () => {
-    console.log("Notification pressed");
-  };
-
-  const handleNavigationTabPress = (tabId: string) => {
-    console.log("Navigation tab pressed:", tabId);
-    setActiveNavigationTab(tabId);
-  };
+  const { activeTab } = useNavigation();
 
   const renderActiveScreen = () => {
-    switch (activeNavigationTab) {
+    switch (activeTab) {
       case "home":
-        return <HomeScreen onNotificationPress={handleNotificationPress} />;
+        return <HomeScreen />;
       case "group":
-        return <GroupScreen onNotificationPress={handleNotificationPress} />;
+        return <GroupScreen />;
       case "study":
-        return <StudyScreen onNotificationPress={handleNotificationPress} />;
+        return <StudyScreen />;
       case "results":
-        return <ResultsScreen onNotificationPress={handleNotificationPress} />;
+        return <ResultsScreen />;
       case "profile":
-        return <ProfileScreen onNotificationPress={handleNotificationPress} />;
+        return <ProfileScreen />;
       default:
-        return <HomeScreen onNotificationPress={handleNotificationPress} />;
+        return <HomeScreen />;
     }
   };
 
   return (
-    <View className="flex-1 mb-10 bg-neutral-100">
+    <View className="flex-1 bg-neutral-100">
       {/* Active Screen Content */}
       {renderActiveScreen()}
-
-      {/* Bottom Navigation */}
-      <BottomNavigation 
-        activeTab={activeNavigationTab}
-        onTabPress={handleNavigationTabPress}
-      />
     </View>
   );
 }

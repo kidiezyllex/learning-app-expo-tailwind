@@ -1,16 +1,15 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 // Components
 import Avatar from "@/components/Common/Avatar";
-import Header from "@/components/Common/Header";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 
 // Data
 import { mockUser } from "@/data/mockData";
 
 interface ProfileScreenProps {
-  onNotificationPress: () => void;
+  // Header đã được move lên root level
 }
 
 // Mock profile data
@@ -58,7 +57,7 @@ const menuItems = [
   }
 ];
 
-export default function ProfileScreen({ onNotificationPress }: ProfileScreenProps) {
+export default function ProfileScreen({}: ProfileScreenProps) {
   const [isLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -130,13 +129,7 @@ export default function ProfileScreen({ onNotificationPress }: ProfileScreenProp
   );
 
   return (
-    <View className="flex-1 bg-neutral-100">
-      {/* Header */}
-      <Header 
-        user={mockUser}
-        onNotificationPress={onNotificationPress}
-      />
-
+    <View className="flex-1 bg-neutral-100 pt-[102px]">
       {/* Scrollable Content */}
       <ScrollView 
         className="flex-1"

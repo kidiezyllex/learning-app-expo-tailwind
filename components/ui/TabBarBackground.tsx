@@ -2,5 +2,6 @@
 export default undefined;
 
 export function useBottomTabOverflow() {
+  // Return a default value since we're not using React Navigation
   return 0;
 }

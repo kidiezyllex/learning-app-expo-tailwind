@@ -3,17 +3,13 @@ import { RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-
 
 // Components
 import EmptyState from "@/components/Common/EmptyState";
-import Header from "@/components/Common/Header";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SearchBar from "@/components/Common/SearchBar";
 import ProgressBar from "@/components/Home/ProgressBar";
 import TabSelector from "@/components/Home/TabSelector";
 
-// Data
-import { mockUser } from "@/data/mockData";
-
 interface ResultsScreenProps {
-  onNotificationPress: () => void;
+  // Header đã được move lên root level
 }
 
 // Mock results data
@@ -56,7 +52,7 @@ const mockResultsData = [
   }
 ];
 
-export default function ResultsScreen({ onNotificationPress }: ResultsScreenProps) {
+export default function ResultsScreen({}: ResultsScreenProps) {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -171,13 +167,7 @@ export default function ResultsScreen({ onNotificationPress }: ResultsScreenProp
   const stats = calculateStats();
 
   return (
-    <View className="flex-1 bg-neutral-100">
-      {/* Header */}
-      <Header 
-        user={mockUser}
-        onNotificationPress={onNotificationPress}
-      />
-
+    <View className="flex-1 bg-neutral-100 pt-[102px]">
       {/* Scrollable Content */}
       <ScrollView 
         className="flex-1"

@@ -1,19 +1,15 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 // Components
 import EmptyState from "@/components/Common/EmptyState";
-import Header from "@/components/Common/Header";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SearchBar from "@/components/Common/SearchBar";
 import ProgressBar from "@/components/Home/ProgressBar";
 import TabSelector from "@/components/Home/TabSelector";
 
-// Data
-import { mockUser } from "@/data/mockData";
-
 interface StudyScreenProps {
-  onNotificationPress: () => void;
+  // Header đã được move lên root level
 }
 
 // Mock study data
@@ -53,7 +49,7 @@ const mockStudyData = [
   }
 ];
 
-export default function StudyScreen({ onNotificationPress }: StudyScreenProps) {
+export default function StudyScreen({}: StudyScreenProps) {
   const [activeTab, setActiveTab] = useState("learning");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -138,13 +134,7 @@ export default function StudyScreen({ onNotificationPress }: StudyScreenProps) {
   );
 
   return (
-    <View className="flex-1 bg-neutral-100">
-      {/* Header */}
-      <Header 
-        user={mockUser}
-        onNotificationPress={onNotificationPress}
-      />
-
+    <View className="flex-1 bg-neutral-100 pt-[102px]">
       {/* Scrollable Content */}
       <ScrollView 
         className="flex-1"
