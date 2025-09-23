@@ -1,8 +1,6 @@
-import { ScrollView, Text, View } from "react-native";
-
-// Components
 import Efficiency from "@/components/Result/Efficiency";
 import WeekChart from "@/components/Result/WeekChart";
+import { ScrollView, Text, View } from "react-native";
 
 export default function ResultsScreen() {
   return (

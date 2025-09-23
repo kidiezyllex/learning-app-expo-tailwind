@@ -1,18 +1,10 @@
+import Avatar from "@/components/Common/Avatar";
+import LoadingSpinner from "@/components/Common/LoadingSpinner";
+import { mockUser } from "@/data/mockData";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-// Components
-import Avatar from "@/components/Common/Avatar";
-import LoadingSpinner from "@/components/Common/LoadingSpinner";
 
-// Data
-import { mockUser } from "@/data/mockData";
-
-interface ProfileScreenProps {
-  // Header đã được move lên root level
-}
-
-// Mock profile data
 const profileStats = {
   coursesCompleted: 12,
   coursesInProgress: 3,
@@ -57,7 +49,7 @@ const menuItems = [
   }
 ];
 
-export default function ProfileScreen({}: ProfileScreenProps) {
+export default function ProfileScreen() {
   const [isLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 

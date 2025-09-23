@@ -16,7 +16,6 @@ export default function VideoScreen() {
     const screenWidth = Dimensions.get('window').width;
 
     useEffect(() => {
-        // Auto play video when component mounts
         setIsPlaying(true);
     }, []);
 

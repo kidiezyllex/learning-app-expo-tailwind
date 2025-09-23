@@ -3,11 +3,7 @@ import { examQuestions, Question as QuestionType } from '@/data/historyExamMockD
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
-interface HistoryExamScreenProps {
-  // Props if needed
-}
-
-export default function HistoryExamScreen({}: HistoryExamScreenProps) {
+export default function HistoryExamScreen() {
   const [questions, setQuestions] = useState<QuestionType[]>(examQuestions);
 
   const handleAnswerSelect = (questionId: string, answerId: string) => {

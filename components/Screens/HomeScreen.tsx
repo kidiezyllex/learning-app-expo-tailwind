@@ -4,13 +4,9 @@ import { mockCourses } from "@/components/Home/mock-data";
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
-interface HomeScreenProps {
-}
 
-export default function HomeScreen({ }: HomeScreenProps) {
+export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("recommended");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const tabOptions = [
@@ -50,7 +46,6 @@ export default function HomeScreen({ }: HomeScreenProps) {
     }, 2000);
   }, []);
 
-  const [scrollViewHeight, setScrollViewHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
 
   return (
@@ -79,22 +74,14 @@ export default function HomeScreen({ }: HomeScreenProps) {
           </TouchableOpacity>
         </View>
       </View>
-      {/* Scrollable Content */}
       <ScrollView
+        className="flex-1"
         showsVerticalScrollIndicator={false}
-        style={{ height: contentHeight }}
+        contentContainerStyle={{ paddingBottom: 180 }}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
-        onLayout={(event) => {
-          const { height } = event.nativeEvent.layout;
-          setScrollViewHeight(height);
-        }}
-        onContentSizeChange={(contentWidth, contentHeight) => {
-          setContentHeight(contentHeight);
-        }}
       >
-        <View>
           {/* Tab Selector */}
           <View className="px-6">
             <TabSelector
@@ -116,7 +103,6 @@ export default function HomeScreen({ }: HomeScreenProps) {
               ))}
             </View> 
           </View>
-        </View>
       </ScrollView>
     </View>
   );

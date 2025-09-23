@@ -24,7 +24,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 {/* New Badge */}
                 {course.isNew && (
                     <View className="absolute top-4 left-4 w-16 h-7 bg-rose-600 rounded-[5px] justify-center">
-                        <Text className="text-base font-semibold text-center text-neutral-100">
+                        <Text style={{ fontSize: 16 }} className="font-semibold text-center text-neutral-100">
                             New
                         </Text>
                     </View>
@@ -53,17 +53,17 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                         style={{ width: 22, height: 22 }}
                         resizeMode="cover"
                     />
-                    <Text className="text-base font-medium text-neutral-100">
+                    <Text style={{ fontSize: 16 }} className="font-medium text-neutral-100">
                         {course.duration}
                     </Text>
                 </View>
             </View>
             <View className="flex-1 w-full p-[10px] flex flex-col gap-2">
-                <Text className="text-[22px] font-semibold leading-tight text-black line-clamp-2">
+                <Text style={{ fontSize: 22 }} className="font-semibold leading-tight text-black line-clamp-2">
                     {course.title}
                 </Text>
                 <View className="flex-row items-center w-full">
-                    <Text className="flex-1 text-base font-medium leading-tight line-clamp-1 text-zinc-600">
+                    <Text style={{ fontSize: 16 }} className="flex-1 font-medium leading-tight line-clamp-1 text-zinc-600">
                         {course.description}
                     </Text>
                     {/* Rating */}
@@ -73,7 +73,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                             style={{ width: 18, height: 18 }}
                             resizeMode="cover"
                         />
-                        <Text className="text-base font-medium text-black">
+                        <Text style={{ fontSize: 16 }} className="font-medium text-black">
                             {course.rating}/5
                         </Text>
                     </View>

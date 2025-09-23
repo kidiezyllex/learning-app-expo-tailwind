@@ -1,10 +1,9 @@
 import CourseCard from "@/components/Common/ProgressCard";
 import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
+import { mockCourses } from "@/data/mockData";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
-
-import { mockCourses } from "@/data/mockData";
 
 interface MyProgressScreenProps {
   onTabChange?: (tabId: string) => void;
