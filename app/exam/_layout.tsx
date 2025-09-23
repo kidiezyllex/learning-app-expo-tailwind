@@ -1,11 +1,8 @@
 import { Stack } from 'expo-router';
-export default function ChapterLayout() {
+
+export default function ExamLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <Stack>
       <Stack.Screen 
         name="[id]" 
         options={{ 

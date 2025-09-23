@@ -41,31 +41,30 @@ export const navigationTabs = [
   }
 ];
 
-export default function AbsoluteBottomNavigation() {
+export default function BottomNavigation() {
   const [pressedTab, setPressedTab] = useState<string | null>(null);
   const pathname = usePathname();
   const navigationRouter = useRouter();
   const floatAnimation = useRef(new Animated.Value(0)).current;
 
-  // Determine active tab based on current pathname
   const getActiveTab = () => {
-    if (pathname === "/(tabs)/" || pathname === "/(tabs)") return "home";
-    if (pathname === "/(tabs)/group") return "group";
-    if (pathname === "/(tabs)/study") return "study";
-    if (pathname === "/(tabs)/results") return "results";
-    if (pathname === "/(tabs)/profile") return "profile";
-    if (pathname === "/group") return "group";
-    if (pathname.startsWith("/course/")) return "study";
-    if (pathname.startsWith("/chapter/")) return "study";
+    const normalizedPath = pathname.replace(/\/$/, '') || '/';
+    
+    if (normalizedPath === "/(tabs)" || normalizedPath === "/(tabs)/" || normalizedPath === "/" || normalizedPath === "/home") return "home";
+    if (normalizedPath === "/(tabs)/group" || normalizedPath === "/group") return "group";
+    if (normalizedPath === "/(tabs)/study" || normalizedPath === "/study") return "study";
+    if (normalizedPath === "/(tabs)/results" || normalizedPath === "/results") return "results";
+    if (normalizedPath === "/(tabs)/profile" || normalizedPath === "/profile") return "profile";
+    
+    // Check for nested routes
+    if (normalizedPath.startsWith("/course/") || normalizedPath.startsWith("/chapter/")) return "study";
+    if (normalizedPath.startsWith("/exam/") || normalizedPath.startsWith("/statistics/")) return "results";
+    
     return "home";
   };
 
   const activeTab = getActiveTab();
-
-  // Hide navigation when on video screen
   const shouldHideNavigation = pathname.startsWith("/video/");
-
-  // Floating animation effect
   useEffect(() => {
     const startFloating = () => {
       Animated.loop(
@@ -92,14 +91,15 @@ export default function AbsoluteBottomNavigation() {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     
+    console.log("Navigating to:", tab.route); // Debug log
+    
     try {
-      if (tab.route === "/(tabs)/") {
-        navigationRouter.navigate("/(tabs)/");
-      } else {
-        navigationRouter.navigate(tab.route as any);
-      }
-    } catch (error) {
+      // Use push instead of navigate for more reliable navigation
       navigationRouter.push(tab.route as any);
+    } catch (error) {
+      console.error("Navigation error:", error);
+      // Fallback to replace
+      navigationRouter.replace(tab.route as any);
     }
   };
 

@@ -2,32 +2,13 @@ import LessonCard from '@/components/Study/LessonCard';
 import { getChaptersByCourseId } from '@/data/chaptersMockData';
 import { getLessonsByChapterId } from '@/data/lessonsMockData';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ChapterDetailsScreen() {
     const { id } = useLocalSearchParams<{ id: string }>();
-    const [activeTab, setActiveTab] = useState("overview");
-    
-    // Tìm chapter theo ID
-    const allChapters = getChaptersByCourseId('1'); // Get all chapters and find by ID
+    const allChapters = getChaptersByCourseId('1');
     const chapter = allChapters.find(c => c.id === id);
-    
-    // Get lessons for this chapter
     const lessons = getLessonsByChapterId(id);
-
-    const tabOptions = [
-        { id: "overview", label: "Overview", isActive: activeTab === "overview" },
-        { id: "videos", label: "Videos", isActive: activeTab === "videos" },
-        { id: "resources", label: "Resources", isActive: activeTab === "resources" },
-    ];
-
-    const handleTabPress = (tabId: string) => {
-        if (tabId !== activeTab) {
-            setActiveTab(tabId);
-        }
-    };
-
     if (!chapter) {
         return (
             <View className="flex-1 justify-center items-center">
@@ -72,7 +53,6 @@ export default function ChapterDetailsScreen() {
                     </TouchableOpacity>
                 </View>
             </View>
-
             {/* Scrollable Content */}
             <ScrollView
                 showsVerticalScrollIndicator={false}

@@ -8,7 +8,7 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          display: 'none', // Hide default tab bar since we have custom bottom navigation
+          display: 'none',
         },
       }}
     >

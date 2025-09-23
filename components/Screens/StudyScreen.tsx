@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
@@ -54,6 +55,7 @@ export default function StudyScreen({}: StudyScreenProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const router = useRouter();
 
   const tabOptions = [
     { id: "learning", label: "Đang học", isActive: activeTab === "learning" },
@@ -70,6 +72,14 @@ export default function StudyScreen({}: StudyScreenProps) {
   };
 
   const handleCoursePress = (courseId: string) => {
+  };
+
+  const handleExamPress = () => {
+    router.push('/exam/1' as any);
+  };
+
+  const handleStatisticsPress = () => {
+    router.push('/statistics/1' as any);
   };
 
   const onRefresh = useCallback(() => {
@@ -158,6 +168,27 @@ export default function StudyScreen({}: StudyScreenProps) {
               placeholder="Tìm kiếm khóa học đang học..."
               onSearch={handleSearch}
             />
+          </View>
+
+          {/* Test Buttons */}
+          <View className="px-6 mt-3 mb-4 space-y-3">
+            <TouchableOpacity
+              onPress={handleExamPress}
+              className="p-4 bg-blue-600 rounded-xl"
+            >
+              <Text style={{ fontSize: 18 }} className="font-semibold text-center text-white">
+                Test Final Exam
+              </Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              onPress={handleStatisticsPress}
+              className="p-4 bg-green-600 rounded-xl"
+            >
+              <Text style={{ fontSize: 18 }} className="font-semibold text-center text-white">
+                Test Statistics Screen
+              </Text>
+            </TouchableOpacity>
           </View>
 
           {/* Study Cards */}

@@ -1,4 +1,4 @@
-import AbsoluteBottomNavigation from '@/components/Common/AbsoluteBottomNavigation';
+import BottomNavigation from '@/components/Common/BottomNavigation';
 import ErrorBoundary from '@/components/Common/ErrorBoundary';
 import ViewportScaler from '@/components/Common/ViewportScaler';
 import { NavigationProvider } from '@/contexts/NavigationContext';
@@ -40,7 +40,7 @@ export default function RootLayout() {
                 headerShown: false,
               }}
             />
-            <AbsoluteBottomNavigation />
+            <BottomNavigation />
           </View>
         </ViewportScaler>
       </NavigationProvider>

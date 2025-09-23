@@ -10,8 +10,6 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 export default function CourseDetailsScreen() {
     const { id } = useLocalSearchParams<{ id: string }>();
     const [activeTab, setActiveTab] = useState("course");
-    
-    // Tìm course theo ID
     const course = mockCourses.find(c => c.id === id);
     const courseDetail = getCourseDetailById(id || '');
 
