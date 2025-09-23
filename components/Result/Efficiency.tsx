@@ -2,36 +2,12 @@ import { exerciseResults } from '@/data/resultsMockData';
 import { Image, Text, View } from 'react-native';
 
 export default function Efficiency() {
-  const getIconSource = (iconName: string) => {
-    switch (iconName) {
-      case 'clock':
-        return require('../../assets/icons/clock3.png');
-      case 'book':
-        return require('../../assets/icons/book.png');
-      case 'chart':
-        return require('../../assets/icons/chart.png');
-      default:
-        return require('../../assets/icons/clock3.png');
-    }
-  };
-
-  const getIconColor = (color: string) => {
-    switch (color) {
-      case 'blue':
-        return 'bg-blue-600';
-      case 'black':
-        return 'bg-black';
-      default:
-        return 'bg-blue-600';
-    }
-  };
-
   return (
     <View className="w-full">
       {/* Efficiency Statistics */}
       <View style={{ borderRadius: 12 }} className="overflow-hidden mb-4 bg-white shadow-sm">
         {/* Tổng thời gian xem */}
-        <View className="flex-row justify-between items-center border border-b" style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0', padding: 16 }}>
+        <View className="flex-row items-center justify-betwee" style={{ padding: 16 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/clock3.png')}
@@ -95,18 +71,18 @@ export default function Efficiency() {
 
                 <View style={{ flex: 1, width: '100%' }}>
                   <Text
-                    style={{ color: '#000', fontSize: 16, fontWeight: '500' }}
+                    style={{ color: '#000', fontSize: 20, fontWeight: '500' }}
                     numberOfLines={2}
                     className="mb-1"
                   >
                     Nữ ca sĩ vừa có thông báo mới nhất trên trang cá khiến người
                   </Text>
-                  <Text style={{ color: '#737373', fontSize: 14, fontWeight: '500' }}>
+                  <Text style={{ color: '#737373', fontSize: 16, fontWeight: '500' }}>
                     User Name
                   </Text>
                 </View>
 
-                <Text style={{ color: '#000', fontSize: 16, fontWeight: '500' }}>
+                <Text style={{ color: '#000', fontSize: 20, fontWeight: '500' }}>
                   93/100
                 </Text>
               </View>
@@ -156,18 +132,18 @@ export default function Efficiency() {
 
                 <View style={{ flex: 1, width: '100%' }}>
                   <Text
-                    style={{ color: '#000', fontSize: 16, fontWeight: '500' }}
+                    style={{ color: '#000', fontSize: 20, fontWeight: '500' }}
                     numberOfLines={2}
                     className="mb-1"
                   >
                     Nữ ca sĩ vừa có thông báo mới nhất trên trang cá khiến người
                   </Text>
-                  <Text style={{ color: '#737373', fontSize: 14, fontWeight: '500' }}>
+                  <Text style={{ color: '#737373', fontSize: 16, fontWeight: '500' }}>
                     User Name
                   </Text>
                 </View>
 
-                <Text style={{ color: '#000', fontSize: 16, fontWeight: '500' }}>
+                <Text style={{ color: '#000', fontSize: 20, fontWeight: '500' }}>
                   93/100
                 </Text>
               </View>

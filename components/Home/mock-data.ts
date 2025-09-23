@@ -60,7 +60,7 @@ export const mockCourses: Course[] = [
     thumbnail: require("../../assets/images/home/blog5.png"),
     rating: 4.5,
     duration: "60m",
-    isNew: false,
+    isNew: true,
     isLive: false,
   },
   {

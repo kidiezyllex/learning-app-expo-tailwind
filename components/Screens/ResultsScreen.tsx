@@ -6,17 +6,19 @@ import WeekChart from "@/components/Result/WeekChart";
 
 export default function ResultsScreen() {
   return (
-    <View className="flex-1 bg-neutral-100 pt-[102px]">
+    <View className="flex-1 pt-[66px]">
       {/* Header */}
-      <View style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9999, // Đảm bảo nằm trên cùng
-      }}>
-        <View className="flex flex-row justify-center items-center h-[102px] px-6 bg-blue-600">
-          <Text style={{ fontSize: 36 }} className="font-semibold text-white">
+      <View className="fixed top-0 right-0 left-0 z-50">
+        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
+          <Text
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            fontSize: 32
+          }}
+          className="font-medium text-white">
             Kết quả
           </Text>
         </View>

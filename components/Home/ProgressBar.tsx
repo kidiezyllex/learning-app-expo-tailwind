@@ -9,7 +9,7 @@ interface ProgressBarProps {
 export default function ProgressBar({ 
   progress, 
   showPercentage = true, 
-  height = 27
+  height = 28
 }: ProgressBarProps) {
   return (
     <View className="w-[94%]">
@@ -23,7 +23,11 @@ export default function ProgressBar({
         />
         
         {showPercentage && (
-          <View className="absolute inset-0 justify-center items-center">
+          <View className="absolute justify-center items-center" style={{ 
+            left: '50%', 
+            top: '50%',
+            transform: [{ translateX: -50 }, { translateY: -14 }]
+          }}>
             <Text style={{ fontSize: 20 }} className="z-10 font-medium text-black">
               {progress}% completed
             </Text>

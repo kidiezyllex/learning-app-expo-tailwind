@@ -1,13 +1,16 @@
 import CourseCard from "@/components/Common/ProgressCard";
 import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
-import { router } from "expo-router";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { mockCourses } from "@/data/mockData";
 
-export default function MyProgressScreen() {
+interface MyProgressScreenProps {
+  onTabChange?: (tabId: string) => void;
+}
+
+export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps) {
 
   const [activeTab, setActiveTab] = useState("courses");
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,12 +46,12 @@ export default function MyProgressScreen() {
   );
 
   return (
-    <View className="flex-1 pt-[102px] pb-32">
+    <View className="flex-1 pt-[66px]">
       {/* Header */}
       <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => onTabChange?.("statistics")}
             className="absolute left-3"
           >
             <Image
@@ -58,8 +61,16 @@ export default function MyProgressScreen() {
             />
           </TouchableOpacity>
 
-          <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
-            Group 1
+          <Text
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            fontSize: 32
+          }}
+          className="font-medium text-white">
+            My Progress
           </Text>
           <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
             <TouchableOpacity

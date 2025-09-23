@@ -1,4 +1,3 @@
-import BottomNavigation from '@/components/Common/BottomNavigation';
 import ErrorBoundary from '@/components/Common/ErrorBoundary';
 import ViewportScaler from '@/components/Common/ViewportScaler';
 import { NavigationProvider } from '@/contexts/NavigationContext';
@@ -7,7 +6,6 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { View } from 'react-native';
-import '../global.css';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -40,7 +38,6 @@ export default function RootLayout() {
                 headerShown: false,
               }}
             />
-            <BottomNavigation />
           </View>
         </ViewportScaler>
       </NavigationProvider>

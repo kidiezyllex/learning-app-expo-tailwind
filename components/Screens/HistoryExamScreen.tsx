@@ -1,7 +1,7 @@
 import Question from '@/components/HistoryExam/Question';
 import { examQuestions, Question as QuestionType } from '@/data/historyExamMockData';
 import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 interface HistoryExamScreenProps {
   // Props if needed
@@ -21,7 +21,23 @@ export default function HistoryExamScreen({}: HistoryExamScreenProps) {
   };
 
   return (
-    <View className="flex-1 bg-neutral-100 pt-[96px]">
+    <View className="flex-1 pt-[66px]">
+      {/* Header */}
+      <View className="fixed top-0 right-0 left-0 z-50">
+        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
+          <Text
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            fontSize: 32
+          }}
+          className="font-medium text-white">
+            History Exam
+          </Text>
+        </View>
+      </View>
       {/* Scrollable Content */}
       <ScrollView 
         className="flex-1"

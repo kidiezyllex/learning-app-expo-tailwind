@@ -20,8 +20,12 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
     const handlePress = () => {
         if (onPress) {
             onPress();
-        } else if (!isLocked && !isExam) {
-            router.push(`/video/${lesson.id}` as any);
+        } else if (!isLocked) {
+            if (isExam) {
+                router.push(`/exam/${lesson.id}` as any);
+            } else {
+                router.push(`/video/${lesson.id}` as any);
+            }
         }
     };
 

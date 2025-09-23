@@ -3,10 +3,6 @@ import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 // Components
-import EmptyState from "@/components/Common/EmptyState";
-import LoadingSpinner from "@/components/Common/LoadingSpinner";
-import SearchBar from "@/components/Common/SearchBar";
-import TabSelector from "@/components/Common/TabSelector";
 import ProgressBar from "@/components/Home/ProgressBar";
 
 interface StudyScreenProps {
@@ -50,7 +46,7 @@ const mockStudyData = [
   }
 ];
 
-export default function StudyScreen({}: StudyScreenProps) {
+export default function StudyScreen({ }: StudyScreenProps) {
   const [activeTab, setActiveTab] = useState("learning");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -108,7 +104,7 @@ export default function StudyScreen({}: StudyScreenProps) {
             resizeMode="cover"
           />
         </View>
-        
+
         <View className="flex-1">
           <Text className="mb-1 text-lg font-semibold text-gray-900">
             {course.title}
@@ -116,7 +112,7 @@ export default function StudyScreen({}: StudyScreenProps) {
           <Text className="mb-2 text-sm text-gray-600">
             {course.subject}
           </Text>
-          
+
           <View className="mb-3">
             <View className="flex-row justify-between items-center mb-1">
               <Text className="text-xs text-gray-500">
@@ -128,7 +124,7 @@ export default function StudyScreen({}: StudyScreenProps) {
             </View>
             <ProgressBar progress={course.progress} />
           </View>
-          
+
           <View className="flex-row justify-between items-center">
             <Text className="text-xs text-gray-500">
               Thời gian: {course.timeSpent}
@@ -143,9 +139,54 @@ export default function StudyScreen({}: StudyScreenProps) {
   );
 
   return (
-    <View className="flex-1 bg-neutral-100 pt-[102px]">
+    <View className="flex-1 pt-[66px]">
+      {/* Header */}
+      <View className="fixed top-0 right-0 left-0 z-50">
+        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
+          <TouchableOpacity
+            onPress={() => router.back()}
+            className="absolute left-3"
+          >
+            <Image
+              style={{ width: 69, height: 69 }}
+              source={require('../../assets/icons/left-arrow.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+
+          <Text
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            fontSize: 32
+          }}
+          className="font-medium text-white">
+            Study Screen Sample
+          </Text>
+          <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 51, height: 51 }}
+                source={require('../../assets/icons/bell.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 39, height: 41 }}
+                source={require('../../assets/icons/logout.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
       {/* Scrollable Content */}
-      <ScrollView 
+      <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 180 }}
@@ -153,70 +194,7 @@ export default function StudyScreen({}: StudyScreenProps) {
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
       >
-        <View>
-          {/* Tab Selector */}
-          <View className="px-6">
-            <TabSelector 
-              tabs={tabOptions}
-              onTabPress={handleTabPress}
-            />
-          </View>
-
-          {/* Search Bar */}
-          <View className="px-6">
-            <SearchBar 
-              placeholder="Tìm kiếm khóa học đang học..."
-              onSearch={handleSearch}
-            />
-          </View>
-
-          {/* Test Buttons */}
-          <View className="px-6 mt-3 mb-4 space-y-3">
-            <TouchableOpacity
-              onPress={handleExamPress}
-              className="p-4 bg-blue-600 rounded-xl"
-            >
-              <Text style={{ fontSize: 18 }} className="font-semibold text-center text-white">
-                Test Final Exam
-              </Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity
-              onPress={handleStatisticsPress}
-              className="p-4 bg-green-600 rounded-xl"
-            >
-              <Text style={{ fontSize: 18 }} className="font-semibold text-center text-white">
-                Test Statistics Screen
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Study Cards */}
-          <View className="px-6 mt-3">
-            {isLoading ? (
-              <LoadingSpinner size="large" />
-            ) : activeTab === "learning" ? (
-              filteredCourses.length > 0 ? (
-                filteredCourses.map(renderStudyCard)
-              ) : (
-                <EmptyState 
-                  title="Chưa có khóa học nào"
-                  subtitle="Bắt đầu học để xem tiến độ ở đây"
-                />
-              )
-            ) : activeTab === "completed" ? (
-              <EmptyState 
-                title="Chưa hoàn thành khóa học nào"
-                subtitle="Hoàn thành các khóa học để xem ở đây"
-              />
-            ) : (
-              <EmptyState 
-                title="Chưa lưu khóa học nào"
-                subtitle="Lưu các khóa học yêu thích để xem ở đây"
-              />
-            )}
-          </View>
-        </View>
+     
       </ScrollView>
     </View>
   );

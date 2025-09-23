@@ -25,6 +25,19 @@ export default function HomeScreen({ }: HomeScreenProps) {
     }
   };
 
+  // Filter courses based on active tab
+  const getFilteredCourses = () => {
+    switch (activeTab) {
+      case "new":
+        return mockCourses.filter(course => course.isNew === true);
+      case "saved":
+        return mockCourses.filter(course => course.isSave === true);
+      case "recommended":
+      default:
+        return mockCourses;
+    }
+  };
+
 
   const handleCoursePress = (courseId: string) => {
     router.push(`/course/${courseId}`);
@@ -41,11 +54,19 @@ export default function HomeScreen({ }: HomeScreenProps) {
   const [contentHeight, setContentHeight] = useState(0);
 
   return (
-    <View className="flex-1 pt-[102px] pb-32">
+    <View className="flex-1 pt-[66px]">
       {/* Header */}
       <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row justify-between items-center h-[102px] px-6 bg-[#1877F2]">
-          <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
+          <Text
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            fontSize: 32
+          }}
+          className="font-medium text-white">
             Home
           </Text>
           {/* Notification and Settings */}
@@ -85,7 +106,7 @@ export default function HomeScreen({ }: HomeScreenProps) {
           {/* Blogs list */}
           <View className="px-6">
             <View className="flex-row flex-wrap justify-between">
-              {mockCourses.map((course) => (
+              {getFilteredCourses().map((course) => (
                 <View key={course.id} className="w-[48%] mb-6">
                   <CourseCard
                     course={course}

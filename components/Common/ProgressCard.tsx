@@ -33,7 +33,10 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       {/* More Options Button */}
       <TouchableOpacity
         onPress={onMorePress}
-        className="absolute right-3 top-1/2 p-1 -translate-y-1/2"
+        style={{
+          top: '50%',
+        }}
+        className="absolute right-3 p-1"
       >
         <Image
           source={require('../../assets/icons/chevron-right.png')}

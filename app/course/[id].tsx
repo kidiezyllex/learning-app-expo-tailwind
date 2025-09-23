@@ -40,7 +40,7 @@ export default function CourseDetailsScreen() {
     }
 
     return (
-        <View className="flex-1 pt-[102px] pb-32">
+        <View className="flex-1 pt-[66px]">
             {/* Header */}
             <View className="fixed top-0 right-0 left-0 z-50">
                 <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">

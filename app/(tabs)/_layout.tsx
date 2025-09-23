@@ -1,4 +1,3 @@
-import { icons } from '@/assets/icons';
 import { Tabs } from 'expo-router';
 import { Image } from 'react-native';
 
@@ -8,7 +7,21 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          display: 'none',
+          backgroundColor: 'white',
+          height: 124,
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowOpacity: 0,
+        },
+        tabBarLabelStyle: {
+          fontSize: 20,
+          fontWeight: '500',
+          marginTop: 4,
+        },
+        tabBarActiveTintColor: '#2563eb',
+        tabBarInactiveTintColor: '#646464',
+        tabBarItemStyle: {
+          paddingVertical: 8,
         },
       }}
     >
@@ -18,8 +31,8 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
             <Image 
-              source={icons.home} 
-              style={{ width: size, height: size, tintColor: color }} 
+              source={require('../../assets/icons/home.png')} 
+              style={{ width: 59, height: 59, tintColor: color }} 
             />
           ),
         }}
@@ -30,8 +43,8 @@ export default function TabLayout() {
           title: 'Group',
           tabBarIcon: ({ color, size }) => (
             <Image 
-              source={icons.archiveBook} 
-              style={{ width: size, height: size, tintColor: color }} 
+              source={require('../../assets/icons/archive-book.png')} 
+              style={{ width: 58, height: 58, tintColor: color }} 
             />
           ),
         }}
@@ -42,8 +55,8 @@ export default function TabLayout() {
           title: 'Study',
           tabBarIcon: ({ color, size }) => (
             <Image 
-              source={icons.bookSaved} 
-              style={{ width: size, height: size, tintColor: color }} 
+              source={require('../../assets/icons/book-saved.png')} 
+              style={{ width: 65, height: 65, tintColor: color }} 
             />
           ),
         }}
@@ -51,11 +64,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="results"
         options={{
-          title: 'Results',
+          title: 'Result',
           tabBarIcon: ({ color, size }) => (
             <Image 
-              source={icons.chart} 
-              style={{ width: size, height: size, tintColor: color }} 
+              source={require('../../assets/icons/chart.png')} 
+              style={{ width: 54, height: 54, tintColor: color }} 
             />
           ),
         }}
@@ -66,8 +79,8 @@ export default function TabLayout() {
           title: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <Image 
-              source={icons.user} 
-              style={{ width: size, height: size, tintColor: color }} 
+              source={require('../../assets/icons/user.png')} 
+              style={{ width: 49, height: 49, tintColor: color }} 
             />
           ),
         }}

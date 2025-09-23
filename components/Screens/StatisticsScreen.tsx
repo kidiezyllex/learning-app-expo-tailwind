@@ -6,10 +6,10 @@ import { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 interface StatisticsScreenProps {
-  // Props if needed
+  onTabChange?: (tabId: string) => void;
 }
 
-export default function StatisticsScreen({ }: StatisticsScreenProps) {
+export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps) {
   const [activeTab, setActiveTab] = useState("statistics");
   const router = useRouter();
   const tabOptions = [
@@ -20,7 +20,7 @@ export default function StatisticsScreen({ }: StatisticsScreenProps) {
 
   const handleTabPress = (tabId: string) => {
     if (tabId === "progress") {
-      router.push("/my-progress" as any);
+      onTabChange?.("my-progress");
     } else {
       setActiveTab(tabId);
     }
@@ -63,12 +63,12 @@ export default function StatisticsScreen({ }: StatisticsScreenProps) {
   };
 
   return (
-    <View className="flex-1 pt-[102px] pb-32">
+    <View className="flex-1 pt-[66px]">
       {/* Header */}
       <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => onTabChange?.("statistics")}
             className="absolute left-3"
           >
             <Image
@@ -78,8 +78,16 @@ export default function StatisticsScreen({ }: StatisticsScreenProps) {
             />
           </TouchableOpacity>
 
-          <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
-            Group 1
+          <Text
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            fontSize: 32
+          }}
+          className="font-medium text-white">
+            Statistics
           </Text>
           <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
             <TouchableOpacity
@@ -107,7 +115,7 @@ export default function StatisticsScreen({ }: StatisticsScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       >
-        <View className="px-6 py-6">
+        <View className="px-6">
           {/* Tab Selector */}
           <TabSelector
             tabs={tabOptions}
