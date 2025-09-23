@@ -1,5 +1,3 @@
-import EmptyState from "@/components/Common/EmptyState";
-import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import CourseCard from "@/components/Common/ProgressCard";
 import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
@@ -10,7 +8,7 @@ import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 
 import { mockCourses } from "@/data/mockData";
 
 export default function MyProgressScreen() {
-  
+
   const [activeTab, setActiveTab] = useState("courses");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading] = useState(false);
@@ -46,8 +44,8 @@ export default function MyProgressScreen() {
 
   return (
     <View className="flex-1 pt-[102px] pb-32">
-        {/* Header */}
-        <View className="fixed top-0 right-0 left-0 z-50">
+      {/* Header */}
+      <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
           <TouchableOpacity
             onPress={() => router.back()}
@@ -84,7 +82,7 @@ export default function MyProgressScreen() {
         </View>
       </View>
       {/* Scrollable Content */}
-      <ScrollView 
+      <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 180 }}
@@ -95,44 +93,28 @@ export default function MyProgressScreen() {
         <View>
           {/* Tab Selector */}
           <View className="px-6">
-            <TabSelector 
+            <TabSelector
               tabs={tabOptions}
               onTabPress={handleTabPress}
             />
           </View>
 
           <View className="px-6">
-            <SearchBar 
+            <SearchBar
               placeholder="Search"
               onSearch={handleSearch}
             />
           </View>
 
           {/* Course Cards */}
-          <View className="px-6 mt-3">
-            {isLoading ? (
-              <LoadingSpinner size="large" />
-            ) : activeTab === "courses" ? (
-              filteredCourses.length > 0 ? (
-                filteredCourses.map((course) => (
-                  <CourseCard
-                    key={course.id}
-                    course={course}
-                    onPress={() => handleCoursePress(course.id)}
-                  />
-                ))
-              ) : (
-                <EmptyState 
-                  title="Không tìm thấy khóa học"
-                  subtitle="Thử tìm kiếm với từ khóa khác"
-                />
-              )
-            ) : (
-              <EmptyState 
-                title="Danh sách thành viên"
-                subtitle="Chức năng đang được phát triển"
+          <View style={{ gap: 20, marginTop: 20 }} className="flex-col px-6">
+            {mockCourses.map((course) => (
+              <CourseCard
+                key={course.id}
+                course={course}
+                onPress={() => handleCoursePress(course.id)}
               />
-            )}
+            ))}
           </View>
         </View>
       </ScrollView>
