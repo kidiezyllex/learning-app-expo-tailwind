@@ -1,17 +1,17 @@
-import { efficiencyData, exerciseResults } from '@/data/resultsMockData';
+import { exerciseResults } from '@/data/resultsMockData';
 import { Image, Text, View } from 'react-native';
 
 export default function Efficiency() {
   const getIconSource = (iconName: string) => {
     switch (iconName) {
       case 'clock':
-        return require('../../assets/icons/clock.png');
+        return require('../../assets/icons/clock3.png');
       case 'book':
-        return require('../../assets/icons/book-saved.png');
+        return require('../../assets/icons/book.png');
       case 'chart':
         return require('../../assets/icons/chart.png');
       default:
-        return require('../../assets/icons/clock.png');
+        return require('../../assets/icons/clock3.png');
     }
   };
 
@@ -29,67 +29,155 @@ export default function Efficiency() {
   return (
     <View className="w-full">
       {/* Efficiency Statistics */}
-      <View className="p-6 mb-4 bg-white rounded-xl shadow-sm">
-        {efficiencyData.map((item, index) => (
-          <View key={item.id}>
-            <View className="flex-row items-center py-4">
-              <View className={`w-12 h-12 ${getIconColor(item.color)} rounded-lg items-center justify-center mr-4`}>
-                <Image
-                  source={getIconSource(item.icon)}
-                  style={{ width: 24, height: 24 }}
-                  tintColor="white"
-                />
-              </View>
-              
-              <View className="flex-1">
-                <Text style={{ fontSize: 20 }} className="mb-1 font-medium text-black">
-                  {item.title}
-                </Text>
-                <Text style={{ fontSize: 20 }} className="font-medium text-neutral-500">
-                  {item.value}
-                </Text>
-              </View>
-              
-              <Image
-                source={require('../../assets/icons/chevron-right.png')}
-                style={{ width: 10, height: 20 }}
-                tintColor="#737373"
-              />
-            </View>
-            
-            {index < efficiencyData.length - 1 && (
-              <View className="h-0 border-t border-zinc-100" />
-            )}
+      <View style={{ borderRadius: 12 }} className="overflow-hidden mb-4 bg-white shadow-sm">
+        {/* Tổng thời gian xem */}
+        <View className="flex-row justify-between items-center border border-b" style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0', padding: 20 }}>
+          <View style={{ width: 78 }} className="justify-start">
+            <Image
+              source={require('../../assets/icons/clock3.png')}
+              style={{ width: 50, height: 50 }}
+              resizeMode="contain"
+            />
           </View>
-        ))}
-      </View>
 
-      {/* Exercise Results */}
-      <View className="p-6 bg-white rounded-xl shadow-sm">
-        {exerciseResults.map((exercise, index) => (
-          <View key={exercise.id}>
-            <View className="flex-row items-start py-4">
-              <View className="mr-4 w-10 h-10 bg-emerald-600 rounded-full" />
-              
-              <View className="flex-1 mr-4">
-                <Text style={{ fontSize: 16 }} className="mb-2 font-semibold text-black">
-                  {exercise.title}
-                </Text>
-                <Text style={{ fontSize: 14 }} className="font-medium text-stone-500">
-                  {exercise.userName}
+          <View className="flex-1">
+            <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
+              Tổng thời gian xem
+            </Text>
+            <Text style={{ color: '#737373', fontSize: 26, fontWeight: '500' }}>
+              45 Giờ
+            </Text>
+          </View>
+
+          <Image
+            className='transform scale-125'
+            source={require('../../assets/icons/chevron-right.png')}
+            style={{ width: 10, height: 21 }}
+            resizeMode="contain"
+          />
+        </View>
+
+        {/* Bài tập của tôi */}
+        <View className="flex-row justify-between items-center" style={{ padding: 20 }}>
+          <View style={{ width: 78 }} className="justify-start">
+            <Image
+              source={require('../../assets/icons/book.png')}
+              style={{ width: 40, height: 50 }}
+              resizeMode="contain"
+            />
+          </View>
+
+          <View className="flex-1">
+            <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
+              Bài tập của tôi
+            </Text>
+          </View>
+
+          <Image
+            className='transform scale-125'
+            source={require('../../assets/icons/chevron-right.png')}
+            style={{ width: 10, height: 21 }}
+            resizeMode="contain"
+          />
+        </View>
+        {/* Exercise Results */}
+        <View >
+          {exerciseResults.map((exercise, index) => (
+            <View key={exercise.id}>
+              <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>
+                <View style={{ width: 62 }} className="justify-start">
+                  <Image
+                    source={require('../../assets/icons/check.png')}
+                    style={{ width: 39, height: 39 }}
+                    resizeMode="contain"
+                  />
+                </View>
+
+                <View style={{ flex: 1, width: '100%' }}>
+                  <Text
+                    style={{ color: '#000', fontSize: 16, fontWeight: '500' }}
+                    numberOfLines={2}
+                    className="mb-1"
+                  >
+                    Nữ ca sĩ vừa có thông báo mới nhất trên trang cá khiến người
+                  </Text>
+                  <Text style={{ color: '#737373', fontSize: 14, fontWeight: '500' }}>
+                    User Name
+                  </Text>
+                </View>
+
+                <Text style={{ color: '#000', fontSize: 16, fontWeight: '500' }}>
+                  93/100
                 </Text>
               </View>
-              
-              <Text style={{ fontSize: 16 }} className="font-semibold text-black">
-                {exercise.score}
-              </Text>
+
+              {index < exerciseResults.length - 1 && (
+                <View className="h-0 border-t border-zinc-100" />
+              )}
             </View>
-            
-            {index < exerciseResults.length - 1 && (
-              <View className="h-0 border-t border-zinc-100" />
-            )}
+          ))}
+        </View>
+
+        {/* Trung bình ngày */}
+        <View className="flex-row justify-between items-center" style={{ padding: 20 }}>
+          <View style={{ width: 78 }} className="justify-start">
+            <Image
+              source={require('../../assets/icons/clock3.png')}
+              style={{ width: 50, height: 50 }}
+              resizeMode="contain"
+            />
           </View>
-        ))}
+          
+          <View className="flex-1">
+            <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
+            Trung bình ngày
+            </Text>
+          </View>
+          
+          <Image
+            className='transform scale-125'
+            source={require('../../assets/icons/chevron-right.png')}
+            style={{ width: 10, height: 21 }}
+            resizeMode="contain"
+          />
+        </View>
+          {/* Exercise Results */}
+          <View >
+          {exerciseResults.map((exercise, index) => (
+            <View key={exercise.id}>
+              <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>
+                <View style={{ width: 62 }} className="justify-start">
+                  <Image
+                    source={require('../../assets/icons/check.png')}
+                    style={{ width: 39, height: 39 }}
+                    resizeMode="contain"
+                  />
+                </View>
+
+                <View style={{ flex: 1, width: '100%' }}>
+                  <Text
+                    style={{ color: '#000', fontSize: 16, fontWeight: '500' }}
+                    numberOfLines={2}
+                    className="mb-1"
+                  >
+                    Nữ ca sĩ vừa có thông báo mới nhất trên trang cá khiến người
+                  </Text>
+                  <Text style={{ color: '#737373', fontSize: 14, fontWeight: '500' }}>
+                    User Name
+                  </Text>
+                </View>
+
+                <Text style={{ color: '#000', fontSize: 16, fontWeight: '500' }}>
+                  93/100
+                </Text>
+              </View>
+
+              {index < exerciseResults.length - 1 && (
+                <View className="h-0 border-t border-zinc-100" />
+              )}
+            </View>
+          ))}
+        </View>
       </View>
     </View>
   );

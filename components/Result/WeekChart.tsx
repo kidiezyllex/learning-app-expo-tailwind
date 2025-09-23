@@ -52,10 +52,9 @@ export default function WeekChart() {
           y1={y}
           x2={chartWidth - 60}
           y2={y}
-          stroke="#e5e7eb"
+          stroke="#BEBEBE"
           strokeWidth="1"
           strokeDasharray="3,3"
-          opacity={0.5}
         />
       )
     })

@@ -30,7 +30,7 @@ export default function ResultsScreen() {
         <View className="px-6">
           {/* Week Chart Section */}
           <View className="mb-6">
-            <Text style={{ fontSize: 32, marginVertical: 32}} className="font-medium text-neutral-950">
+            <Text style={{ fontSize: 32, marginVertical: 28}} className="font-medium text-neutral-950">
               Tuần này
             </Text>
             <WeekChart />
@@ -38,7 +38,7 @@ export default function ResultsScreen() {
 
           {/* Efficiency Section */}
           <View>
-            <Text style={{ fontSize: 24 }} className="mb-4 font-medium text-black">
+          <Text style={{ fontSize: 32, marginBottom: 20}} className="font-medium text-neutral-950">
               Hiệu suất
             </Text>
             <Efficiency />

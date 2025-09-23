@@ -38,7 +38,7 @@ export const efficiencyData: EfficiencyData[] = [
     id: "1",
     title: "Tổng thời gian xem",
     value: "45 Giờ",
-    icon: "clock",
+    icon: "clock3",
     color: "blue"
   },
   {
