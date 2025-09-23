@@ -16,14 +16,14 @@ export default function Avatar({
   const sizeClasses = {
     small: 'w-11 h-11',
     medium: 'w-16 h-16', 
-    large: 'w-20 h-20'
+    large: 'w-[100px] h-[100px]'
   };
 
   return (
     onPress ? (
       <TouchableOpacity onPress={onPress}>
         <Image
-          source={{ uri: source }}
+          source={require('../../assets/images/sample-avatar.png')}
           className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
           resizeMode="cover"
         />
@@ -31,7 +31,7 @@ export default function Avatar({
     ) : (
       <View>
         <Image
-          source={{ uri: source }}
+          source={require('../../assets/images/sample-avatar.png')}
           className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
           resizeMode="cover"
         />

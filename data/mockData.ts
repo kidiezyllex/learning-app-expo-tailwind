@@ -27,7 +27,7 @@ export interface NavigationTab {
 export const mockUser: User = {
   id: "1",
   name: "User Name",
-  avatar: "https://placehold.co/69x69",
+  avatar: "require('../../assets/images/sample-avatar.png')",
   groupName: "Nhóm 1",
   notificationCount: 3
 };
@@ -37,7 +37,7 @@ export const mockCourses: Course[] = [
     id: "1",
     title: "Tạo thiết kế Figma bằng AI",
     userName: "user name",
-    userAvatar: "https://placehold.co/45x45",
+    userAvatar: "require('../../assets/images/sample-avatar.png')",
     completedTests: 3,
     completionRate: 35,
     isActive: true
@@ -46,7 +46,7 @@ export const mockCourses: Course[] = [
     id: "2", 
     title: "Tạo thiết kế Figma bằng AI",
     userName: "user name",
-    userAvatar: "https://placehold.co/45x45",
+    userAvatar: "require('../../assets/images/sample-avatar.png')",
     completedTests: 3,
     completionRate: 20,
     isActive: false
@@ -55,7 +55,7 @@ export const mockCourses: Course[] = [
     id: "3",
     title: "Tạo thiết kế Figma bằng AI", 
     userName: "user name",
-    userAvatar: "https://placehold.co/45x45",
+    userAvatar: "require('../../assets/images/sample-avatar.png')",
     completedTests: 0,
     completionRate: 0,
     isActive: false
