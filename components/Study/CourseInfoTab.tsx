@@ -1,12 +1,14 @@
+import { Course } from '@/components/Home/mock-data';
 import { CourseDetail } from '@/data/courseDetailsMockData';
-import { Image, Pressable, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 interface CourseInfoTabProps {
     course: CourseDetail;
+    selectedCourse: Course;
     onEditPress?: () => void;
 }
 
-export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProps) {
+export default function CourseInfoTab({ course, selectedCourse, onEditPress }: CourseInfoTabProps) {
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -18,7 +20,7 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                     <View className="flex-1">
                         <View className="relative">
                             <Image
-                                source={require('../../assets/images/courses/course-thumbnail.png')}
+                                source={selectedCourse.thumbnail}
                                 style={{
                                     width: '100%',
                                     height: 225,
@@ -69,7 +71,7 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                                         className="font-medium text-black"
                                         style={{ fontSize: 16 }}
                                     >
-                                        Duration: {course.duration}
+                                        Duration: {selectedCourse.duration}
                                     </Text>
                                 </View>
 
@@ -85,7 +87,7 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                                         className="font-medium text-black"
                                         style={{ fontSize: 16 }}
                                     >
-                                        {course.rating}/{course.maxRating}
+                                        {selectedCourse.rating}/{course.maxRating}
                                     </Text>
                                 </View>
 
@@ -122,14 +124,14 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                         className="mb-4 font-semibold text-black"
                         style={{ fontSize: 32 }}
                     >
-                        {course.title}
+                        {selectedCourse.title}
                     </Text>
 
                     <Text
                         className="font-medium leading-6 text-stone-500"
                         style={{ fontSize: 20 }}
                     >
-                        {course.longDescription}
+                        {selectedCourse.description}
                     </Text>
                 </View>
 
@@ -148,40 +150,17 @@ export default function CourseInfoTab({ course, onEditPress }: CourseInfoTabProp
                     </Pressable>
                     {!course.isPurchased && (
                         <Text
-                            className="mb-4 font-medium text-center text-stone-500 max-w-[370px] text-wrap break-words"
+                            className="font-medium text-center text-stone-500 max-w-[370px] text-wrap break-words"
                             style={{ fontSize: 20 }}
                         >
                             Complete {course.progress}% of the course progress to unlock the assessment feature
                         </Text>
                     )}
-
-                    {course.isPurchased && (
-                        <TouchableOpacity
-                            onPress={onEditPress}
-                            className="bg-blue-600 rounded-[10px] justify-center items-center shadow-lg"
-                            style={{
-                                width: 192,
-                                height: 56,
-                                shadowColor: '#000',
-                                shadowOffset: { width: 0, height: 2 },
-                                shadowOpacity: 0.25,
-                                shadowRadius: 3,
-                                elevation: 3
-                            }}
-                        >
-                            <Text
-                                className="font-semibold text-white"
-                                style={{ fontSize: 20 }}
-                            >
-                                Edit
-                            </Text>
-                        </TouchableOpacity>
-                    )}
                 </View>
 
                 {/* Reviews Section */}
                 {course.reviews && course.reviews.length > 0 && (
-                    <View>
+                    <View style={{ marginTop: 24 }}>
                         {course.reviews.map((review) => (
                             <View
                                 key={review.id}

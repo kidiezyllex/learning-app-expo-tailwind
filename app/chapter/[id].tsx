@@ -30,7 +30,7 @@ export default function ChapterDetailsScreen() {
                 <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
                     <TouchableOpacity
                         onPress={() => router.back()}
-                        className="absolute left-3"
+                        className="absolute left-3 z-10"
                     >
                         <Image
                             style={{ width: 69, height: 69 }}

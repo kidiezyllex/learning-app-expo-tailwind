@@ -1,13 +1,16 @@
 import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Home/CourseCard";
 import { mockCourses } from "@/components/Home/mock-data";
-import { router } from "expo-router";
+import { useCourse } from "@/contexts/CourseContext";
+import { useNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("recommended");
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const { setSelectedCourse } = useCourse();
+  const { setCurrentHomeScreen } = useNavigation();
 
   const tabOptions = [
     { id: "recommended", label: "Đề xuất", isActive: activeTab === "recommended" },
@@ -36,7 +39,12 @@ export default function HomeScreen() {
 
 
   const handleCoursePress = (courseId: string) => {
-    router.push(`/course/${courseId}`);
+    // Find the course from mockCourses and set it as selected
+    const course = mockCourses.find(c => c.id === courseId);
+    if (course) {
+      setSelectedCourse(course);
+    }
+    setCurrentHomeScreen("course-details");
   };
 
   const onRefresh = useCallback(() => {
@@ -45,8 +53,6 @@ export default function HomeScreen() {
       setIsRefreshing(false);
     }, 2000);
   }, []);
-
-  const [contentHeight, setContentHeight] = useState(0);
 
   return (
     <View className="flex-1 pt-[66px]">
@@ -90,7 +96,7 @@ export default function HomeScreen() {
             />
           </View>
 
-          {/* Blogs list */}
+          {/* Course list */}
           <View className="px-6">
             <View className="flex-row flex-wrap justify-between">
               {getFilteredCourses().map((course) => (

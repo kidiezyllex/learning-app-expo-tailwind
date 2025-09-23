@@ -3,6 +3,8 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 interface NavigationContextType {
   activeTab: string;
   setActiveTab: (tabId: string) => void;
+  currentHomeScreen: string;
+  setCurrentHomeScreen: (screenId: string) => void;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
@@ -13,9 +15,15 @@ interface NavigationProviderProps {
 
 export function NavigationProvider({ children }: NavigationProviderProps) {
   const [activeTab, setActiveTab] = useState("home");
+  const [currentHomeScreen, setCurrentHomeScreen] = useState("home");
 
   return (
-    <NavigationContext.Provider value={{ activeTab, setActiveTab }}>
+    <NavigationContext.Provider value={{ 
+      activeTab, 
+      setActiveTab, 
+      currentHomeScreen,
+      setCurrentHomeScreen
+    }}>
       {children}
     </NavigationContext.Provider>
   );

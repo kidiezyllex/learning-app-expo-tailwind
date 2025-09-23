@@ -13,8 +13,8 @@ export interface Course {
 export const mockCourses: Course[] = [
   {
     id: "1",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Là quá trình giao tiếp, trao...",
+    title: "Financial Statement Analysis for Investment Management",
+    description: "Learn how to read and analyze financial statements...",
     thumbnail: require("../../assets/images/home/blog1.png"),
     rating: 4.5,
     duration: "60m",
@@ -23,8 +23,8 @@ export const mockCourses: Course[] = [
   },
   {
     id: "2",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Khóa học này giúp mọi người,",
+    title: "Advanced React Native Development Masterclass",
+    description: "Master advanced React Native techniques...",
     thumbnail: require("../../assets/images/home/blog2.png"),
     rating: 4.5,
     duration: "60m",
@@ -34,8 +34,8 @@ export const mockCourses: Course[] = [
   },
   {
     id: "3",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Khóa học này giúp mọi người,",
+    title: "Machine Learning Fundamentals with Python",
+    description: "Introduction to machine learning concepts...",
     thumbnail: require("../../assets/images/home/blog3.png"),
     rating: 4.5,
     duration: "60m",
@@ -44,8 +44,8 @@ export const mockCourses: Course[] = [
   },
   {
     id: "4",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Môn học Đảm bảo an toàn...",
+    title: "Cybersecurity and Data Protection Essentials",
+    description: "Learn essential cybersecurity practices...",
     thumbnail: require("../../assets/images/home/blog4.png"),
     rating: 4.5,
     duration: "60m",
@@ -55,8 +55,8 @@ export const mockCourses: Course[] = [
   },
   {
     id: "5",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Là quá trình giao tiếp, trao...",
+    title: "Digital Marketing Strategy and Analytics",
+    description: "Master digital marketing fundamentals...",
     thumbnail: require("../../assets/images/home/blog5.png"),
     rating: 4.5,
     duration: "60m",
@@ -65,8 +65,8 @@ export const mockCourses: Course[] = [
   },
   {
     id: "6",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Là quá trình giao tiếp, trao...",
+    title: "Cloud Computing with AWS and Azure",
+    description: "Comprehensive guide to cloud computing...",
     thumbnail: require("../../assets/images/home/blog6.png"),
     rating: 4.5,
     duration: "60m",
@@ -75,8 +75,8 @@ export const mockCourses: Course[] = [
   },
   {
     id: "7",
-    title: "Cách đọc báo cáo tài chính để quản lý đầu tư hiệu quả",
-    description: "Là quá trình giao tiếp, trao...",
+    title: "UI/UX Design Principles and Prototyping",
+    description: "Learn user interface and user experience...",
     thumbnail: require("../../assets/images/home/blog6.png"),
     rating: 4.5,
     duration: "60m",
