@@ -13,9 +13,9 @@ export default function HomeScreen() {
   const { setCurrentHomeScreen } = useNavigation();
 
   const tabOptions = [
-    { id: "recommended", label: "Đề xuất", isActive: activeTab === "recommended" },
-    { id: "new", label: "Mới", isActive: activeTab === "new" },
-    { id: "saved", label: "Đã lưu", isActive: activeTab === "saved" },
+    { id: "recommended", label: "Recommended", isActive: activeTab === "recommended" },
+    { id: "new", label: "New", isActive: activeTab === "new" },
+    { id: "saved", label: "Saved", isActive: activeTab === "saved" },
   ];
 
   const handleTabPress = (tabId: string) => {

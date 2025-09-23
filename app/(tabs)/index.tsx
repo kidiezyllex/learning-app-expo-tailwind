@@ -1,3 +1,4 @@
+import ChapterDetailsScreen from "@/components/Screens/ChapterDetailsScreen";
 import CourseDetailsScreen from "@/components/Screens/CourseDetailsScreen";
 import HomeScreen from "@/components/Screens/HomeScreen";
 import { useNavigation } from "@/contexts/NavigationContext";
@@ -13,6 +14,8 @@ export default function HomeTab() {
         return <HomeScreen />;
       case "course-details":
         return <CourseDetailsScreen />;
+      case "chapter-details":
+        return <ChapterDetailsScreen />;
       default:
         return <HomeScreen />;
     }

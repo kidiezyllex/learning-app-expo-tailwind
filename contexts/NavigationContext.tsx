@@ -5,6 +5,8 @@ interface NavigationContextType {
   setActiveTab: (tabId: string) => void;
   currentHomeScreen: string;
   setCurrentHomeScreen: (screenId: string) => void;
+  selectedChapterId: string | null;
+  setSelectedChapterId: (chapterId: string | null) => void;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
@@ -16,13 +18,16 @@ interface NavigationProviderProps {
 export function NavigationProvider({ children }: NavigationProviderProps) {
   const [activeTab, setActiveTab] = useState("home");
   const [currentHomeScreen, setCurrentHomeScreen] = useState("home");
+  const [selectedChapterId, setSelectedChapterId] = useState<string | null>(null);
 
   return (
     <NavigationContext.Provider value={{ 
       activeTab, 
       setActiveTab, 
       currentHomeScreen,
-      setCurrentHomeScreen
+      setCurrentHomeScreen,
+      selectedChapterId,
+      setSelectedChapterId
     }}>
       {children}
     </NavigationContext.Provider>

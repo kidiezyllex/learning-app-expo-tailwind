@@ -10,7 +10,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 export default function CourseDetailsScreen() {
     const [activeTab, setActiveTab] = useState("course");
     const { selectedCourse } = useCourse();
-    const { setCurrentHomeScreen } = useNavigation();
+    const { setCurrentHomeScreen, setSelectedChapterId } = useNavigation();
     const courseDetail = selectedCourse ? getCourseDetailById(selectedCourse.id) : null;
 
     const tabOptions = [
@@ -102,7 +102,8 @@ export default function CourseDetailsScreen() {
                         <ChaptersTab
                             courseId={selectedCourse.id}
                             onChapterPress={(chapterId) => {
-                                // Handle chapter navigation if needed
+                                setSelectedChapterId(chapterId);
+                                setCurrentHomeScreen("chapter-details");
                             }}
                         />
                     )}

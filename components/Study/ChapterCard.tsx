@@ -1,6 +1,5 @@
 import { Chapter } from '@/data/chaptersMockData';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-
 interface ChapterCardProps {
     chapter: Chapter;
     onPress?: () => void;
@@ -8,20 +7,10 @@ interface ChapterCardProps {
 
 export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
     const isLocked = chapter.isLocked;
-    const isCompleted = chapter.isCompleted;
     const isExam = chapter.type === 'exam';
-
-    // Determine card background color
     const cardBgColor = isLocked ? 'bg-[#DCDCDC]' : 'bg-white';
-
-    // Determine icon color
-    const iconColor = isCompleted ? 'outline-blue-600' : 'outline-stone-500';
-
-    // Determine text color
     const titleTextColor = isLocked ? 'text-zinc-600' : 'text-black';
     const subtitleTextColor = 'text-zinc-600';
-
-
     return (
         <TouchableOpacity
             onPress={onPress}
@@ -99,20 +88,18 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
 
                         {/* Progress Bar */}
                         {!isLocked && !isExam && (
-                            <View className="w-72 h-8 rounded-lg bg-zinc-300">
+                            <View style={{height: 32}} className="justify-center items-center w-72 rounded-lg bg-zinc-300">
                                 <View
-                                    className="h-full bg-blue-500 rounded-lg"
+                                    className="absolute h-full bg-blue-500 rounded-lg"
                                     style={{ width: `${chapter.progress}%` }}
                                 />
                                 {/* Progress Text - Centered in Progress Bar */}
-                                <View className="absolute inset-0 justify-center items-center">
-                                    <Text
-                                        className="font-medium text-black"
-                                        style={{ fontSize: 16 }}
-                                    >
-                                        Completed {chapter.progress}%
-                                    </Text>
-                                </View>
+                                <Text
+                                    className="z-10 font-medium text-center text-black"
+                                    style={{ fontSize: 16 }}
+                                >
+                                    Completed {chapter.progress}%
+                                </Text>
                             </View>
                         )}
                     </View>
