@@ -1,4 +1,3 @@
-import React from 'react';
 import { Text, View } from 'react-native';
 
 interface ProgressBarProps {
@@ -10,7 +9,7 @@ interface ProgressBarProps {
 export default function ProgressBar({ 
   progress, 
   showPercentage = true, 
-  height = 20 
+  height = 27
 }: ProgressBarProps) {
   return (
     <View className="w-[94%]">
@@ -25,8 +24,8 @@ export default function ProgressBar({
         
         {showPercentage && (
           <View className="absolute inset-0 justify-center items-center">
-            <Text className="z-10 text-base font-medium text-black">
-              {progress}% Hoàn thành
+            <Text style={{ fontSize: 20 }} className="z-10 font-medium text-black">
+              {progress}% completed
             </Text>
           </View>
         )}

@@ -31,7 +31,7 @@ export default function Efficiency() {
       {/* Efficiency Statistics */}
       <View style={{ borderRadius: 12 }} className="overflow-hidden mb-4 bg-white shadow-sm">
         {/* Tổng thời gian xem */}
-        <View className="flex-row justify-between items-center border border-b" style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0', padding: 20 }}>
+        <View className="flex-row justify-between items-center border border-b" style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0', padding: 16 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/clock3.png')}
@@ -58,7 +58,7 @@ export default function Efficiency() {
         </View>
 
         {/* Bài tập của tôi */}
-        <View className="flex-row justify-between items-center" style={{ padding: 20 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: 16 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/book.png')}
@@ -119,7 +119,7 @@ export default function Efficiency() {
         </View>
 
         {/* Trung bình ngày */}
-        <View className="flex-row justify-between items-center" style={{ padding: 20 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: 16 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/clock3.png')}

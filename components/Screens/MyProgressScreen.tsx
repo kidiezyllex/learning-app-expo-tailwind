@@ -1,16 +1,15 @@
-import { useCallback, useState } from "react";
-import { RefreshControl, ScrollView, View } from "react-native";
-
-// Components
 import EmptyState from "@/components/Common/EmptyState";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
+import CourseCard from "@/components/Common/ProgressCard";
 import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
-import CourseCard from "@/components/Group/CourseCard";
+import { router } from "expo-router";
+import { useCallback, useState } from "react";
+import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { mockCourses } from "@/data/mockData";
 
-export default function GroupScreen() {
+export default function MyProgressScreen() {
   
   const [activeTab, setActiveTab] = useState("courses");
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,7 +45,44 @@ export default function GroupScreen() {
   );
 
   return (
-    <View className="flex-1 bg-neutral-100 pt-[102px]">
+    <View className="flex-1 pt-[102px] pb-32">
+        {/* Header */}
+        <View className="fixed top-0 right-0 left-0 z-50">
+        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
+          <TouchableOpacity
+            onPress={() => router.back()}
+            className="absolute left-3"
+          >
+            <Image
+              style={{ width: 69, height: 69 }}
+              source={require('../../assets/icons/left-arrow.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+
+          <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
+            Group 1
+          </Text>
+          <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 51, height: 51 }}
+                source={require('../../assets/icons/bell.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 39, height: 41 }}
+                source={require('../../assets/icons/logout.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
       {/* Scrollable Content */}
       <ScrollView 
         className="flex-1"
@@ -65,7 +101,6 @@ export default function GroupScreen() {
             />
           </View>
 
-          {/* Search Bar */}
           <View className="px-6">
             <SearchBar 
               placeholder="Search"

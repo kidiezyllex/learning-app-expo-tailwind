@@ -16,7 +16,7 @@ export default function TabSelector({ tabs, onTabPress }: TabSelectorProps) {
   const [pressedTab, setPressedTab] = useState<string | null>(null);
 
   return (
-    <View className="flex-row flex-wrap justify-between my-5">
+    <View style={{ gap: 20, marginVertical: 30 }} className="flex-row flex-wrap justify-center">
       {tabs.map((tab) => (
         <View key={tab.id} className="w-[30%]">
           <Pressable

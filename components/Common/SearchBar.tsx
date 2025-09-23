@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Image, TextInput, TouchableOpacity, View } from 'react-native';
 
 interface SearchBarProps {
@@ -24,7 +24,7 @@ export default function SearchBar({
       <TouchableOpacity onPress={handleSearch}>
         <Image
           source={require('../../assets/icons/search.png')}
-          style={{ width: 24, height: 24 }}
+          style={{ width: 34, height: 34 }}
           resizeMode="cover"
         />
       </TouchableOpacity>
@@ -34,7 +34,8 @@ export default function SearchBar({
         onChangeText={setSearchQuery}
         placeholder={placeholder}
         placeholderTextColor="#9CA3AF"
-        className="flex-1 ml-3 h-12 text-lg min-h-12 text-zinc-400"
+        style={{ fontSize: 20 }}
+        className="flex-1 ml-3 h-12 min-h-12 text-zinc-400"
         onSubmitEditing={handleSearch}
         returnKeyType="search"
       />

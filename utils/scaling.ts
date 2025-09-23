@@ -1,45 +1,41 @@
 import { Dimensions, PixelRatio } from 'react-native';
 
-// Base viewport dimensions (your design viewport)
 export const BASE_VIEWPORT = {
   width: 720,
-  height: 1280,
+  height: 1400,
 };
 
-// Get current device dimensions
+// Lấy height, width thực tế của device
 export const getDeviceDimensions = () => {
   const { width, height } = Dimensions.get('window');
   return { width, height };
 };
 
-// Calculate scale factor based on width (maintains aspect ratio)
+// Scale theo width
 export const getScaleFactor = (): number => {
   const { width: deviceWidth } = getDeviceDimensions();
   const scaleFactor = deviceWidth / BASE_VIEWPORT.width;
   return scaleFactor;
 };
 
-// Calculate scale factor for height (allows different height scaling)
+// Scale theo height (nhưng đang để cứng tỉ lệ 0.5 ~ tỉ lệ đẹp)
 export const getHeightScaleFactor = (): number => {
   const { height: deviceHeight } = getDeviceDimensions();
-  const heightScaleFactor = deviceHeight / BASE_VIEWPORT.height;
+  const heightScaleFactor = 0.5; // deviceHeight / BASE_VIEWPORT.height;
   return heightScaleFactor;
 };
 
-// Get scaled size for any dimension
 export const scaleSize = (size: number): number => {
   const scaleFactor = getScaleFactor();
   const scaledSize = size * scaleFactor;
   return PixelRatio.roundToNearestPixel(scaledSize);
 };
 
-// Get scaled font size (with optional minimum font size for readability)
 export const scaleFont = (fontSize: number, minFontSize?: number): number => {
   const scaledSize = scaleSize(fontSize);
   return minFontSize ? Math.max(scaledSize, minFontSize) : scaledSize;
 };
 
-// Get scaled dimensions (width and height)
 export const scaleDimensions = (width: number, height: number) => {
   return {
     width: scaleSize(width),
@@ -47,7 +43,6 @@ export const scaleDimensions = (width: number, height: number) => {
   };
 };
 
-// Get viewport info for debugging
 export const getViewportInfo = () => {
   const device = getDeviceDimensions();
   const scaleFactor = getScaleFactor();

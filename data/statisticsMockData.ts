@@ -18,8 +18,14 @@ export interface UserLearningData {
 export interface CourseStatistics {
   id: string;
   title: string;
-  progress: number;
-  progressText: string;
+  description: string;
+  thumbnail: any;
+  rating: number;
+  duration: string;
+  completionRate: number;
+  isNew?: boolean;
+  isLive?: boolean;
+  isSave?: boolean;
 }
 
 // Learning time statistics
@@ -61,20 +67,38 @@ export const userLearningData: UserLearningData[] = [
 export const courseStatistics: CourseStatistics[] = [
   {
     id: "1",
-    title: "Advanced course on artificial 1234567890...",
-    progress: 35,
-    progressText: "35% complete"
+    title: "Advanced course on artificial intelligence and machine learning",
+    description: "Comprehensive course covering AI fundamentals...",
+    thumbnail: require("../assets/images/courses/course-thumbnail.png"),
+    rating: 4.8,
+    duration: "120m",
+    completionRate: 75,
+    isNew: true,
+    isLive: false,
+    isSave: false
   },
   {
     id: "2",
-    title: "Advanced course on artificial 1234567890...",
-    progress: 35,
-    progressText: "35% complete"
+    title: "Data Science and Analytics Masterclass",
+    description: "Learn data analysis, visualization, and statistical modeling...",
+    thumbnail: require("../assets/images/courses/course-thumbnail.png"),
+    rating: 4.6,
+    duration: "90m",
+    completionRate: 45,
+    isNew: false,
+    isLive: true,
+    isSave: true
   },
   {
     id: "3",
-    title: "Advanced course on artificial 1234567890...",
-    progress: 35,
-    progressText: "35% complete"
+    title: "Web Development with React and Node.js",
+    description: "Full-stack development course for modern web applications...",
+    thumbnail: require("../assets/images/courses/course-thumbnail.png"),
+    rating: 4.7,
+    duration: "150m",
+    completionRate: 20,
+    isNew: false,
+    isLive: false,
+    isSave: false
   }
 ];

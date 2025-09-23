@@ -1,16 +1,17 @@
 import TabSelector from '@/components/Common/TabSelector';
 import CoursesStatistics from '@/components/Group/CoursesStatistics';
 import LearningTime from '@/components/Group/LearningTime';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 interface StatisticsScreenProps {
   // Props if needed
 }
 
-export default function StatisticsScreen({}: StatisticsScreenProps) {
+export default function StatisticsScreen({ }: StatisticsScreenProps) {
   const [activeTab, setActiveTab] = useState("statistics");
-
+  const router = useRouter();
   const tabOptions = [
     { id: "statistics", label: "Statistics", isActive: activeTab === "statistics" },
     { id: "progress", label: "My Progress", isActive: activeTab === "progress" },
@@ -18,7 +19,11 @@ export default function StatisticsScreen({}: StatisticsScreenProps) {
   ];
 
   const handleTabPress = (tabId: string) => {
-    setActiveTab(tabId);
+    if (tabId === "progress") {
+      router.push("/my-progress" as any);
+    } else {
+      setActiveTab(tabId);
+    }
   };
 
   const renderContent = () => {
@@ -32,22 +37,22 @@ export default function StatisticsScreen({}: StatisticsScreenProps) {
         );
       case "progress":
         return (
-          <View className="bg-white rounded-xl shadow-sm p-6">
-            <Text style={{ fontSize: 20 }} className="font-semibold text-black text-center">
+          <View className="p-6 bg-white rounded-xl shadow-sm">
+            <Text style={{ fontSize: 20 }} className="font-semibold text-center text-black">
               My Progress Content
             </Text>
-            <Text style={{ fontSize: 16 }} className="text-gray-600 text-center mt-2">
+            <Text style={{ fontSize: 16 }} className="mt-2 text-center text-gray-600">
               This tab will show your personal progress
             </Text>
           </View>
         );
       case "user":
         return (
-          <View className="bg-white rounded-xl shadow-sm p-6">
-            <Text style={{ fontSize: 20 }} className="font-semibold text-black text-center">
+          <View className="p-6 bg-white rounded-xl shadow-sm">
+            <Text style={{ fontSize: 20 }} className="font-semibold text-center text-black">
               User Content
             </Text>
-            <Text style={{ fontSize: 16 }} className="text-gray-600 text-center mt-2">
+            <Text style={{ fontSize: 16 }} className="mt-2 text-center text-gray-600">
               This tab will show user information
             </Text>
           </View>
@@ -58,21 +63,56 @@ export default function StatisticsScreen({}: StatisticsScreenProps) {
   };
 
   return (
-    <View className="flex-1 bg-neutral-100 pt-[96px]">
+    <View className="flex-1 pt-[102px] pb-32">
+      {/* Header */}
+      <View className="fixed top-0 right-0 left-0 z-50">
+        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
+          <TouchableOpacity
+            onPress={() => router.back()}
+            className="absolute left-3"
+          >
+            <Image
+              style={{ width: 69, height: 69 }}
+              source={require('../../assets/icons/left-arrow.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+
+          <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
+            Group 1
+          </Text>
+          <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 51, height: 51 }}
+                source={require('../../assets/icons/bell.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 43, height: 45 }}
+                source={require('../../assets/icons/setting.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
       {/* Scrollable Content */}
-      <ScrollView 
+      <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       >
         <View className="px-6 py-6">
           {/* Tab Selector */}
-          <View className="mb-6">
-            <TabSelector 
-              tabs={tabOptions}
-              onTabPress={handleTabPress}
-            />
-          </View>
+          <TabSelector
+            tabs={tabOptions}
+            onTabPress={handleTabPress}
+          />
 
           {/* Content based on active tab */}
           {renderContent()}
