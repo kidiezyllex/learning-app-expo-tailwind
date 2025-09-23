@@ -62,6 +62,9 @@ export default function AbsoluteBottomNavigation() {
 
   const activeTab = getActiveTab();
 
+  // Hide navigation when on video screen
+  const shouldHideNavigation = pathname.startsWith("/video/");
+
   // Floating animation effect
   useEffect(() => {
     const startFloating = () => {
@@ -99,6 +102,11 @@ export default function AbsoluteBottomNavigation() {
       navigationRouter.push(tab.route as any);
     }
   };
+
+  // Don't render navigation on video screens
+  if (shouldHideNavigation) {
+    return null;
+  }
 
   return (
     <View style={{

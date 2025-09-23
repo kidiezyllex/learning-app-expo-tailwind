@@ -1,178 +1,252 @@
 import { VideoData, videoMockData } from '@/data/videoMockData';
-import { router } from 'expo-router';
-import { useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useRef, useState } from 'react';
+import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 
 export default function VideoScreen() {
-  const [videoData, setVideoData] = useState<VideoData>(videoMockData);
-  const [isPlaying, setIsPlaying] = useState(videoData.isPlaying);
+    const { id } = useLocalSearchParams<{ id: string }>();
+    const [videoData, setVideoData] = useState<VideoData>(videoMockData);
+    const [isPlaying, setIsPlaying] = useState(videoData.isPlaying);
+    const [progress, setProgress] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const videoRef = useRef<Video>(null);
+    const screenWidth = Dimensions.get('window').width;
 
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
-    setVideoData(prev => ({ ...prev, isPlaying: !isPlaying }));
-  };
+    useEffect(() => {
+        // Auto play video when component mounts
+        setIsPlaying(true);
+    }, []);
 
-  const handleBack = () => {
-    router.back();
-  };
+    const togglePlayPause = async () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                await videoRef.current.pauseAsync();
+            } else {
+                await videoRef.current.playAsync();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
 
-  const handleVolumeToggle = () => {
-    setVideoData(prev => ({ ...prev, isMuted: !prev.isMuted }));
-  };
+    const skipForward = async () => {
+        if (videoRef.current) {
+            const status = await videoRef.current.getStatusAsync();
+            if (status.isLoaded) {
+                const newPosition = Math.min(
+                    status.positionMillis + 10000, // 10 seconds forward
+                    status.durationMillis || 0
+                );
+                await videoRef.current.setPositionAsync(newPosition);
+            }
+        }
+    };
 
-  return (
-    <View className="overflow-hidden relative w-full h-full bg-stone-900">
-      {/* Header */}
-      <View className="w-full h-[100px] absolute top-0 left-0 z-10">
-        <View className="w-[85%] h-[80px] left-[7.5%] top-[25px] absolute justify-center">
-          <Text 
-            className="font-semibold text-center text-white"
-            style={{ fontSize: 22 }}
-            numberOfLines={2}
-          >
-            {videoData.title}
-          </Text>
+    const skipBackward = async () => {
+        if (videoRef.current) {
+            const status = await videoRef.current.getStatusAsync();
+            if (status.isLoaded) {
+                const newPosition = Math.max(
+                    status.positionMillis - 10000, // 10 seconds backward
+                    0
+                );
+                await videoRef.current.setPositionAsync(newPosition);
+            }
+        }
+    };
+
+    return (
+        <View className="overflow-hidden relative w-full h-full bg-stone-900">
+            {/* Buttons*/}
+            <View
+                className="flex absolute flex-col justify-center items-center"
+                style={{
+                    gap: 32,
+                    bottom: 230,
+                    right: 32,
+                    zIndex: 50
+                }}
+            >
+                <TouchableOpacity className='space-y-1'>
+                    <Image
+                        source={require('../../assets/icons/heart.png')}
+                        style={{ width: 59, height: 52 }}
+                        resizeMode="contain"
+                    />
+                    <Text
+                        className='text-center text-white'
+                        style={{ fontSize: 24, fontWeight: '500' }}
+                    >
+                        2.5M
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity className='space-y-1'>
+                    <Image
+                        source={require('../../assets/icons/comment.png')}
+                        style={{ width: 62, height: 54 }}
+                        resizeMode="contain"
+                    />
+                    <Text
+                        className='text-center text-white'
+                        style={{ fontSize: 24, fontWeight: '500' }}
+                    >
+                        300
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image
+                        source={require('../../assets/icons/save2.png')}
+                        style={{ width: 42, height: 46 }}
+                        resizeMode="contain"
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image
+                        source={require('../../assets/icons/rotate.png')}
+                        style={{ width: 50, height: 50 }}
+                        resizeMode="contain"
+                    />
+                </TouchableOpacity>
+            </View>
+            {/* Header */}
+            <View
+                className="absolute top-0 right-0 left-0"
+                style={{ zIndex: 50 }}
+            >
+                <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
+                    <TouchableOpacity
+                        onPress={() => router.back()}
+                        className="absolute left-3"
+                    >
+                        <Image
+                            style={{ width: 69, height: 69 }}
+                            source={require('../../assets/icons/left-arrow.png')}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+
+                    <Text
+                        style={{ fontSize: 24 }}
+                        className="absolute left-1/2 w-full font-medium text-center text-white -translate-x-1/2">
+                        {videoData.title}
+                    </Text>
+                </View>
+            </View>
+
+            {/* Video Section */}
+            <View 
+                className="flex absolute inset-0 top-1/2 justify-center items-center -translate-y-1/2"
+            >
+                <Video
+                    ref={videoRef}
+                    source={{ uri: 'https://videos.pexels.com/video-files/4017060/4017060-uhd_2560_1440_30fps.mp4' }}
+                    style={{ 
+                        width: '100%', 
+                        height: '70%' // Chiếm 70% chiều cao màn hình
+                    }}
+                    resizeMode={ResizeMode.CONTAIN}
+                    shouldPlay={isPlaying}
+                    isLooping={true}
+                    onPlaybackStatusUpdate={(status: AVPlaybackStatus) => {
+                        if (status.isLoaded && status.durationMillis) {
+                            setProgress(status.positionMillis / status.durationMillis);
+                            setDuration(status.durationMillis);
+                            // Sync isPlaying state with video's actual playback status
+                            if (status.isPlaying !== isPlaying) {
+                                setIsPlaying(status.isPlaying);
+                            }
+                        }
+                    }}
+                />
+                
+                {/* Video Controls Overlay */}
+                <View 
+                    className="absolute flex-row justify-center items-center"
+                    style={{
+                        gap: 40,
+                        zIndex: 10
+                    }}
+                >
+                    {/* Skip Backward 10s */}
+                    <TouchableOpacity
+                        onPress={skipBackward}
+                    >
+                        <MaterialIcons name="replay-10" size={56} color="white" />
+                    </TouchableOpacity>
+                    
+                    {/* Play/Pause Button */}
+                    <TouchableOpacity
+                        onPress={togglePlayPause}
+                    >
+                        {isPlaying ? (
+                            <MaterialCommunityIcons name="pause" size={64} color="white" />
+                        ) : (
+                            <MaterialIcons name="play-arrow" size={64} color="white" />
+                        )}
+                    </TouchableOpacity>
+                    
+                    {/* Skip Forward 10s */}
+                    <TouchableOpacity
+                        onPress={skipForward}
+                    >
+                        <MaterialIcons name="forward-10" size={56} color="white" />
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+            {/* Progress Bar */}
+            <View 
+                className="absolute w-[95%] left-1/2 -translate-x-1/2"
+                style={{ bottom: 36 }}
+            >
+                <View 
+                    className="w-full"
+                    style={{ 
+                        height: 4, 
+                        backgroundColor: '#828282' 
+                    }}
+                >
+                    <View 
+                        style={{ 
+                            height: 4, 
+                            backgroundColor: '#1877F2',
+                            width: `${progress * 100}%`
+                        }}
+                    />
+                </View>
+            </View>
+
+            {/* Video Info */}
+            <View
+                style={{
+                    bottom: 52,
+                    paddingHorizontal: 32,  
+                    gap: 24,
+                }}
+                className="flex absolute flex-col justify-start w-full">
+                <View 
+                style={{
+                    gap: 24,
+                }}
+                className='flex flex-row items-center'>
+                    <Image
+                        style={{ width: 86, height: 86 }}
+                        source={require('../../assets/images/sample-avatar.png')}
+                        resizeMode="contain"
+                    />
+                    <Text className='font-semibold text-white' style={{ fontSize: 30 }}>Các thành phần chính của báo cáo tài chính</Text>
+                </View>
+
+                <View className='h-[150px] min-h-[150px] w-full'>
+                    <Text
+                        style={{ fontSize: 24 }}
+                        className='font-semibold leading-normal text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
+                </View>
+            </View>
+            {/* Progress Bar line */}
+
         </View>
-      </View>
-
-      {/* Video Thumbnail */}
-      <View className="w-full h-[411px] left-0 top-[100px] absolute">
-        <Image
-          source={{ uri: videoData.thumbnail }}
-          className="w-full h-full"
-          resizeMode="cover"
-        />
-        
-        {/* Play/Pause Button Overlay */}
-        <TouchableOpacity
-          onPress={handlePlayPause}
-          className="absolute w-[80px] h-[80px] left-[50%] top-[50%] -translate-x-10 -translate-y-10"
-        >
-          <Image
-            source={isPlaying ? require('../../assets/icons/video.png') : require('../../assets/icons/video.png')}
-            style={{ width: 80, height: 80 }}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-
-      {/* Video Controls */}
-      <View className="w-full h-[200px] left-0 top-[511px] absolute">
-        {/* Time Display */}
-        <View className="w-[80px] h-[32px] left-[94px] top-[18px] absolute justify-center">
-          <Text 
-            className="font-semibold text-center text-white"
-            style={{ fontSize: 22 }}
-          >
-            {videoData.currentTime}
-          </Text>
-        </View>
-
-        <View className="w-[80px] h-[32px] left-[549px] top-[18px] absolute justify-center">
-          <Text 
-            className="font-semibold text-center text-white"
-            style={{ fontSize: 22 }}
-          >
-            {videoData.duration}
-          </Text>
-        </View>
-
-        {/* Volume Controls */}
-        <View className="w-[80px] h-[80px] left-[625px] top-[10px] absolute">
-          <TouchableOpacity onPress={handleVolumeToggle}>
-            <Image
-              source={videoData.isMuted ? require('../../assets/icons/bell.png') : require('../../assets/icons/bell.png')}
-              style={{ width: 80, height: 80 }}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-
-        {/* Volume Indicator */}
-        <View className="w-[56px] h-[56px] left-[629px] top-[80px] absolute rounded-2xl border-[3px] border-white justify-center items-center">
-          <View className="w-[20px] h-[20px] rounded-full border-2 border-white" />
-        </View>
-
-        {/* Volume Dots */}
-        <View className="w-[40px] h-[8px] left-[630px] top-[118px] absolute flex-row justify-between">
-          <View className="w-[10px] h-[10px] rounded-full border-2 border-white" />
-          <View className="w-[10px] h-[10px] rounded-full border-2 border-white" />
-          <View className="w-[10px] h-[10px] rounded-full border-2 border-white" />
-        </View>
-
-        {/* Play/Pause Button */}
-        <View className="w-[56px] h-[44px] left-[636px] top-[203px] absolute border-[3px] border-white rounded justify-center items-center">
-          <View className="w-[20px] h-[6px] rounded border-2 border-white" />
-        </View>
-      </View>
-
-      {/* Video Info */}
-      <View className="w-full h-[200px] left-0 top-[711px] absolute">
-        {/* Title */}
-        <View className="w-[96%] h-[144px] left-[2%] top-[28px] absolute">
-          <Text 
-            className="font-semibold text-white"
-            style={{ fontSize: 22 }}
-            numberOfLines={3}
-          >
-            {videoData.title}
-          </Text>
-        </View>
-
-        {/* Stats */}
-        <View className="w-[200px] h-[28px] left-[631px] top-[34px] absolute">
-          <Text 
-            className="font-medium text-white"
-            style={{ fontSize: 22 }}
-          >
-            {videoData.views}
-          </Text>
-        </View>
-
-        <View className="w-[200px] h-[28px] left-[635px] top-[150px] absolute">
-          <Text 
-            className="font-medium text-white"
-            style={{ fontSize: 22 }}
-          >
-            {videoData.likes}
-          </Text>
-        </View>
-      </View>
-
-      {/* Progress Bar */}
-      <View className="w-full h-[20px] left-0 top-[1232px] absolute">
-        {/* Background Progress Bar */}
-        <View className="w-[95%] h-[4px] left-[2.5%] top-[8px] absolute opacity-50 bg-white rounded-[38px]" />
-        
-        {/* Active Progress Bar */}
-        <View 
-          className="h-[4px] left-[2.5%] top-[8px] absolute opacity-80 bg-blue-600 rounded-[38px]"
-          style={{ width: `${videoData.progress}%` }}
-        />
-      </View>
-
-      {/* Back Button */}
-      <TouchableOpacity
-        onPress={handleBack}
-        className="absolute w-[80px] h-[80px] left-[32px] top-[976px]"
-      >
-        <Image
-          source={require('../../assets/icons/left-arrow.png')}
-          style={{ width: 80, height: 80 }}
-          resizeMode="contain"
-        />
-      </TouchableOpacity>
-
-      {/* Bottom Info Card */}
-      <View className="w-[144px] h-[176px] left-0 top-[1140px] absolute rounded-[32px] shadow-[0px_4px_6px_0px_rgba(0,0,0,0.42)] bg-gray-800">
-        <View className="w-[64px] h-[64px] left-[21px] top-[13px] absolute">
-          <Image
-            source={require('../../assets/icons/video.png')}
-            style={{ width: 64, height: 64 }}
-            resizeMode="contain"
-          />
-        </View>
-      </View>
-    </View>
-  );
+    );
 }

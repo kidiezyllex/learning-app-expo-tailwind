@@ -84,8 +84,6 @@ export default function ChapterDetailsScreen() {
                         <LessonCard
                             key={lesson.id}
                             lesson={lesson}
-                            onPress={() => {
-                            }}
                         />
                     ))}
                 </View>
