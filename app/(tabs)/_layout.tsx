@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { View } from 'react-native';
-import CustomTabBar from '../../components/Common/CustomTabBar';
+import TabBarWrapper from '../../components/Common/TabBarWrapper';
 
 export default function TabLayout() {
   return (
@@ -10,14 +10,40 @@ export default function TabLayout() {
           headerShown: false,
           tabBarStyle: { display: 'none' }, // Hide default tab bar
         }}
+        tabBar={() => null} // Explicitly disable the default tab bar
       >
-        <Tabs.Screen name="index" />
-        <Tabs.Screen name="group" />
-        <Tabs.Screen name="study" />
-        <Tabs.Screen name="results" />
-        <Tabs.Screen name="profile" />
+        <Tabs.Screen 
+          name="index" 
+          options={{
+            title: 'Home',
+          }}
+        />
+        <Tabs.Screen 
+          name="group" 
+          options={{
+            title: 'Group',
+          }}
+        />
+        <Tabs.Screen 
+          name="study" 
+          options={{
+            title: 'Study',
+          }}
+        />
+        <Tabs.Screen 
+          name="results" 
+          options={{
+            title: 'Results',
+          }}
+        />
+        <Tabs.Screen 
+          name="profile" 
+          options={{
+            title: 'Profile',
+          }}
+        />
       </Tabs>
-      <CustomTabBar />
+      <TabBarWrapper />
     </View>
   );
 }

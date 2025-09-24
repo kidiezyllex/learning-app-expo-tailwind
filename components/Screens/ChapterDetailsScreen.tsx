@@ -39,9 +39,11 @@ export default function ChapterDetailsScreen() {
                         />
                     </TouchableOpacity>
 
-                    <Text className="absolute left-1/2 text-3xl font-medium text-white -translate-x-1/2">
-                        {chapter.title.split(':')[0]}
-                    </Text>
+                    <View className="flex-1 justify-center items-center">
+                        <Text className="text-3xl font-medium text-white">
+                            {chapter.title.split(':')[0]}
+                        </Text>
+                    </View>
                     <TouchableOpacity
                         className="absolute right-6"
                     >

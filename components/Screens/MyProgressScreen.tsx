@@ -60,17 +60,13 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
             />
           </TouchableOpacity>
 
-          <Text
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            fontSize: 32
-          }}
-          className="font-medium text-white">
-            My Progress
-          </Text>
+          <View className="flex-1 justify-center items-center">
+            <Text
+              style={{ fontSize: 32 }}
+              className="font-medium text-white">
+              My Progress
+            </Text>
+          </View>
           <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
             <TouchableOpacity
             >

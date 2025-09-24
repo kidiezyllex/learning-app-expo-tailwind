@@ -8,17 +8,13 @@ export default function ResultsScreen() {
       {/* Header */}
       <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
-          <Text
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            fontSize: 32
-          }}
-          className="font-medium text-white">
-            Kết quả
-          </Text>
+          <View className="flex-1 justify-center items-center">
+            <Text
+              style={{ fontSize: 32 }}
+              className="font-medium text-white">
+              Kết quả
+            </Text>
+          </View>
         </View>
       </View>
       {/* Scrollable Content */}

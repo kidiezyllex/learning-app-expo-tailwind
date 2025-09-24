@@ -1,5 +1,6 @@
 import { usePathname, useRouter } from 'expo-router';
 import { View } from 'react-native';
+import { useNavigation } from '../../contexts/NavigationContext';
 import CustomTabTrigger from './CustomTabTrigger';
 
 const navigationTabs = [
@@ -40,9 +41,15 @@ const navigationTabs = [
   }
 ];
 
-export default function CustomTabBar() {
+export default function TabBarWrapper() {
   const pathname = usePathname();
   const router = useRouter();
+  const { currentHomeScreen } = useNavigation();
+
+  // Hide tab bar when in video screen
+  if (currentHomeScreen === "video") {
+    return null;
+  }
 
   const getActiveTab = () => {
     const normalizedPath = pathname.replace(/\/$/, '') || '/';

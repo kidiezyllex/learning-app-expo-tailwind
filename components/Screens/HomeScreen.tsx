@@ -59,17 +59,13 @@ export default function HomeScreen() {
       {/* Header */}
       <View className="fixed top-0 right-0 left-0 z-50">
         <View className="flex relative flex-row justify-between items-center h-[102px] px-6 bg-[#1877F2]">
-          <Text
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            fontSize: 32
-          }}
-          className="font-medium text-white">
-            Home
-          </Text>
+          <View className="flex-1 justify-center items-center">
+            <Text
+              style={{ fontSize: 32 }}
+              className="font-medium text-white">
+              Home
+            </Text>
+          </View>
           {/* Notification and Settings */}
           <TouchableOpacity className="absolute right-6">
             <Image

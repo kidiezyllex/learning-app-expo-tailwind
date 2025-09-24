@@ -12,7 +12,7 @@ import { View } from 'react-native';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
     Inter_600SemiBold,
@@ -24,6 +24,10 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+
+  if (fontError) {
+    console.error('Font loading error:', fontError);
+  }
 
   if (!fontsLoaded) {
     return null;

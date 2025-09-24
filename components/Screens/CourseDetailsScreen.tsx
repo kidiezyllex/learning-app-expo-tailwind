@@ -26,7 +26,6 @@ export default function CourseDetailsScreen() {
     };
 
     const handleBackPress = () => {
-        console.log('Back button pressed in CourseDetailsScreen');
         setCurrentHomeScreen("home");
     };
 
@@ -59,17 +58,13 @@ export default function CourseDetailsScreen() {
                             resizeMode="contain"
                         />
                     </TouchableOpacity>
-                    <Text
-                        style={{
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            textAlign: 'center',
-                            fontSize: 32
-                        }}
-                        className="font-medium text-white">
-                        Course Details
-                    </Text>
+                    <View className="flex-1 justify-center items-center">
+                        <Text
+                            style={{ fontSize: 32 }}
+                            className="font-medium text-white">
+                            Course Details
+                        </Text>
+                    </View>
                 </View>
             </View>
 

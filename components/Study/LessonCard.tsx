@@ -1,3 +1,4 @@
+import { useNavigation } from '@/contexts/NavigationContext';
 import { Lesson } from '@/data/lessonsMockData';
 import { useRouter } from 'expo-router';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
@@ -13,6 +14,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
     const isExam = lesson.type === 'exam';
     const isDownloaded = lesson.isDownloaded;
     const router = useRouter();
+    const { setSelectedLessonId, setCurrentHomeScreen } = useNavigation();
     const cardBgColor = isLocked ? 'bg-[#DCDCDC]' : 'bg-white';
     const titleTextColor = isLocked ? 'text-zinc-600' : 'text-black';
     const subtitleTextColor = 'text-zinc-600';
@@ -24,7 +26,8 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
             if (isExam) {
                 router.push(`/exam/${lesson.id}` as any);
             } else {
-                router.push(`/video/${lesson.id}` as any);
+                setSelectedLessonId(lesson.id);
+                setCurrentHomeScreen("video");
             }
         }
     };

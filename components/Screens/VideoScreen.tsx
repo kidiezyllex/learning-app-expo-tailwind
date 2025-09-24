@@ -1,13 +1,13 @@
+import { useNavigation } from '@/contexts/NavigationContext';
 import { VideoData, videoMockData } from '@/data/videoMockData';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
-import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 
 export default function VideoScreen() {
-    const { id } = useLocalSearchParams<{ id: string }>();
+    const { selectedLessonId, setCurrentHomeScreen } = useNavigation();
     const [videoData, setVideoData] = useState<VideoData>(videoMockData);
     const [isPlaying, setIsPlaying] = useState(videoData.isPlaying);
     const [progress, setProgress] = useState(0);
@@ -18,6 +18,14 @@ export default function VideoScreen() {
     useEffect(() => {
         setIsPlaying(true);
     }, []);
+
+    if (!selectedLessonId) {
+        return (
+            <View className="flex-1 justify-center items-center bg-stone-900">
+                <Text className="text-lg text-white">Loading video...</Text>
+            </View>
+        );
+    }
 
     const togglePlayPause = async () => {
         if (videoRef.current) {
@@ -116,7 +124,7 @@ export default function VideoScreen() {
             >
                 <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
                     <TouchableOpacity
-                        onPress={() => router.back()}
+                        onPress={() => setCurrentHomeScreen("chapter-details")}
                         className="absolute left-3 z-10"
                     >
                         <Image
@@ -126,17 +134,19 @@ export default function VideoScreen() {
                         />
                     </TouchableOpacity>
 
-                    <Text
-                        style={{ fontSize: 24 }}
-                        className="absolute left-1/2 w-full font-medium text-center text-white -translate-x-1/2">
-                        {videoData.title}
-                    </Text>
+                    <View className="flex-1 justify-center items-center">
+                        <Text
+                            style={{ fontSize: 24 }}
+                            className="font-medium text-white">
+                            {videoData.title}
+                        </Text>
+                    </View>
                 </View>
             </View>
 
             {/* Video Section */}
             <View 
-                className="flex absolute inset-0 top-1/2 justify-center items-center -translate-y-1/2"
+                className="flex absolute inset-0 justify-center items-center"
             >
                 <Video
                     ref={videoRef}
@@ -197,8 +207,11 @@ export default function VideoScreen() {
 
             {/* Progress Bar */}
             <View 
-                className="absolute w-[95%] left-1/2 -translate-x-1/2"
-                style={{ bottom: 36 }}
+                className="absolute w-[95%]"
+                style={{ 
+                    bottom: 36,
+                    left: '2.5%'
+                }}
             >
                 <View 
                     className="w-full"

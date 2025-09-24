@@ -34,9 +34,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
           <Text className="mb-4 text-sm text-center text-gray-600">
             {this.state.error?.message || 'Unknown error occurred'}
           </Text>
-          <Text className="mb-6 text-xs text-center text-gray-400">
-            {this.state.error?.stack}
-          </Text>
           <TouchableOpacity
             className="px-6 py-3 bg-blue-500 rounded-lg"
             onPress={() => this.setState({ hasError: false, error: undefined })}
