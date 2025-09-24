@@ -16,7 +16,7 @@ export default function VideoScreen() {
     const screenWidth = Dimensions.get('window').width;
 
     useEffect(() => {
-        setIsPlaying(true);
+        setIsPlaying(false);
     }, []);
 
     if (!selectedLessonId) {
@@ -29,12 +29,17 @@ export default function VideoScreen() {
 
     const togglePlayPause = async () => {
         if (videoRef.current) {
-            if (isPlaying) {
-                await videoRef.current.pauseAsync();
-            } else {
-                await videoRef.current.playAsync();
+            try {
+                if (isPlaying) {
+                    await videoRef.current.pauseAsync();
+                    setIsPlaying(false);
+                } else {
+                    await videoRef.current.playAsync();
+                    setIsPlaying(true);
+                }
+            } catch (error) {
+                console.error('Error toggling play/pause:', error);
             }
-            setIsPlaying(!isPlaying);
         }
     };
 
@@ -65,7 +70,30 @@ export default function VideoScreen() {
     };
 
     return (
-        <View className="overflow-hidden relative w-full h-full bg-stone-900">
+        <View className="overflow-hidden flex-1 relative pt-[66px] bg-stone-900">
+            {/* Header */}
+            <View className="fixed top-0 right-0 left-0 z-50">
+                <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
+                    <TouchableOpacity
+                        onPress={() => setCurrentHomeScreen("chapter-details")}
+                        className="absolute left-3 z-10"
+                    >
+                        <Image
+                            style={{ width: 69, height: 69 }}
+                            source={require('../../assets/icons/left-arrow.png')}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+
+                    <View className="flex-1 justify-center items-center">
+                        <Text
+                            style={{ fontSize: 24 }}
+                            className="font-medium text-white">
+                            {videoData.title}
+                        </Text>
+                    </View>
+                </View>
+            </View>
             {/* Buttons*/}
             <View
                 className="flex absolute flex-col justify-center items-center"
@@ -73,7 +101,7 @@ export default function VideoScreen() {
                     gap: 32,
                     bottom: 230,
                     right: 32,
-                    zIndex: 50
+                    zIndex: 20
                 }}
             >
                 <TouchableOpacity className='space-y-1'>
@@ -117,43 +145,25 @@ export default function VideoScreen() {
                     />
                 </TouchableOpacity>
             </View>
-            {/* Header */}
-            <View
-                className="absolute top-0 right-0 left-0"
-                style={{ zIndex: 50 }}
-            >
-                <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
-                    <TouchableOpacity
-                        onPress={() => setCurrentHomeScreen("chapter-details")}
-                        className="absolute left-3 z-10"
-                    >
-                        <Image
-                            style={{ width: 69, height: 69 }}
-                            source={require('../../assets/icons/left-arrow.png')}
-                            resizeMode="contain"
-                        />
-                    </TouchableOpacity>
-
-                    <View className="flex-1 justify-center items-center">
-                        <Text
-                            style={{ fontSize: 24 }}
-                            className="font-medium text-white">
-                            {videoData.title}
-                        </Text>
-                    </View>
-                </View>
-            </View>
-
             {/* Video Section */}
-            <View 
-                className="flex absolute inset-0 justify-center items-center"
+            <View
+                style={{
+                    position: 'absolute',
+                    top: 102, // Below header
+                    left: 0,
+                    right: 0,
+                    bottom: 200, // Above video info section
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    zIndex: 1
+                }}
             >
                 <Video
                     ref={videoRef}
                     source={{ uri: 'https://videos.pexels.com/video-files/4017060/4017060-uhd_2560_1440_30fps.mp4' }}
-                    style={{ 
-                        width: '100%', 
-                        height: '70%' // Chiếm 70% chiều cao màn hình
+                    style={{
+                        width: '100%',
+                        height: '100%'
                     }}
                     resizeMode={ResizeMode.CONTAIN}
                     shouldPlay={isPlaying}
@@ -162,18 +172,17 @@ export default function VideoScreen() {
                         if (status.isLoaded && status.durationMillis) {
                             setProgress(status.positionMillis / status.durationMillis);
                             setDuration(status.durationMillis);
-                            // Sync isPlaying state with video's actual playback status
-                            if (status.isPlaying !== isPlaying) {
-                                setIsPlaying(status.isPlaying);
-                            }
                         }
                     }}
                 />
-                
+
                 {/* Video Controls Overlay */}
-                <View 
-                    className="absolute flex-row justify-center items-center"
+                <View
                     style={{
+                        position: 'absolute',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         gap: 40,
                         zIndex: 10
                     }}
@@ -184,7 +193,7 @@ export default function VideoScreen() {
                     >
                         <MaterialIcons name="replay-10" size={56} color="white" />
                     </TouchableOpacity>
-                    
+
                     {/* Play/Pause Button */}
                     <TouchableOpacity
                         onPress={togglePlayPause}
@@ -195,7 +204,7 @@ export default function VideoScreen() {
                             <MaterialIcons name="play-arrow" size={64} color="white" />
                         )}
                     </TouchableOpacity>
-                    
+
                     {/* Skip Forward 10s */}
                     <TouchableOpacity
                         onPress={skipForward}
@@ -206,23 +215,24 @@ export default function VideoScreen() {
             </View>
 
             {/* Progress Bar */}
-            <View 
+            <View
                 className="absolute w-[95%]"
-                style={{ 
+                style={{
                     bottom: 36,
-                    left: '2.5%'
+                    left: '2.5%',
+                    zIndex: 20
                 }}
             >
-                <View 
+                <View
                     className="w-full"
-                    style={{ 
-                        height: 4, 
-                        backgroundColor: '#828282' 
+                    style={{
+                        height: 4,
+                        backgroundColor: '#828282'
                     }}
                 >
-                    <View 
-                        style={{ 
-                            height: 4, 
+                    <View
+                        style={{
+                            height: 4,
                             backgroundColor: '#1877F2',
                             width: `${progress * 100}%`
                         }}
@@ -234,21 +244,22 @@ export default function VideoScreen() {
             <View
                 style={{
                     bottom: 52,
-                    paddingHorizontal: 32,  
+                    paddingHorizontal: 32,
                     gap: 24,
+                    zIndex: 20
                 }}
                 className="flex absolute flex-col justify-start w-full">
-                <View 
-                style={{
-                    gap: 24,
-                }}
-                className='flex flex-row items-center'>
+                <View
+                    style={{
+                        gap: 24,
+                    }}
+                    className='flex flex-row items-center'>
                     <Image
                         style={{ width: 86, height: 86 }}
                         source={require('../../assets/images/sample-avatar.png')}
                         resizeMode="contain"
                     />
-                    <Text className='font-semibold text-white' style={{ fontSize: 30 }}>Các thành phần chính của báo cáo tài chính</Text>
+                    <Text className='font-semibold text-white' style={{ fontSize: 30 }}>Mr. Tung Tung Sahur</Text>
                 </View>
 
                 <View className='h-[150px] min-h-[150px] w-full'>

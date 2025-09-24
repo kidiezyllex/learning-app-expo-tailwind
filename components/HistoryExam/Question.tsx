@@ -14,11 +14,11 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
   return (
     <View className="mb-8">
       {/* Question Header */}
-      <View className="flex-row items-center mb-4">
-        <Text style={{ fontSize: 20 }} className="mr-2 font-semibold text-blue-600">
+      <View className="flex-row items-center mb-14">
+        <Text style={{ fontSize: 24 }} className="mr-2 font-semibold text-blue-600">
           Câu hỏi {question.questionNumber}:
         </Text>
-        <Text style={{ fontSize: 20 }} className="flex-1 font-medium text-black">
+        <Text style={{ fontSize: 24 }} className="flex-1 font-medium text-black">
           {question.questionText}
         </Text>
       </View>
@@ -53,7 +53,7 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
                 
                 {/* Option Text */}
                 <Text 
-                  style={{ fontSize: 20 }} 
+                  style={{ fontSize: 24 }} 
                   className="flex-1 font-medium text-black"
                   numberOfLines={3}
                 >

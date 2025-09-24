@@ -46,8 +46,7 @@ export default function TabBarWrapper() {
   const router = useRouter();
   const { currentHomeScreen } = useNavigation();
 
-  // Hide tab bar when in video screen
-  if (currentHomeScreen === "video") {
+  if (currentHomeScreen === "video" || currentHomeScreen === "history-exam") {
     return null;
   }
 

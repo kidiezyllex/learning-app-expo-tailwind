@@ -1,5 +1,6 @@
 import ChapterDetailsScreen from "@/components/Screens/ChapterDetailsScreen";
 import CourseDetailsScreen from "@/components/Screens/CourseDetailsScreen";
+import HistoryExamScreen from "@/components/Screens/HistoryExamScreen";
 import HomeScreen from "@/components/Screens/HomeScreen";
 import VideoScreen from "@/components/Screens/VideoScreen";
 import { useNavigation } from "@/contexts/NavigationContext";
@@ -8,7 +9,6 @@ import { View } from "react-native";
 
 export default function HomeTab() {
   const { currentHomeScreen } = useNavigation();
-
   const renderContent = () => {
     switch (currentHomeScreen) {
       case "home":
@@ -19,6 +19,8 @@ export default function HomeTab() {
         return <ChapterDetailsScreen />;
       case "video":
         return <VideoScreen />;
+      case "history-exam":
+        return <HistoryExamScreen />;
       default:
         return <HomeScreen />;
     }

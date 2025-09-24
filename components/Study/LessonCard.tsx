@@ -20,15 +20,27 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
     const subtitleTextColor = 'text-zinc-600';
 
     const handlePress = () => {
+        console.log('LessonCard pressed:', { 
+            lessonId: lesson.id, 
+            isExam, 
+            isLocked, 
+            title: lesson.title 
+        });
+        
         if (onPress) {
             onPress();
         } else if (!isLocked) {
             if (isExam) {
-                router.push(`/exam/${lesson.id}` as any);
+                console.log('Navigating to history-exam for lesson:', lesson.id);
+                setSelectedLessonId(lesson.id);
+                setCurrentHomeScreen("history-exam");
             } else {
+                console.log('Navigating to video for lesson:', lesson.id);
                 setSelectedLessonId(lesson.id);
                 setCurrentHomeScreen("video");
             }
+        } else {
+            console.log('Lesson is locked, cannot navigate');
         }
     };
 

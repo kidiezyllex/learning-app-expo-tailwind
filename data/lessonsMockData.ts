@@ -55,7 +55,7 @@ export const lessonsMockData: Lesson[] = [
     title: "Exam Chapter",
     type: 'exam',
     isCompleted: false,
-    isLocked: true,
+    isLocked: false,
     isDownloaded: false,
     order: 5
   }
