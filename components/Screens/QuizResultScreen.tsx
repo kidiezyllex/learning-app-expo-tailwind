@@ -18,25 +18,23 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
 
   const renderQuestionNumber = (number: number, index: number) => {
     const isActive = index === currentQuestionIndex;
-    const isCorrect = data.questions[index]?.answers.some(answer => 
+    const isCorrect = data.questions[index]?.answers.some(answer =>
       answer.isSelected && answer.isCorrect
     ) || false;
-    
+
     return (
       <TouchableOpacity
         key={number}
         onPress={() => handleQuestionSelect(index)}
-        className={`w-11 h-11 rounded-full ${
-          isCorrect 
-            ? 'bg-green-200 border-2 border-blue-500' 
-            : 'bg-rose-200'
-        }`}
-      >
-        <Text 
-          style={{ fontSize: 20 }} 
-          className={`font-bold text-center mt-2 ${
-            isCorrect ? 'text-green-600' : 'text-red-600'
+        className={`w-11 h-11 rounded-full ${isCorrect
+          ? 'bg-green-200 border-2 border-blue-500'
+          : 'bg-rose-200'
           }`}
+      >
+        <Text
+          style={{ fontSize: 20 }}
+          className={`font-bold text-center mt-2 ${isCorrect ? 'text-green-600' : 'text-red-600'
+            }`}
         >
           {number}
         </Text>
@@ -48,7 +46,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
     let bgColor = 'bg-white';
     let borderColor = 'border-zinc-300';
     let dotColor = 'outline-zinc-400';
-    
+
     if (answer.isSelected && answer.isCorrect) {
       bgColor = 'bg-green-200';
       borderColor = 'border-green-600';
@@ -60,42 +58,41 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
     }
 
     return (
-      <View 
+      <View
+      style={{ paddingHorizontal: 20, paddingVertical: 24, gap: 20 }}
         key={answer.id}
-        className={`w-full h-20 ${bgColor} rounded-[10px] border-2 ${borderColor} mb-4 ${
-          answer.isSelected && answer.isCorrect ? 'shadow-[0px_0px_4px_0px_rgba(44,107,190,1.00)]' : ''
-        }`}
+        className={`w-full ${bgColor} flex-row items-center rounded-[10px] border-2 ${borderColor} mb-4 ${answer.isSelected && answer.isCorrect ? 'shadow-sm' : ''
+          }`}
       >
-        <View className="flex-row items-center p-4 h-full">
-          <View 
-            className={`w-6 h-6 rounded-full mr-4 ${
-              answer.isSelected ? dotColor : 'outline outline-2 outline-zinc-400'
-            }`}
+          <View
+            style={{ width: 24, height: 24, minWidth: 24, minHeight: 24, flexShrink: 0}}
+            className={`rounded-full ${answer.isSelected ? dotColor : 'outline outline-2 outline-zinc-400'
+              }`}
           />
           <Text style={{ fontSize: 16 }} className="flex-1 font-medium text-black">
             {answer.text}
           </Text>
-        </View>
       </View>
     );
   };
 
   const renderQuestionCard = (question: QuizQuestion) => (
-    <View 
+    <View
       key={question.id}
-      className="w-full bg-white rounded-2xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-6 mb-4"
+      style={{ paddingVertical: 32, paddingHorizontal: 64, marginBottom: 24 }}
+      className="w-full bg-white rounded-2xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)]"
     >
       {/* Question Text */}
-      <Text 
-        style={{ fontSize: 20 }} 
-        className="mb-6 font-semibold text-black"
+      <Text
+        style={{ fontSize: 24, marginBottom: 24 }}
+        className="font-semibold text-black"
       >
         Question: {question.questionText}
       </Text>
 
       {/* Answer Options */}
       <View className="mb-6">
-        {question.answers.map((answer, index) => 
+        {question.answers.map((answer, index) =>
           renderAnswerOption(answer, index)
         )}
       </View>
@@ -118,7 +115,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
   );
 
   return (
-    <View className="flex-1 pt-[80px]">
+    <View className="flex-1">
       {/* Header */}
       <ScreenHeader title="Result" onBack={onBack} />
 
@@ -128,57 +125,70 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       >
-        <View className="px-6 pt-6">
+        <View className="px-11 pt-6">
           {/* Quiz Info Card */}
-          <View className="w-full h-40 bg-white rounded-2xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-4 mb-4">
-            <View className="flex-row justify-between items-center mb-4">
-              <View className="flex-1">
+          <View className="w-full bg-white rounded-2xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] mb-4">
+            <View
+              style={{ paddingHorizontal: 16, paddingVertical: 24 }}
+              className="flex-row justify-between items-center">
+              <View className="flex-row flex-1 gap-1">
                 <Text style={{ fontSize: 24 }} className="font-semibold text-black">
-                  {data.quizTitle}
+                  Game Object  -
+                </Text>
+                <Text style={{ fontSize: 24 }} className="text-black">
+                  Bài kiểm tra cuối khóa
                 </Text>
               </View>
-              <View className="w-14 h-7 bg-orange-400 rounded-[3px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.15)]">
-                <Text 
-                  style={{ fontSize: 10 }} 
-                  className="mt-1 font-medium text-center text-black"
+
+              <View style={{ height: 28, paddingHorizontal: 14 }} className="flex justify-center items-center bg-orange-400 rounded-[3px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.15)]">
+                <Text
+                  style={{ fontSize: 12 }}
+                  className="font-medium text-center text-black"
                 >
-                  Qizz
+                  Quiz
                 </Text>
               </View>
             </View>
-            <View className="mt-2 mb-4 w-full h-0 border border-stone-300" />
-            
+            <View className="w-full h-0 border border-stone-300" />
             {/* Student Info */}
-            <View className="flex-row items-center">
-              <Image
-                source={require('../../assets/images/sample-avatar.png')}
-                className="mr-4 w-12 h-12 rounded-full"
-                resizeMode="cover"
-              />
+            <View
+              style={{ padding: 16 }}
+              className="flex-row items-center">
+              <TouchableOpacity
+              >
+                <Image
+                  style={{ width: 52, height: 52, minWidth: 52, minHeight: 52, flexShrink: 0, marginRight: 20 }}
+                  source={require('../../assets/images/sample-avatar.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
               <Text style={{ fontSize: 24 }} className="font-semibold text-black">
                 {data.studentName}
               </Text>
             </View>
           </View>
 
-          {/* Question Numbers */}
-          <View className="flex-row justify-center mb-6" style={{ gap: 20 }}>
-            {data.questionNumbers.map((number, index) => 
+          {/* Pagination */}
+          <View className="flex-row justify-center items-center mb-10" style={{ gap: 20 }}>
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 20, height: 34 }}
+                source={require('../../assets/icons/left-angle.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            {data.questionNumbers.map((number: number, index: number) =>
               renderQuestionNumber(number, index)
             )}
-            <View className="justify-center w-10 h-16">
-              <Text style={{ fontSize: 36 }} className="font-bold text-center text-blue-500">
-                ...
-              </Text>
-            </View>
-          </View>
-
-          {/* Progress Bar */}
-          <View className="w-full h-2 bg-zinc-300 rounded-[20px] mb-6">
-            <View 
-              className="h-2 bg-blue-500 rounded-[20px]"
-              style={{ width: `${((currentQuestionIndex + 1) / data.questionNumbers.length) * 100}%` }}
-            />
+            <TouchableOpacity
+            >
+              <Image
+                style={{ width: 20, height: 34 }}
+                source={require('../../assets/icons/right-angle.png')}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
           </View>
 
           {/* Current Question Card */}
@@ -186,12 +196,9 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
 
           {/* Grade Button */}
           <View className="items-center mt-6">
-            <Button 
-              text="Grade" 
-              onPress={() => {
-                // Handle grading logic here
-                console.log('Grading quiz...');
-              }}
+            <Button
+              text="Grade"
+              onPress={() => { }}
             />
           </View>
         </View>

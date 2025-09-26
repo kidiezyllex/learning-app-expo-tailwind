@@ -21,7 +21,7 @@ export const getScaleFactor = (): number => {
 // Scale theo height (nhưng đang để cứng tỉ lệ 0.5 ~ tỉ lệ đẹp)
 export const getHeightScaleFactor = (): number => {
   const { height: deviceHeight } = getDeviceDimensions();
-  const heightScaleFactor = 0.55; // deviceHeight / BASE_VIEWPORT.height;
+  const heightScaleFactor = deviceHeight / BASE_VIEWPORT.height;
   return heightScaleFactor;
 };
 

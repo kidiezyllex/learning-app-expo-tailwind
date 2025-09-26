@@ -3,6 +3,7 @@ import TabSelector from '@/components/Common/TabSelector';
 import CoursesStatistics from '@/components/Group/CoursesStatistics';
 import EssayGrading from '@/components/Group/EssayGrading';
 import LearningTime from '@/components/Group/LearningTime';
+import { useNavigation } from '@/contexts/NavigationContext';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -16,6 +17,7 @@ interface StatisticsScreenProps {
 export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps) {
   const [activeTab, setActiveTab] = useState("statistics");
   const router = useRouter();
+  const { setCurrentResultScreen } = useNavigation();
   const tabOptions = [
     { id: "statistics", label: "Statistics", isActive: activeTab === "statistics" },
     { id: "progress", label: "My Progress", isActive: activeTab === "progress" },
@@ -34,13 +36,16 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
   const handleNavigateToResult = (screenType: 'exam' | 'quiz') => {
     if (screenType === 'exam') {
       setActiveTab('exam-result');
+      setCurrentResultScreen('exam-result');
     } else if (screenType === 'quiz') {
       setActiveTab('quiz-result');
+      setCurrentResultScreen('quiz-result');
     }
   };
 
   const handleBackFromResult = () => {
     setActiveTab('eassay-grading');
+    setCurrentResultScreen(null);
   };
 
   const renderContent = () => {
@@ -96,7 +101,8 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
   const isResultScreen = activeTab === 'exam-result' || activeTab === 'quiz-result';
 
   return (
-    <View className="flex-1 pt-[80px]">
+    <View  style={{ paddingTop: 102 }}
+    className="flex-1">
       {!isResultScreen && (
         <>
           <ScreenHeader 
@@ -109,12 +115,8 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             secondRightIcon={require('../../assets/icons/setting.png')}
             secondRightIconWidth={43}
             secondRightIconHeight={45}
-            handleFirstRightIconClick={() => {
-              console.log('Bell clicked');
-            }}
-            handleSecondRightIconClick={() => {
-              console.log('Settings clicked');
-            }}
+            handleFirstRightIconClick={() => {}}
+            handleSecondRightIconClick={() => {}}
           />
           {/* Scrollable Content */}
           <ScrollView
@@ -122,22 +124,18 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 100 }}
           >
-            <View className="px-6 pt-[80px]">
+            <View className="px-6">
               {/* Tab Selector */}
               <TabSelector
                 col={4}
                 tabs={tabOptions}
                 onTabPress={handleTabPress}
               />
-
-              {/* Content based on active tab */}
               {renderContent()}
             </View>
           </ScrollView>
         </>
       )}
-      
-      {/* Result screens render their own content */}
       {isResultScreen && renderContent()}
     </View>
   );

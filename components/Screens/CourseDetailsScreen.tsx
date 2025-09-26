@@ -45,7 +45,8 @@ export default function CourseDetailsScreen() {
     }
 
     return (
-        <View className="flex-1 pt-[80px]">
+        <View  style={{ paddingTop: 102 }}
+        className="flex-1">
             <ScreenHeader
                 title="Course Details"
                 handleBackClick={handleBackPress}

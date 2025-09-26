@@ -14,7 +14,8 @@ export default function StudyScreen() {
   }, []);
 
   return (
-    <View className="flex-1 pt-[80px]">
+    <View  style={{ paddingTop: 102 }}
+    className="flex-1">
       <ScreenHeader 
         title="Study Screen Sample"
         handleBackClick={() => router.back()}
@@ -25,12 +26,8 @@ export default function StudyScreen() {
         secondRightIcon={require('../../assets/icons/logout.png')}
         secondRightIconWidth={39}
         secondRightIconHeight={41}
-        handleFirstRightIconClick={() => {
-          console.log('Bell clicked');
-        }}
-        handleSecondRightIconClick={() => {
-          console.log('Logout clicked');
-        }}
+        handleFirstRightIconClick={() => {}}
+        handleSecondRightIconClick={() => {}}
       />
       {/* Scrollable Content */}
       <ScrollView

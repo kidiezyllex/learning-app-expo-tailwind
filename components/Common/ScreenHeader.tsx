@@ -31,7 +31,9 @@ export default function ScreenHeader({
 }: ScreenHeaderProps) {
   return (
     <View className="fixed top-0 right-0 left-0 z-50">
-      <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-blue-600 shadow-[0px_0px_0px_0px_rgba(0,0,0,0.25)]">
+      <View 
+      style={{height: 102, minHeight: 102}}
+      className="flex relative flex-row px-6 justify-between items-center bg-blue-600 shadow-[0px_0px_0px_0px_rgba(0,0,0,0.25)]">
         {(handleBackClick || onBack) && (
           <TouchableOpacity
             onPress={handleBackClick || onBack}

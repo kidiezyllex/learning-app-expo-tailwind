@@ -1,4 +1,3 @@
-import ScreenHeader from "@/components/Common/ScreenHeader";
 import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Home/CourseCard";
 import { mockCourses } from "@/components/Home/mock-data";
@@ -6,6 +5,7 @@ import { useCourse } from "@/contexts/CourseContext";
 import { useNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
+import ScreenHeader from "../Common/ScreenHeader";
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("recommended");
@@ -56,16 +56,16 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View className="flex-1 pt-[80px]">
-      <ScreenHeader 
+    <View 
+    style={{ paddingTop: 102 }}
+    className="flex-1">
+      <ScreenHeader
         title="Home"
         showRightIcons={true}
         firstRightIcon={require('../../assets/icons/active-search.png')}
         firstRightIconWidth={50.81}
         firstRightIconHeight={50.81}
-        handleFirstRightIconClick={() => {
-          console.log('Search clicked');
-        }}
+        handleFirstRightIconClick={() => {}}
       />
       <ScrollView
         className="flex-1"

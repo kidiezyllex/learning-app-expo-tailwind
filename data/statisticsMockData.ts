@@ -1,5 +1,3 @@
-// Mock data for Statistics Screen
-
 export interface LearningTimeData {
   totalTime: string;
   averageTime: string;
@@ -28,14 +26,12 @@ export interface CourseStatistics {
   isSave?: boolean;
 }
 
-// Learning time statistics
 export const learningTimeData: LearningTimeData = {
   totalTime: "32 hrs 16 min",
   averageTime: "3 hrs 6 min (per day)",
   topLearner: "John..."
 };
 
-// User learning data for leaderboard
 export const userLearningData: UserLearningData[] = [
   {
     id: "1",
@@ -63,7 +59,6 @@ export const userLearningData: UserLearningData[] = [
   }
 ];
 
-// Course statistics data
 export const courseStatistics: CourseStatistics[] = [
   {
     id: "1",

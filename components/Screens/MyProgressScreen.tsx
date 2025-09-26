@@ -46,7 +46,8 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
   );
 
   return (
-    <View className="flex-1 pt-[80px]">
+    <View  style={{ paddingTop: 102 }}
+    className="flex-1">
       <ScreenHeader 
         title="My Progress"
         handleBackClick={() => onTabChange?.("statistics")}
@@ -57,12 +58,8 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
         secondRightIcon={require('../../assets/icons/logout.png')}
         secondRightIconWidth={39}
         secondRightIconHeight={41}
-        handleFirstRightIconClick={() => {
-          console.log('Bell clicked');
-        }}
-        handleSecondRightIconClick={() => {
-          console.log('Logout clicked');
-        }}
+        handleFirstRightIconClick={() => {}}
+        handleSecondRightIconClick={() => {}}
       />
       {/* Scrollable Content */}
       <ScrollView

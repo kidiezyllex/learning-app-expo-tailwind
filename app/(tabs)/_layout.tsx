@@ -8,7 +8,7 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarStyle: { display: 'none' }, // Hide default tab bar
+          tabBarStyle: { display: 'none' }, 
         }}
         tabBar={() => null} // Explicitly disable the default tab bar
       >

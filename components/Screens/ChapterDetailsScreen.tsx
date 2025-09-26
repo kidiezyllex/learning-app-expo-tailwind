@@ -25,7 +25,9 @@ export default function ChapterDetailsScreen() {
     }
 
     return (
-        <View className="flex-1 pt-[80px]">
+        <View 
+        style={{ paddingTop: 102 }}
+        className="flex-1">
             <ScreenHeader 
                 title={chapter.title.split(':')[0]}
                 handleBackClick={() => setCurrentHomeScreen("course-details")}
@@ -33,9 +35,7 @@ export default function ChapterDetailsScreen() {
                 firstRightIcon={require('../../assets/icons/download2.png')}
                 firstRightIconWidth={28}
                 firstRightIconHeight={28}
-                handleFirstRightIconClick={() => {
-                    console.log('Download clicked');
-                }}
+                handleFirstRightIconClick={() => {}}
             />
             {/* Scrollable Content */}
             <ScrollView

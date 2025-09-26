@@ -44,9 +44,10 @@ const navigationTabs = [
 export default function TabBarWrapper() {
   const pathname = usePathname();
   const router = useRouter();
-  const { currentHomeScreen } = useNavigation();
+  const { currentHomeScreen, currentResultScreen } = useNavigation();
 
-  if (currentHomeScreen === "video" || currentHomeScreen === "history-exam") {
+  if (currentHomeScreen === "video" || currentHomeScreen === "history-exam" || 
+      currentResultScreen === "exam-result" || currentResultScreen === "quiz-result") {
     return null;
   }
 

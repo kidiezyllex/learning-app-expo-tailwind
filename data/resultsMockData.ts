@@ -32,7 +32,6 @@ export const weekChartData: WeekData[] = [
   { day: "T7", hours: 1.5 }
 ];
 
-// Efficiency statistics data
 export const efficiencyData: EfficiencyData[] = [
   {
     id: "1",
