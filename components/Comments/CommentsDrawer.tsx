@@ -63,7 +63,6 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
   // Render the content of the bottom sheet
   const renderContent = () => (
     <BottomSheetView style={{ flex: 1, paddingHorizontal: 16 }}>
-      {/* Header */}
       <View className="py-4 w-full">
         <Text 
           style={{ fontSize: 30 }}

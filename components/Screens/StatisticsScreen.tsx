@@ -1,10 +1,13 @@
+import ScreenHeader from '@/components/Common/ScreenHeader';
 import TabSelector from '@/components/Common/TabSelector';
 import CoursesStatistics from '@/components/Group/CoursesStatistics';
 import EssayGrading from '@/components/Group/EssayGrading';
 import LearningTime from '@/components/Group/LearningTime';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import ExamResultScreen from './ExamResultScreen';
+import QuizResultScreen from './QuizResultScreen';
 
 interface StatisticsScreenProps {
   onTabChange?: (tabId: string) => void;
@@ -26,6 +29,18 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
     } else {
       setActiveTab(tabId);
     }
+  };
+
+  const handleNavigateToResult = (screenType: 'exam' | 'quiz') => {
+    if (screenType === 'exam') {
+      setActiveTab('exam-result');
+    } else if (screenType === 'quiz') {
+      setActiveTab('quiz-result');
+    }
+  };
+
+  const handleBackFromResult = () => {
+    setActiveTab('eassay-grading');
   };
 
   const renderContent = () => {
@@ -62,75 +77,68 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
       case "eassay-grading":
         return (
           <View>
-            <EssayGrading />
+            <EssayGrading onNavigateToResult={handleNavigateToResult} />
           </View>
+        );
+      case "exam-result":
+        return (
+          <ExamResultScreen onBack={handleBackFromResult} />
+        );
+      case "quiz-result":
+        return (
+          <QuizResultScreen onBack={handleBackFromResult} />
         );
       default:
         return null;
     }
   };
 
+  const isResultScreen = activeTab === 'exam-result' || activeTab === 'quiz-result';
+
   return (
-    <View className="flex-1 pt-[66px]">
-      {/* Header */}
-      <View className="fixed top-0 right-0 left-0 z-50">
-        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
-          <TouchableOpacity
-            onPress={() => onTabChange?.("statistics")}
-            className="absolute left-3 z-10"
-          >
-            <Image
-              style={{ width: 69, height: 69 }}
-              source={require('../../assets/icons/left-arrow.png')}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-
-          <View className="flex-1 justify-center items-center">
-            <Text
-              style={{ fontSize: 32 }}
-              className="font-medium text-white">
-              Statistics
-            </Text>
-          </View>
-          <View style={{ gap: 16 }} className='absolute right-6 flex-row items-center'>
-            <TouchableOpacity
-            >
-              <Image
-                style={{ width: 51, height: 51 }}
-                source={require('../../assets/icons/bell.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-            >
-              <Image
-                style={{ width: 43, height: 45 }}
-                source={require('../../assets/icons/setting.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-      {/* Scrollable Content */}
-      <ScrollView
-        className="flex-1"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}
-      >
-        <View className="px-6">
-          {/* Tab Selector */}
-          <TabSelector
-            col={4}
-            tabs={tabOptions}
-            onTabPress={handleTabPress}
+    <View className="flex-1 pt-[80px]">
+      {!isResultScreen && (
+        <>
+          <ScreenHeader 
+            title="Statistics"
+            handleBackClick={() => onTabChange?.("statistics")}
+            showRightIcons={true}
+            firstRightIcon={require('../../assets/icons/bell.png')}
+            firstRightIconWidth={51}
+            firstRightIconHeight={51}
+            secondRightIcon={require('../../assets/icons/setting.png')}
+            secondRightIconWidth={43}
+            secondRightIconHeight={45}
+            handleFirstRightIconClick={() => {
+              console.log('Bell clicked');
+            }}
+            handleSecondRightIconClick={() => {
+              console.log('Settings clicked');
+            }}
           />
+          {/* Scrollable Content */}
+          <ScrollView
+            className="flex-1"
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 100 }}
+          >
+            <View className="px-6 pt-[80px]">
+              {/* Tab Selector */}
+              <TabSelector
+                col={4}
+                tabs={tabOptions}
+                onTabPress={handleTabPress}
+              />
 
-          {/* Content based on active tab */}
-          {renderContent()}
-        </View>
-      </ScrollView>
+              {/* Content based on active tab */}
+              {renderContent()}
+            </View>
+          </ScrollView>
+        </>
+      )}
+      
+      {/* Result screens render their own content */}
+      {isResultScreen && renderContent()}
     </View>
   );
 }

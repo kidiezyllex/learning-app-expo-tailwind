@@ -1,22 +1,14 @@
+import ScreenHeader from "@/components/Common/ScreenHeader";
 import Efficiency from "@/components/Result/Efficiency";
 import WeekChart from "@/components/Result/WeekChart";
 import { ScrollView, Text, View } from "react-native";
 
 export default function ResultsScreen() {
   return (
-    <View className="flex-1 pt-[66px]">
-      {/* Header */}
-      <View className="fixed top-0 right-0 left-0 z-50">
-        <View className="flex relative flex-row px-6 justify-between items-center h-[102px] bg-[#1877F2]">
-          <View className="flex-1 justify-center items-center">
-            <Text
-              style={{ fontSize: 32 }}
-              className="font-medium text-white">
-              Kết quả
-            </Text>
-          </View>
-        </View>
-      </View>
+    <View className="flex-1 pt-[80px]">
+      <ScreenHeader 
+        title="Kết quả"
+      />
       {/* Scrollable Content */}
       <ScrollView
         className="flex-1"

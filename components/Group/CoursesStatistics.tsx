@@ -15,7 +15,6 @@ export default function CoursesStatistics() {
       elevation: 5,
     }}
     className="p-4 mb-4 w-full bg-white">
-      {/* Header */}
       <Text style={{ fontSize: 24 }} className="mb-4 font-semibold text-black">
         Courses Statistics
       </Text>

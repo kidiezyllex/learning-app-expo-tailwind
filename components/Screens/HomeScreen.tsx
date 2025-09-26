@@ -1,10 +1,11 @@
+import ScreenHeader from "@/components/Common/ScreenHeader";
 import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/Home/CourseCard";
 import { mockCourses } from "@/components/Home/mock-data";
 import { useCourse } from "@/contexts/CourseContext";
 import { useNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
-import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("recommended");
@@ -55,27 +56,17 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View className="flex-1 pt-[66px]">
-      {/* Header */}
-      <View className="fixed top-0 right-0 left-0 z-50">
-        <View className="flex relative flex-row justify-between items-center h-[102px] px-6 bg-[#1877F2]">
-          <View className="flex-1 justify-center items-center">
-            <Text
-              style={{ fontSize: 32 }}
-              className="font-medium text-white">
-              Home
-            </Text>
-          </View>
-          {/* Notification and Settings */}
-          <TouchableOpacity className="absolute right-6">
-            <Image
-              style={{ width: 50.8, height: 50.8 }}
-              source={require('../../assets/icons/active-search.png')}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+    <View className="flex-1 pt-[80px]">
+      <ScreenHeader 
+        title="Home"
+        showRightIcons={true}
+        firstRightIcon={require('../../assets/icons/active-search.png')}
+        firstRightIconWidth={50.81}
+        firstRightIconHeight={50.81}
+        handleFirstRightIconClick={() => {
+          console.log('Search clicked');
+        }}
+      />
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}

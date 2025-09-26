@@ -3,16 +3,22 @@ import { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Button from '../Common/Button';
 
-export default function EssayGrading() {
-    const [items, setItems] = useState<EssayGradingItem[]>(essayGradingMockData);
+interface EssayGradingProps {
+    onNavigateToResult?: (screenType: 'exam' | 'quiz') => void;
+}
+
+export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) {
+    const initialItems = essayGradingMockData.map(item => ({ ...item, isSelected: false }));
+    const [items, setItems] = useState<EssayGradingItem[]>(initialItems);
     const [selectAll, setSelectAll] = useState(false);
 
     const handleItemSelect = (id: string) => {
-        setItems(prevItems =>
-            prevItems.map(item =>
+        setItems(prevItems => {
+            const updatedItems = prevItems.map(item =>
                 item.id === id ? { ...item, isSelected: !item.isSelected } : item
-            )
-        );
+            );
+            return updatedItems;
+        });
     };
 
     const handleSelectAll = () => {
@@ -31,27 +37,35 @@ export default function EssayGrading() {
     };
 
     const handleBatchGrading = () => {
-        // Handle batch grading logic here
-        console.log('Batch grading selected items:', items.filter(item => item.isSelected));
+        const selectedItems = items.filter(item => item.isSelected);
+        if (selectedItems.length > 1) {
+            onNavigateToResult?.('exam');
+        } else if (selectedItems.length === 1) {
+            onNavigateToResult?.('quiz');
+        }
     };
 
-    const renderCheckbox = (isSelected: boolean) => (
-        <View
-            style={{ width: 32, height: 32, minWidth: 32, minHeight: 32, flexShrink: 0 }}
-            className={`flex justify-center items-center rounded-[5px] border-[1.50px] ${isSelected
-                ? 'bg-blue-600 border-blue-600 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]'
-                : 'border-[#7A7C7D]'
-                }`}
-        >
-            {isSelected && (
-                <Image
-                    style={{ width: 26, height: 18 }}
-                    source={require('../../assets/icons/checkbox.png')}
-                    resizeMode="contain"
-                />
-            )}
-        </View>
-    );
+    const renderCheckbox = (isSelected: boolean) => {
+        return (
+            <View style={{ alignItems: 'center' }}>
+                <View
+                    style={{ width: 32, height: 32, minWidth: 32, minHeight: 32, flexShrink: 0 }}
+                    className={`flex justify-center items-center rounded-[5px] border-[1.50px] ${isSelected
+                        ? 'bg-blue-600 border-blue-600 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]'
+                        : 'border-[#7A7C7D]'
+                        }`}
+                >
+                    {isSelected && (
+                        <Image
+                            style={{ width: 26, height: 18 }}
+                            source={require('../../assets/icons/checkbox.png')}
+                            resizeMode="contain"
+                        />
+                    )}
+                </View>
+            </View>
+        );
+    };
 
     const renderEssayScore = (score: string, isGraded: boolean) => (
         <Text
@@ -81,18 +95,19 @@ export default function EssayGrading() {
 
             {/* Essay Items */}
             <View style={{ gap: 40 }} className="flex-col">
-                {items.map((item, index) => (
-                    <View
-                        key={item.id}
-                        style={{ gap: 24 }}
-                        className="w-full flex-row items-center justify-between h-fit rounded-xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-[30px]"
-                    >
-                        {/* Checkbox */}
-                        <TouchableOpacity
-                            onPress={() => handleItemSelect(item.id)}
+                {items.map((item, index) => {
+                    return (
+                        <View
+                            key={item.id}
+                            style={{ gap: 24 }}
+                            className="w-full flex-row items-center justify-between h-fit rounded-xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-[30px]"
                         >
-                            {renderCheckbox(item.isSelected)}
-                        </TouchableOpacity>
+                            {/* Checkbox */}
+                            <TouchableOpacity
+                                onPress={() => handleItemSelect(item.id)}
+                            >
+                                {renderCheckbox(item.isSelected)}
+                            </TouchableOpacity>
                         <View style={{ gap: 24 }} className="flex-row flex-1 items-start">
                             {/* Avatar */}
                             <Image
@@ -150,7 +165,8 @@ export default function EssayGrading() {
                             </View>
                         </View>
                     </View>
-                ))}
+                    );
+                })}
             </View>
 
             {/* Batch Grading Button */}

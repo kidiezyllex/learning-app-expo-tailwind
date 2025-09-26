@@ -117,7 +117,7 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
   );
 
   return (
-    <View className="flex-1 bg-neutral-100">
+    <View className="flex-1 pt-[80px]">
       {/* Header */}
       <ScreenHeader title="Result" onBack={onBack} />
 

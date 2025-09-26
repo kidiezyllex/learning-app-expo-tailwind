@@ -72,7 +72,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
               answer.isSelected ? dotColor : 'outline outline-2 outline-zinc-400'
             }`}
           />
-          <Text style={{ fontSize: 16 }} className="font-medium text-black flex-1">
+          <Text style={{ fontSize: 16 }} className="flex-1 font-medium text-black">
             {answer.text}
           </Text>
         </View>
@@ -103,9 +103,9 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
       {/* Explanation */}
       <View className="w-full p-4 bg-amber-100 rounded-[10px] border-2 border-amber-400">
         <View className="flex-row items-start">
-          <View className="w-3 h-4 mr-2 mt-1 bg-amber-500" />
+          <View className="mt-1 mr-2 w-3 h-4 bg-amber-500" />
           <View className="flex-1">
-            <Text style={{ fontSize: 14 }} className="font-bold text-black mb-1">
+            <Text style={{ fontSize: 14 }} className="mb-1 font-bold text-black">
               Explaination:
             </Text>
             <Text style={{ fontSize: 14 }} className="font-normal text-black">
@@ -118,7 +118,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
   );
 
   return (
-    <View className="flex-1 bg-neutral-100">
+    <View className="flex-1 pt-[80px]">
       {/* Header */}
       <ScreenHeader title="Result" onBack={onBack} />
 
@@ -146,7 +146,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                 </Text>
               </View>
             </View>
-            <View className="mt-2 w-full h-0 border border-stone-300 mb-4" />
+            <View className="mt-2 mb-4 w-full h-0 border border-stone-300" />
             
             {/* Student Info */}
             <View className="flex-row items-center">
@@ -166,8 +166,8 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
             {data.questionNumbers.map((number, index) => 
               renderQuestionNumber(number, index)
             )}
-            <View className="w-10 h-16 justify-center">
-              <Text style={{ fontSize: 36 }} className="font-bold text-blue-500 text-center">
+            <View className="justify-center w-10 h-16">
+              <Text style={{ fontSize: 36 }} className="font-bold text-center text-blue-500">
                 ...
               </Text>
             </View>

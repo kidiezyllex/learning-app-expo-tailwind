@@ -80,7 +80,7 @@ export default function VideoScreen() {
     };
 
     return (
-        <View className="overflow-hidden flex-1 relative pt-[66px] bg-stone-900">
+        <View className="overflow-hidden flex-1 relative pt-[80px] bg-stone-900">
             {/* Header */}
             <View className="fixed top-0 right-0 left-0 z-50">
                 <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
