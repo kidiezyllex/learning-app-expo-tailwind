@@ -24,7 +24,7 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
       </View>
 
       {/* Answer Options */}
-      <View className="space-y-4">
+      <View style={{ gap: 12 }} className="flex-col">
         {question.options.map((option, index) => {
           const isSelected = question.selectedAnswer === option.id;
           

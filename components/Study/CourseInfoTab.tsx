@@ -1,6 +1,7 @@
 import { Course } from '@/components/Home/mock-data';
 import { CourseDetail } from '@/data/courseDetailsMockData';
 import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import Button from '../Common/Button';
 
 interface CourseInfoTabProps {
     course: CourseDetail;
@@ -137,17 +138,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                 {/* Progress Section */}
                 <View className="flex flex-col gap-3 justify-center items-center mb-">
-                    <Pressable
-                        className="bg-blue-600 px-[70px] rounded-[10px] justify-center items-center"
-                        style={{ height: 60, paddingHorizontal: 70 }}
-                    >
-                        <Text
-                            className="font-semibold text-white"
-                            style={{ fontSize: 24 }}
-                        >
-                            Edit
-                        </Text>
-                    </Pressable>
+                    <Button text="Edit" onPress={()=>{}} />
                     {!course.isPurchased && (
                         <Text
                             className="font-medium text-center text-stone-500 max-w-[370px] text-wrap break-words"

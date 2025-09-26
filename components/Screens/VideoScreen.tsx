@@ -5,6 +5,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
 import { useEffect, useRef, useState } from 'react';
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import CommentsDrawer from '../Comments/CommentsDrawer';
 
 export default function VideoScreen() {
     const { selectedLessonId, setCurrentHomeScreen } = useNavigation();
@@ -12,6 +13,7 @@ export default function VideoScreen() {
     const [isPlaying, setIsPlaying] = useState(videoData.isPlaying);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [isCommentsDrawerVisible, setIsCommentsDrawerVisible] = useState(false);
     const videoRef = useRef<Video>(null);
     const screenWidth = Dimensions.get('window').width;
 
@@ -69,6 +71,14 @@ export default function VideoScreen() {
         }
     };
 
+    const handleOpenComments = () => {
+        setIsCommentsDrawerVisible(true);
+    };
+
+    const handleCloseComments = () => {
+        setIsCommentsDrawerVisible(false);
+    };
+
     return (
         <View className="overflow-hidden flex-1 relative pt-[66px] bg-stone-900">
             {/* Header */}
@@ -104,7 +114,7 @@ export default function VideoScreen() {
                     zIndex: 20
                 }}
             >
-                <TouchableOpacity className='space-y-1'>
+                <TouchableOpacity>
                     <Image
                         source={require('../../assets/icons/heart.png')}
                         style={{ width: 59, height: 52 }}
@@ -112,12 +122,12 @@ export default function VideoScreen() {
                     />
                     <Text
                         className='text-center text-white'
-                        style={{ fontSize: 24, fontWeight: '500' }}
+                        style={{ fontSize: 24, fontWeight: '500', marginTop: 4 }}
                     >
                         2.5M
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity className='space-y-1'>
+                <TouchableOpacity onPress={handleOpenComments}>
                     <Image
                         source={require('../../assets/icons/comment.png')}
                         style={{ width: 62, height: 54 }}
@@ -125,7 +135,7 @@ export default function VideoScreen() {
                     />
                     <Text
                         className='text-center text-white'
-                        style={{ fontSize: 24, fontWeight: '500' }}
+                        style={{ fontSize: 24, fontWeight: '500', marginTop: 4 }}
                     >
                         300
                     </Text>
@@ -270,6 +280,11 @@ export default function VideoScreen() {
             </View>
             {/* Progress Bar line */}
 
+            {/* Comments Drawer */}
+            <CommentsDrawer 
+                isVisible={isCommentsDrawerVisible}
+                onClose={handleCloseComments}
+            />
         </View>
     );
 }

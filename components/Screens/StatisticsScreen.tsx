@@ -1,5 +1,6 @@
 import TabSelector from '@/components/Common/TabSelector';
 import CoursesStatistics from '@/components/Group/CoursesStatistics';
+import EssayGrading from '@/components/Group/EssayGrading';
 import LearningTime from '@/components/Group/LearningTime';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -15,7 +16,8 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
   const tabOptions = [
     { id: "statistics", label: "Statistics", isActive: activeTab === "statistics" },
     { id: "progress", label: "My Progress", isActive: activeTab === "progress" },
-    { id: "user", label: "User", isActive: activeTab === "user" }
+    { id: "user", label: "User", isActive: activeTab === "user" },
+    { id: "eassay-grading", label: "Essay Grading", isActive: activeTab === "eassay-grading" }
   ];
 
   const handleTabPress = (tabId: string) => {
@@ -55,6 +57,12 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             <Text style={{ fontSize: 16 }} className="mt-2 text-center text-gray-600">
               This tab will show user information
             </Text>
+          </View>
+        );
+      case "eassay-grading":
+        return (
+          <View>
+            <EssayGrading />
           </View>
         );
       default:
@@ -114,6 +122,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
         <View className="px-6">
           {/* Tab Selector */}
           <TabSelector
+            col={4}
             tabs={tabOptions}
             onTabPress={handleTabPress}
           />
