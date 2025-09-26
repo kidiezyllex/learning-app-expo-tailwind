@@ -80,7 +80,7 @@ export default function TabBarWrapper() {
       left: 0,
       right: 0,
       backgroundColor: 'white',
-      height: 140,
+      height: 124,
       borderTopWidth: 0,
       elevation: 0,
       shadowOpacity: 0,

@@ -29,7 +29,6 @@ export default function CustomTabTrigger({
         backgroundColor: isActive ? '#1877F2' : 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 8,
         margin: 0,
         paddingHorizontal: 0,
       }}
@@ -37,7 +36,6 @@ export default function CustomTabTrigger({
       <View style={{
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 4,
       }}>
         <Image
           source={icon}
@@ -53,7 +51,6 @@ export default function CustomTabTrigger({
             fontSize: 20,
             fontWeight: '500',
             color: isActive ? '#ffffff' : '#646464',
-            marginTop: 4,
           }}
         >
           {label}
