@@ -1,5 +1,5 @@
 import { Image, Text, View } from 'react-native';
-import { QuestionResult } from '../../data/examResultMockData';
+import { QuestionResult } from '../../../data/examResultMockData';
 
 interface EssayQuestionProps {
   question: QuestionResult;
@@ -42,7 +42,7 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
         <View className="flex-row items-start">
           <Image
             style={{ width: 13, height: 17, marginRight: 12 }}
-            source={require('../../assets/icons/bulb.png')}
+            source={require('../../../assets/icons/bulb.png')}
             resizeMode="contain"
           />
           <View className="flex-1">
@@ -60,7 +60,7 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
         <View className="flex-row items-start">
           <Image
             style={{ width: 15, height: 13, marginRight: 12 }}
-            source={require('../../assets/icons/feedback.png')}
+            source={require('../../../assets/icons/feedback.png')}
             resizeMode="contain"
           />            <View className="flex-1">
             <Text style={{ fontSize: 14 }} className="text-black">

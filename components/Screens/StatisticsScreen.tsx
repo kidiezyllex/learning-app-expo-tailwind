@@ -1,12 +1,12 @@
 import ScreenHeader from '@/components/Common/ScreenHeader';
 import TabSelector from '@/components/Common/TabSelector';
-import CoursesStatistics from '@/components/Group/CoursesStatistics';
-import EssayGrading from '@/components/Group/EssayGrading';
-import LearningTime from '@/components/Group/LearningTime';
+import EssayGrading from '@/components/GroupTab/EssayGrading';
+import CoursesStatistics from '@/components/GroupTab/Statistics/CoursesStatistics';
 import { useNavigation } from '@/contexts/NavigationContext';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import LearningTime from '../GroupTab/Statistics/LearningTime';
 import ExamResultScreen from './ExamResultScreen';
 import QuizResultScreen from './QuizResultScreen';
 

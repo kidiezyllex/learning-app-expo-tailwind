@@ -25,7 +25,7 @@ export default function LearningTime() {
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
-              source={require('../../assets/icons/clock4.png')}
+              source={require('../../../assets/icons/clock4.png')}
               style={{ width: 35, height: 35 }}
               className="mr-4"
             />
@@ -46,7 +46,7 @@ export default function LearningTime() {
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
-              source={require('../../assets/icons/history.png')}
+              source={require('../../../assets/icons/history.png')}
               style={{ width: 32, height: 32 }}
               className="mr-4"
             />
@@ -67,7 +67,7 @@ export default function LearningTime() {
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
-              source={require('../../assets/icons/user.png')}
+              source={require('../../../assets/icons/user.png')}
               style={{ width: 31, height: 31 }}
               className="mr-4"
             />
@@ -128,7 +128,7 @@ export default function LearningTime() {
             </Text>
             <View style={{ gap: 8 }} className="flex-row flex-1 items-center">
             <Image
-              source={require('../../assets/icons/user.png')}
+              source={require('../../../assets/icons/user.png')}
               style={{ width: 24, height: 24 }}
               resizeMode="contain"
             />

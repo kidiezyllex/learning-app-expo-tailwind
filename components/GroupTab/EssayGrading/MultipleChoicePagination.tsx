@@ -1,0 +1,237 @@
+import { useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { PanGestureHandler, PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler';
+
+export interface PaginationItem {
+  id: string;
+  questionNumber: number;
+  isCorrect: boolean;
+  isCurrent: boolean;
+}
+
+interface MultipleChoicePaginationProps {
+  items: PaginationItem[];
+  onItemSelect: (index: number) => void;
+  onPrevious: () => void;
+  onNext: () => void;
+}
+
+export default function MultipleChoicePagination({
+  items,
+  onItemSelect,
+  onPrevious,
+  onNext,
+}: MultipleChoicePaginationProps) {
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5; // Show 5 items + "..." + last item = 7 total, but we'll show 6 as requested
+  const totalPages = Math.max(1, Math.ceil((items.length - 1) / itemsPerPage));
+
+  const getVisibleItems = () => {
+    if (items.length <= 6) {
+      return items.map((item, index) => ({ item, originalIndex: index }));
+    }
+
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, items.length - 1);
+    
+    const visibleItems = [];
+    
+    // Add items from current page
+    for (let i = startIndex; i < endIndex; i++) {
+      visibleItems.push({ item: items[i], originalIndex: i });
+    }
+    
+    // Add "..." if there are more items
+    if (endIndex < items.length - 1) {
+      visibleItems.push({ item: null, originalIndex: -1 }); // null represents "..."
+    }
+    
+    // Add last item
+    visibleItems.push({ item: items[items.length - 1], originalIndex: items.length - 1 });
+    
+    return visibleItems;
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+    onPrevious();
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+    onNext();
+  };
+
+  const handleItemPress = (originalIndex: number) => {
+    if (originalIndex >= 0) {
+      onItemSelect(originalIndex);
+    }
+  };
+
+  const getItemStyle = (item: PaginationItem | null) => {
+    if (!item) {
+      return {
+        containerStyle: {
+          width: 44,
+          height: 44,
+          borderRadius: 22,
+          backgroundColor: 'transparent',
+          justifyContent: 'center' as const,
+          alignItems: 'center' as const,
+        },
+        textStyle: {
+          fontSize: 24,
+          fontWeight: 'bold' as const,
+          textAlign: 'center' as const,
+          color: '#3F93EA',
+        },
+      };
+    }
+
+    const { isCorrect, isCurrent } = item;
+    
+    if (isCurrent) {
+      // Current question (both correct and incorrect have same styling when current)
+      return {
+        containerStyle: {
+          width: 44,
+          height: 44,
+          borderRadius: 22,
+          backgroundColor: '#FFD3D3',
+          borderWidth: 2,
+          borderColor: '#428AE7',
+          justifyContent: 'center' as const,
+          alignItems: 'center' as const,
+        },
+        textStyle: {
+          fontSize: 20,
+          fontWeight: 'bold' as const,
+          textAlign: 'center' as const,
+          color: '#F21818',
+        },
+      };
+    } else if (isCorrect) {
+      // Correct question
+      return {
+        containerStyle: {
+          width: 44,
+          height: 44,
+          borderRadius: 22,
+          backgroundColor: '#C0F0BF',
+          borderWidth: 2,
+          borderColor: '#C0F0BF',
+          justifyContent: 'center' as const,
+          alignItems: 'center' as const,
+        },
+        textStyle: {
+          fontSize: 20,
+          fontWeight: 'bold' as const,
+          textAlign: 'center' as const,
+          color: '#1DBA2D',
+        },
+      };
+    } else {
+      // Incorrect question
+      return {
+        containerStyle: {
+          width: 44,
+          height: 44,
+          borderRadius: 22,
+          backgroundColor: '#FFD3D3',
+          borderWidth: 2,
+          borderColor: '#FFD3D3',
+          justifyContent: 'center' as const,
+          alignItems: 'center' as const,
+        },
+        textStyle: {
+          fontSize: 20,
+          fontWeight: 'bold' as const,
+          textAlign: 'center' as const,
+          color: '#F21818',
+        },
+      };
+    }
+  };
+
+  const onGestureEvent = (event: PanGestureHandlerGestureEvent) => {
+    if (event.nativeEvent.state === State.END) {
+      const { translationX } = event.nativeEvent;
+      const threshold = 50;
+      
+      if (translationX > threshold) {
+        handlePrevious();
+      } else if (translationX < -threshold) {
+        handleNext();
+      }
+    }
+  };
+
+  const visibleItems = getVisibleItems();
+
+  return (
+    <PanGestureHandler onGestureEvent={onGestureEvent}>
+      <View style={{ 
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginBottom: 28,
+        gap: 20 
+      }}>
+        <TouchableOpacity onPress={handlePrevious} disabled={currentPage === 0}>
+          <Image
+            style={{ 
+              width: 20, 
+              height: 34,
+              opacity: currentPage === 0 ? 0.5 : 1
+            }}
+            source={require('../../../assets/icons/left-angle.png')}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        
+        {visibleItems.map(({ item, originalIndex }, index) => {
+          const style = getItemStyle(item);
+          
+          if (!item) {
+            // Render "..." placeholder
+            return (
+              <View key={`dots-${index}`} style={style.containerStyle}>
+                <Text style={style.textStyle}>
+                  ...
+                </Text>
+              </View>
+            );
+          }
+          
+          return (
+            <TouchableOpacity
+              key={item.id}
+              onPress={() => handleItemPress(originalIndex)}
+              style={style.containerStyle}
+            >
+              <Text style={style.textStyle}>
+                {item.questionNumber}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+        
+        <TouchableOpacity onPress={handleNext} disabled={currentPage === totalPages - 1}>
+          <Image
+            style={{ 
+              width: 20, 
+              height: 34,
+              opacity: currentPage === totalPages - 1 ? 0.5 : 1
+            }}
+            source={require('../../../assets/icons/right-angle.png')}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </View>
+    </PanGestureHandler>
+  );
+}

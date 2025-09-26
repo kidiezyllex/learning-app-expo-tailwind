@@ -1,6 +1,6 @@
 import { courseStatistics } from '@/data/statisticsMockData';
 import { Text, View } from 'react-native';
-import ProgressCard from '../Common/ProgressCard';
+import ProgressCard from '../../Common/ProgressCard';
 
 export default function CoursesStatistics() {
   return (

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 import { examResultMockData } from '../../data/examResultMockData';
 import ScreenHeader from '../Common/ScreenHeader';
-import EssayQuestion from '../Group/EssayQuestion';
-
+import EssayPagination from '../GroupTab/EssayGrading/EssayPagination';
+import EssayQuestion from '../GroupTab/EssayGrading/EssayQuestion';
 interface ExamResultScreenProps {
   onBack?: () => void;
 }
@@ -14,26 +14,6 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
 
   const handleQuestionSelect = (index: number) => {
     setCurrentQuestionIndex(index);
-  };
-
-  const renderQuestionNumber = (number: number, index: number) => {
-    const isActive = index === currentQuestionIndex;
-    return (
-      <TouchableOpacity
-        style={{ height: 40, width: 40, minHeight: 40, minWidth: 40, flexShrink: 0 }}
-        key={number}
-        onPress={() => handleQuestionSelect(index)}
-        className={`rounded-full flex justify-center items-center border-[2px] bg-[#E5E5E5] ${isActive ? 'border-[#626262]' : 'border-transparent'
-          }`}
-      >
-        <Text
-          style={{ fontSize: 16 }}
-          className="font-medium text-center text-[#626262]"
-        >
-          {number}
-        </Text>
-      </TouchableOpacity>
-    );
   };
 
 
@@ -71,26 +51,13 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
           </View>
 
           {/* Pagination */}
-          <View className="flex-row justify-center items-center mb-10" style={{ gap: 20 }}>
-            <TouchableOpacity
-            >
-              <Image
-                style={{ width: 20, height: 34 }}
-                source={require('../../assets/icons/left-angle.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            {data.questionNumbers.map((number: number, index: number) =>
-              renderQuestionNumber(number, index)
-            )}
-            <TouchableOpacity
-            >
-              <Image
-                style={{ width: 20, height: 34 }}
-                source={require('../../assets/icons/right-angle.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
+          <View className="mb-10">
+            <EssayPagination
+              totalItems={data.questionNumbers.length}
+              currentIndex={currentQuestionIndex}
+              onItemSelect={handleQuestionSelect}
+              maxVisibleItems={6}
+            />
           </View>
 
           {/* Student Info */}

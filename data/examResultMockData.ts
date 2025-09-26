@@ -20,8 +20,8 @@ export interface ExamResultData {
 export const examResultMockData: ExamResultData = {
   examTitle: "Nhà sáng lập - Bài kiểm tra cuối khóa",
   studentName: "Phoenix",
-  currentQuestionIndex: 11,
-  questionNumbers: [11, 12, 13, 14, 15, 16],
+  currentQuestionIndex: 15,
+  questionNumbers: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
   questions: [
     {
       id: '1',
@@ -82,6 +82,46 @@ export const examResultMockData: ExamResultData = {
       maxScore: "3",
       feedback: "Chiến lược marketing toàn diện. Cần bổ sung thêm về cách đo lường ROI và hiệu quả marketing.",
       isGraded: true,
+    },
+    {
+      id: '7',
+      questionNumber: 17,
+      questionText: "Phân tích các thách thức pháp lý và tuân thủ quy định mà startup cần đối mặt",
+      answerTemplate: "Các thách thức pháp lý: 1) Đăng ký kinh doanh và cấp phép, 2) Bảo vệ sở hữu trí tuệ (patent, trademark, copyright), 3) Tuân thủ quy định về bảo vệ dữ liệu cá nhân, 4) Lao động và hợp đồng lao động, 5) Thuế và kế toán, 6) Quy định ngành cụ thể (fintech, healthtech, edtech)",
+      score: "3",
+      maxScore: "3",
+      feedback: "Phân tích toàn diện và chính xác về các vấn đề pháp lý quan trọng. Hiểu rõ tầm quan trọng của tuân thủ quy định.",
+      isGraded: true,
+    },
+    {
+      id: '8',
+      questionNumber: 18,
+      questionText: "Trình bày chiến lược mở rộng thị trường và scaling cho startup",
+      answerTemplate: "Chiến lược scaling: 1) Xác định thị trường mục tiêu mới, 2) Phân tích cạnh tranh và đối thủ, 3) Điều chỉnh sản phẩm cho thị trường mới, 4) Xây dựng đội ngũ địa phương, 5) Thiết lập quan hệ đối tác chiến lược, 6) Quản lý tài chính và rủi ro, 7) Đo lường và tối ưu hóa hiệu suất",
+      score: "__",
+      maxScore: "3",
+      feedback: "Cần bổ sung thêm về các phương pháp đo lường thành công và xử lý rủi ro khi mở rộng thị trường.",
+      isGraded: false,
+    },
+    {
+      id: '9',
+      questionNumber: 19,
+      questionText: "Phân tích tầm quan trọng của việc xây dựng văn hóa công ty trong startup",
+      answerTemplate: "Tầm quan trọng của văn hóa công ty: 1) Thu hút và giữ chân nhân tài, 2) Tăng năng suất và hiệu quả làm việc, 3) Tạo môi trường sáng tạo và đổi mới, 4) Xây dựng lòng tin và sự gắn kết, 5) Định hướng hành vi và quyết định, 6) Tạo lợi thế cạnh tranh bền vững, 7) Hỗ trợ quá trình scaling",
+      score: "2",
+      maxScore: "3",
+      feedback: "Hiểu rõ vai trò của văn hóa công ty. Cần bổ sung thêm về cách đo lường và duy trì văn hóa khi công ty phát triển.",
+      isGraded: true,
+    },
+    {
+      id: '10',
+      questionNumber: 20,
+      questionText: "Trình bày chiến lược exit strategy cho startup và các yếu tố ảnh hưởng",
+      answerTemplate: "Các exit strategy: 1) IPO (Initial Public Offering), 2) M&A (Merger & Acquisition), 3) Management Buyout, 4) Strategic Partnership. Yếu tố ảnh hưởng: 1) Quy mô và tăng trưởng của công ty, 2) Điều kiện thị trường, 3) Mục tiêu của nhà sáng lập, 4) Lợi ích của nhà đầu tư, 5) Tính khả thi pháp lý và tài chính",
+      score: "__",
+      maxScore: "3",
+      feedback: "Cần phân tích sâu hơn về ưu nhược điểm của từng exit strategy và thời điểm thích hợp để thực hiện.",
+      isGraded: false,
     }
   ]
 };
