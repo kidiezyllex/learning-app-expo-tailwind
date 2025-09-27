@@ -27,9 +27,9 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
 
     return (
       <View
-        style={{ paddingHorizontal: 20, paddingVertical: 24, gap: 20 }}
+        style={{ paddingHorizontal: 20, paddingVertical: 24, gap: 20, marginBottom: 24 }}
         key={answer.id}
-        className={`w-full ${bgColor} flex-row items-center rounded-[10px] border-2 ${borderColor} mb-4 ${answer.isSelected && answer.isCorrect ? 'shadow-sm' : ''
+        className={`w-full ${bgColor} flex-row items-center rounded-[10px] border-2 ${borderColor} ${answer.isSelected && answer.isCorrect ? 'shadow-sm' : ''
           }`}
       >
         <View
@@ -59,7 +59,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
       </Text>
 
       {/* Answer Options */}
-      <View className="mb-6">
+      <View style={{ marginBottom: 12 }}>
         {question.answers.map((answer, index) =>
           renderAnswerOption(answer, index)
         )}

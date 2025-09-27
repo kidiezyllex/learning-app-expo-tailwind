@@ -1,4 +1,4 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, ViewStyle } from 'react-native';
 import Animated, {
   runOnJS,
   useAnimatedStyle,
@@ -12,9 +12,10 @@ interface ButtonProps {
   text: string;
   onPress: () => void;
   disabled?: boolean;
+  style?: ViewStyle;
 }
 
-export default function Button({ text, onPress, disabled = false }: ButtonProps) {
+export default function Button({ text, onPress, disabled = false, style }: ButtonProps) {
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
 
@@ -71,7 +72,8 @@ export default function Button({ text, onPress, disabled = false }: ButtonProps)
           {
             height: 60,
             paddingHorizontal: 70,
-          }
+          },
+          style
         ]}
         className={`bg-[#1877F2] px-[70px] rounded-[10px] justify-center items-center ${
           disabled ? 'opacity-50' : ''}`}

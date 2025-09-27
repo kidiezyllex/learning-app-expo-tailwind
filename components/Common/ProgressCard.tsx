@@ -1,7 +1,7 @@
 import { Course } from '@/data/mockData';
 import { useState } from 'react';
 import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
-import ProgressBar from '../Home/ProgressBar';
+import ProgressBar from '../HomeTab/ProgressBar';
 
 interface CourseCardProps {
   course: Course;

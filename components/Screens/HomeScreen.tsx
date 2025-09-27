@@ -1,6 +1,6 @@
 import TabSelector from "@/components/Common/TabSelector";
-import CourseCard from "@/components/Home/CourseCard";
-import { mockCourses } from "@/components/Home/mock-data";
+import CourseCard from "@/components/HomeTab/CourseCard";
+import { mockCourses } from "@/components/HomeTab/mock-data";
 import { useCourse } from "@/contexts/CourseContext";
 import { useNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
@@ -40,7 +40,6 @@ export default function HomeScreen() {
 
 
   const handleCoursePress = (courseId: string) => {
-    // Find the course from mockCourses and set it as selected
     const course = mockCourses.find(c => c.id === courseId);
     if (course) {
       setSelectedCourse(course);

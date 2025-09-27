@@ -1,4 +1,4 @@
-import { Course } from '@/components/Home/mock-data';
+import { Course } from '@/components/HomeTab/mock-data';
 import { CourseDetail } from '@/data/courseDetailsMockData';
 import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import Button from '../Common/Button';

@@ -103,6 +103,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
           {/* Grade Button */}
           <View className="items-center mt-6">
             <Button
+              style={{ width: 310 }}
               text="Grade"
               onPress={() => { }}
             />

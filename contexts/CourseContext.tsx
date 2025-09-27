@@ -1,4 +1,4 @@
-import { Course } from '@/components/Home/mock-data';
+import { Course } from '@/components/HomeTab/mock-data';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface CourseContextType {
