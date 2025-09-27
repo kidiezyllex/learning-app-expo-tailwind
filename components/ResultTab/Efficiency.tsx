@@ -1,5 +1,5 @@
 import { exerciseResults } from '@/data/resultsMockData';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Efficiency() {
   return (
@@ -7,7 +7,7 @@ export default function Efficiency() {
       {/* Efficiency Statistics */}
       <View style={{ borderRadius: 12 }} className="overflow-hidden mb-4 bg-white shadow-sm">
         {/* Tổng thời gian xem */}
-        <View className="flex-row items-center justify-betwee" style={{ padding: 16 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/clock3.png')}
@@ -25,16 +25,17 @@ export default function Efficiency() {
             </Text>
           </View>
 
-          <Image
+          <TouchableOpacity> <Image
             className='transform scale-125'
             source={require('../../assets/icons/chevron-right.png')}
             style={{ width: 10, height: 21 }}
             resizeMode="contain"
-          />
+          /></TouchableOpacity>
+
         </View>
 
         {/* Bài tập của tôi */}
-        <View className="flex-row justify-between items-center" style={{ padding: 16 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/book.png')}
@@ -49,12 +50,14 @@ export default function Efficiency() {
             </Text>
           </View>
 
-          <Image
-            className='transform scale-125'
-            source={require('../../assets/icons/chevron-right.png')}
-            style={{ width: 10, height: 21 }}
-            resizeMode="contain"
-          />
+          <TouchableOpacity>
+            <Image
+              className='transform scale-125'
+              source={require('../../assets/icons/chevron-right.png')}
+              style={{ width: 10, height: 21 }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
         {/* Exercise Results */}
         <View >
@@ -95,7 +98,7 @@ export default function Efficiency() {
         </View>
 
         {/* Trung bình ngày */}
-        <View className="flex-row justify-between items-center" style={{ padding: 16 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
               source={require('../../assets/icons/clock3.png')}
@@ -103,22 +106,24 @@ export default function Efficiency() {
               resizeMode="contain"
             />
           </View>
-          
+
           <View className="flex-1">
             <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
-            Trung bình ngày
+              Trung bình ngày
             </Text>
           </View>
-          
-          <Image
-            className='transform scale-125'
-            source={require('../../assets/icons/chevron-right.png')}
-            style={{ width: 10, height: 21 }}
-            resizeMode="contain"
-          />
+
+          <TouchableOpacity>
+            <Image
+              className='transform scale-125'
+              source={require('../../assets/icons/chevron-right.png')}
+              style={{ width: 10, height: 21 }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
-          {/* Exercise Results */}
-          <View >
+        {/* Exercise Results */}
+        <View >
           {exerciseResults.map((exercise, index) => (
             <View key={exercise.id}>
               <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>

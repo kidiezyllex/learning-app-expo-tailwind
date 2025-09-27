@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Dimensions, View } from 'react-native'
 import Svg, { Line, Rect, Text as SvgText } from 'react-native-svg'
 
-// Data matching the chart in the image
 const weekData = [
   { day: "CN", hours: 18 },
   { day: "T2", hours: 15 },
@@ -44,7 +43,7 @@ export default function WeekChart() {
   const renderGridLines = () => {
     const lines = [0, 6, 12, 18, 24]
     return lines.map((value, index) => {
-      const y = chartHeight - (value / maxValue) * (chartHeight - 40) + 20
+      const y = chartHeight - (value / maxValue) * (chartHeight - 40) - 20
       return (
         <Line
           key={value}

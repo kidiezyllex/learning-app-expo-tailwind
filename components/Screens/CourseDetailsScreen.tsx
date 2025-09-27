@@ -1,6 +1,6 @@
 import TabSelector from '@/components/Common/TabSelector';
-import ChaptersTab from '@/components/Study/ChaptersTab';
-import CourseInfoTab from '@/components/Study/CourseInfoTab';
+import ChaptersTab from '@/components/StudyTab/ChaptersTab';
+import CourseInfoTab from '@/components/StudyTab/CourseInfoTab';
 import { useCourse } from '@/contexts/CourseContext';
 import { useNavigation } from '@/contexts/NavigationContext';
 import { getCourseDetailById } from '@/data/courseDetailsMockData';
