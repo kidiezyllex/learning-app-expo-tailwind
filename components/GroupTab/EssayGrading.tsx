@@ -100,7 +100,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                         <View
                             key={item.id}
                             style={{ gap: 24 }}
-                            className="w-full flex-row items-center justify-between h-fit rounded-xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-[30px]"
+                            className="w-full flex-row items-center justify-between h-fit rounded-xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-[30px] bg-white"
                         >
                             {/* Checkbox */}
                             <TouchableOpacity
