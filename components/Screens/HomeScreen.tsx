@@ -2,7 +2,7 @@ import TabSelector from "@/components/Common/TabSelector";
 import CourseCard from "@/components/HomeTab/CourseCard";
 import { mockCourses } from "@/components/HomeTab/mock-data";
 import { useCourse } from "@/contexts/CourseContext";
-import { useNavigation } from "@/contexts/NavigationContext";
+import { useAppNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
 import ScreenHeader from "../Common/ScreenHeader";
@@ -11,7 +11,7 @@ export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("recommended");
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { setSelectedCourse } = useCourse();
-  const { setCurrentHomeScreen } = useNavigation();
+  const { setCurrentHomeScreen } = useAppNavigation();
 
   const tabOptions = [
     { id: "recommended", label: "Recommended", isActive: activeTab === "recommended" },

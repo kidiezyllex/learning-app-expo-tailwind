@@ -44,10 +44,10 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
   );
 }
 
-export function useNavigation() {
+export function useAppNavigation() {
   const context = useContext(NavigationContext);
   if (context === undefined) {
-    throw new Error('useNavigation must be used within a NavigationProvider');
+    throw new Error('useAppNavigation must be used within a NavigationProvider');
   }
   return context;
 }

@@ -1,4 +1,4 @@
-import { useNavigation } from '@/contexts/NavigationContext';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 import { Lesson } from '@/data/lessonsMockData';
 import { useRouter } from 'expo-router';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
@@ -14,7 +14,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
     const isExam = lesson.type === 'exam';
     const isDownloaded = lesson.isDownloaded;
     const router = useRouter();
-    const { setSelectedLessonId, setCurrentHomeScreen } = useNavigation();
+    const { setSelectedLessonId, setCurrentHomeScreen } = useAppNavigation();
     const cardBgColor = isLocked ? 'bg-[#DCDCDC]' : 'bg-white';
     const titleTextColor = isLocked ? 'text-zinc-600' : 'text-black';
     const subtitleTextColor = 'text-zinc-600';

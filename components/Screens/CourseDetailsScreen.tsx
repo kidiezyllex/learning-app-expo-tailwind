@@ -2,7 +2,7 @@ import TabSelector from '@/components/Common/TabSelector';
 import ChaptersTab from '@/components/StudyTab/ChaptersTab';
 import CourseInfoTab from '@/components/StudyTab/CourseInfoTab';
 import { useCourse } from '@/contexts/CourseContext';
-import { useNavigation } from '@/contexts/NavigationContext';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 import { getCourseDetailById } from '@/data/courseDetailsMockData';
 import { useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -11,7 +11,7 @@ import ScreenHeader from '../Common/ScreenHeader';
 export default function CourseDetailsScreen() {
     const [activeTab, setActiveTab] = useState("course");
     const { selectedCourse } = useCourse();
-    const { setCurrentHomeScreen, setSelectedChapterId } = useNavigation();
+    const { setCurrentHomeScreen, setSelectedChapterId } = useAppNavigation();
     const courseDetail = selectedCourse ? getCourseDetailById(selectedCourse.id) : null;
 
     const tabOptions = [

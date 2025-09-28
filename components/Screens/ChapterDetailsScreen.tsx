@@ -1,12 +1,12 @@
 import ScreenHeader from '@/components/Common/ScreenHeader';
 import LessonCard from '@/components/StudyTab/LessonCard';
-import { useNavigation } from '@/contexts/NavigationContext';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 import { getChaptersByCourseId } from '@/data/chaptersMockData';
 import { getLessonsByChapterId } from '@/data/lessonsMockData';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ChapterDetailsScreen() {
-    const { selectedChapterId, setCurrentHomeScreen } = useNavigation();
+    const { selectedChapterId, setCurrentHomeScreen } = useAppNavigation();
     const allChapters = getChaptersByCourseId('1');
     const chapter = allChapters.find(c => c.id === selectedChapterId);
     const lessons = getLessonsByChapterId(selectedChapterId || '');

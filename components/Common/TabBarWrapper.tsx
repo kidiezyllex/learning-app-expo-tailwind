@@ -1,6 +1,6 @@
 import { usePathname, useRouter } from 'expo-router';
 import { View } from 'react-native';
-import { useNavigation } from '../../contexts/NavigationContext';
+import { useAppNavigation } from '../../contexts/NavigationContext';
 import CustomTabTrigger from './CustomTabTrigger';
 
 const navigationTabs = [
@@ -44,7 +44,7 @@ const navigationTabs = [
 export default function TabBarWrapper() {
   const pathname = usePathname();
   const router = useRouter();
-  const { currentHomeScreen, currentResultScreen } = useNavigation();
+  const { currentHomeScreen, currentResultScreen } = useAppNavigation();
 
   if (currentHomeScreen === "video" || currentHomeScreen === "history-exam" || 
       currentResultScreen === "exam-result" || currentResultScreen === "quiz-result") {

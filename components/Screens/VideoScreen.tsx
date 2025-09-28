@@ -1,4 +1,4 @@
-import { useNavigation } from '@/contexts/NavigationContext';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 import { VideoData, videoMockData } from '@/data/videoMockData';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -8,7 +8,7 @@ import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import CommentsDrawer from '../Comments/CommentsDrawer';
 
 export default function VideoScreen() {
-    const { selectedLessonId, setCurrentHomeScreen } = useNavigation();
+    const { selectedLessonId, setCurrentHomeScreen } = useAppNavigation();
     const [videoData, setVideoData] = useState<VideoData>(videoMockData);
     const [isPlaying, setIsPlaying] = useState(videoData.isPlaying);
     const [progress, setProgress] = useState(0);

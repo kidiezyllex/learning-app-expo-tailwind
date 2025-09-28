@@ -3,12 +3,12 @@ import CourseDetailsScreen from "@/components/Screens/CourseDetailsScreen";
 import HistoryExamScreen from "@/components/Screens/HistoryExamScreen";
 import HomeScreen from "@/components/Screens/HomeScreen";
 import VideoScreen from "@/components/Screens/VideoScreen";
-import { useNavigation } from "@/contexts/NavigationContext";
+import { useAppNavigation } from "@/contexts/NavigationContext";
 import "@/global.css";
 import { View } from "react-native";
 
 export default function HomeTab() {
-  const { currentHomeScreen } = useNavigation();
+  const { currentHomeScreen } = useAppNavigation();
   const renderContent = () => {
     switch (currentHomeScreen) {
       case "home":

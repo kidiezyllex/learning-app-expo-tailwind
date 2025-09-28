@@ -2,7 +2,7 @@ import ScreenHeader from '@/components/Common/ScreenHeader';
 import TabSelector from '@/components/Common/TabSelector';
 import EssayGrading from '@/components/GroupTab/EssayGrading';
 import CoursesStatistics from '@/components/GroupTab/Statistics/CoursesStatistics';
-import { useNavigation } from '@/contexts/NavigationContext';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -17,7 +17,7 @@ interface StatisticsScreenProps {
 export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps) {
   const [activeTab, setActiveTab] = useState("statistics");
   const router = useRouter();
-  const { setCurrentResultScreen } = useNavigation();
+  const { setCurrentResultScreen } = useAppNavigation();
   const tabOptions = [
     { id: "statistics", label: "Statistics", isActive: activeTab === "statistics" },
     { id: "progress", label: "My Progress", isActive: activeTab === "progress" },

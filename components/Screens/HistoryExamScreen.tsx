@@ -1,13 +1,13 @@
 import ScreenHeader from '@/components/Common/ScreenHeader';
 import Question from '@/components/HistoryExam/Question';
-import { useNavigation } from '@/contexts/NavigationContext';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 import { examQuestions, Question as QuestionType } from '@/data/historyExamMockData';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
 export default function HistoryExamScreen() {
   const [questions, setQuestions] = useState<QuestionType[]>(examQuestions);
-  const { setCurrentHomeScreen } = useNavigation();
+  const { setCurrentHomeScreen } = useAppNavigation();
 
   const handleAnswerSelect = (questionId: string, answerId: string) => {
     setQuestions(prevQuestions =>
