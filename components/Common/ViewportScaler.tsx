@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 interface ViewportScalerProps {
   children: React.ReactNode;
-  useFullHeight?: boolean;
+  useFullHeight?: boolean; // New prop to control height behavior
 }
 
 export default function ViewportScaler({ children, useFullHeight = true }: ViewportScalerProps) {

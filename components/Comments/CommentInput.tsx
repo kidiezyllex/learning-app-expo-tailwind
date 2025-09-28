@@ -6,9 +6,9 @@ interface CommentInputProps {
   placeholder?: string;
 }
 
-export default function CommentInput({ 
-  onSendComment, 
-  placeholder = "Thêm bình luận" 
+export default function CommentInput({
+  onSendComment,
+  placeholder = "Thêm bình luận"
 }: CommentInputProps) {
   const [comment, setComment] = useState('');
 
@@ -24,34 +24,41 @@ export default function CommentInput({
       <View className="flex-row items-center p-4">
         {/* User Avatar */}
         <Image
-          source={{ uri: 'https://placehold.co/50x50' }}
-          style={{ width: 48, height: 48 }}
-          className="mr-4 rounded-full"
+          source={require('../../assets/images/sample-avatar.png')}
+          style={{ width: 50, height: 50, marginRight: 24 }}
+          className="rounded-full"
           resizeMode="cover"
         />
-        
+
         {/* Input Field */}
-        <View 
-          style={{ width: '75%' }}
-          className="bg-zinc-100 rounded-[38.5px] px-5 py-3 mr-4"
+        <View
+          style={{ maxHeight: 51}}
+          className="flex-1 flex-row items-center rounded-[38.5px] px-5 py-3 mr-4"
         >
           <TextInput
             value={comment}
             onChangeText={setComment}
             placeholder={placeholder}
             placeholderTextColor="#9CA3AF"
-            style={{ fontSize: 20 }}
-            className="font-medium text-black"
-            multiline
-            maxLength={500}
+            style={{ fontSize: 20, paddingRight: 50 }}
+            className="flex-1 font-medium text-black"
           />
+           {/* Send Button */}
+         <TouchableOpacity
+           onPress={handleSend}
+           style={{ 
+             position: 'absolute', 
+             right: 16, 
+             top: 16
+           }}
+         >
+          <Image
+            source={require('../../assets/icons/send.png')}
+            style={{ width: 22, height: 19 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
         </View>
-        
-        {/* Send Button */}
-        <TouchableOpacity 
-          onPress={handleSend}
-          className="w-5 h-5 bg-blue-500 rounded-full"
-        />
       </View>
     </View>
   );

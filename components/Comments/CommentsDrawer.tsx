@@ -1,9 +1,10 @@
 import { Comment, commentsMockData } from '@/data/commentsMockData';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { Dimensions, FlatList, Text, View } from 'react-native';
+import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import CommentCard from './CommentCard';
 import CommentInput from './CommentInput';
+
 interface CommentsDrawerProps {
   isVisible: boolean;
   onClose: () => void;
@@ -13,19 +14,22 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [comments, setComments] = useState<Comment[]>(commentsMockData);
   const deviceHeight = Dimensions.get('window').height;
-  const drawerHeight = deviceHeight - 328;
-  const snapPoints = useMemo(() => [drawerHeight], [drawerHeight]);
+  const topInset = 328; 
+
+  const snapPoints = useMemo(() => ['100%'], []); 
 
   const handleClose = useCallback(() => {
     bottomSheetRef.current?.close();
-    onClose();
+    setTimeout(() => {
+      onClose();
+    }, 300);
   }, [onClose]);
 
   const handleSendComment = useCallback((newComment: string) => {
     const comment: Comment = {
       id: Date.now().toString(),
       username: 'You',
-      avatar: 'https://placehold.co/50x50',
+      avatar: '',
       content: newComment,
       timeAgo: 'now',
       likes: 0
@@ -51,14 +55,23 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
   ), [handleLikeComment]);
 
   const renderContent = () => (
-    <BottomSheetView style={{ flex: 1, paddingHorizontal: 16 }}>
-      <View className="py-4 w-full">
+    <BottomSheetView style={{ flex: 1}}>
+      <View style={{ paddingHorizontal: 28, paddingBottom: 24 }} className="w-full border-b border-b-[#C5C5C5] justify-between flex-row items-center">
         <Text 
           style={{ fontSize: 30 }}
           className="font-semibold text-black"
         >
           Bình luận
         </Text>
+        <TouchableOpacity
+           onPress={handleClose}
+         >
+          <Image
+            source={require('../../assets/icons/close.png')}
+            style={{ width: 25, height: 25 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
       </View>
 
       {/* Comments List */}
@@ -68,13 +81,18 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
-        style={{ flex: 1 }}
+        style={{ flex: 1, paddingHorizontal: 28, paddingTop: 24 }}
       />
 
       {/* Comment Input */}
       <CommentInput onSendComment={handleSendComment} />
     </BottomSheetView>
   );
+
+  // Chỉ render BottomSheet khi isVisible = true
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <View style={{ 
@@ -84,17 +102,23 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
       right: 0, 
       bottom: 0, 
       zIndex: 9999,
-      pointerEvents: isVisible ? 'auto' : 'none'
+      pointerEvents: 'auto',
     }}>
       <BottomSheet
         ref={bottomSheetRef}
-        index={isVisible ? 0 : -1}
+        index={0}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         onClose={handleClose}
         backgroundStyle={{ backgroundColor: 'white' }}
         handleIndicatorStyle={{ backgroundColor: '#D1D5DB' }}
-        style={{ zIndex: 9999 }}
+        style={{ zIndex: 9999 }} 
+        animateOnMount={true}
+        enableDynamicSizing={false} 
+        topInset={topInset} 
+        containerHeight={deviceHeight}
+        enableOverDrag={false}
+        enableHandlePanningGesture={true}
       >
         {renderContent()}
       </BottomSheet>
