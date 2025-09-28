@@ -13,10 +13,13 @@ interface QuizResultScreenProps {
 export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const data = quizResultMockData;
+  
+  // Ensure currentQuestionIndex is within bounds
+  const safeCurrentIndex = Math.max(0, Math.min(currentQuestionIndex, data.questions.length - 1));
 
   const dynamicPaginationItems = data.paginationItems.map((item, index) => ({
     ...item,
-    isCurrent: index === currentQuestionIndex
+    isCurrent: index === safeCurrentIndex
   }));
 
   const handleQuestionSelect = (index: number) => {
@@ -85,7 +88,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                 />
               </TouchableOpacity>
               <Text style={{ fontSize: 24 }} className="font-semibold text-black">
-                {data.studentName}
+                {data.studentName || 'Unknown Student'}
               </Text>
             </View>
           </View>
@@ -98,7 +101,9 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
             onNext={handleNext}
           />
           {/* Current Question Card */}
-          <MultipleChoiceQuestion question={data.questions[currentQuestionIndex]} />
+          {data.questions[safeCurrentIndex] && (
+            <MultipleChoiceQuestion question={data.questions[safeCurrentIndex]} />
+          )}
 
           {/* Grade Button */}
           <View className="items-center mt-6">

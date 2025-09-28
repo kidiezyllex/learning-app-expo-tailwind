@@ -7,6 +7,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,20 +34,22 @@ export default function RootLayout() {
   }
 
   return (
-    <ErrorBoundary>
-      <NavigationProvider>
-        <CourseProvider>
-          <ViewportScaler>
-            <View style={{ flex: 1 }}>
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                }}
-              />
-            </View>
-          </ViewportScaler>
-        </CourseProvider>
-      </NavigationProvider>
-    </ErrorBoundary>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ErrorBoundary>
+        <NavigationProvider>
+          <CourseProvider>
+            <ViewportScaler>
+              <View style={{ flex: 1 }}>
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                  }}
+                />
+              </View>
+            </ViewportScaler>
+          </CourseProvider>
+        </NavigationProvider>
+      </ErrorBoundary>
+    </GestureHandlerRootView>
   );
 }

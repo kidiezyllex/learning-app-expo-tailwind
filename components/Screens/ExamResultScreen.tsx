@@ -11,6 +11,8 @@ interface ExamResultScreenProps {
 export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const data = examResultMockData;
+  
+  const safeCurrentIndex = Math.max(0, Math.min(currentQuestionIndex, data.questions.length - 1));
 
   const handleQuestionSelect = (index: number) => {
     setCurrentQuestionIndex(index);
@@ -53,8 +55,8 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
           {/* Pagination */}
           <View className="mb-10">
             <EssayPagination
-              totalItems={data.questionNumbers.length}
-              currentIndex={currentQuestionIndex}
+              totalItems={data.questions.length}
+              currentIndex={safeCurrentIndex}
               onItemSelect={handleQuestionSelect}
               maxVisibleItems={6}
             />
@@ -69,11 +71,13 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
               resizeMode="cover"
             />
             <Text style={{ fontSize: 24 }} className="font-semibold text-black">
-              {data.studentName}
+              {data.studentName || 'Unknown Student'}
             </Text>
           </View>
           {/* Current Question Card */}
-          <EssayQuestion question={data.questions[currentQuestionIndex]} />
+          {data.questions[safeCurrentIndex] && (
+            <EssayQuestion question={data.questions[safeCurrentIndex]} />
+          )}
         </View>
       </ScrollView>
     </View>

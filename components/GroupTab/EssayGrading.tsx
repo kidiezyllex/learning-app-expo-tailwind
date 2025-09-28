@@ -139,9 +139,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                                     <Text style={{ fontSize: 14 }} className="mr-2 italic font-medium text-neutral-600">
                                         Tự luận
                                     </Text>
-                                    <Text style={{ fontSize: 14 }} className="font-medium text-neutral-600">
-                                        {renderEssayScore(item.essayScore, item.isGraded)}
-                                    </Text>
+                                    {renderEssayScore(item.essayScore, item.isGraded)}
                                 </View>
                             </View>
                         </View>

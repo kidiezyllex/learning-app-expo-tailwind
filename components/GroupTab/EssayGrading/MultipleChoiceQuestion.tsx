@@ -78,7 +78,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
           />
           <View className="flex-1">
             <Text style={{ fontSize: 14 }} className="text-black">
-              <span className='italic font-semibold'>Explanation:</span>
+              <Text style={{ fontStyle: 'italic', fontWeight: '600' }}>Explanation:</Text>
               {" "}{question.explanation}
             </Text>
           </View>

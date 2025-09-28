@@ -17,21 +17,21 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
         style={{ fontSize: 24, marginBottom: 24 }}
         className="font-semibold text-black"
       >
-        Question {question.questionNumber}: {question.questionText}
+        Question {question.questionNumber || 'N/A'}: {question.questionText || 'No question text'}
       </Text>
 
       <View
         style={{ paddingVertical: 10, paddingHorizontal: 28, minHeight: 106, marginBottom: 24 }}
         className={`w-full border-2 rounded-[10px] bg-neutral-100 border-zinc-300`}
       >
-        <Text style={{ fontSize: 16 }} className="font-medium text-black">Khoá màn hình thiết bị</Text>
+        <Text style={{ fontSize: 16 }} className="font-medium text-black">Student Answer Placeholder</Text>
       </View>
 
       {/* Chấm điểm */}
       <View style={{ gap: 16, marginBottom: 24 }} className='flex-row items-center'>
         <Text style={{ fontSize: 16 }} className='italic font-semibold text-black'>Chấm điểm:</Text>
         <View style={{ height: 36, minHeight: 36, paddingHorizontal: 32 }} className='flex-row items-center justify-center border-[2px] border-[#FF0000] rounded-[10px]'>
-          <Text style={{ fontSize: 16 }} className='font-medium text-[#FF0000]'>{question.score}/{question.maxScore}</Text>
+          <Text style={{ fontSize: 16 }} className='font-medium text-[#FF0000]'>{question.score || 'N/A'}/{question.maxScore || 'N/A'}</Text>
         </View>
       </View>
       {/* Answer Template */}
@@ -47,8 +47,8 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
           />
           <View className="flex-1">
             <Text style={{ fontSize: 14 }} className="text-black">
-              <span className='italic font-semibold'>Answer Template:</span>
-              {" "}{question.answerTemplate}
+              <Text style={{ fontStyle: 'italic', fontWeight: '600' }}>Answer Template:</Text>
+              {" "}{question.answerTemplate || 'No answer template provided'}
             </Text>
           </View>
         </View>
@@ -62,10 +62,11 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
             style={{ width: 15, height: 13, marginRight: 12 }}
             source={require('../../../assets/icons/feedback.png')}
             resizeMode="contain"
-          />            <View className="flex-1">
+          />
+          <View className="flex-1">
             <Text style={{ fontSize: 14 }} className="text-black">
-              <span className='italic font-semibold'>Feedback:</span>
-              {" "}{question.feedback}
+              <Text style={{ fontStyle: 'italic', fontWeight: '600' }}>Feedback:</Text>
+              {" "}{question.feedback || 'No feedback provided'}
             </Text>
           </View>
         </View>

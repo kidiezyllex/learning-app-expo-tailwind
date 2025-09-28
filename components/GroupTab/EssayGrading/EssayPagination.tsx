@@ -17,9 +17,17 @@ export default function EssayPagination({
 }: EssayPaginationProps) {
   const [startIndex, setStartIndex] = useState(0);
   const panRef = useRef<PanGestureHandler>(null);
+  
+  if (!totalItems || totalItems <= 0) {
+    return null;
+  }
+  
+  if (currentIndex < 0 || currentIndex >= totalItems) {
+    return null;
+  }
 
   const endIndex = Math.min(startIndex + maxVisibleItems, totalItems);
-  const visibleItems = Array.from({ length: endIndex - startIndex }, (_, i) => startIndex + i + 1);
+  const visibleItems = Array.from({ length: Math.max(0, endIndex - startIndex) }, (_, i) => startIndex + i);
 
   const canGoLeft = startIndex > 0;
   const canGoRight = endIndex < totalItems;
@@ -52,14 +60,20 @@ export default function EssayPagination({
     }
   };
 
-  const renderQuestionNumber = (number: number, index: number) => {
-    const actualIndex = startIndex + index;
+  const renderQuestionNumber = (index: number, arrayIndex: number) => {
+    const actualIndex = startIndex + arrayIndex;
     const isActive = actualIndex === currentIndex;
+    const questionNumber = actualIndex + 1; // Display 1-based question numbers
+    
+    // Safety check to ensure we have valid values
+    if (actualIndex < 0 || actualIndex >= totalItems) {
+      return null;
+    }
     
     return (
       <TouchableOpacity
         style={{ height: 40, width: 40, minHeight: 40, minWidth: 40, flexShrink: 0 }}
-        key={number}
+        key={actualIndex}
         onPress={() => onItemSelect(actualIndex)}
         className={`rounded-full flex justify-center items-center border-[2px] bg-[#E5E5E5] ${
           isActive ? 'border-[#626262]' : 'border-transparent'
@@ -69,7 +83,7 @@ export default function EssayPagination({
           style={{ fontSize: 16 }}
           className="font-medium text-center text-[#626262]"
         >
-          {number}
+          {questionNumber || '?'}
         </Text>
       </TouchableOpacity>
     );
@@ -94,7 +108,7 @@ export default function EssayPagination({
           />
         </TouchableOpacity>
         
-        {visibleItems.map((number, index) => renderQuestionNumber(number, index))}
+        {visibleItems.filter((index) => index !== undefined && index !== null).map((index, arrayIndex) => renderQuestionNumber(index, arrayIndex))}
         
         <TouchableOpacity
           onPress={handleNext}
