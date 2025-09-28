@@ -1,4 +1,5 @@
 import { EssayGradingItem, essayGradingMockData } from '@/data/essayGradingMockData';
+import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Button from '../Common/Button';
@@ -45,27 +46,6 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
         }
     };
 
-    const renderCheckbox = (isSelected: boolean) => {
-        return (
-            <View style={{ alignItems: 'center' }}>
-                <View
-                    style={{ width: 32, height: 32, minWidth: 32, minHeight: 32, flexShrink: 0 }}
-                    className={`flex justify-center items-center rounded-[5px] border-[1.50px] ${isSelected
-                        ? 'bg-blue-600 border-blue-600 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]'
-                        : 'border-[#7A7C7D]'
-                        }`}
-                >
-                    {isSelected && (
-                        <Image
-                            style={{ width: 26, height: 18 }}
-                            source={require('../../assets/icons/checkbox.png')}
-                            resizeMode="contain"
-                        />
-                    )}
-                </View>
-            </View>
-        );
-    };
 
     const renderEssayScore = (score: string, isGraded: boolean) => (
         <Text
@@ -103,11 +83,12 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                             className="w-full flex-row items-center justify-between h-fit rounded-xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)] p-[30px] bg-white"
                         >
                             {/* Checkbox */}
-                            <TouchableOpacity
-                                onPress={() => handleItemSelect(item.id)}
-                            >
-                                {renderCheckbox(item.isSelected)}
-                            </TouchableOpacity>
+                            <Checkbox
+                                value={item.isSelected}
+                                onValueChange={() => handleItemSelect(item.id)}
+                                style={{ width: 32, height: 32 }}
+                                color="#2563eb"
+                            />
                         <View style={{ gap: 24 }} className="flex-row flex-1 items-start">
                             {/* Avatar */}
                             <Image
