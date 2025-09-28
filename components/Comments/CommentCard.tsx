@@ -44,7 +44,7 @@ export default function CommentCard({ comment, onLike }: CommentCardProps) {
           
           {/* Comment Text */}
           <Text 
-            style={{ fontSize: 20 }}
+            style={{ fontSize: 24 }}
             className="mb-2 font-medium leading-6 text-black"
           >
             {comment.content}

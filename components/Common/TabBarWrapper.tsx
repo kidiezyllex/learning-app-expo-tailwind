@@ -44,7 +44,7 @@ const navigationTabs = [
 export default function TabBarWrapper() {
   const pathname = usePathname();
   const router = useRouter();
-  const { currentHomeScreen, currentResultScreen } = useAppNavigation();
+  const { currentHomeScreen, currentResultScreen, setCurrentHomeScreen } = useAppNavigation();
 
   if (currentHomeScreen === "video" || currentHomeScreen === "history-exam" || 
       currentResultScreen === "exam-result" || currentResultScreen === "quiz-result") {
@@ -68,7 +68,11 @@ export default function TabBarWrapper() {
 
   const activeTab = getActiveTab();
 
-  const handleTabPress = (route: string) => {
+  const handleTabPress = (route: string, tabId: string) => {
+    // Reset HomeTab to "home" when Home tab is pressed
+    if (tabId === "home") {
+      setCurrentHomeScreen("home");
+    }
     router.push(route as any);
   };
 
@@ -93,7 +97,7 @@ export default function TabBarWrapper() {
         <CustomTabTrigger
           key={tab.id}
           isActive={activeTab === tab.id}
-          onPress={() => handleTabPress(tab.route)}
+          onPress={() => handleTabPress(tab.route, tab.id)}
           icon={tab.icon}
           label={tab.label}
           iconSize={tab.size}

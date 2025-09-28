@@ -21,7 +21,7 @@ export default function CommentInput({
 
   return (
     <View className="w-full bg-white border-t border-stone-300">
-      <View className="flex-row items-center p-4">
+      <View className="flex-row items-center" style={{ paddingHorizontal: 32, paddingVertical: 24 }}>
         {/* User Avatar */}
         <Image
           source={require('../../assets/images/sample-avatar.png')}
@@ -32,8 +32,8 @@ export default function CommentInput({
 
         {/* Input Field */}
         <View
-          style={{ maxHeight: 51}}
-          className="flex-1 flex-row items-center rounded-[38.5px] px-5 py-3 mr-4"
+          style={{ maxHeight: 51, backgroundColor: '#F1F1F3', borderRadius: 50, overflow: 'hidden'}}
+          className="flex-row flex-1 items-center px-5 py-3 mr-4"
         >
           <TextInput
             value={comment}
