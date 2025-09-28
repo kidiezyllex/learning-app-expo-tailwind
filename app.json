@@ -8,6 +8,8 @@
     "scheme": "testapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": false,
+    "jsEngine": "hermes",
+    "runtimeVersion": "1.0.0",
     "ios": {
       "supportsTablet": true
     },
