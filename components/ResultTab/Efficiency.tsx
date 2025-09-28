@@ -25,12 +25,14 @@ export default function Efficiency() {
             </Text>
           </View>
 
-          <TouchableOpacity> <Image
-            className='transform scale-125'
-            source={require('../../assets/icons/chevron-right.png')}
-            style={{ width: 10, height: 21 }}
-            resizeMode="contain"
-          /></TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              className='transform scale-125'
+              source={require('../../assets/icons/chevron-right.png')}
+              style={{ width: 10, height: 21 }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
 
         </View>
 
