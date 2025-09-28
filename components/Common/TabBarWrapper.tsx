@@ -60,7 +60,6 @@ export default function TabBarWrapper() {
     if (normalizedPath === "/(tabs)/results" || normalizedPath === "/results") return "results";
     if (normalizedPath === "/(tabs)/profile" || normalizedPath === "/profile") return "profile";
     
-    // Check for nested routes
     if (normalizedPath.startsWith("/course/") || normalizedPath.startsWith("/chapter/")) return "study";
     if (normalizedPath.startsWith("/exam/") || normalizedPath.startsWith("/statistics/")) return "results";
     

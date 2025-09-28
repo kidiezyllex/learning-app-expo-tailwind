@@ -2,7 +2,7 @@ export interface Course {
   id: string;
   title: string;
   description: string;
-  thumbnail: any; // Changed from string to any to support require()
+  thumbnail: any;
   rating: number;
   duration: string;
   isNew?: boolean;

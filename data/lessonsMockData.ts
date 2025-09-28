@@ -62,7 +62,5 @@ export const lessonsMockData: Lesson[] = [
 ];
 
 export const getLessonsByChapterId = (chapterId: string): Lesson[] => {
-  // For now, return the same lessons for all chapters
-  // In a real app, this would fetch from an API based on chapterId
   return lessonsMockData;
 };

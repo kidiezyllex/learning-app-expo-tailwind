@@ -42,7 +42,7 @@ export default function EssayPagination({
     const { translationX, state } = event.nativeEvent;
     
     if (state === State.END) {
-      const threshold = 50; // Minimum swipe distance
+      const threshold = 50;
       
       if (translationX > threshold && canGoLeft) {
         handlePrevious();

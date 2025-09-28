@@ -58,7 +58,5 @@ export const chaptersMockData: Chapter[] = [
 ];
 
 export const getChaptersByCourseId = (courseId: string): Chapter[] => {
-  // For now, return the same chapters for all courses
-  // In a real app, this would fetch from an API based on courseId
   return chaptersMockData;
 };

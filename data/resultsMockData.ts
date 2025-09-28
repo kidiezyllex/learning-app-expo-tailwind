@@ -1,5 +1,3 @@
-// Mock data for Results Screen
-
 export interface WeekData {
   day: string;
   hours: number;
@@ -21,7 +19,6 @@ export interface ExerciseResult {
   avatar: string;
 }
 
-// Week chart data (7 days)
 export const weekChartData: WeekData[] = [
   { day: "CN", hours: 2.5 },
   { day: "T2", hours: 4.0 },
@@ -56,7 +53,6 @@ export const efficiencyData: EfficiencyData[] = [
   }
 ];
 
-// Exercise results data
 export const exerciseResults: ExerciseResult[] = [
   {
     id: "1",

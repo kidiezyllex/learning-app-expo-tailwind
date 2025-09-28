@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 
 interface ProgressBarProps {
-  progress: number; // 0-100
+  progress: number;
   showPercentage?: boolean;
   height?: number;
 }

@@ -10,7 +10,7 @@ export default function TabLayout() {
           headerShown: false,
           tabBarStyle: { display: 'none' }, 
         }}
-        tabBar={() => null} // Explicitly disable the default tab bar
+        tabBar={() => null}
       >
         <Tabs.Screen 
           name="index" 

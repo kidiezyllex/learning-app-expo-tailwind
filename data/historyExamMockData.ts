@@ -1,5 +1,3 @@
-// Mock data for History Exam Screen
-
 export interface AnswerOption {
   id: string;
   text: string;
@@ -14,7 +12,6 @@ export interface Question {
   selectedAnswer?: string;
 }
 
-// Mock exam questions data
 export const examQuestions: Question[] = [
   {
     id: "1",

@@ -1,4 +1,3 @@
-// Centralized icon imports for better bundling and type safety
 export const icons = {
   home: require('./home.png'),
   archiveBook: require('./archive-book.png'),

@@ -4,9 +4,9 @@ export interface VideoData {
   duration: string;
   currentTime: string;
   totalTime: string;
-  progress: number; // 0-100
+  progress: number; 
   isPlaying: boolean;
-  volume: number; // 0-100
+  volume: number; 
   isMuted: boolean;
   thumbnail: string;
   description: string;
@@ -20,7 +20,7 @@ export const videoMockData: VideoData = {
   duration: "10:30",
   currentTime: "2:30",
   totalTime: "10:30",
-  progress: 24, // 24% progress
+  progress: 24, 
   isPlaying: false,
   volume: 70,
   isMuted: false,

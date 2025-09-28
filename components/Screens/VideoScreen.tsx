@@ -50,7 +50,7 @@ export default function VideoScreen() {
             const status = await videoRef.current.getStatusAsync();
             if (status.isLoaded) {
                 const newPosition = Math.min(
-                    status.positionMillis + 10000, // 10 seconds forward
+                    status.positionMillis + 10000,
                     status.durationMillis || 0
                 );
                 await videoRef.current.setPositionAsync(newPosition);
@@ -63,7 +63,7 @@ export default function VideoScreen() {
             const status = await videoRef.current.getStatusAsync();
             if (status.isLoaded) {
                 const newPosition = Math.max(
-                    status.positionMillis - 10000, // 10 seconds backward
+                    status.positionMillis - 10000,
                     0
                 );
                 await videoRef.current.setPositionAsync(newPosition);
@@ -159,10 +159,11 @@ export default function VideoScreen() {
             <View
                 style={{
                     position: 'absolute',
-                    top: 102, // Below header
+                    top: 102,
                     left: 0,
                     right: 0,
-                    bottom: 200, // Above video info section
+                    bottom: 200,
+                    display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     zIndex: 1
@@ -173,7 +174,7 @@ export default function VideoScreen() {
                     source={{ uri: 'https://videos.pexels.com/video-files/4017060/4017060-uhd_2560_1440_30fps.mp4' }}
                     style={{
                         width: '100%',
-                        height: '100%'
+                        height: 410
                     }}
                     resizeMode={ResizeMode.CONTAIN}
                     shouldPlay={isPlaying}
@@ -197,14 +198,12 @@ export default function VideoScreen() {
                         zIndex: 10
                     }}
                 >
-                    {/* Skip Backward 10s */}
                     <TouchableOpacity
                         onPress={skipBackward}
                     >
                         <MaterialIcons name="replay-10" size={56} color="white" />
                     </TouchableOpacity>
 
-                    {/* Play/Pause Button */}
                     <TouchableOpacity
                         onPress={togglePlayPause}
                     >
@@ -278,8 +277,6 @@ export default function VideoScreen() {
                         className='font-semibold leading-normal text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
                 </View>
             </View>
-            {/* Progress Bar line */}
-
             {/* Comments Drawer */}
             <CommentsDrawer 
                 isVisible={isCommentsDrawerVisible}

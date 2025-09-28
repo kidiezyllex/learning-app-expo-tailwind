@@ -25,7 +25,6 @@ export default function HomeScreen() {
     }
   };
 
-  // Filter courses based on active tab
   const getFilteredCourses = () => {
     switch (activeTab) {
       case "new":

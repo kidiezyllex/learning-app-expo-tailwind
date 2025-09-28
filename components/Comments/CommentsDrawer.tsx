@@ -1,10 +1,9 @@
 import { Comment, commentsMockData } from '@/data/commentsMockData';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { Dimensions, FlatList, Text, View } from 'react-native';
 import CommentCard from './CommentCard';
 import CommentInput from './CommentInput';
-
 interface CommentsDrawerProps {
   isVisible: boolean;
   onClose: () => void;
@@ -13,22 +12,15 @@ interface CommentsDrawerProps {
 export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [comments, setComments] = useState<Comment[]>(commentsMockData);
+  const deviceHeight = Dimensions.get('window').height;
+  const drawerHeight = deviceHeight - 328;
+  const snapPoints = useMemo(() => [drawerHeight], [drawerHeight]);
 
-  // Define snap points for the bottom sheet
-  const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
-
-  // Handle opening the drawer
-  const handleOpenPress = useCallback(() => {
-    bottomSheetRef.current?.expand();
-  }, []);
-
-  // Handle closing the drawer
   const handleClose = useCallback(() => {
     bottomSheetRef.current?.close();
     onClose();
   }, [onClose]);
 
-  // Handle adding a new comment
   const handleSendComment = useCallback((newComment: string) => {
     const comment: Comment = {
       id: Date.now().toString(),
@@ -41,7 +33,6 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
     setComments(prev => [comment, ...prev]);
   }, []);
 
-  // Handle liking a comment
   const handleLikeComment = useCallback((commentId: string) => {
     setComments(prev => 
       prev.map(comment => 
@@ -52,7 +43,6 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
     );
   }, []);
 
-  // Render individual comment item
   const renderCommentItem = useCallback(({ item }: { item: Comment }) => (
     <CommentCard 
       comment={item} 
@@ -60,7 +50,6 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
     />
   ), [handleLikeComment]);
 
-  // Render the content of the bottom sheet
   const renderContent = () => (
     <BottomSheetView style={{ flex: 1, paddingHorizontal: 16 }}>
       <View className="py-4 w-full">
@@ -88,16 +77,27 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
   );
 
   return (
-    <BottomSheet
-      ref={bottomSheetRef}
-      index={isVisible ? 0 : -1}
-      snapPoints={snapPoints}
-      enablePanDownToClose={true}
-      onClose={handleClose}
-      backgroundStyle={{ backgroundColor: 'white' }}
-      handleIndicatorStyle={{ backgroundColor: '#D1D5DB' }}
-    >
-      {renderContent()}
-    </BottomSheet>
+    <View style={{ 
+      position: 'absolute', 
+      top: 0, 
+      left: 0, 
+      right: 0, 
+      bottom: 0, 
+      zIndex: 9999,
+      pointerEvents: isVisible ? 'auto' : 'none'
+    }}>
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={isVisible ? 0 : -1}
+        snapPoints={snapPoints}
+        enablePanDownToClose={true}
+        onClose={handleClose}
+        backgroundStyle={{ backgroundColor: 'white' }}
+        handleIndicatorStyle={{ backgroundColor: '#D1D5DB' }}
+        style={{ zIndex: 9999 }}
+      >
+        {renderContent()}
+      </BottomSheet>
+    </View>
   );
 }

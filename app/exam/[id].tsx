@@ -1,7 +1,6 @@
 import "@/global.css";
 import { View } from "react-native";
 
-// Screen Components
 import HistoryExamHeader from "@/components/HistoryExam/HistoryExamHeader";
 import HistoryExamScreen from "@/components/Screens/HistoryExamScreen";
 

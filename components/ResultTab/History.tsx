@@ -1,34 +1,27 @@
 import { View } from 'react-native'
 import Svg, { Line, Rect, Text as SvgText } from 'react-native-svg'
 
-// Chart dimensions
 const chartWidth = 656
 const chartHeight = 384
 
-// Data points for the lines (based on the image description)
 const examData = [20, 50, 68, 49, 83]
 const quizData = [55, 58, 28, 72, 52]
 
-// Y-axis labels
 const yAxisLabels = [0, 20, 40, 60, 80, 100]
 
-// Calculate positions
 const chartPadding = { top: 80, right: 60, bottom: 60, left: 80 }
 const plotWidth = chartWidth - chartPadding.left - chartPadding.right
 const plotHeight = chartHeight - chartPadding.top - chartPadding.bottom
 
 export default function History() {
-  // Calculate Y position for a given value
   const getYPosition = (value: number) => {
     return chartPadding.top + (100 - value) / 100 * plotHeight
   }
 
-  // Calculate X position for data point index
   const getXPosition = (index: number) => {
     return chartPadding.left + (index / (examData.length - 1)) * plotWidth
   }
 
-  // Render Y-axis labels
   const renderYAxisLabels = () => {
     return yAxisLabels.map((value) => {
       const y = getYPosition(value)
@@ -48,7 +41,6 @@ export default function History() {
     })
   }
 
-  // Render grid lines
   const renderGridLines = () => {
     const horizontalLines = yAxisLabels.map((value) => {
       const y = getYPosition(value)
@@ -66,9 +58,7 @@ export default function History() {
       )
     })
 
-    // Add vertical dotted lines on both sides
     const verticalLines = [
-      // Left Y-axis line
       <Line
         key="v-left"
         x1={chartPadding.left}
@@ -79,7 +69,6 @@ export default function History() {
         strokeWidth="1"
         strokeDasharray="2,2"
       />,
-      // Right Y-axis line
       <Line
         key="v-right"
         x1={chartPadding.left + plotWidth}
@@ -95,7 +84,6 @@ export default function History() {
     return [...horizontalLines, ...verticalLines]
   }
 
-  // Render X-axis line
   const renderXAxis = () => {
     return (
       <Line
@@ -109,7 +97,6 @@ export default function History() {
     )
   }
 
-  // Render multiple line segments for the data
   const renderDataLines = (data: number[], color: string) => {
     const lines = []
     for (let i = 0; i < data.length - 1; i++) {
@@ -128,14 +115,12 @@ export default function History() {
     return lines
   }
 
-  // Render legend
   const renderLegend = () => {
     const legendY = chartPadding.top + plotHeight + 30
     const legendStartX = chartPadding.left + plotWidth / 2 - 60
 
     return (
       <>
-        {/* Exam legend */}
         <Line
           x1={legendStartX}
           y1={legendY}
@@ -155,7 +140,6 @@ export default function History() {
           Exam
         </SvgText>
 
-        {/* Quiz legend */}
         <Line
           x1={legendStartX + 80}
           y1={legendY}
@@ -181,7 +165,6 @@ export default function History() {
     <View className="w-full">
   <View style={{ borderRadius: 12 }} className="overflow-hidden bg-white shadow-sm">
         <Svg width={chartWidth} height={chartHeight}>
-          {/* Background rectangle with shadow effect */}
           <Rect
             x="0"
             y="0"
@@ -192,7 +175,6 @@ export default function History() {
             ry="16"
           />
           
-          {/* Title */}
           <SvgText
             x={chartPadding.left - 40}
             y={30}
@@ -203,20 +185,15 @@ export default function History() {
             Tổng quan: 35 Quiz, 5 Exam
           </SvgText>
 
-          {/* Grid lines */}
           {renderGridLines()}
           
-          {/* X-axis */}
           {renderXAxis()}
           
-          {/* Y-axis labels */}
           {renderYAxisLabels()}
           
-          {/* Data lines */}
           {renderDataLines(examData, "#ea580c")}
           {renderDataLines(quizData, "#3b82f6")}
           
-          {/* Legend */}
           {renderLegend()}
         </Svg>
       </View>

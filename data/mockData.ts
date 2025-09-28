@@ -19,7 +19,7 @@ export interface User {
 export interface NavigationTab {
   id: string;
   label: string;
-  icon: any; // Local image asset from require()
+  icon: any;
   isActive: boolean;
   size: number;
 }

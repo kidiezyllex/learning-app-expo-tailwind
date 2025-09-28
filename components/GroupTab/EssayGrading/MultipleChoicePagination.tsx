@@ -23,7 +23,7 @@ export default function MultipleChoicePagination({
   onNext,
 }: MultipleChoicePaginationProps) {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 5; // Show 5 items + "..." + last item = 7 total, but we'll show 6 as requested
+  const itemsPerPage = 5;
   const totalPages = Math.max(1, Math.ceil((items.length - 1) / itemsPerPage));
 
   const getVisibleItems = () => {
@@ -36,17 +36,14 @@ export default function MultipleChoicePagination({
     
     const visibleItems = [];
     
-    // Add items from current page
     for (let i = startIndex; i < endIndex; i++) {
       visibleItems.push({ item: items[i], originalIndex: i });
     }
     
-    // Add "..." if there are more items
     if (endIndex < items.length - 1) {
-      visibleItems.push({ item: null, originalIndex: -1 }); // null represents "..."
+      visibleItems.push({ item: null, originalIndex: -1 });
     }
     
-    // Add last item
     visibleItems.push({ item: items[items.length - 1], originalIndex: items.length - 1 });
     
     return visibleItems;
@@ -95,7 +92,6 @@ export default function MultipleChoicePagination({
     const { isCorrect, isCurrent } = item;
     
     if (isCurrent) {
-      // Current question (both correct and incorrect have same styling when current)
       return {
         containerStyle: {
           width: 44,
@@ -115,7 +111,6 @@ export default function MultipleChoicePagination({
         },
       };
     } else if (isCorrect) {
-      // Correct question
       return {
         containerStyle: {
           width: 44,
@@ -135,7 +130,6 @@ export default function MultipleChoicePagination({
         },
       };
     } else {
-      // Incorrect question
       return {
         containerStyle: {
           width: 44,
@@ -197,7 +191,6 @@ export default function MultipleChoicePagination({
           const style = getItemStyle(item);
           
           if (!item) {
-            // Render "..." placeholder
             return (
               <View key={`dots-${index}`} style={style.containerStyle}>
                 <Text style={style.textStyle}>

@@ -29,7 +29,6 @@ export default function Button({ text, onPress, disabled = false, style }: Butto
   const handlePressIn = () => {
     if (disabled) return;
     
-    // Tạo hiệu ứng pulse với scale và opacity
     scale.value = withSequence(
       withTiming(0.95, { duration: 100 }),
       withSpring(1.05, { damping: 8, stiffness: 200 }),
@@ -45,7 +44,6 @@ export default function Button({ text, onPress, disabled = false, style }: Butto
   const handlePressOut = () => {
     if (disabled) return;
     
-    // Đảm bảo button trở về trạng thái ban đầu
     scale.value = withSpring(1, { damping: 8, stiffness: 200 });
     opacity.value = withTiming(1, { duration: 150 });
   };
@@ -53,7 +51,6 @@ export default function Button({ text, onPress, disabled = false, style }: Butto
   const handlePress = () => {
     if (disabled) return;
     
-    // Thực hiện onPress sau một chút delay để animation hoàn thành
     setTimeout(() => {
       runOnJS(onPress)();
     }, 100);
