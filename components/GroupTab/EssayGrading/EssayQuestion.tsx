@@ -13,13 +13,8 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
         paddingVertical: 32,
         paddingHorizontal: 64,
         marginBottom: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 10,
-        elevation: 5,
       }}
-      className="w-full bg-white rounded-2xl"
+      className="w-full bg-white rounded-2xl shadow-sm"
     >
       {/* Question Text */}
       <Text

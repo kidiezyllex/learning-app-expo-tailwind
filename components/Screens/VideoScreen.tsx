@@ -80,7 +80,7 @@ export default function VideoScreen() {
     };
 
     return (
-        <View className="overflow-hidden flex-1 relative pt-[80px] bg-stone-900">
+        <View className="overflow-hidden relative flex-1 bg-stone-900">
             {/* Header */}
             <View className="fixed top-0 right-0 left-0 z-50">
                 <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
@@ -208,9 +208,9 @@ export default function VideoScreen() {
                         onPress={togglePlayPause}
                     >
                         {isPlaying ? (
-                            <MaterialCommunityIcons name="pause" size={64} color="white" />
+                            <MaterialCommunityIcons name="pause" size={72} color="white" />
                         ) : (
-                            <MaterialIcons name="play-arrow" size={64} color="white" />
+                            <MaterialIcons name="play-arrow" size={72} color="white" />
                         )}
                     </TouchableOpacity>
 
@@ -274,7 +274,7 @@ export default function VideoScreen() {
                 <View className='h-[150px] min-h-[150px] w-full'>
                     <Text
                         style={{ fontSize: 24 }}
-                        className='font-semibold leading-normal text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
+                        className='font-semibold text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
                 </View>
             </View>
             {/* Comments Drawer */}

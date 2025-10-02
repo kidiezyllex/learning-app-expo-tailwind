@@ -60,13 +60,8 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
         <View
             style={{
                 gap: 24,
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.15,
-                shadowRadius: 10,
-                elevation: 5,
             }}
-            className="w-full flex-row items-center justify-between h-fit rounded-xl p-[30px] bg-white"
+            className="w-full shadow-sm flex-row items-center justify-between h-fit rounded-xl p-[30px] bg-white"
         >
             {/* Checkbox */}
             <Checkbox

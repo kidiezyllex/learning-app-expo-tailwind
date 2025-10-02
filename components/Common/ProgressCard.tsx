@@ -17,11 +17,6 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       style={{
         borderRadius: 10,
         backgroundColor: '#FFF',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.25,
-        shadowRadius: 5,
-        elevation: 3,
         minHeight: 134
       }}
       onPress={onPress}

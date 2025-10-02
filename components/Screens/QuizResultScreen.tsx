@@ -55,13 +55,9 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
           <View 
             style={{ 
               marginBottom: 28,
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.15,
-              shadowRadius: 10,
               elevation: 5,
             }} 
-            className="w-full bg-white rounded-2xl">
+            className="w-full bg-white rounded-2xl shadow-sm">
             <View
               style={{ paddingHorizontal: 16, paddingVertical: 24 }}
               className="flex-row justify-between items-center">
@@ -78,13 +74,8 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                 style={{ 
                   height: 28, 
                   paddingHorizontal: 14,
-                  shadowColor: '#000',
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.15,
-                  shadowRadius: 4,
-                  elevation: 3,
                 }} 
-                className="flex justify-center items-center bg-orange-400 rounded-[3px]">
+                className="flex shadow-sm justify-center items-center bg-orange-400 rounded-[3px]">
                 <Text
                   style={{ fontSize: 12 }}
                   className="font-medium text-center text-black"

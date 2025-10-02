@@ -32,14 +32,7 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
         <View className="px-11 pt-6">
           {/* Exam Info Card */}
           <View 
-            style={{
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.15,
-              shadowRadius: 10,
-              elevation: 5,
-            }}
-            className="p-4 mb-10 w-full h-16 bg-white rounded-2xl">
+            className="p-4 mb-10 w-full h-16 bg-white rounded-2xl shadow-sm">
             <View className="flex-row justify-between items-center">
               <View className="flex-row flex-1 gap-1">
                 <Text style={{ fontSize: 24 }} className="font-semibold text-black">
@@ -53,13 +46,9 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
                 style={{ 
                   height: 28, 
                   paddingHorizontal: 14,
-                  shadowColor: '#000',
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.15,
-                  shadowRadius: 4,
                   elevation: 3,
                 }} 
-                className="flex justify-center items-center bg-green-600 rounded-[3px]">
+                className="flex shadow-sm justify-center items-center bg-green-600 rounded-[3px]">
                 <Text
                   style={{ fontSize: 12 }}
                   className="font-medium text-center text-black"

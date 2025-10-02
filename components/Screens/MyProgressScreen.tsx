@@ -93,7 +93,7 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
         renderItem={renderCourseItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180, paddingHorizontal: 24, gap: 20, marginTop: 20 }}
+        contentContainerStyle={{ paddingBottom: 180, paddingHorizontal: 24, gap: 20 }}
         ListHeaderComponent={renderHeader}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />

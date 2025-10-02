@@ -27,10 +27,21 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
 
     return (
       <View
-        style={{ paddingHorizontal: 20, paddingVertical: 24, gap: 20, marginBottom: 24 }}
+        style={{ 
+          paddingHorizontal: 20, 
+          paddingVertical: 24, 
+          gap: 20, 
+          marginBottom: 24,
+          ...(answer.isSelected && answer.isCorrect ? {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.05,
+            shadowRadius: 2,
+            elevation: 1,
+          } : {})
+        }}
         key={answer.id}
-        className={`w-full ${bgColor} flex-row items-center rounded-[10px] border-2 ${borderColor} ${answer.isSelected && answer.isCorrect ? 'shadow-sm' : ''
-          }`}
+        className={`flex-row items-center w-full border-2 ${bgColor} rounded-[10px] ${borderColor}`}
       >
         <View
           style={{ width: 24, height: 24, minWidth: 24, minHeight: 24, flexShrink: 0 }}
@@ -51,13 +62,8 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
         paddingVertical: 32, 
         paddingHorizontal: 64, 
         marginBottom: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 10,
-        elevation: 5,
       }}
-      className="w-full bg-white rounded-2xl"
+      className="w-full bg-white rounded-2xl shadow-sm"
     >
       {/* Question Text */}
       <Text

@@ -7,13 +7,8 @@ export default function LearningTime() {
       style={{
         borderRadius: 12,
         backgroundColor: '#FFF',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 10,
-        elevation: 5,
       }}
-      className="p-4 mb-4 w-full bg-white">
+      className="p-4 mb-4 w-full shadow-sm">
       <Text style={{ fontSize: 24 }} className="mb-4 font-semibold text-black">
         Learning Time
       </Text>
@@ -89,12 +84,8 @@ export default function LearningTime() {
         style={{
           borderRadius: 10,
           backgroundColor: '#FFF',
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 1 },
-          shadowOpacity: 0.25,
-          shadowRadius: 5,
-          elevation: 3,
         }}
+        className="shadow-sm"
       >
         {/* Table Header */}
         <View className="px-4 py-3 bg-gray-200 rounded-t-lg">

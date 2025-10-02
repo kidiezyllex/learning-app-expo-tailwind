@@ -10,26 +10,12 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
     return (
         <TouchableOpacity
             onPress={() => onPress?.(course.id)}
-            style={{
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 1 },
-              shadowOpacity: 0.25,
-              shadowRadius: 5,
-              elevation: 3,
-            }}
-            className="w-full bg-neutral-100 rounded-[10px]"
+            className="w-full bg-neutral-100 rounded-[10px] shadow-sm"
         >
             {/* Thumbnail Image Container */}
             <View className="relative" style={{ height: 225 }}>
                 <View
-                    style={{
-                      shadowColor: '#000',
-                      shadowOffset: { width: 0, height: 4 },
-                      shadowOpacity: 0.25,
-                      shadowRadius: 4,
-                      elevation: 4,
-                    }}
-                    className="w-full rounded-tl-[10px] rounded-tr-[10px]"
+                    className="w-full shadow-sm rounded-tl-[10px] rounded-tr-[10px]"
                 >
                     <Image
                         source={course.thumbnail}
@@ -52,7 +38,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 <Image
                     source={require("../../assets/icons/checked.png")}
                     className="absolute top-4 right-4"
-                    style={{ width: 28, height: 28}}
+                    style={{ width: 28, height: 28 }}
                     resizeMode="cover"
                 />
 
@@ -77,11 +63,11 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 </View>
             </View>
             <View className="flex-1 w-full p-[10px] flex flex-col gap-2">
-                <Text style={{ fontSize: 22 }} className="font-semibold leading-tight text-black line-clamp-2">
+                <Text style={{ fontSize: 22 }} className="font-semibold text-black line-clamp-2">
                     {course.title}
                 </Text>
                 <View className="flex-row items-center w-full">
-                    <Text style={{ fontSize: 16 }} className="flex-1 font-medium leading-tight line-clamp-1 text-zinc-600">
+                    <Text style={{ fontSize: 16 }} className="flex-1 font-medium line-clamp-1 text-zinc-600">
                         {course.description}
                     </Text>
                     {/* Rating */}

@@ -129,7 +129,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                     </Text>
 
                     <Text
-                        className="font-medium leading-6 text-stone-500"
+                        className="font-medium text-stone-500"
                         style={{ fontSize: 20 }}
                     >
                         {selectedCourse.description}
