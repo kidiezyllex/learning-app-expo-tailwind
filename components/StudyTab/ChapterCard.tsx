@@ -15,7 +15,14 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
         <TouchableOpacity
             onPress={onPress}
             disabled={isLocked}
-            className={`w-full min-h-[140px] ${cardBgColor} rounded-[10px] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.15)] mb-4`}
+            style={{
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.15,
+              shadowRadius: 5,
+              elevation: 3,
+            }}
+            className={`mb-4 w-full min-h-[140px] ${cardBgColor} rounded-[10px]`}
         >
             <View className="flex-row flex-1 gap-7 justify-between items-center px-6 py-4 w-full">
                 {/* Icon */}

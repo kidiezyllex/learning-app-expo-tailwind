@@ -2,8 +2,8 @@ import ScreenHeader from '@/components/Common/ScreenHeader';
 import Question from '@/components/HistoryExam/Question';
 import { useAppNavigation } from '@/contexts/NavigationContext';
 import { examQuestions, Question as QuestionType } from '@/data/historyExamMockData';
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { useCallback, useState } from 'react';
+import { FlatList, View } from 'react-native';
 
 export default function HistoryExamScreen() {
   const [questions, setQuestions] = useState<QuestionType[]>(examQuestions);
@@ -23,29 +23,29 @@ export default function HistoryExamScreen() {
     setCurrentHomeScreen("home");
   };
 
+  const renderQuestion = useCallback(({ item }: { item: QuestionType }) => (
+    <Question
+      question={item}
+      onAnswerSelect={handleAnswerSelect}
+    />
+  ), [handleAnswerSelect]);
+
   return (
-    <View  style={{ paddingTop: 102 }}
+    <View  style={{ paddingTop: 25 }}
     className="flex-1">
       <ScreenHeader 
         title="Final Exam"
         handleBackClick={handleBackPress}
       />
       {/* Scrollable Content */}
-      <ScrollView
+      <FlatList
+        data={questions}
+        renderItem={renderQuestion}
+        keyExtractor={(item) => item.id}
         className="flex-1 mt-8"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}
-      >
-        <View className="px-6 py-6">
-          {questions.map((question) => (
-            <Question
-              key={question.id}
-              question={question}
-              onAnswerSelect={handleAnswerSelect}
-            />
-          ))}
-        </View>
-      </ScrollView>
+        contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 24, paddingVertical: 24 }}
+      />
     </View>
   );
 }

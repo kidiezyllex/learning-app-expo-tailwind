@@ -3,7 +3,8 @@ import LessonCard from '@/components/StudyTab/LessonCard';
 import { useAppNavigation } from '@/contexts/NavigationContext';
 import { getChaptersByCourseId } from '@/data/chaptersMockData';
 import { getLessonsByChapterId } from '@/data/lessonsMockData';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useCallback } from 'react';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ChapterDetailsScreen() {
     const { selectedChapterId, setCurrentHomeScreen } = useAppNavigation();
@@ -24,9 +25,13 @@ export default function ChapterDetailsScreen() {
         );
     }
 
+    const renderLesson = useCallback(({ item }: { item: any }) => (
+        <LessonCard lesson={item} />
+    ), []);
+
     return (
         <View 
-        style={{ paddingTop: 102 }}
+        style={{ paddingTop: 25 }}
         className="flex-1">
             <ScreenHeader 
                 title={chapter.title.split(':')[0]}
@@ -38,20 +43,14 @@ export default function ChapterDetailsScreen() {
                 handleFirstRightIconClick={() => {}}
             />
             {/* Scrollable Content */}
-            <ScrollView
+            <FlatList
+                data={lessons}
+                renderItem={renderLesson}
+                keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 className="flex-1"
-            >
-                {/* Lessons List */}
-                <View className="px-6 py-4">
-                    {lessons.map((lesson) => (
-                        <LessonCard
-                            key={lesson.id}
-                            lesson={lesson}
-                        />
-                    ))}
-                </View>
-            </ScrollView>
+                contentContainerStyle={{ paddingHorizontal: 24, paddingVertical: 16 }}
+            />
         </View>
     );
 }

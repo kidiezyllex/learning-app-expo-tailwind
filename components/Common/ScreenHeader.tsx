@@ -32,8 +32,16 @@ export default function ScreenHeader({
   return (
     <View className="fixed top-0 right-0 left-0 z-50">
       <View 
-      style={{height: 102, minHeight: 102}}
-      className="flex relative flex-row px-6 justify-between items-center bg-blue-600 shadow-[0px_0px_0px_0px_rgba(0,0,0,0.25)]">
+      style={{
+        height: 102, 
+        minHeight: 102,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 0,
+        elevation: 0,
+      }}
+      className="flex relative flex-row justify-between items-center px-6 bg-blue-600">
         {(handleBackClick || onBack) && (
           <TouchableOpacity
             onPress={handleBackClick || onBack}

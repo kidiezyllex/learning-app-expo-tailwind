@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { PanGestureHandler, PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
 interface EssayPaginationProps {
   totalItems: number;
@@ -16,7 +17,8 @@ export default function EssayPagination({
   maxVisibleItems = 6
 }: EssayPaginationProps) {
   const [startIndex, setStartIndex] = useState(0);
-  const panRef = useRef<PanGestureHandler>(null);
+  const translateX = useSharedValue(0);
+  const scale = useSharedValue(1);
   
   if (!totalItems || totalItems <= 0) {
     return null;
@@ -32,35 +34,48 @@ export default function EssayPagination({
   const canGoLeft = startIndex > 0;
   const canGoRight = endIndex < totalItems;
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     if (canGoLeft) {
       const newStartIndex = Math.max(0, startIndex - maxVisibleItems);
       setStartIndex(newStartIndex);
     }
-  };
+  }, [canGoLeft, startIndex, maxVisibleItems]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (canGoRight) {
       const newStartIndex = Math.min(totalItems - maxVisibleItems, startIndex + maxVisibleItems);
       setStartIndex(newStartIndex);
     }
-  };
+  }, [canGoRight, totalItems, maxVisibleItems, startIndex]);
 
-  const onGestureEvent = (event: PanGestureHandlerGestureEvent) => {
-    const { translationX, state } = event.nativeEvent;
-    
-    if (state === State.END) {
+  const panGesture = Gesture.Pan()
+    .onUpdate((event) => {
+      translateX.value = event.translationX;
+      scale.value = withSpring(1.05);
+    })
+    .onEnd((event) => {
+      translateX.value = withSpring(0);
+      scale.value = withSpring(1);
+      
       const threshold = 50;
       
-      if (translationX > threshold && canGoLeft) {
-        handlePrevious();
-      } else if (translationX < -threshold && canGoRight) {
-        handleNext();
+      if (event.translationX > threshold && canGoLeft) {
+        runOnJS(handlePrevious)();
+      } else if (event.translationX < -threshold && canGoRight) {
+        runOnJS(handleNext)();
       }
-    }
-  };
+    });
 
-  const renderQuestionNumber = (index: number, arrayIndex: number) => {
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: translateX.value },
+        { scale: scale.value }
+      ],
+    };
+  });
+
+  const renderQuestionNumber = useCallback((index: number, arrayIndex: number) => {
     const actualIndex = startIndex + arrayIndex;
     const isActive = actualIndex === currentIndex;
     const questionNumber = actualIndex + 1; // Display 1-based question numbers
@@ -87,41 +102,42 @@ export default function EssayPagination({
         </Text>
       </TouchableOpacity>
     );
-  };
+  }, [startIndex, currentIndex, totalItems, onItemSelect]);
 
   return (
-    <PanGestureHandler
-      ref={panRef}
-      onGestureEvent={onGestureEvent}
-      onHandlerStateChange={onGestureEvent}
-    >
-      <View className="flex-row justify-center items-center" style={{ gap: 20 }}>
-        <TouchableOpacity
-          onPress={handlePrevious}
-          disabled={!canGoLeft}
-          style={{ opacity: canGoLeft ? 1 : 0.3 }}
-        >
-          <Image
-            style={{ width: 20, height: 34 }}
-            source={require('../../../assets/icons/left-angle.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-        
-        {visibleItems.filter((index) => index !== undefined && index !== null).map((index, arrayIndex) => renderQuestionNumber(index, arrayIndex))}
-        
-        <TouchableOpacity
-          onPress={handleNext}
-          disabled={!canGoRight}
-          style={{ opacity: canGoRight ? 1 : 0.3 }}
-        >
-          <Image
-            style={{ width: 20, height: 34 }}
-            source={require('../../../assets/icons/right-angle.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-    </PanGestureHandler>
+    <GestureDetector gesture={panGesture}>
+      <Animated.View 
+        style={[animatedStyle]}
+        className="flex-row justify-center items-center" 
+      >
+        <View style={{ gap: 20 }} className="flex-row justify-center items-center">
+          <TouchableOpacity
+            onPress={handlePrevious}
+            disabled={!canGoLeft}
+            style={{ opacity: canGoLeft ? 1 : 0.3 }}
+          >
+            <Image
+              style={{ width: 20, height: 34 }}
+              source={require('../../../assets/icons/left-angle.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          
+          {visibleItems.filter((index) => index !== undefined && index !== null).map((index, arrayIndex) => renderQuestionNumber(index, arrayIndex))}
+          
+          <TouchableOpacity
+            onPress={handleNext}
+            disabled={!canGoRight}
+            style={{ opacity: canGoRight ? 1 : 0.3 }}
+          >
+            <Image
+              style={{ width: 20, height: 34 }}
+              source={require('../../../assets/icons/right-angle.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+      </Animated.View>
+    </GestureDetector>
   );
 }

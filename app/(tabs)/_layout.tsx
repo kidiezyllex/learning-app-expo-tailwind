@@ -1,10 +1,10 @@
 import { Tabs } from 'expo-router';
-import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TabBarWrapper from '../../components/Common/TabBarWrapper';
 
 export default function TabLayout() {
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Tabs
         screenOptions={{
           headerShown: false,
@@ -44,6 +44,6 @@ export default function TabLayout() {
         />
       </Tabs>
       <TabBarWrapper />
-    </View>
+    </SafeAreaView>
   );
 }

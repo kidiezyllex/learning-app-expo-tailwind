@@ -14,7 +14,7 @@ export default function StudyScreen() {
   }, []);
 
   return (
-    <View  style={{ paddingTop: 102 }}
+    <View  style={{ paddingTop: 25 }}
     className="flex-1">
       <ScreenHeader 
         title="Study Screen Sample"

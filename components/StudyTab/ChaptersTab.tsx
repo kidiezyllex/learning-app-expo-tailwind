@@ -1,5 +1,6 @@
 import { getChaptersByCourseId } from '@/data/chaptersMockData';
-import { ScrollView, View } from 'react-native';
+import { useCallback } from 'react';
+import { FlatList, View } from 'react-native';
 import ChapterCard from './ChapterCard';
 
 interface ChaptersTabProps {
@@ -10,26 +11,28 @@ interface ChaptersTabProps {
 export default function ChaptersTab({ courseId, onChapterPress }: ChaptersTabProps) {
   const chapters = getChaptersByCourseId(courseId);
 
-  const handleChapterPress = (chapterId: string) => {
+  const handleChapterPress = useCallback((chapterId: string) => {
     if (onChapterPress) {
       onChapterPress(chapterId);
     } 
-  };
+  }, [onChapterPress]);
+
+  const renderChapter = useCallback(({ item }: { item: any }) => (
+    <ChapterCard
+      chapter={item}
+      onPress={() => handleChapterPress(item.id)}
+    />
+  ), [handleChapterPress]);
 
   return (
     <View className="px-6 py-4">
-      <ScrollView 
+      <FlatList
+        data={chapters}
+        renderItem={renderChapter}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         className="flex-1"
-      >
-        {chapters.map((chapter) => (
-          <ChapterCard
-            key={chapter.id}
-            chapter={chapter}
-            onPress={() => handleChapterPress(chapter.id)}
-          />
-        ))}
-      </ScrollView>
+      />
     </View>
   );
 }

@@ -4,7 +4,7 @@ import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
 import { mockCourses } from "@/data/mockData";
 import { useCallback, useState } from "react";
-import { RefreshControl, ScrollView, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 
 interface MyProgressScreenProps {
   onTabChange?: (tabId: string) => void;
@@ -45,8 +45,34 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
     course.userName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const renderCourseItem = useCallback(({ item }: { item: any }) => (
+    <CourseCard
+      course={item}
+      onPress={() => handleCoursePress(item.id)}
+    />
+  ), []);
+
+  const renderHeader = useCallback(() => (
+    <View>
+      {/* Tab Selector */}
+      <View className="px-6">
+        <TabSelector
+          tabs={tabOptions}
+          onTabPress={handleTabPress}
+        />
+      </View>
+
+      <View className="px-6">
+        <SearchBar
+          placeholder="Search"
+          onSearch={handleSearch}
+        />
+      </View>
+    </View>
+  ), [tabOptions, handleTabPress, handleSearch]);
+
   return (
-    <View  style={{ paddingTop: 102 }}
+    <View  style={{ paddingTop: 25 }}
     className="flex-1">
       <ScreenHeader 
         title="My Progress"
@@ -62,42 +88,17 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
         handleSecondRightIconClick={() => {}}
       />
       {/* Scrollable Content */}
-      <ScrollView
-        className="flex-1"
+      <FlatList
+        data={filteredCourses}
+        renderItem={renderCourseItem}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180 }}
+        contentContainerStyle={{ paddingBottom: 180, paddingHorizontal: 24, gap: 20, marginTop: 20 }}
+        ListHeaderComponent={renderHeader}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
-      >
-        <View>
-          {/* Tab Selector */}
-          <View className="px-6">
-            <TabSelector
-              tabs={tabOptions}
-              onTabPress={handleTabPress}
-            />
-          </View>
-
-          <View className="px-6">
-            <SearchBar
-              placeholder="Search"
-              onSearch={handleSearch}
-            />
-          </View>
-
-          {/* Course Cards */}
-          <View style={{ gap: 20, marginTop: 20 }} className="flex-col px-6">
-            {mockCourses.map((course) => (
-              <CourseCard
-                key={course.id}
-                course={course}
-                onPress={() => handleCoursePress(course.id)}
-              />
-            ))}
-          </View>
-        </View>
-      </ScrollView>
+      />
     </View>
   );
 }

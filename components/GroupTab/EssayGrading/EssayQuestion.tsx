@@ -9,8 +9,17 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
   return (
     <View
       key={question.id}
-      style={{ paddingVertical: 32, paddingHorizontal: 64, marginBottom: 24 }}
-      className="w-full bg-white rounded-2xl shadow-[0px_2px_10px_0px_rgba(0,0,0,0.15)]"
+      style={{
+        paddingVertical: 32,
+        paddingHorizontal: 64,
+        marginBottom: 24,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+        elevation: 5,
+      }}
+      className="w-full bg-white rounded-2xl"
     >
       {/* Question Text */}
       <Text

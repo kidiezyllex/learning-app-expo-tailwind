@@ -119,7 +119,7 @@ export default function ProfileScreen() {
   );
 
   return (
-    <View  style={{ paddingTop: 102 }}
+    <View  style={{ paddingTop: 25 }}
     className="flex-1">
       <ScreenHeader 
         title="Profile"

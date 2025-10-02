@@ -4,7 +4,7 @@ import { mockCourses } from "@/components/HomeTab/mock-data";
 import { useCourse } from "@/contexts/CourseContext";
 import { useAppNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
-import { RefreshControl, ScrollView, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 import ScreenHeader from "../Common/ScreenHeader";
 
 export default function HomeScreen() {
@@ -53,9 +53,27 @@ export default function HomeScreen() {
     }, 2000);
   }, []);
 
+  const renderCourseItem = useCallback(({ item, index }: { item: any; index: number }) => (
+    <View className={`${index % 2 === 0 ? 'pr-3' : 'pl-3'} mb-6 flex-1`}>
+      <CourseCard
+        course={item}
+        onPress={() => handleCoursePress(item.id)}
+      />
+    </View>
+  ), []);
+
+  const renderHeader = useCallback(() => (
+    <View className="px-6">
+      <TabSelector
+        tabs={tabOptions}
+        onTabPress={handleTabPress}
+      />
+    </View>
+  ), [tabOptions, handleTabPress]);
+
   return (
     <View 
-    style={{ paddingTop: 102 }}
+    style={{ paddingTop: 25 }}
     className="flex-1">
       <ScreenHeader
         title="Home"
@@ -65,36 +83,19 @@ export default function HomeScreen() {
         firstRightIconHeight={50.81}
         handleFirstRightIconClick={() => {}}
       />
-      <ScrollView
-        className="flex-1"
+      <FlatList
+        data={getFilteredCourses()}
+        renderItem={renderCourseItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180 }}
+        contentContainerStyle={{ paddingBottom: 180, paddingHorizontal: 24 }}
+        columnWrapperStyle={{ justifyContent: 'space-between' }}
+        ListHeaderComponent={renderHeader}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
-      >
-          {/* Tab Selector */}
-          <View className="px-6">
-            <TabSelector
-              tabs={tabOptions}
-              onTabPress={handleTabPress}
-            />
-          </View>
-
-          {/* Course list */}
-          <View className="px-6">
-            <View className="flex-row flex-wrap justify-between">
-              {getFilteredCourses().map((course) => (
-                <View key={course.id} className="w-[48%] mb-6">
-                  <CourseCard
-                    course={course}
-                    onPress={() => handleCoursePress(course.id)}
-                  />
-                </View>
-              ))}
-            </View> 
-          </View>
-      </ScrollView>
+      />
     </View>
   );
 }

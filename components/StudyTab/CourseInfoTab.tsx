@@ -1,6 +1,6 @@
 import { Course } from '@/components/HomeTab/mock-data';
 import { CourseDetail } from '@/data/courseDetailsMockData';
-import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import Button from '../Common/Button';
 
 interface CourseInfoTabProps {
@@ -204,14 +204,16 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                     </View>
                                 </View>
 
-                                <TextInput
-                                    className="font-medium text-neutral-500 h-[70px]"
-                                    style={{ fontSize: 20 }}
-                                    value={review.comment}
-                                    multiline={true}
-                                    editable={true}
-                                    placeholder="Nhập bình luận..."
-                                />
+                                <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                                    <TextInput
+                                        className="font-medium text-neutral-500 h-[70px]"
+                                        style={{ fontSize: 20 }}
+                                        value={review.comment}
+                                        multiline={true}
+                                        editable={true}
+                                        placeholder="Nhập bình luận..."
+                                    />
+                                </KeyboardAvoidingView>
                             </View>
                         ))}
                     </View>

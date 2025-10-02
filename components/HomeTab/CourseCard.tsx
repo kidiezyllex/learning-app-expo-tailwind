@@ -10,16 +10,34 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
     return (
         <TouchableOpacity
             onPress={() => onPress?.(course.id)}
-            className="w-full bg-neutral-100 rounded-[10px] shadow-[0px_1px_5px_0px_rgba(0,0,0,0.25)]"
+            style={{
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 1 },
+              shadowOpacity: 0.25,
+              shadowRadius: 5,
+              elevation: 3,
+            }}
+            className="w-full bg-neutral-100 rounded-[10px]"
         >
             {/* Thumbnail Image Container */}
             <View className="relative" style={{ height: 225 }}>
-                <Image
-                    source={course.thumbnail}
-                    className="w-full rounded-tl-[10px] rounded-tr-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
-                    resizeMode="cover"
-                    style={{ width: '100%', maxWidth: '100%', height: 225 }}
-                />
+                <View
+                    style={{
+                      shadowColor: '#000',
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 4,
+                      elevation: 4,
+                    }}
+                    className="w-full rounded-tl-[10px] rounded-tr-[10px]"
+                >
+                    <Image
+                        source={course.thumbnail}
+                        style={{ width: '100%', maxWidth: '100%', height: 225 }}
+                        className="w-full rounded-tl-[10px] rounded-tr-[10px]"
+                        resizeMode="cover"
+                    />
+                </View>
 
                 {/* New Badge */}
                 {course.isNew && (

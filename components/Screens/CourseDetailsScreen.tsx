@@ -45,7 +45,7 @@ export default function CourseDetailsScreen() {
     }
 
     return (
-        <View  style={{ paddingTop: 102 }}
+        <View  style={{ paddingTop: 25 }}
         className="flex-1">
             <ScreenHeader
                 title="Course Details"
