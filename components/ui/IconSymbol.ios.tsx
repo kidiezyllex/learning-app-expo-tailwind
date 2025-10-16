@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { SymbolView, SymbolViewProps, SymbolWeight } from 'expo-symbols';
 import { StyleProp, ViewStyle } from 'react-native';
 
@@ -22,8 +23,8 @@ export function IconSymbol({
       name={name}
       style={[
         {
-          width: size,
-          height: size,
+          width: getScaleFactor() * size,
+          height: getScaleFactor() * size,
         },
         style,
       ]}

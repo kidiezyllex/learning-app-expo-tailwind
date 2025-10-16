@@ -1,4 +1,5 @@
 import { courseStatistics } from '@/data/statisticsMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { Text, View } from 'react-native';
 import ProgressCard from '../../Common/ProgressCard';
 
@@ -6,7 +7,7 @@ export default function CoursesStatistics() {
   return (
     <View 
     style={{
-      borderRadius: 12,
+      borderRadius: getScaleFactor() * 12,
       backgroundColor: '#FFF',
     }}
     className="p-4 mb-4 w-full bg-white shadow-sm">
@@ -15,7 +16,7 @@ export default function CoursesStatistics() {
       </Text>
 
       {/* Course Cards */}
-      <View style={{ gap: 20 }} className="flex-col">
+      <View style={{ gap: getScaleFactor() * 20 }} className="flex-col">
         {courseStatistics.map((course, index) => (
           <ProgressCard
           key={course.id}

@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
@@ -21,11 +22,11 @@ export default function SearchBar({
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-      <View style={{ height: 48 }} className="bg-white rounded-[26px] flex-row items-center px-4">
+      <View style={{ height: getScaleFactor() * 56, borderRadius: getScaleFactor() * 26 }} className="flex-row items-center px-4 bg-white">
         <TouchableOpacity onPress={handleSearch}>
           <Image
             source={icons.search}
-            style={{ width: 34, height: 34 }}
+            style={{ width: getScaleFactor() * 34, height: getScaleFactor() * 34 }}
             resizeMode="cover"
           />
         </TouchableOpacity>
@@ -35,8 +36,8 @@ export default function SearchBar({
           onChangeText={setSearchQuery}
           placeholder={placeholder}
           placeholderTextColor="#9CA3AF"
-          style={{ height: 48, minHeight: 48 }}
-          className="flex-1 ml-3 text-sm text-zinc-400"
+          style={{ height: getScaleFactor() * 48, minHeight: getScaleFactor() * 48, marginLeft: getScaleFactor() * 12 }}
+          className="flex-1 text-sm text-zinc-400"
           onSubmitEditing={handleSearch}
           returnKeyType="search"
         />

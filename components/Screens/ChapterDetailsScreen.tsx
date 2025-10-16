@@ -32,9 +32,7 @@ export default function ChapterDetailsScreen() {
     ), []);
 
     return (
-        <View 
-        style={{ paddingTop: 25 }}
-        className="flex-1">
+        <View className="flex-1">
             <ScreenHeader 
                 title={chapter.title.split(':')[0]}
                 handleBackClick={() => setCurrentHomeScreen("course-details")}

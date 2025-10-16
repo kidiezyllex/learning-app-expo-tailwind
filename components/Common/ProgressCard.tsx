@@ -17,7 +17,7 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
   return (
     <Pressable
       style={{
-        borderRadius: 10,
+        borderRadius: getScaleFactor() * 10,
         backgroundColor: '#FFF',
         minHeight: getScaleFactor() * 134
       }}
@@ -32,8 +32,9 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
         onPress={onMorePress}
         style={{
           top: '50%',
+          right: getScaleFactor() * 12,
         }}
-        className="absolute right-3 p-1"
+        className="absolute p-1"
       >
         <Image
           source={icons.chevronRight}
@@ -43,12 +44,12 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       </TouchableOpacity>
 
       {/* Course Title */}
-      <Text className="mb-3 text-base font-semibold text-black line-clamp-1">
+      <Text style={{ marginBottom: getScaleFactor() * 12 }} className="text-base font-semibold text-black line-clamp-1">
         {course.title}
       </Text>
 
       {/* User Info */}
-      {course.userName && <View className="flex-row items-center mb-5">
+      {course.userName && <View style={{ marginBottom: getScaleFactor() * 20 }} className="flex-row items-center">
         <Image
           source={icons.user}
           style={{ width: getScaleFactor() * 45, height: getScaleFactor() * 45 }}

@@ -16,8 +16,7 @@ export default function StudyScreen() {
   }, []);
 
   return (
-    <View  style={{ paddingTop: 25 }}
-    className="flex-1">
+    <View className="flex-1">
       <ScreenHeader 
         title="Study Screen Sample"
         handleBackClick={() => router.back()}

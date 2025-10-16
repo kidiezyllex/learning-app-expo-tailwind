@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { quizResultMockData } from '../../data/quizResultMockData';
@@ -50,11 +51,11 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       >
-        <View className="px-11 pt-6">
+        <View style={{ paddingHorizontal: getScaleFactor() * 44, paddingTop: getScaleFactor() * 24 }}>
           {/* Quiz Info Card */}
           <View 
             style={{ 
-              marginBottom: 28,
+              marginBottom: getScaleFactor() * 28,
               elevation: 5,
             }} 
             className="w-full bg-white rounded-2xl shadow-sm">
@@ -72,8 +73,8 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
 
               <View 
                 style={{ 
-                  height: 28, 
-                  paddingHorizontal: 14,
+                  height: getScaleFactor() * 28, 
+                  paddingHorizontal: getScaleFactor() * 14,
                 }} 
                 className="flex shadow-sm justify-center items-center bg-orange-400 rounded-[3px]">
                 <Text
@@ -91,7 +92,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
               <TouchableOpacity
               >
                 <Image
-                  style={{ width: 52, height: 52, minWidth: 52, minHeight: 52, flexShrink: 0, marginRight: 20 }}
+                  style={{ width: getScaleFactor() * 52, height: getScaleFactor() * 52, minWidth: getScaleFactor() * 52, minHeight: getScaleFactor() * 52, flexShrink: 0, marginRight: getScaleFactor() * 20 }}
                   source={require('../../assets/images/sample-avatar.png')}
                   resizeMode="contain"
                 />
@@ -117,7 +118,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
           {/* Grade Button */}
           <View className="items-center mt-6">
             <Button
-              style={{ width: 310 }}
+              style={{ width: getScaleFactor() * 310 }}
               text="Grade"
               onPress={() => { }}
             />

@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Text, View } from 'react-native';
 
 interface ProgressBarProps {
@@ -9,7 +10,7 @@ interface ProgressBarProps {
 export default function ProgressBar({ 
   progress, 
   showPercentage = true, 
-  height = 28
+  height = getScaleFactor() * 28
 }: ProgressBarProps) {
   return (
     <View className="w-[94%]">
@@ -26,7 +27,7 @@ export default function ProgressBar({
           <View className="absolute justify-center items-center" style={{ 
             left: '50%', 
             top: '50%',
-            transform: [{ translateX: -50 }, { translateY: -14 }]
+            transform: [{ translateX: -(getScaleFactor() * 50) }, { translateY: - (getScaleFactor() * 16) }]
           }}>
             <Text className="z-10 text-sm font-medium text-black">
               {progress}% completed

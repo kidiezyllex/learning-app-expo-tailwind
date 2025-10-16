@@ -1,5 +1,6 @@
 import { useAppNavigation } from '@/contexts/NavigationContext';
 import { Lesson } from '@/data/lessonsMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { useRouter } from 'expo-router';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
@@ -46,19 +47,19 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                     {isCompleted ? (
                         <Image
                             source={icons.check}
-                            style={{ width: 48, height: 48 }}
+                            style={{ width: getScaleFactor() * 48, height: getScaleFactor() * 48 }}
                             resizeMode="contain"
                         />
                     ) : isExam ? (
                         <Image
                             source={icons.exam}
-                            style={{ width: 44, height: 63 }}
+                            style={{ width: getScaleFactor() * 44, height: getScaleFactor() * 63 }}
                             resizeMode="contain"
                         />
                     ) : (
-                        <Image
+                        <Image  
                             source={icons.video}
-                            style={{ width: 50, height: 43 }}
+                            style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 43 }}
                             resizeMode="contain"
                         />
                     )}
@@ -80,7 +81,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                     {!isExam && lesson.duration && <View className="flex-row gap-1 justify-start items-center">
                         <Image
                             source={icons.clock2}
-                            style={{ width: 30, height: 30 }}
+                            style={{ width: getScaleFactor() * 30, height: getScaleFactor() * 30 }}
                             resizeMode="contain"
                         />
                         <Text
@@ -103,7 +104,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                 <View className={`flex flex-col  h-full ${isExam ? 'justify-center' : 'justify-start'}`}>
                     <Image
                         source={isDownloaded ? icons.completed : icons.download}
-                        style={{ width: 28, height: 28 }}
+                        style={{ width: getScaleFactor() * 28, height: getScaleFactor() * 28 }}
                         resizeMode="contain"
                     />
                 </View>

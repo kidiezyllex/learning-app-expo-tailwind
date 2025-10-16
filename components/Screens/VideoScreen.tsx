@@ -1,5 +1,6 @@
 import { useAppNavigation } from '@/contexts/NavigationContext';
 import { VideoData, videoMockData } from '@/data/videoMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
@@ -90,7 +91,7 @@ export default function VideoScreen() {
                         className="absolute left-3 z-10"
                     >
                         <Image
-                            style={{ width: 69, height: 69 }}
+                            style={{ width: getScaleFactor() * 69, height: getScaleFactor() * 69 }}
                             source={icons.leftArrow}
                             resizeMode="contain"
                         />
@@ -108,16 +109,16 @@ export default function VideoScreen() {
             <View
                 className="flex absolute flex-col justify-center items-center"
                 style={{
-                    gap: 32,
-                    bottom: 230,
-                    right: 32,
+                    gap: getScaleFactor() * 32,
+                    bottom: getScaleFactor() * 230,
+                    right: getScaleFactor() * 32,
                     zIndex: 20
                 }}
             >
                 <TouchableOpacity>
                     <Image
                         source={icons.heart}
-                        style={{ width: 59, height: 52 }}
+                        style={{ width: getScaleFactor() * 59, height: getScaleFactor() * 52 }}
                         resizeMode="contain"
                     />
                     <Text
@@ -130,7 +131,7 @@ export default function VideoScreen() {
                 <TouchableOpacity onPress={handleOpenComments}>
                     <Image
                         source={icons.comment}
-                        style={{ width: 62, height: 54 }}
+                        style={{ width: getScaleFactor() * 62, height: getScaleFactor() * 54 }}
                         resizeMode="contain"
                     />
                     <Text
@@ -143,14 +144,14 @@ export default function VideoScreen() {
                 <TouchableOpacity>
                     <Image
                         source={icons.save2}
-                        style={{ width: 42, height: 46 }}
+                        style={{ width: getScaleFactor() * 42, height: getScaleFactor() * 46 }}
                         resizeMode="contain"
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
                         source={icons.rotate}
-                        style={{ width: 50, height: 50 }}
+                        style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 50 }}
                         resizeMode="contain"
                     />
                 </TouchableOpacity>
@@ -159,10 +160,10 @@ export default function VideoScreen() {
             <View
                 style={{
                     position: 'absolute',
-                    top: 102,
+                    top: getScaleFactor() * 102,
                     left: 0,
                     right: 0,
-                    bottom: 200,
+                    bottom: getScaleFactor() * 200,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -174,7 +175,7 @@ export default function VideoScreen() {
                     source={{ uri: 'https://videos.pexels.com/video-files/4017060/4017060-uhd_2560_1440_30fps.mp4' }}
                     style={{
                         width: '100%',
-                        height: 410
+                        height: getScaleFactor() * 410
                     }}
                     resizeMode={ResizeMode.CONTAIN}
                     shouldPlay={isPlaying}
@@ -194,23 +195,23 @@ export default function VideoScreen() {
                         flexDirection: 'row',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        gap: 40,
+                        gap: getScaleFactor() * 40,
                         zIndex: 10
                     }}
                 >
                     <TouchableOpacity
                         onPress={skipBackward}
                     >
-                        <MaterialIcons name="replay-10" size={56} color="white" />
+                        <MaterialIcons name="replay-10" size={getScaleFactor() * 56} color="white" />
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={togglePlayPause}
                     >
                         {isPlaying ? (
-                            <MaterialCommunityIcons name="pause" size={72} color="white" />
+                            <MaterialCommunityIcons name="pause" size={getScaleFactor() * 72} color="white" />
                         ) : (
-                            <MaterialIcons name="play-arrow" size={72} color="white" />
+                            <MaterialIcons name="play-arrow" size={getScaleFactor() * 72} color="white" />
                         )}
                     </TouchableOpacity>
 
@@ -227,7 +228,7 @@ export default function VideoScreen() {
             <View
                 className="absolute w-[95%]"
                 style={{
-                    bottom: 36,
+                    bottom: getScaleFactor() * 36,
                     left: '2.5%',
                     zIndex: 20
                 }}
@@ -235,13 +236,13 @@ export default function VideoScreen() {
                 <View
                     className="w-full"
                     style={{
-                        height: 4,
+                        height: getScaleFactor() * 4,
                         backgroundColor: '#828282'
                     }}
                 >
                     <View
                         style={{
-                            height: 4,
+                            height: getScaleFactor() * 4,
                             backgroundColor: '#1877F2',
                             width: `${progress * 100}%`
                         }}
@@ -252,26 +253,26 @@ export default function VideoScreen() {
             {/* Video Info */}
             <View
                 style={{
-                    bottom: 52,
-                    paddingHorizontal: 32,
-                    gap: 24,
+                    bottom: getScaleFactor() * 52,
+                    paddingHorizontal: getScaleFactor() * 32,
+                    gap: getScaleFactor() * 24,
                     zIndex: 20
                 }}
                 className="flex absolute flex-col justify-start w-full">
                 <View
                     style={{
-                        gap: 24,
+                        gap: getScaleFactor() * 24,
                     }}
                     className='flex flex-row items-center'>
                     <Image
-                        style={{ width: 86, height: 86 }}
+                        style={{ width: getScaleFactor() * 86, height: getScaleFactor() * 86 }}
                         source={require('../../assets/images/sample-avatar.png')}
                         resizeMode="contain"
                     />
                     <Text className='text-xl font-semibold text-white' >Mr. Tung Tung Sahur</Text>
                 </View>
 
-                <View className='h-[150px] min-h-[150px] w-full'>
+                <View style={{ minHeight: getScaleFactor() * 150, height: getScaleFactor() * 150 }} className='w-full'>
                     <Text
                         className='text-base font-semibold text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
                 </View>

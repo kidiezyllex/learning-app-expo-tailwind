@@ -103,8 +103,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
   const isResultScreen = activeTab === 'exam-result' || activeTab === 'quiz-result';
 
   return (
-    <View  style={{ paddingTop: 25 }}
-    className="flex-1">
+    <View className="flex-1">
       {!isResultScreen && (
         <>
           <ScreenHeader 

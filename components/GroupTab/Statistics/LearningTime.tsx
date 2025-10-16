@@ -1,4 +1,5 @@
 import { learningTimeData, userLearningData } from '@/data/statisticsMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, View } from 'react-native';
 import { icons } from '../../../assets/icons/icons';
 
@@ -6,7 +7,7 @@ export default function LearningTime() {
   return (
     <View
       style={{
-        borderRadius: 12,
+        borderRadius: getScaleFactor() * 12,
         backgroundColor: '#FFF',
       }}
       className="p-4 mb-4 w-full shadow-sm">
@@ -16,14 +17,12 @@ export default function LearningTime() {
 
       {/* Statistics Cards */}
       <View className="mb-4">
-        {/* Total Learning Time */}
-        <View style={{ gap: 16 }} className="flex-row items-center mb-4">
+        <View style={{ gap: getScaleFactor() * 16 }} className="flex-row items-center mb-4">
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
               source={icons.clock4}
-              style={{ width: 35, height: 35 }}
-              className="mr-4"
+              style={{ width: getScaleFactor() * 35, height: getScaleFactor() * 35, marginRight: getScaleFactor() * 16 }}
             />
             <Text className="flex-1 text-sm font-medium text-black">
               Total Learning Time:
@@ -37,14 +36,12 @@ export default function LearningTime() {
           </View>
         </View>
 
-        {/* Average Learning Time */}
-        <View style={{ gap: 16 }} className="flex-row items-center mb-4">
+        <View style={{ gap: getScaleFactor() * 16 }} className="flex-row items-center mb-4">
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
               source={icons.history}
-              style={{ width: 32, height: 32 }}
-              className="mr-4"
+              style={{ width: getScaleFactor() * 32, height: getScaleFactor() * 32, marginRight: getScaleFactor() * 16 }}
             />
             <Text className="flex-1 text-sm font-medium text-black">
               Average Learning Time:
@@ -59,13 +56,12 @@ export default function LearningTime() {
         </View>
 
         {/* Top Learner */}
-        <View style={{ gap: 16 }} className="flex-row items-center">
+        <View style={{ gap: getScaleFactor() * 16 }} className="flex-row items-center">
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
               source={icons.user}
-              style={{ width: 31, height: 31 }}
-              className="mr-4"
+              style={{ width: getScaleFactor() * 31, height: getScaleFactor() * 31, marginRight: getScaleFactor() * 16 }}
             />
             <Text className="flex-1 text-sm font-medium text-black">
               Top Learning (yesterday):
@@ -83,7 +79,7 @@ export default function LearningTime() {
       {/* Leaderboard Table */}
       <View
         style={{
-          borderRadius: 10,
+          borderRadius: getScaleFactor() * 10,
           backgroundColor: '#FFF',
         }}
         className="shadow-sm"
@@ -91,7 +87,7 @@ export default function LearningTime() {
         {/* Table Header */}
         <View className="px-4 py-3 bg-gray-200 rounded-t-lg">
           <View className="flex-row">
-            <Text style={{ width: 48 }} className="text-xs font-medium text-center text-black">
+            <Text style={{ width: getScaleFactor() * 48 }} className="text-xs font-medium text-center text-black">
               #
             </Text>
             <Text className="text-xs font-medium text-black">
@@ -109,7 +105,7 @@ export default function LearningTime() {
         {/* Table Rows */}
         {userLearningData.map((user, index) => (
           <View key={user.id} className={`flex-row items-center px-4 py-3 ${index < userLearningData.length - 1 ? 'border-b border-gray-100' : ''}`}>
-            <Text style={{ width: 48 }} className="font-medium text-zinc-600 w-[48px] text-center text-xs">
+            <Text style={{ width: getScaleFactor() * 48 }} className="text-xs font-medium text-center text-zinc-600">
               {user.rank}
             </Text>
             <Text className="flex-1 text-xs font-medium text-zinc-600">
@@ -118,10 +114,10 @@ export default function LearningTime() {
             <Text className="flex-1 text-xs font-medium text-center text-zinc-600">
               {user.averageTime}
             </Text>
-            <View style={{ gap: 8 }} className="flex-row flex-1 items-center">
+            <View style={{ gap: getScaleFactor() * 8 }} className="flex-row flex-1 items-center">
             <Image
               source={icons.user}
-              style={{ width: 24, height: 24 }}
+              style={{ width: getScaleFactor() * 24, height: getScaleFactor() * 24 }}
               resizeMode="contain"
             />
               <Text className="text-xs font-medium text-zinc-600">

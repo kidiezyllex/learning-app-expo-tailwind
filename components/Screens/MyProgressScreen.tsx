@@ -74,8 +74,7 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
   ), [tabOptions, handleTabPress, handleSearch]);
 
   return (
-    <View  style={{ paddingTop: 25 }}
-    className="flex-1">
+    <View className="flex-1">
       <ScreenHeader 
         title="My Progress"
         handleBackClick={() => onTabChange?.("statistics")}
