@@ -16,7 +16,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
             showsVerticalScrollIndicator={false}
             className="flex-1"
         >
-            <View className="px-6">
+            <View className="px-4">
                 <View className="flex-row mb-6" style={{ gap: 50 }}>
                     {/* Course Thumbnail */}
                     <View className="flex-1">
@@ -54,8 +54,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                         />
                                     </View>
                                     <Text
-                                        className="font-medium text-black"
-                                        style={{ fontSize: 16 }}
+                                        className="text-xs font-medium text-black"
                                     >
                                         {course.instructor.name}
                                     </Text>
@@ -70,8 +69,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                         />
                                     </View>
                                     <Text
-                                        className="font-medium text-black"
-                                        style={{ fontSize: 16 }}
+                                        className="text-xs font-medium text-black"
                                     >
                                         Duration: {selectedCourse.duration}
                                     </Text>
@@ -86,8 +84,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                         />
                                     </View>
                                     <Text
-                                        className="font-medium text-black"
-                                        style={{ fontSize: 16 }}
+                                        className="text-xs font-medium text-black"
                                     >
                                         {selectedCourse.rating}/{course.maxRating}
                                     </Text>
@@ -95,8 +92,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                                 <View className='w-[200px] flex justify-center items-center flex-col gap-2'>
                                     <Text
-                                        className="italic font-bold text-black"
-                                        style={{ fontSize: 32 }}
+                                        className="text-xl italic font-bold text-black"
                                     >
                                         {course.price}{course.currency}
                                     </Text>
@@ -122,9 +118,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                 {/* Course Description */}
                 <View className="mb-6">
-                    <Text
-                        className="mb-4 font-semibold text-black"
-                        style={{ fontSize: 32 }}
+                    <Text className="mb-4 text-xl font-semibold text-black"
                     >
                         {selectedCourse.title}
                     </Text>

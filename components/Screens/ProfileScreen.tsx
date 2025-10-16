@@ -69,7 +69,7 @@ export default function ProfileScreen() {
 
   const StatCard = ({ title, value, subtitle }: { title: string; value: string | number; subtitle?: string }) => (
     <View className="flex-1 items-center p-4 bg-white rounded-xl">
-      <Text style={{ fontSize: 32 }} className="font-bold text-blue-600">{value}</Text>
+      <Text className="text-xl font-bold text-blue-600">{value}</Text>
       <Text style={{ fontSize: 20 }} className="text-center text-gray-600">{title}</Text>
       {subtitle && <Text style={{ fontSize: 20 }} className="mt-1 text-center text-gray-500">{subtitle}</Text>}
     </View>
@@ -139,9 +139,9 @@ export default function ProfileScreen() {
             <LoadingSpinner size="large" />
           </View>
         ) : (
-          <View className="px-6">
+          <View className="px-4">
             {/* Profile Header */}
-            <View className="items-center p-6 mb-6 bg-white rounded-xl">
+            <View className="items-center p-4 mb-6 bg-white rounded-xl">
               <View className="mb-4">
                 <Avatar 
                   source={require('../../assets/images/sample-avatar.png')}
@@ -170,7 +170,7 @@ export default function ProfileScreen() {
 
             {/* Stats Grid */}
             <View className="mb-6">
-              <Text style={{ fontSize: 32 }} className="mb-3 font-semibold text-gray-900">Thống kê học tập</Text>
+              <Text className="mb-3 text-xl font-semibold text-center text-gray-900">Thống kê học tập</Text>
               <View className="flex-row mb-3 space-x-3">
                 <StatCard title="Hoàn thành" value={profileStats.coursesCompleted} subtitle="khóa học" />
                 <StatCard title="Đang học" value={profileStats.coursesInProgress} subtitle="khóa học" />
@@ -184,7 +184,7 @@ export default function ProfileScreen() {
 
             {/* Menu Items */}
             <View className="mb-6">
-              <Text style={{ fontSize: 32 }} className="mb-3 font-semibold text-gray-900">Tài khoản</Text>
+              <Text className="mb-3 text-xl font-semibold text-center text-gray-900">Tài khoản</Text>
               {menuItems.map((item) => (
                 <MenuItem key={item.id} item={item} />
               ))}

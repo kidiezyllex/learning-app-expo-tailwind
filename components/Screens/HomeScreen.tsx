@@ -3,6 +3,7 @@ import CourseCard from "@/components/HomeTab/CourseCard";
 import { mockCourses } from "@/components/HomeTab/mock-data";
 import { useCourse } from "@/contexts/CourseContext";
 import { useAppNavigation } from "@/contexts/NavigationContext";
+import { getScaleFactor } from "@/utils/scaling";
 import { useCallback, useState } from "react";
 import { FlatList, RefreshControl, View } from "react-native";
 import { icons } from "../../assets/icons/icons";
@@ -64,7 +65,7 @@ export default function HomeScreen() {
   ), []);
 
   const renderHeader = useCallback(() => (
-    <View className="px-6">
+    <View className="px-4">
       <TabSelector
         tabs={tabOptions}
         onTabPress={handleTabPress}
@@ -80,8 +81,8 @@ export default function HomeScreen() {
         title="Home"
         showRightIcons={true}
         firstRightIcon={icons.activeSearch}
-        firstRightIconWidth={50.81}
-        firstRightIconHeight={50.81}
+        firstRightIconWidth={getScaleFactor() * 50.81}
+        firstRightIconHeight={getScaleFactor() * 50.81}
         handleFirstRightIconClick={() => {}}
       />
       <FlatList

@@ -1,4 +1,5 @@
 import ScreenHeader from "@/components/Common/ScreenHeader";
+import { getScaleFactor } from "@/utils/scaling";
 import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
@@ -22,11 +23,11 @@ export default function StudyScreen() {
         handleBackClick={() => router.back()}
         showRightIcons={true}
         firstRightIcon={icons.bell}
-        firstRightIconWidth={51}
-        firstRightIconHeight={51}
+        firstRightIconWidth={getScaleFactor() * 51}
+        firstRightIconHeight={getScaleFactor() * 51}
         secondRightIcon={icons.logout}
-        secondRightIconWidth={39}
-        secondRightIconHeight={41}
+        secondRightIconWidth={getScaleFactor() * 39}
+        secondRightIconHeight={getScaleFactor() * 41}
         handleFirstRightIconClick={() => {}}
         handleSecondRightIconClick={() => {}}
       />

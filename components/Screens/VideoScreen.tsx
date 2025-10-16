@@ -84,7 +84,7 @@ export default function VideoScreen() {
         <View className="overflow-hidden relative flex-1 bg-stone-900">
             {/* Header */}
             <View className="fixed top-0 right-0 left-0 z-50">
-                <View className="flex relative flex-row px-6 justify-between items-center h-[102px]">
+                <View className="flex relative flex-row px-4 justify-between items-center h-[102px]">
                     <TouchableOpacity
                         onPress={() => setCurrentHomeScreen("chapter-details")}
                         className="absolute left-3 z-10"

@@ -29,14 +29,12 @@ export default function CommentCard({ comment, onLike }: CommentCardProps) {
               {comment.username}
             </Text>
             <Text 
-              style={{ fontSize: 16 }}
-              className="font-semibold text-neutral-500"
+              className="text-xs font-semibold text-neutral-500"
             >
               .
             </Text>
             <Text 
-              style={{ fontSize: 16 }}
-              className="font-medium text-neutral-500"
+              className="text-xs font-medium text-neutral-500"
             >
               {comment.timeAgo}
             </Text>

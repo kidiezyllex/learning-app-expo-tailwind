@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
 import { Course } from './mock-data';
@@ -14,13 +15,13 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
             className="w-full bg-neutral-100 rounded-[10px] shadow-sm"
         >
             {/* Thumbnail Image Container */}
-            <View className="relative" style={{ height: 225 }}>
+            <View className="relative" style={{ height: getScaleFactor() * 225 }}>
                 <View
                     className="w-full shadow-sm rounded-tl-[10px] rounded-tr-[10px]"
                 >
                     <Image
                         source={course.thumbnail}
-                        style={{ width: '100%', maxWidth: '100%', height: 225 }}
+                        style={{ width: '100%', maxWidth: '100%', height: getScaleFactor() * 225 }}
                         className="w-full rounded-tl-[10px] rounded-tr-[10px]"
                         resizeMode="cover"
                     />
@@ -28,8 +29,10 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
 
                 {/* New Badge */}
                 {course.isNew && (
-                    <View className="absolute top-4 left-4 w-16 h-7 bg-rose-600 rounded-[5px] justify-center">
-                        <Text style={{ fontSize: 16 }} className="font-semibold text-center text-neutral-100">
+                    <View 
+                    style={{ width: getScaleFactor() * 64, height: getScaleFactor() * 32, left: getScaleFactor() * 16, top: getScaleFactor() * 16}}
+                    className="absolute justify-center bg-rose-600 rounded-[3px]">
+                        <Text className="text-xs font-semibold text-center text-neutral-100">
                             New
                         </Text>
                     </View>
@@ -38,47 +41,49 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 {/* Checked */}
                 <Image
                     source={icons.checked}
-                    className="absolute top-4 right-4"
-                    style={{ width: 28, height: 28 }}
+                    className="absolute"
+                    style={{ width: getScaleFactor() * 32, height: getScaleFactor() * 32, top: getScaleFactor() * 16, right: getScaleFactor() * 16 }}
                     resizeMode="cover"
                 />
 
                 {/* Play/Live Button */}
                 <Image
                     source={course.isSave ? icons.saved : icons.save}
-                    className="absolute bottom-4 left-4"
-                    style={{ width: 24, height: 27 }}
+                    className="absolute"
+                    style={{ width: getScaleFactor() * 24, height: getScaleFactor() * 27, bottom: getScaleFactor() * 16, left: getScaleFactor() * 16 }}
                     resizeMode="cover"
                 />
 
                 {/* Duration Badge */}
-                <View className="flex absolute right-4 bottom-4 flex-row gap-2 justify-center items-center w-20 h-7 rounded-md bg-black/50">
+                <View 
+                style={{ height: getScaleFactor() * 32, bottom: getScaleFactor() * 16, right: getScaleFactor() * 16 }}
+                className="flex absolute flex-row gap-2 justify-center items-center px-1.5 rounded-md bg-black/50">
                     <Image
                         source={icons.clock}
-                        style={{ width: 22, height: 22 }}
+                        style={{ width: getScaleFactor() * 22, height: getScaleFactor() * 22 }}
                         resizeMode="cover"
                     />
-                    <Text style={{ fontSize: 16 }} className="font-medium text-neutral-100">
+                    <Text className="text-xs font-medium text-neutral-100">
                         {course.duration}
                     </Text>
                 </View>
             </View>
-            <View className="flex-1 w-full p-[10px] flex flex-col gap-2">
-                <Text style={{ fontSize: 22 }} className="font-semibold text-black line-clamp-2">
+            <View className="flex flex-col flex-1 gap-2 p-1.5 w-full">
+                <Text className="text-sm font-semibold text-black line-clamp-2">
                     {course.title}
                 </Text>
                 <View className="flex-row items-center w-full">
-                    <Text style={{ fontSize: 16 }} className="flex-1 font-medium line-clamp-1 text-zinc-600">
+                    <Text className="flex-1 text-xs font-medium line-clamp-1 text-zinc-600">
                         {course.description}
                     </Text>
                     {/* Rating */}
                     <View className="flex-row items-center">
                         <Image
                             source={icons.star}
-                            style={{ width: 18, height: 18 }}
+                            style={{ width: getScaleFactor() * 18, height: getScaleFactor() * 18 }}
                             resizeMode="cover"
                         />
-                        <Text style={{ fontSize: 16 }} className="font-medium text-black">
+                        <Text className="text-xs font-medium text-black">
                             {course.rating}/5
                         </Text>
                     </View>

@@ -3,6 +3,7 @@ import TabSelector from '@/components/Common/TabSelector';
 import EssayGrading from '@/components/GroupTab/EssayGrading';
 import CoursesStatistics from '@/components/GroupTab/Statistics/CoursesStatistics';
 import { useAppNavigation } from '@/contexts/NavigationContext';
+import { getScaleFactor } from '@/utils/scaling';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -60,22 +61,22 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
         );
       case "progress":
         return (
-          <View className="p-6 bg-white rounded-xl shadow-sm">
+          <View className="p-4 bg-white rounded-xl shadow-sm">
             <Text style={{ fontSize: 20 }} className="font-semibold text-center text-black">
               My Progress Content
             </Text>
-            <Text style={{ fontSize: 16 }} className="mt-2 text-center text-gray-600">
+            <Text className="mt-2 text-xs text-center text-gray-600">
               This tab will show your personal progress
             </Text>
           </View>
         );
       case "user":
         return (
-          <View className="p-6 bg-white rounded-xl shadow-sm">
+          <View className="p-4 bg-white rounded-xl shadow-sm">
             <Text style={{ fontSize: 20 }} className="font-semibold text-center text-black">
               User Content
             </Text>
-            <Text style={{ fontSize: 16 }} className="mt-2 text-center text-gray-600">
+            <Text className="mt-2 text-xs text-center text-gray-600">
               This tab will show user information
             </Text>
           </View>
@@ -111,11 +112,11 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             handleBackClick={() => onTabChange?.("statistics")}
             showRightIcons={true}
             firstRightIcon={icons.bell}
-            firstRightIconWidth={51}
-            firstRightIconHeight={51}
+            firstRightIconWidth={getScaleFactor() * 51}
+            firstRightIconHeight={getScaleFactor() * 51}
             secondRightIcon={icons.setting}
-            secondRightIconWidth={43}
-            secondRightIconHeight={45}
+            secondRightIconWidth={getScaleFactor() * 43}
+            secondRightIconHeight={getScaleFactor() * 45}
             handleFirstRightIconClick={() => {}}
             handleSecondRightIconClick={() => {}}
           />
@@ -125,7 +126,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 100 }}
           >
-            <View className="px-6">
+            <View className="px-4">
               {/* Tab Selector */}
               <TabSelector
                 col={4}

@@ -50,8 +50,7 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
                 }} 
                 className="flex shadow-sm justify-center items-center bg-green-600 rounded-[3px]">
                 <Text
-                  style={{ fontSize: 12 }}
-                  className="font-medium text-center text-black"
+                  className="text-xs font-medium text-center text-black"
                 >
                   Exam
                 </Text>

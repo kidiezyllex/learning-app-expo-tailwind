@@ -96,8 +96,7 @@ export default function EssayPagination({
         }`}
       >
         <Text
-          style={{ fontSize: 16 }}
-          className="font-medium text-center text-[#626262]"
+          className="font-medium text-center text-[#626262] text-xs"
         >
           {questionNumber || '?'}
         </Text>

@@ -38,7 +38,7 @@ export default function ScreenHeader({
           height: getScaleFactor() * 102,
           minHeight: getScaleFactor() * 102,
         }}
-        className="flex relative flex-row justify-between items-center px-6 bg-blue-600 shadow-sm">
+        className="flex relative flex-row justify-between items-center px-4 bg-blue-600 shadow-sm">
         {(handleBackClick || onBack) && (
           <TouchableOpacity
             onPress={handleBackClick || onBack}
@@ -52,9 +52,7 @@ export default function ScreenHeader({
         )}
 
         <View className="flex-1 justify-center items-center">
-          <Text
-            style={{ fontSize: getScaleFactor() * 32 }}
-            className="font-semibold text-white">
+          <Text className="text-xl font-semibold text-white">
             {title}
           </Text>
         </View>

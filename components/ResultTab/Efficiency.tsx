@@ -83,12 +83,12 @@ export default function Efficiency() {
                   >
                     Nữ ca sĩ vừa có thông báo mới nhất trên trang cá khiến người
                   </Text>
-                  <Text style={{ color: '#737373', fontSize: 16, fontWeight: '500' }}>
+                  <Text className="text-xs font-medium text-[#737373]">
                     User Name
                   </Text>
                 </View>
 
-                <Text style={{ color: '#000', fontSize: 20, fontWeight: '500' }}>
+                <Text className="text-sm font-medium text-[#000]">
                   93/100
                 </Text>
               </View>
@@ -146,12 +146,13 @@ export default function Efficiency() {
                   >
                     Nữ ca sĩ vừa có thông báo mới nhất trên trang cá khiến người
                   </Text>
-                  <Text style={{ color: '#737373', fontSize: 16, fontWeight: '500' }}>
+                  <Text 
+                  className="text-xs font-medium text-[#737373]">
                     User Name
                   </Text>
                 </View>
 
-                <Text style={{ color: '#000', fontSize: 20, fontWeight: '500' }}>
+                <Text className='text-sm font-medium text-[#000]'>
                   93/100
                 </Text>
               </View>

@@ -3,6 +3,7 @@ import ScreenHeader from "@/components/Common/ScreenHeader";
 import SearchBar from "@/components/Common/SearchBar";
 import TabSelector from "@/components/Common/TabSelector";
 import { mockCourses } from "@/data/mockData";
+import { getScaleFactor } from "@/utils/scaling";
 import { useCallback, useState } from "react";
 import { FlatList, RefreshControl, View } from "react-native";
 import { icons } from "../../assets/icons/icons";
@@ -56,14 +57,14 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
   const renderHeader = useCallback(() => (
     <View>
       {/* Tab Selector */}
-      <View className="px-6">
+      <View className="px-4">
         <TabSelector
           tabs={tabOptions}
           onTabPress={handleTabPress}
         />
       </View>
 
-      <View className="px-6">
+      <View className="px-4">
         <SearchBar
           placeholder="Search"
           onSearch={handleSearch}
@@ -80,11 +81,11 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
         handleBackClick={() => onTabChange?.("statistics")}
         showRightIcons={true}
         firstRightIcon={icons.bell}
-        firstRightIconWidth={51}
-        firstRightIconHeight={51}
+        firstRightIconWidth={getScaleFactor() * 51}
+        firstRightIconHeight={getScaleFactor() * 51}
         secondRightIcon={icons.logout}
-        secondRightIconWidth={39}
-        secondRightIconHeight={41}
+        secondRightIconWidth={getScaleFactor() * 39}
+        secondRightIconHeight={getScaleFactor() * 41}
         handleFirstRightIconClick={() => {}}
         handleSecondRightIconClick={() => {}}
       />

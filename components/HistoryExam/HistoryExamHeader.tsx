@@ -9,7 +9,7 @@ export default function HistoryExamHeader() {
             right: 0,
             zIndex: 9999,
         }}>
-            <View className="flex flex-row justify-between items-center h-[96px] px-6 bg-blue-600">
+            <View className="flex flex-row justify-between items-center h-[96px] px-4 bg-blue-600">
                 <View className="w-16 h-16 rounded-full border-[5px] border-white items-center justify-center">
                     <View className="w-0 h-5 origin-top-left -rotate-90 rounded-[20px] border-[5px] border-white" />
                     <View className="w-1 h-5 rounded-[20px] border-[5px] border-white" />

@@ -32,10 +32,10 @@ export default function ResultsScreen() {
         contentContainerStyle={{ paddingBottom: 180 }}
       >
         <TabSelector tabs={tabOptions} onTabPress={handleTabPress} />
-        <View className="px-6">
+        <View className="px-4">
           {/* Week Chart Section */}
           <View className="mb-6">
-            <Text style={{ fontSize: 32, marginBottom: 20 }} className="font-medium text-neutral-950">
+            <Text style={{ marginBottom: 20 }} className="text-xl font-medium text-neutral-950">
               This week
             </Text>
             <WeekChart />
@@ -43,7 +43,7 @@ export default function ResultsScreen() {
 
           {/* History */}
           <View className="mb-6">
-            <Text style={{ fontSize: 32, marginBottom: 20 }} className="font-medium text-neutral-950">
+            <Text style={{ marginBottom: 20 }} className="text-xl font-medium text-neutral-950">
               Quiz/Exam History
             </Text>
             <History />
@@ -51,7 +51,7 @@ export default function ResultsScreen() {
 
           {/* Efficiency Section */}
           <View>
-            <Text style={{ fontSize: 32, marginBottom: 20 }} className="font-medium text-neutral-950">
+            <Text style={{ marginBottom: 20 }} className="text-xl font-medium text-neutral-950">
               My performance
             </Text>
             <Efficiency />

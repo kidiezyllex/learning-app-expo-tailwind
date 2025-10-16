@@ -77,8 +77,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                 }} 
                 className="flex shadow-sm justify-center items-center bg-orange-400 rounded-[3px]">
                 <Text
-                  style={{ fontSize: 12 }}
-                  className="font-medium text-center text-black"
+                  className="text-xs font-medium text-center text-black"
                 >
                   Quiz
                 </Text>

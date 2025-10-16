@@ -42,7 +42,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
           className={`rounded-full ${answer.isSelected || answer.isCorrect ? dotColor : 'outline outline-2 outline-zinc-400'
             }`}
         />
-        <Text style={{ fontSize: 16 }} className="flex-1 font-medium text-black">
+        <Text className="flex-1 text-xs font-medium text-black">
           {answer.text}
         </Text>
       </View>
@@ -86,7 +86,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
             resizeMode="contain"
           />
           <View className="flex-1">
-            <Text style={{ fontSize: 14 }} className="text-black">
+            <Text className="text-xs text-black">
               <Text style={{ fontStyle: 'italic', fontWeight: '600' }}>Explanation:</Text>
               {" "}{question.explanation}
             </Text>

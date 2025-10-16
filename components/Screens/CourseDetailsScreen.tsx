@@ -36,7 +36,7 @@ export default function CourseDetailsScreen() {
                 <Text className="text-lg text-gray-600">Không tìm thấy khóa học</Text>
                 <TouchableOpacity
                     onPress={handleBackPress}
-                    className="px-6 py-2 mt-4 bg-blue-500 rounded-lg"
+                    className="px-4 py-2 mt-4 bg-blue-500 rounded-lg"
                 >
                     <Text className="text-white">Quay lại</Text>
                 </TouchableOpacity>
@@ -57,7 +57,7 @@ export default function CourseDetailsScreen() {
                 contentContainerStyle={{ paddingBottom: 180 }}
             >
                 {/* Tab Selector */}
-                <View className="px-6">
+                <View className="px-4">
                     <TabSelector
                         tabs={tabOptions}
                         onTabPress={handleTabPress}
@@ -87,7 +87,7 @@ export default function CourseDetailsScreen() {
 
                 {/* Scores Tab Content */}
                 {activeTab === "scores" && (
-                    <View className="px-6 py-8">
+                    <View className="px-4 py-8">
                         <Text
                             className="text-center text-gray-500"
                             style={{ fontSize: 20 }}

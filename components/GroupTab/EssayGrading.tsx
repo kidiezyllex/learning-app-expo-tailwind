@@ -49,8 +49,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
 
     const renderEssayScore = (score: string, isGraded: boolean) => (
         <Text
-            style={{ fontSize: 12 }}
-            className={`font-medium ${isGraded ? 'underline text-neutral-600' : 'text-blue-600 underline'}`}
+            className={`font-medium text-xs ${isGraded ? 'underline text-neutral-600' : 'text-blue-600 underline'}`}
         >
             {score}
         </Text>
@@ -86,38 +85,38 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                         <Text style={{ fontSize: 24 }} className="font-semibold text-black">
                             {item.studentName}
                         </Text>
-                        <Text style={{ fontSize: 32 }} className="font-semibold text-red-600">
+                        <Text className="text-xl font-semibold text-red-600">
                             {item.totalScore}
                         </Text>
                     </View>
 
                     {/* Exam Title */}
-                    <Text style={{ fontSize: 14 }} className="mb-3 font-bold text-neutral-600">
+                    <Text className="mb-3 text-xs font-bold text-neutral-600">
                         {item.examTitle}
                     </Text>
 
                     {/* Time */}
                     <View className="flex-row justify-between items-center mb-2 ml-3">
-                        <Text style={{ fontSize: 14 }} className="mr-2 italic font-medium text-neutral-600">
+                        <Text className="mr-2 text-xs italic font-medium text-neutral-600">
                             Thời gian
                         </Text>
-                        <Text style={{ fontSize: 14 }} className="font-medium text-neutral-600">
+                        <Text className="text-xs font-medium text-neutral-600">
                             {item.time}
                         </Text>
                     </View>
 
                     {/* Scores */}
                     <View className="flex-row justify-between items-center mb-2 ml-3">
-                        <Text style={{ fontSize: 14 }} className="mr-2 italic font-medium text-neutral-600">
+                        <Text className="mr-2 text-xs italic font-medium text-neutral-600">
                             Trắc nghiệm
                         </Text>
-                        <Text style={{ fontSize: 14 }} className="font-medium text-neutral-600">
+                        <Text className="text-xs font-medium text-neutral-600">
                             {item.multipleChoiceScore}
                         </Text>
                     </View>
 
                     <View className="flex-row justify-between items-center ml-3">
-                        <Text style={{ fontSize: 14 }} className="mr-2 italic font-medium text-neutral-600">
+                        <Text className="mr-2 text-xs italic font-medium text-neutral-600">
                             Tự luận
                         </Text>
                         {renderEssayScore(item.essayScore, item.isGraded)}

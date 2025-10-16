@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   render() {
     if (this.state.hasError) {
       return (
-        <View className="flex-1 justify-center items-center p-6 bg-white">
+        <View className="flex-1 justify-center items-center p-4 bg-white">
           <Text className="mb-4 text-lg font-bold text-red-600">
             Có lỗi xảy ra
           </Text>
@@ -35,7 +35,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
             {this.state.error?.message || 'Unknown error occurred'}
           </Text>
           <TouchableOpacity
-            className="px-6 py-3 bg-blue-500 rounded-lg"
+            className="px-4 py-3 bg-blue-500 rounded-lg"
             onPress={() => this.setState({ hasError: false, error: undefined })}
           >
             <Text className="font-medium text-white">Thử lại</Text>

@@ -18,7 +18,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
             disabled={isLocked}
             className={`mb-4 w-full shadow-sm min-h-[140px] ${cardBgColor} rounded-[10px]`}
         >
-            <View className="flex-row flex-1 gap-7 justify-between items-center px-6 py-4 w-full">
+            <View className="flex-row flex-1 gap-7 justify-between items-center px-4 py-4 w-full">
                 {/* Icon */}
                 <View>
                     {isExam ? (
@@ -67,8 +67,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                     {!isExam && chapter.videoCount > 0 && (
                         <View className="flex-row justify-end">
                             <Text
-                                className={`font-medium ${subtitleTextColor}`}
-                                style={{ fontSize: 16 }}
+                                className={`text-xs font-medium ${subtitleTextColor}`}
                             >
                                 {chapter.videoCount} video
                             </Text>
@@ -80,8 +79,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                         {/* Certificate */}
                         {!isExam && (
                             <Text
-                                className={`font-medium ${subtitleTextColor}`}
-                                style={{ fontSize: 16 }}
+                                className={`text-xs font-medium ${subtitleTextColor}`}
                             >
                                 {chapter.certificate}
                             </Text>
@@ -96,8 +94,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                                 />
                                 {/* Progress Text - Centered in Progress Bar */}
                                 <Text
-                                    className="z-10 font-medium text-center text-black"
-                                    style={{ fontSize: 16 }}
+                                    className="z-10 text-xs font-medium text-center text-black"
                                 >
                                     Completed {chapter.progress}%
                                 </Text>

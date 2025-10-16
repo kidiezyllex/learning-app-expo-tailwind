@@ -21,7 +21,7 @@ export default function SearchBar({
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-      <View style={{ height: 48 }} className="bg-white rounded-[26px] flex-row items-center px-6">
+      <View style={{ height: 48 }} className="bg-white rounded-[26px] flex-row items-center px-4">
         <TouchableOpacity onPress={handleSearch}>
           <Image
             source={icons.search}
