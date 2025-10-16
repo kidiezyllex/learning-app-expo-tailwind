@@ -1,4 +1,5 @@
 import { Comment } from '@/data/commentsMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, View } from 'react-native';
 
 interface CommentCardProps {
@@ -13,7 +14,7 @@ export default function CommentCard({ comment, onLike }: CommentCardProps) {
         {/* Avatar */}
         <Image
            source={require('../../assets/images/sample-avatar.png')}
-          style={{ width: 50, height: 50 }}
+          style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 50 }}
           className="mr-4 rounded-full"
           resizeMode="cover"
         />
@@ -23,8 +24,7 @@ export default function CommentCard({ comment, onLike }: CommentCardProps) {
           {/* Username and Time */}
           <View style={{ gap: 8 }} className="flex-row items-center mb-2">
             <Text 
-              style={{ fontSize: 20 }}
-              className="font-semibold text-black"
+              className="text-sm font-semibold text-black"
             >
               {comment.username}
             </Text>
@@ -42,8 +42,7 @@ export default function CommentCard({ comment, onLike }: CommentCardProps) {
           
           {/* Comment Text */}
           <Text 
-            style={{ fontSize: 24 }}
-            className="mb-2 font-medium text-black"
+            className="mb-2 text-base font-medium text-black"
           >
             {comment.content}
           </Text>

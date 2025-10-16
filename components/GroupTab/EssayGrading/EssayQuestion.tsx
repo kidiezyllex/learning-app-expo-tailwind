@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, View } from 'react-native';
 import { icons } from '../../../assets/icons/icons';
 import { QuestionResult } from '../../../data/examResultMockData';
@@ -19,8 +20,8 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
     >
       {/* Question Text */}
       <Text
-        style={{ fontSize: 24, marginBottom: 24 }}
-        className="font-semibold text-black"
+        style={{ marginBottom: getScaleFactor() * 24 }}
+        className="text-base font-semibold text-black"
       >
         Question {question.questionNumber || 'N/A'}: {question.questionText || 'No question text'}
       </Text>

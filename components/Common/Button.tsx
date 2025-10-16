@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Pressable, Text, View, ViewStyle } from 'react-native';
 
 interface ButtonProps {
@@ -16,17 +17,17 @@ export default function Button({ text, onPress, disabled = false, style }: Butto
       <View
         style={[
           {
-            height: 60,
-            paddingHorizontal: 70,
+            height: getScaleFactor() * 60,
+            paddingHorizontal: getScaleFactor() * 70,
+            borderRadius: getScaleFactor() * 10,
           },
           style
         ]}
-        className={`bg-[#1877F2] px-[70px] rounded-[10px] justify-center items-center ${
+        className={`bg-[#1877F2] justify-center items-center ${
           disabled ? 'opacity-50' : ''}`}
       >
         <Text
-          className="font-semibold text-white"
-          style={{ fontSize: 24 }}
+          className="text-base font-semibold text-white"
         >
           {text}
         </Text>

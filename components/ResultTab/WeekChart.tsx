@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling'
 import React, { useState } from 'react'
 import { Dimensions, View } from 'react-native'
 import Svg, { Line, Rect, Text as SvgText } from 'react-native-svg'
@@ -96,9 +97,9 @@ export default function WeekChart() {
       return (
         <SvgText
           key={item.day}
-          x={x}
-          y={chartHeight + 15}
-          fontSize="20"
+          x={getScaleFactor() * x}
+          y={getScaleFactor() * (chartHeight + 15)}
+          fontSize={getScaleFactor() * 20}
           fill="#6b7280"
           textAnchor="middle"
         >
@@ -116,8 +117,8 @@ export default function WeekChart() {
         setContainerWidth(Math.max(width, requiredWidth))
       }}
     >
-      <View style={{ height: chartHeight + 40, width: chartWidth }}>
-        <Svg width={chartWidth} height={chartHeight + 40}>
+      <View style={{ height: getScaleFactor() * (chartHeight + 40), width: getScaleFactor() * chartWidth }}>
+        <Svg width={getScaleFactor() * chartWidth} height={getScaleFactor() * (chartHeight + 40)}>
           {/* Grid lines */}
           {renderGridLines()}
           

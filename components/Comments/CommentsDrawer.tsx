@@ -1,4 +1,5 @@
 import { Comment, commentsMockData } from '@/data/commentsMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
@@ -57,10 +58,9 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
 
   const renderContent = () => (
     <BottomSheetView style={{ flex: 1}}>
-      <View style={{ paddingHorizontal: 28, paddingBottom: 24 }} className="w-full border-b border-b-[#C5C5C5] justify-between flex-row items-center">
+      <View style={{ paddingHorizontal: getScaleFactor() * 28, paddingBottom: getScaleFactor() * 24 }} className="w-full border-b border-b-[#C5C5C5] justify-between flex-row items-center">
         <Text 
-          style={{ fontSize: 30 }}
-          className="font-semibold text-black"
+          className="text-xl font-semibold text-black"
         >
           Bình luận
         </Text>
@@ -69,7 +69,7 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
          >
           <Image
             source={icons.close}
-            style={{ width: 25, height: 25 }}
+            style={{ width: getScaleFactor() * 25, height: getScaleFactor() * 25 }}
             resizeMode="contain"
           />
         </TouchableOpacity>
@@ -81,8 +81,8 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
         renderItem={renderCommentItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 20 }}
-        style={{ flex: 1, paddingHorizontal: 28, paddingTop: 24 }}
+        contentContainerStyle={{ paddingBottom: getScaleFactor() * 20 }}
+        style={{ flex: 1, paddingHorizontal: getScaleFactor() * 28, paddingTop: getScaleFactor() * 24 }}
       />
 
       {/* Comment Input */}

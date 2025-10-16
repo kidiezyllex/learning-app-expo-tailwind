@@ -1,4 +1,5 @@
 import { Chapter } from '@/data/chaptersMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
 interface ChapterCardProps {
@@ -16,47 +17,50 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
         <TouchableOpacity
             onPress={onPress}
             disabled={isLocked}
-            className={`mb-4 w-full shadow-sm min-h-[140px] ${cardBgColor} rounded-[10px]`}
+            style={{ marginBottom: getScaleFactor() * 16, minHeight: getScaleFactor() * 140 }}
+            className={`w-full shadow-sm ${cardBgColor}`}
         >
-            <View className="flex-row flex-1 gap-7 justify-between items-center px-4 py-4 w-full">
+            <View 
+            style={{ gap: getScaleFactor() * 28 }}
+            className="flex-row flex-1 justify-between items-center p-4 w-full">
                 {/* Icon */}
                 <View>
                     {isExam ? (
                         <Image
                             source={icons.exam}
-                            style={{ width: 44, height: 63 }}
+                            style={{ width: getScaleFactor() * 44, height: getScaleFactor() * 63 }}
                             resizeMode="contain"
                         />
                     ) : isLocked ? (
                         <Image
                             source={icons.study}
-                            style={{ width: 50, height: 40 }}
+                            style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 40 }}
                             resizeMode="contain"
                         />
                     ) : (
                         <Image
                             source={icons.activeStudy}
-                            style={{ width: 50, height: 40 }}
+                            style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 40 }}
                             resizeMode="contain"
                         />
                     )}
                 </View>
 
                 {/* Content */}
-                <View className="flex-col gap-1 justify-between max-w-[480px] w-[480px] h-full">
+                <View 
+                style={{ maxWidth: getScaleFactor() * 480, width: getScaleFactor() * 480}}
+                className="flex-col gap-1 justify-between h-full">
                   <View className='flex-col flex-1 justify-between h-full'>
                       {/* Title Exam*/}
                       {isExam && <Text
-                        className={`font-semibold line-clamp-2 ${titleTextColor}`}
-                        style={{ fontSize: 24 }}
+                        className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
                         numberOfLines={2}
                     >
                         {chapter.title}
                     </Text>}
                     {/* Title */}
                     <Text
-                        className={`font-semibold line-clamp-2 ${titleTextColor}`}
-                        style={{ fontSize: 24 }}
+                        className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
                         numberOfLines={2}
                     >
                         {isExam ? 'Final Exam' : chapter.title}
@@ -87,7 +91,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
 
                         {/* Progress Bar */}
                         {!isLocked && !isExam && (
-                            <View style={{height: 32}} className="justify-center items-center w-72 rounded-lg bg-zinc-300">
+                            <View style={{height: getScaleFactor() * 32, width: getScaleFactor() * 288}} className="justify-center items-center rounded-lg bg-zinc-300">
                                 <View
                                     className="absolute h-full bg-blue-500 rounded-lg"
                                     style={{ width: `${chapter.progress}%` }}
@@ -107,7 +111,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                 <Image
                     className='transform scale-125'
                     source={icons.chevronRight}
-                    style={{ width: 10, height: 21 }}
+                    style={{ width: getScaleFactor() * 10, height: getScaleFactor() * 21 }}
                     resizeMode="contain"
                 />
             </View>

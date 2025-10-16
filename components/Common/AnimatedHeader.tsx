@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { useCallback } from 'react';
 import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import Animated, {
@@ -126,7 +127,7 @@ export default function AnimatedHeader({
               top: 0,
               left: 0,
               right: 0,
-              height: totalHeight,
+              height:  getScaleFactor() * totalHeight,
               backgroundColor,
               zIndex: 1,
             },
@@ -139,9 +140,9 @@ export default function AnimatedHeader({
       <Animated.View
         style={[
           {
-            height: totalHeight,
+            height: getScaleFactor() * totalHeight,
             paddingTop: insets.top,
-            paddingHorizontal: 24,
+            paddingHorizontal: getScaleFactor() * 24,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -157,9 +158,9 @@ export default function AnimatedHeader({
             <TouchableOpacity
               onPress={handleBackPress}
               style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
+                width: getScaleFactor() * 40,
+                height: getScaleFactor() * 40,
+                borderRadius: getScaleFactor() * 20,
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -168,7 +169,7 @@ export default function AnimatedHeader({
             >
               <Image
                 source={icons.leftArrow}
-                style={{ width: 24, height: 24 }}
+                style={{ width: getScaleFactor() * 24, height: getScaleFactor() * 24 }}
                 resizeMode="contain"
               />
             </TouchableOpacity>
@@ -183,11 +184,9 @@ export default function AnimatedHeader({
           ]}
         >
           <Text
+            className="text-base font-semibold text-center"
             style={{
-              fontSize: 24,
-              fontWeight: '600',
               color: textColor,
-              textAlign: 'center',
             }}
             numberOfLines={1}
           >
@@ -203,9 +202,9 @@ export default function AnimatedHeader({
                 <TouchableOpacity
                   onPress={handleFirstRightIconClick}
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20,
+                    width: getScaleFactor() * 40,
+                    height: getScaleFactor() * 40,
+                    borderRadius: getScaleFactor() * 20,
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -214,7 +213,7 @@ export default function AnimatedHeader({
                 >
                   <Image
                     source={firstRightIcon}
-                    style={{ width: firstRightIconWidth, height: firstRightIconHeight }}
+                    style={{ width: getScaleFactor() * firstRightIconWidth, height: getScaleFactor() * firstRightIconHeight }}
                     resizeMode="contain"
                   />
                 </TouchableOpacity>
@@ -223,9 +222,9 @@ export default function AnimatedHeader({
                 <TouchableOpacity
                   onPress={handleSecondRightIconClick}
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20,
+                    width: getScaleFactor() * 40,
+                    height: getScaleFactor() * 40,
+                    borderRadius: getScaleFactor() * 20,
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -234,7 +233,7 @@ export default function AnimatedHeader({
                 >
                   <Image
                     source={secondRightIcon}
-                    style={{ width: secondRightIconWidth, height: secondRightIconHeight }}
+                    style={{ width: getScaleFactor() * secondRightIconWidth, height: getScaleFactor() * secondRightIconHeight }}
                     resizeMode="contain"
                   />
                 </TouchableOpacity>

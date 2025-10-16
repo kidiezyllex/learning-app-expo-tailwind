@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { usePathname, useRouter } from 'expo-router';
 import { View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
@@ -10,35 +11,35 @@ const navigationTabs = [
     label: "Home",
     icon: icons.home,
     route: "/(tabs)/",
-    size: 59
+    size: getScaleFactor() * 59
   },
   {
     id: "group",
     label: "Group",
     icon: icons.archiveBook,
     route: "/(tabs)/group",
-    size: 58
+    size: getScaleFactor() * 58
   },
   {
     id: "study",
     label: "Study",
     icon: icons.bookSaved,
     route: "/(tabs)/study",
-    size: 65
+    size: getScaleFactor() * 65
   },
   {
     id: "results",
     label: "Result",
     icon: icons.chart,
     route: "/(tabs)/results",
-    size: 54
+    size: getScaleFactor() * 54
   },
   {
     id: "profile",
     label: "Profile",
     icon: icons.user,
     route: "/(tabs)/profile",
-    size: 49
+    size: getScaleFactor() * 49
   }
 ];
 
@@ -70,7 +71,6 @@ export default function TabBarWrapper() {
   const activeTab = getActiveTab();
 
   const handleTabPress = (route: string, tabId: string) => {
-    // Reset HomeTab to "home" when Home tab is pressed
     if (tabId === "home") {
       setCurrentHomeScreen("home");
     }
@@ -84,7 +84,7 @@ export default function TabBarWrapper() {
       left: 0,
       right: 0,
       backgroundColor: 'white',
-      height: 124,
+      height: getScaleFactor() * 124,
       borderTopWidth: 0,
       elevation: 0,
       shadowOpacity: 0,

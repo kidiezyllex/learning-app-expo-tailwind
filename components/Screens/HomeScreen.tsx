@@ -56,7 +56,9 @@ export default function HomeScreen() {
   }, []);
 
   const renderCourseItem = useCallback(({ item, index }: { item: any; index: number }) => (
-    <View className={`${index % 2 === 0 ? 'pr-3' : 'pl-3'} mb-6 flex-1`}>
+    <View
+      style={{ paddingRight: index % 2 === 0 ? getScaleFactor() * 12 : 0, paddingLeft: index % 2 === 0 ? 0 : getScaleFactor() * 12, marginBottom: getScaleFactor() * 24 }}
+      className="flex-1">
       <CourseCard
         course={item}
         onPress={() => handleCoursePress(item.id)}
@@ -74,16 +76,14 @@ export default function HomeScreen() {
   ), [tabOptions, handleTabPress]);
 
   return (
-    <View 
-    style={{ paddingTop: 25 }}
-    className="flex-1">
+    <View className="flex-1">
       <ScreenHeader
         title="Home"
         showRightIcons={true}
         firstRightIcon={icons.activeSearch}
         firstRightIconWidth={getScaleFactor() * 50.81}
         firstRightIconHeight={getScaleFactor() * 50.81}
-        handleFirstRightIconClick={() => {}}
+        handleFirstRightIconClick={() => { }}
       />
       <FlatList
         data={getFilteredCourses()}
@@ -91,7 +91,7 @@ export default function HomeScreen() {
         keyExtractor={(item) => item.id}
         numColumns={2}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180, paddingHorizontal: 24 }}
+        contentContainerStyle={{ paddingBottom: getScaleFactor() * 180, paddingHorizontal: getScaleFactor() * 24 }}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
         ListHeaderComponent={renderHeader}
         refreshControl={

@@ -45,8 +45,7 @@ export default function CourseDetailsScreen() {
     }
 
     return (
-        <View  style={{ paddingTop: 25 }}
-        className="flex-1">
+        <View className="flex-1">
             <ScreenHeader
                 title="Course Details"
                 handleBackClick={handleBackPress}
@@ -89,8 +88,7 @@ export default function CourseDetailsScreen() {
                 {activeTab === "scores" && (
                     <View className="px-4 py-8">
                         <Text
-                            className="text-center text-gray-500"
-                            style={{ fontSize: 20 }}
+                            className="text-sm text-center text-gray-500"
                         >
                             Scores content coming soon...
                         </Text>

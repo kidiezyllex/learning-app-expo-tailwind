@@ -35,8 +35,8 @@ export default function SearchBar({
           onChangeText={setSearchQuery}
           placeholder={placeholder}
           placeholderTextColor="#9CA3AF"
-          style={{ fontSize: 20, height: 48, minHeight: 48 }}
-          className="flex-1 ml-3 text-zinc-400"
+          style={{ height: 48, minHeight: 48 }}
+          className="flex-1 ml-3 text-sm text-zinc-400"
           onSubmitEditing={handleSearch}
           returnKeyType="search"
         />

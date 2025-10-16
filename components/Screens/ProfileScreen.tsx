@@ -70,8 +70,8 @@ export default function ProfileScreen() {
   const StatCard = ({ title, value, subtitle }: { title: string; value: string | number; subtitle?: string }) => (
     <View className="flex-1 items-center p-4 bg-white rounded-xl">
       <Text className="text-xl font-bold text-blue-600">{value}</Text>
-      <Text style={{ fontSize: 20 }} className="text-center text-gray-600">{title}</Text>
-      {subtitle && <Text style={{ fontSize: 20 }} className="mt-1 text-center text-gray-500">{subtitle}</Text>}
+      <Text className="text-sm text-center text-gray-600">{title}</Text>
+      {subtitle && <Text className="mt-1 text-sm text-center text-gray-500">{subtitle}</Text>}
     </View>
   );
 
@@ -93,7 +93,7 @@ export default function ProfileScreen() {
       </View>
       
       <View className="flex-1">
-        <Text style={{ fontSize: 24 }} className={`font-medium ${item.isDestructive ? 'text-red-600' : 'text-gray-900'}`}>
+        <Text className={`text-base font-medium ${item.isDestructive ? 'text-red-600' : 'text-gray-900'}`}>
           {item.title}
         </Text>
       </View>
@@ -101,7 +101,7 @@ export default function ProfileScreen() {
       <View className="flex-row items-center">
         {item.badge && (
           <View className="px-2 py-1 mr-2 bg-blue-100 rounded-full">
-            <Text style={{ fontSize: 20 }} className="font-medium text-blue-800">{item.badge}</Text>
+            <Text className="text-sm font-medium text-blue-800">{item.badge}</Text>
           </View>
         )}
         {item.hasArrow && (
@@ -148,10 +148,10 @@ export default function ProfileScreen() {
                   size="large"
                 />
               </View>
-              <Text style={{ fontSize: 24 }} className="mb-1 font-bold text-gray-900">
+              <Text className="mb-1 text-base font-bold text-gray-900">
                 {mockUser.name}
               </Text>
-              <Text style={{ fontSize: 20 }} className="mb-4 text-gray-600">
+              <Text className="mb-4 text-sm text-gray-600">
                 student@example.com
               </Text>
               
@@ -160,8 +160,7 @@ export default function ProfileScreen() {
                 style={{ height: 60, paddingHorizontal: 70 }}
               >
                 <Text
-                  className="font-semibold text-white"
-                  style={{ fontSize: 24 }}
+                  className="text-base font-semibold text-white"
                 >
                   Chỉnh sửa hồ sơ
                 </Text>
@@ -192,10 +191,10 @@ export default function ProfileScreen() {
 
             {/* App Info */}
             <View className="p-4 mb-6 bg-white rounded-xl">
-              <Text style={{ fontSize: 20 }} className="text-center text-gray-500">
+              <Text className="text-sm text-center text-gray-500">
                 Phiên bản ứng dụng 1.0.0
               </Text>
-              <Text style={{ fontSize: 20 }} className="mt-1 text-center text-gray-400">
+              <Text className="mt-1 text-sm text-center text-gray-400">
                 © 2024 Learning App. Tất cả quyền được bảo lưu.
               </Text>
             </View>

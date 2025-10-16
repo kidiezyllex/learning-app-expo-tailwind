@@ -1,5 +1,6 @@
 import { Course } from '@/components/HomeTab/mock-data';
 import { CourseDetail } from '@/data/courseDetailsMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
 import Button from '../Common/Button';
@@ -17,7 +18,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
             className="flex-1"
         >
             <View className="px-4">
-                <View className="flex-row mb-6" style={{ gap: 50 }}>
+                <View className="flex-row" style={{ gap: getScaleFactor() * 50, marginBottom: getScaleFactor() * 24 }}>
                     {/* Course Thumbnail */}
                     <View className="flex-1">
                         <View className="relative">
@@ -25,16 +26,16 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 source={selectedCourse.thumbnail}
                                 style={{
                                     width: '100%',
-                                    height: 225,
-                                    borderRadius: 10
+                                    height: getScaleFactor() * 225,
+                                    borderRadius: getScaleFactor() * 10
                                 }}
                                 resizeMode="cover"
                             />
                             {/* Play button overlay */}
                             <Image
                                 source={icons.save}
-                                className="absolute top-3 left-3"
-                                style={{ width: 36, height: 44 }}
+                                className="absolute"
+                                style={{ width: getScaleFactor() * 36, height: getScaleFactor() * 44, top: getScaleFactor() * 12, left: getScaleFactor() * 12 }}
                                 resizeMode="cover"
                             />
                         </View>
@@ -46,10 +47,12 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                             {/* Left side - Instructor info */}
                             <View className="flex-1">
                                 <View className="flex-row items-center mb-2">
-                                    <View className="w-[60px] flex justify-start">
+                                    <View 
+                                    style={{ width: getScaleFactor() * 60 }}
+                                    className="flex justify-start">
                                         <Image
                                             source={icons.user}
-                                            style={{ width: 30, height: 30 }}
+                                            style={{ width: getScaleFactor() * 30, height: getScaleFactor() * 30 }}
                                             resizeMode="contain"
                                         />
                                     </View>
@@ -61,10 +64,12 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 </View>
 
                                 <View className="flex-row items-center mb-2">
-                                    <View className="w-[60px] flex justify-start">
+                                    <View 
+                                    style={{ width: getScaleFactor() * 60 }}
+                                    className="flex justify-start">
                                         <Image
                                             source={icons.clock2}
-                                            style={{ width: 36, height: 36 }}
+                                            style={{ width: getScaleFactor() * 36, height: getScaleFactor() * 36 }}
                                             resizeMode="contain"
                                         />
                                     </View>
@@ -76,10 +81,12 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 </View>
 
                                 <View className="flex-row items-center mb-5">
-                                    <View className="w-[60px] flex justify-start">
+                                    <View 
+                                    style={{ width: getScaleFactor() * 60 }}
+                                    className="flex justify-start">
                                         <Image
                                             source={icons.star}
-                                            style={{ width: 34, height: 34 }}
+                                            style={{ width: getScaleFactor() * 34, height: getScaleFactor() * 34 }}
                                             resizeMode="cover"
                                         />
                                     </View>
@@ -90,7 +97,10 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                     </Text>
                                 </View>
 
-                                <View className='w-[200px] flex justify-center items-center flex-col gap-2'>
+                                <View 
+                                
+                                style={{ width: getScaleFactor() * 200 }}
+                                className='flex flex-col gap-2 justify-center items-center'>
                                     <Text
                                         className="text-xl italic font-bold text-black"
                                     >
@@ -99,12 +109,11 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                                     {!course.isPurchased && (
                                         <Pressable
-                                            className="bg-blue-600 rounded-[10px] justify-center items-center"
-                                            style={{ width: 192, height: 48 }}
+                                            className="bg-blue-600 rounded-[5px] justify-center items-center"
+                                            style={{ width: getScaleFactor() * 192, height: getScaleFactor() * 48 }}
                                         >
                                             <Text
-                                                className="font-semibold text-white"
-                                                style={{ fontSize: 20 }}
+                                                className="text-sm font-semibold text-white"
                                             >
                                                 Buy now
                                             </Text>
@@ -117,27 +126,27 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                 </View>
 
                 {/* Course Description */}
-                <View className="mb-6">
-                    <Text className="mb-4 text-xl font-semibold text-black"
+                <View style={{ marginBottom: getScaleFactor() * 24 }}>
+                    <Text className="text-xl font-semibold text-black"
+                    style={{ marginBottom: getScaleFactor() * 16 }}
                     >
                         {selectedCourse.title}
                     </Text>
 
                     <Text
-                        className="font-medium text-stone-500"
-                        style={{ fontSize: 20 }}
+                        className="text-sm font-medium text-stone-500"
                     >
                         {selectedCourse.description}
                     </Text>
                 </View>
 
                 {/* Progress Section */}
-                <View className="flex flex-col gap-3 justify-center items-center mb-">
+                <View className="flex flex-col gap-3 justify-center items-center">
                     <Button text="Edit" onPress={()=>{}} />
                     {!course.isPurchased && (
                         <Text
-                            className="font-medium text-center text-stone-500 max-w-[370px] text-wrap break-words"
-                            style={{ fontSize: 20 }}
+                            className="text-sm font-medium text-center break-words text-stone-500 text-wrap"
+                            style={{ maxWidth: getScaleFactor() * 370 }}
                         >
                             Complete {course.progress}% of the course progress to unlock the assessment feature
                         </Text>
@@ -146,53 +155,53 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                 {/* Reviews Section */}
                 {course.reviews && course.reviews.length > 0 && (
-                    <View style={{ marginTop: 24 }}>
+                    <View style={{ marginTop: getScaleFactor() * 24 }}>
                         {course.reviews.map((review) => (
                             <View
                                 key={review.id}
-                                className="bg-white rounded-[10px] p-4 mb-4"
+                                className="bg-white rounded-[10px] p-4"
+                                style={{ marginBottom: getScaleFactor() * 24 }}
                             >
-                                <View className="flex-row justify-between items-center mb-3">
+                                <View className="flex-row justify-between items-center" style={{ marginBottom: getScaleFactor() * 12 }}>
                                     <View className="flex-row flex-1 items-center">
                                         <View
-                                            className="flex flex-shrink-0 justify-center items-center mr-3 rounded-full border-2 border-stone-500"
+                                            className="flex flex-shrink-0 justify-center items-center rounded-full border-2 border-stone-500"
                                             style={{ 
-                                                width: 48, 
-                                                height: 48, 
-                                                minWidth: 48, 
-                                                minHeight: 48, 
-                                                maxWidth: 48,
-                                                maxHeight: 48,
+                                                width: getScaleFactor() * 48, 
+                                                height: getScaleFactor() * 48, 
+                                                minWidth: getScaleFactor() * 48, 
+                                                minHeight: getScaleFactor() * 48, 
+                                                maxWidth: getScaleFactor() * 48,
+                                                maxHeight: getScaleFactor() * 48,
                                                 borderRadius: 100,
-                                                flexBasis: 48
+                                                flexBasis: 48,
+                                                marginRight: getScaleFactor() * 12,
                                             }}
                                         >
                                             <Image
                                                 source={icons.user}
-                                                style={{ width: 31, height: 31 }}
+                                                style={{ width: getScaleFactor() * 31, height: getScaleFactor() * 31 }}
                                                 resizeMode="cover"
                                             />
                                         </View>
 
                                         <View className="flex-1">
                                             <Text
-                                                className="font-medium text-black"
-                                                style={{ fontSize: 20 }}
+                                                className="text-sm font-medium text-black"
                                             >
                                                 {review.user.name}
                                             </Text>
                                         </View>
                                     </View>
 
-                                    <View className="flex-row gap-2 items-center">
+                                    <View className="flex-row gap-1 items-center">
                                         <Image
                                             source={icons.star}
-                                            style={{ width: 33, height: 33 }}
+                                            style={{ width: getScaleFactor() * 33, height: getScaleFactor() * 33 }}
                                             resizeMode="cover"
                                         />
                                         <Text
-                                            className="font-medium text-black"
-                                            style={{ fontSize: 20 }}
+                                            className="text-sm font-medium text-black"
                                         >
                                             {review.rating}/{review.maxRating}
                                         </Text>
@@ -201,8 +210,8 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                                 <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
                                     <TextInput
-                                        className="font-medium text-neutral-500 h-[70px]"
-                                        style={{ fontSize: 20 }}
+                                        className="text-sm font-medium text-neutral-500"
+                                        style={{ height: getScaleFactor() * 70 }}
                                         value={review.comment}
                                         multiline={true}
                                         editable={true}

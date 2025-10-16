@@ -10,7 +10,7 @@ export default function CoursesStatistics() {
       backgroundColor: '#FFF',
     }}
     className="p-4 mb-4 w-full bg-white shadow-sm">
-      <Text style={{ fontSize: 24 }} className="mb-4 font-semibold text-black">
+      <Text className="mb-4 text-base font-semibold text-black">
         Courses Statistics
       </Text>
 

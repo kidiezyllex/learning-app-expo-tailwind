@@ -15,10 +15,10 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
     <View className="mb-8">
       {/* Question Header */}
       <View className="flex-row items-center mb-14">
-        <Text style={{ fontSize: 24 }} className="mr-2 font-semibold text-blue-600">
+        <Text className="mr-2 text-base font-semibold text-blue-600">
           Câu hỏi {question.questionNumber}:
         </Text>
-        <Text style={{ fontSize: 24 }} className="flex-1 font-medium text-black">
+        <Text className="flex-1 text-base font-medium text-black">
           {question.questionText}
         </Text>
       </View>
@@ -39,7 +39,7 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
               }`}
               style={{ minHeight: 64 }}
             >
-              <View className="flex-row items-center px-4 py-4">
+              <View className="flex-row items-center p-4">
                 {/* Custom Radio Button */}
                 <View className={`w-9 h-9 rounded-full mr-4 ${
                   isSelected 
@@ -53,8 +53,7 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
                 
                 {/* Option Text */}
                 <Text 
-                  style={{ fontSize: 24 }} 
-                  className="flex-1 font-medium text-black"
+                  className="flex-1 text-base font-medium text-black"
                   numberOfLines={3}
                 >
                   {option.text}

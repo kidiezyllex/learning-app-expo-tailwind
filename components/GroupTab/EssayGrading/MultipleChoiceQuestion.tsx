@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, View } from 'react-native';
 import { icons } from '../../../assets/icons/icons';
 import { QuizQuestion } from '../../../data/quizResultMockData';
@@ -61,8 +62,8 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
     >
       {/* Question Text */}
       <Text
-        style={{ fontSize: 24, marginBottom: 24 }}
-        className="font-semibold text-black"
+        style={{ marginBottom: getScaleFactor() * 24 }}
+        className="text-base font-semibold text-black"
       >
         Question: {question.questionText}
       </Text>

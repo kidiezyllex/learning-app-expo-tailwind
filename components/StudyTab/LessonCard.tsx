@@ -69,8 +69,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                     {!isExam && <View className='flex-col flex-1 justify-between h-full'>
                         {/* Title */}
                         <Text
-                            className={`font-semibold line-clamp-2 ${titleTextColor}`}
-                            style={{ fontSize: 24 }}
+                            className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
                             numberOfLines={2}
                         >
                             {lesson.title}
@@ -85,8 +84,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                             resizeMode="contain"
                         />
                         <Text
-                            className={`font-medium ${subtitleTextColor}`}
-                            style={{ fontSize: 18 }}
+                            className={`text-sm font-medium ${subtitleTextColor}`}
                         >
                             Duration: {lesson.duration}
                         </Text>

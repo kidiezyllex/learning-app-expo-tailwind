@@ -62,10 +62,10 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
               style={{ paddingHorizontal: 16, paddingVertical: 24 }}
               className="flex-row justify-between items-center">
               <View className="flex-row flex-1 gap-1">
-                <Text style={{ fontSize: 24 }} className="font-semibold text-black">
+                <Text className="text-base font-semibold text-black">
                   Game Object -
                 </Text>
-                <Text style={{ fontSize: 24 }} className="text-black">
+                <Text className="text-base text-black">
                   Bài kiểm tra cuối khóa
                 </Text>
               </View>
@@ -96,7 +96,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                   resizeMode="contain"
                 />
               </TouchableOpacity>
-              <Text style={{ fontSize: 24 }} className="font-semibold text-black">
+              <Text className="text-base font-semibold text-black">
                 {data.studentName || 'Unknown Student'}
               </Text>
             </View>

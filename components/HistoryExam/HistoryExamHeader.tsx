@@ -15,7 +15,7 @@ export default function HistoryExamHeader() {
                     <View className="w-1 h-5 rounded-[20px] border-[5px] border-white" />
                 </View>
                 
-                <Text style={{ fontSize: 24 }} className="font-semibold text-white">
+                <Text className="text-base font-semibold text-white">
                     Final Exam
                 </Text>
                 

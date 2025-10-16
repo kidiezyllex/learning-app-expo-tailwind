@@ -1,4 +1,5 @@
 import { Course } from '@/data/mockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { useState } from 'react';
 import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
@@ -18,7 +19,7 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       style={{
         borderRadius: 10,
         backgroundColor: '#FFF',
-        minHeight: 134
+        minHeight: getScaleFactor() * 134
       }}
       onPress={onPress}
       onPressIn={() => setIsPressed(true)}
@@ -36,13 +37,13 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       >
         <Image
           source={icons.chevronRight}
-          style={{ width: 10, height: 21 }}
+          style={{ width: getScaleFactor() * 10, height: getScaleFactor() * 21 }}
           resizeMode="cover"
         />
       </TouchableOpacity>
 
       {/* Course Title */}
-      <Text style={{ fontSize: 24 }} className="mb-3 font-semibold text-black line-clamp-1">
+      <Text className="mb-3 text-base font-semibold text-black line-clamp-1">
         {course.title}
       </Text>
 
@@ -50,10 +51,10 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       {course.userName && <View className="flex-row items-center mb-5">
         <Image
           source={icons.user}
-          style={{ width: 45, height: 45 }}
+          style={{ width: getScaleFactor() * 45, height: getScaleFactor() * 45 }}
           resizeMode="cover"
         />
-        <Text style={{ fontSize: 20 }} className="ml-3 font-medium text-zinc-600">
+        <Text className="ml-3 text-sm font-medium text-zinc-600">
           {course.userName}
         </Text>
       </View>}
@@ -64,7 +65,7 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       </View>
 
       {/* Completed Tests */}
-      {course.completedTests > -1 && <Text style={{ fontSize: 20, marginTop: 14 }} className="font-medium text-black">
+      {course.completedTests > -1 && <Text style={{ marginTop: 14 }} className="text-sm font-medium text-black">
         Bài kiểm tra đã hoàn thành: {course.completedTests}
       </Text>
       }

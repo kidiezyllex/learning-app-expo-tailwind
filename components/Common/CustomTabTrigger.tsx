@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Pressable, Text, View } from 'react-native';
 
 interface CustomTabTriggerProps {
@@ -20,10 +21,10 @@ export default function CustomTabTrigger({
       onPress={onPress}
       style={{
         flex: 1,
-        height: isActive ? 140 : 124,
+        height: isActive ? getScaleFactor() * 140 : getScaleFactor() * 124,
         flexShrink: 0,
-        borderTopLeftRadius: isActive ? 32 : 0,
-        borderTopRightRadius: isActive ? 32 : 0,
+        borderTopLeftRadius: isActive ? getScaleFactor() * 32 : 0,
+        borderTopRightRadius: isActive ? getScaleFactor() * 32 : 0,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         backgroundColor: isActive ? '#1877F2' : 'transparent',
@@ -47,11 +48,8 @@ export default function CustomTabTrigger({
           resizeMode="contain"
         />
         <Text
-          style={{
-            fontSize: 20,
-            fontWeight: '500',
-            color: isActive ? '#ffffff' : '#646464',
-          }}
+        className="text-sm font-medium"
+        style={{ color: isActive ? '#ffffff' : '#646464' }}
         >
           {label}
         </Text>

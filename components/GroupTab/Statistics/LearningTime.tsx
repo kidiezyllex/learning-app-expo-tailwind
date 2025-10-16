@@ -10,7 +10,7 @@ export default function LearningTime() {
         backgroundColor: '#FFF',
       }}
       className="p-4 mb-4 w-full shadow-sm">
-      <Text style={{ fontSize: 24 }} className="mb-4 font-semibold text-black">
+      <Text className="mb-4 text-base font-semibold text-black">
         Learning Time
       </Text>
 
@@ -25,7 +25,7 @@ export default function LearningTime() {
               style={{ width: 35, height: 35 }}
               className="mr-4"
             />
-            <Text style={{ fontSize: 20 }} className="flex-1 font-medium text-black">
+            <Text className="flex-1 text-sm font-medium text-black">
               Total Learning Time:
             </Text>
           </View>
@@ -46,7 +46,7 @@ export default function LearningTime() {
               style={{ width: 32, height: 32 }}
               className="mr-4"
             />
-            <Text style={{ fontSize: 20 }} className="flex-1 font-medium text-black">
+            <Text className="flex-1 text-sm font-medium text-black">
               Average Learning Time:
             </Text>
           </View>
@@ -67,7 +67,7 @@ export default function LearningTime() {
               style={{ width: 31, height: 31 }}
               className="mr-4"
             />
-            <Text style={{ fontSize: 20 }} className="flex-1 font-medium text-black">
+            <Text className="flex-1 text-sm font-medium text-black">
               Top Learning (yesterday):
             </Text>
           </View>

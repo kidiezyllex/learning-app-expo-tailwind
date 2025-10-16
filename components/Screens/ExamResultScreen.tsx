@@ -35,10 +35,10 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
             className="p-4 mb-10 w-full h-16 bg-white rounded-2xl shadow-sm">
             <View className="flex-row justify-between items-center">
               <View className="flex-row flex-1 gap-1">
-                <Text style={{ fontSize: 24 }} className="font-semibold text-black">
+                <Text className="text-base font-semibold text-black">
                   Nhà sáng lập -
                 </Text>
-                <Text style={{ fontSize: 24 }} className="text-black">
+                <Text className="text-base text-black">
                   Bài kiểm tra cuối khóa
                 </Text>
               </View>
@@ -76,7 +76,7 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
               className="rounded-full"
               resizeMode="cover"
             />
-            <Text style={{ fontSize: 24 }} className="font-semibold text-black">
+            <Text className="text-base font-semibold text-black">
               {data.studentName || 'Unknown Student'}
             </Text>
           </View>

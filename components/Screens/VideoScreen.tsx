@@ -98,8 +98,7 @@ export default function VideoScreen() {
 
                     <View className="flex-1 justify-center items-center">
                         <Text
-                            style={{ fontSize: 24 }}
-                            className="font-medium text-white">
+                            className="text-base font-medium text-white">
                             {videoData.title}
                         </Text>
                     </View>
@@ -122,8 +121,8 @@ export default function VideoScreen() {
                         resizeMode="contain"
                     />
                     <Text
-                        className='text-center text-white'
-                        style={{ fontSize: 24, fontWeight: '500', marginTop: 4 }}
+                        className='text-base font-medium text-center text-white'
+                        style={{ marginTop: 4 }}
                     >
                         2.5M
                     </Text>
@@ -135,8 +134,8 @@ export default function VideoScreen() {
                         resizeMode="contain"
                     />
                     <Text
-                        className='text-center text-white'
-                        style={{ fontSize: 24, fontWeight: '500', marginTop: 4 }}
+                        className='text-base font-medium text-center text-white'
+                        style={{ marginTop: 4 }}
                     >
                         300
                     </Text>
@@ -269,13 +268,12 @@ export default function VideoScreen() {
                         source={require('../../assets/images/sample-avatar.png')}
                         resizeMode="contain"
                     />
-                    <Text className='font-semibold text-white' style={{ fontSize: 30 }}>Mr. Tung Tung Sahur</Text>
+                    <Text className='text-xl font-semibold text-white' >Mr. Tung Tung Sahur</Text>
                 </View>
 
                 <View className='h-[150px] min-h-[150px] w-full'>
                     <Text
-                        style={{ fontSize: 24 }}
-                        className='font-semibold text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
+                        className='text-base font-semibold text-white'>Các thành phần chính của báo cáo tài chính năm 2024 là gì? Câu hỏi này đã được giải đáp trong video này.</Text>
                 </View>
             </View>
             {/* Comments Drawer */}

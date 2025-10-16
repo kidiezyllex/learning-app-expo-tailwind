@@ -62,7 +62,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
       case "progress":
         return (
           <View className="p-4 bg-white rounded-xl shadow-sm">
-            <Text style={{ fontSize: 20 }} className="font-semibold text-center text-black">
+            <Text className="text-sm font-semibold text-center text-black">
               My Progress Content
             </Text>
             <Text className="mt-2 text-xs text-center text-gray-600">
@@ -73,7 +73,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
       case "user":
         return (
           <View className="p-4 bg-white rounded-xl shadow-sm">
-            <Text style={{ fontSize: 20 }} className="font-semibold text-center text-black">
+            <Text className="text-sm font-semibold text-center text-black">
               User Content
             </Text>
             <Text className="mt-2 text-xs text-center text-gray-600">

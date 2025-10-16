@@ -82,7 +82,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                 <View className="flex-1">
                     {/* Student Name and Total Score */}
                     <View className="flex-row justify-between items-center">
-                        <Text style={{ fontSize: 24 }} className="font-semibold text-black">
+                        <Text className="text-base font-semibold text-black">
                             {item.studentName}
                         </Text>
                         <Text className="text-xl font-semibold text-red-600">
@@ -129,13 +129,13 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
     const renderHeader = useCallback(() => (
         <View style={{ marginBottom: 40 }} className="flex-row justify-between items-center px-5">
             <TouchableOpacity onPress={handleSelectAll}>
-                <Text style={{ fontSize: 20 }} className="font-bold text-blue-500 underline">
+                <Text className="text-sm font-bold text-blue-500 underline">
                     Select All
                 </Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleCancel}>
-                <Text style={{ fontSize: 20 }} className="font-bold text-blue-500 underline">
+                <Text className="text-sm font-bold text-blue-500 underline">
                     Cancel
                 </Text>
             </TouchableOpacity>

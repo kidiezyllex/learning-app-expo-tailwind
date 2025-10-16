@@ -28,7 +28,7 @@ export default function ProgressBar({
             top: '50%',
             transform: [{ translateX: -50 }, { translateY: -14 }]
           }}>
-            <Text style={{ fontSize: 20 }} className="z-10 font-medium text-black">
+            <Text className="z-10 text-sm font-medium text-black">
               {progress}% completed
             </Text>
           </View>
