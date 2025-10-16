@@ -1,5 +1,4 @@
 import ErrorBoundary from '@/components/Common/ErrorBoundary';
-import ViewportScaler from '@/components/Common/ViewportScaler';
 import { CourseProvider } from '@/contexts/CourseContext';
 import { NavigationProvider } from '@/contexts/NavigationContext';
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
@@ -40,7 +39,7 @@ export default function RootLayout() {
         <ErrorBoundary>
           <NavigationProvider>
             <CourseProvider>
-              <ViewportScaler>
+              {/* <ViewportScaler> */}
                 <View style={{ flex: 1 }}>
                   <Stack
                     screenOptions={{
@@ -48,7 +47,7 @@ export default function RootLayout() {
                     }}
                   />
                 </View>
-              </ViewportScaler>
+              {/* </ViewportScaler> */}
             </CourseProvider>
           </NavigationProvider>
         </ErrorBoundary>

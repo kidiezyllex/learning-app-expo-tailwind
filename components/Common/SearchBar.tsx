@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 interface SearchBarProps {
   placeholder?: string;
   onSearch?: (query: string) => void;
@@ -23,7 +24,7 @@ export default function SearchBar({
       <View style={{ height: 48 }} className="bg-white rounded-[26px] flex-row items-center px-6">
         <TouchableOpacity onPress={handleSearch}>
           <Image
-            source={require('../../assets/icons/search.png')}
+            source={icons.search}
             style={{ width: 34, height: 34 }}
             resizeMode="cover"
           />

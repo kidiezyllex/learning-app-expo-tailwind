@@ -5,6 +5,7 @@ import TabSelector from "@/components/Common/TabSelector";
 import { mockCourses } from "@/data/mockData";
 import { useCallback, useState } from "react";
 import { FlatList, RefreshControl, View } from "react-native";
+import { icons } from "../../assets/icons/icons";
 
 interface MyProgressScreenProps {
   onTabChange?: (tabId: string) => void;
@@ -78,10 +79,10 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
         title="My Progress"
         handleBackClick={() => onTabChange?.("statistics")}
         showRightIcons={true}
-        firstRightIcon={require('../../assets/icons/bell.png')}
+        firstRightIcon={icons.bell}
         firstRightIconWidth={51}
         firstRightIconHeight={51}
-        secondRightIcon={require('../../assets/icons/logout.png')}
+        secondRightIcon={icons.logout}
         secondRightIconWidth={39}
         secondRightIconHeight={41}
         handleFirstRightIconClick={() => {}}

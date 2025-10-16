@@ -1,5 +1,6 @@
 import { learningTimeData, userLearningData } from '@/data/statisticsMockData';
 import { Image, Text, View } from 'react-native';
+import { icons } from '../../../assets/icons/icons';
 
 export default function LearningTime() {
   return (
@@ -20,7 +21,7 @@ export default function LearningTime() {
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
-              source={require('../../../assets/icons/clock4.png')}
+              source={icons.clock4}
               style={{ width: 35, height: 35 }}
               className="mr-4"
             />
@@ -41,7 +42,7 @@ export default function LearningTime() {
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
-              source={require('../../../assets/icons/history.png')}
+              source={icons.history}
               style={{ width: 32, height: 32 }}
               className="mr-4"
             />
@@ -62,7 +63,7 @@ export default function LearningTime() {
           {/* Left */}
           <View className='flex-row flex-1 items-center'>
             <Image
-              source={require('../../../assets/icons/user.png')}
+              source={icons.user}
               style={{ width: 31, height: 31 }}
               className="mr-4"
             />
@@ -119,7 +120,7 @@ export default function LearningTime() {
             </Text>
             <View style={{ gap: 8 }} className="flex-row flex-1 items-center">
             <Image
-              source={require('../../../assets/icons/user.png')}
+              source={icons.user}
               style={{ width: 24, height: 24 }}
               resizeMode="contain"
             />

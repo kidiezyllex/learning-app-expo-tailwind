@@ -1,6 +1,7 @@
 import { Course } from '@/components/HomeTab/mock-data';
 import { CourseDetail } from '@/data/courseDetailsMockData';
 import { Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 import Button from '../Common/Button';
 
 interface CourseInfoTabProps {
@@ -31,7 +32,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                             />
                             {/* Play button overlay */}
                             <Image
-                                source={require("../../assets/icons/save.png")}
+                                source={icons.save}
                                 className="absolute top-3 left-3"
                                 style={{ width: 36, height: 44 }}
                                 resizeMode="cover"
@@ -47,7 +48,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 <View className="flex-row items-center mb-2">
                                     <View className="w-[60px] flex justify-start">
                                         <Image
-                                            source={require('../../assets/icons/user.png')}
+                                            source={icons.user}
                                             style={{ width: 30, height: 30 }}
                                             resizeMode="contain"
                                         />
@@ -63,7 +64,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 <View className="flex-row items-center mb-2">
                                     <View className="w-[60px] flex justify-start">
                                         <Image
-                                            source={require('../../assets/icons/clock2.png')}
+                                            source={icons.clock2}
                                             style={{ width: 36, height: 36 }}
                                             resizeMode="contain"
                                         />
@@ -79,7 +80,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 <View className="flex-row items-center mb-5">
                                     <View className="w-[60px] flex justify-start">
                                         <Image
-                                            source={require('../../assets/icons/star.png')}
+                                            source={icons.star}
                                             style={{ width: 34, height: 34 }}
                                             resizeMode="cover"
                                         />
@@ -173,7 +174,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                             }}
                                         >
                                             <Image
-                                                source={require('../../assets/icons/user.png')}
+                                                source={icons.user}
                                                 style={{ width: 31, height: 31 }}
                                                 resizeMode="cover"
                                             />
@@ -191,7 +192,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
 
                                     <View className="flex-row gap-2 items-center">
                                         <Image
-                                            source={require('../../assets/icons/star.png')}
+                                            source={icons.star}
                                             style={{ width: 33, height: 33 }}
                                             resizeMode="cover"
                                         />

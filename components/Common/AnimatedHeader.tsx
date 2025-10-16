@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
 import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import Animated, {
-    Extrapolate,
-    interpolate,
-    useAnimatedStyle
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { icons } from '../../assets/icons/icons';
 
 interface AnimatedHeaderProps {
   title: string;
@@ -166,7 +167,7 @@ export default function AnimatedHeader({
               activeOpacity={0.7}
             >
               <Image
-                source={require('../../assets/icons/left-arrow.png')}
+                source={icons.leftArrow}
                 style={{ width: 24, height: 24 }}
                 resizeMode="contain"
               />

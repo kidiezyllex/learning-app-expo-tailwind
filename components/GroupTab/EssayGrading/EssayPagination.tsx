@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { icons } from '../../../assets/icons/icons';
 
 interface EssayPaginationProps {
   totalItems: number;
@@ -118,7 +119,7 @@ export default function EssayPagination({
           >
             <Image
               style={{ width: 20, height: 34 }}
-              source={require('../../../assets/icons/left-angle.png')}
+              source={icons.leftAngle}
               resizeMode="contain"
             />
           </TouchableOpacity>
@@ -132,7 +133,7 @@ export default function EssayPagination({
           >
             <Image
               style={{ width: 20, height: 34 }}
-              source={require('../../../assets/icons/right-angle.png')}
+              source={icons.rightAngle}
               resizeMode="contain"
             />
           </TouchableOpacity>

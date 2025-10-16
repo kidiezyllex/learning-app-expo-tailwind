@@ -2,6 +2,7 @@ import ScreenHeader from "@/components/Common/ScreenHeader";
 import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
+import { icons } from "../../assets/icons/icons";
 export default function StudyScreen() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const router = useRouter();
@@ -20,10 +21,10 @@ export default function StudyScreen() {
         title="Study Screen Sample"
         handleBackClick={() => router.back()}
         showRightIcons={true}
-        firstRightIcon={require('../../assets/icons/bell.png')}
+        firstRightIcon={icons.bell}
         firstRightIconWidth={51}
         firstRightIconHeight={51}
-        secondRightIcon={require('../../assets/icons/logout.png')}
+        secondRightIcon={icons.logout}
         secondRightIconWidth={39}
         secondRightIconHeight={41}
         handleFirstRightIconClick={() => {}}

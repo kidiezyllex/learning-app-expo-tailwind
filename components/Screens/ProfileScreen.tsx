@@ -4,6 +4,7 @@ import ScreenHeader from "@/components/Common/ScreenHeader";
 import { mockUser } from "@/data/mockData";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { icons } from "../../assets/icons/icons";
 
 
 const profileStats = {
@@ -19,32 +20,32 @@ const menuItems = [
   {
     id: "edit-profile",
     title: "Chỉnh sửa hồ sơ",
-    icon: require('../../assets/icons/user.png'),
+    icon: icons.user,
     hasArrow: true
   },
   {
     id: "certificates",
     title: "Chứng chỉ của tôi",
-    icon: require('../../assets/icons/book-saved.png'),
+    icon: icons.bookSaved,
     hasArrow: true,
     badge: profileStats.certificates
   },
   {
     id: "settings",
     title: "Cài đặt",
-    icon: require('../../assets/icons/setting.png'),
+    icon: icons.setting,
     hasArrow: true
   },
   {
     id: "help",
     title: "Trợ giúp & Hỗ trợ",
-    icon: require('../../assets/icons/bell.png'),
+    icon: icons.bell,
     hasArrow: true
   },
   {
     id: "logout",
     title: "Đăng xuất",
-    icon: require('../../assets/icons/logout.png'),
+    icon: icons.logout,
     hasArrow: false,
     isDestructive: true
   }
@@ -105,7 +106,7 @@ export default function ProfileScreen() {
         )}
         {item.hasArrow && (
           <Image
-            source={require('../../assets/icons/chevron-right.png')}
+            source={icons.chevronRight}
             style={{
               width: 24,
               height: 24,

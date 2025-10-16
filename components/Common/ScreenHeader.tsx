@@ -1,4 +1,6 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 
 interface ScreenHeaderProps {
   title: string;
@@ -15,9 +17,9 @@ interface ScreenHeaderProps {
   handleSecondRightIconClick?: () => void;
 }
 
-export default function ScreenHeader({ 
-  title, 
-  onBack, 
+export default function ScreenHeader({
+  title,
+  onBack,
   showRightIcons = false,
   handleBackClick,
   firstRightIcon,
@@ -31,20 +33,19 @@ export default function ScreenHeader({
 }: ScreenHeaderProps) {
   return (
     <View className="fixed top-0 right-0 left-0 z-50">
-      <View 
-      style={{
-        height: 102, 
-        minHeight: 102,
-      }}
-      className="flex relative flex-row justify-between items-center px-6 bg-blue-600 shadow-sm">
+      <View
+        style={{
+          height: getScaleFactor() * 102,
+          minHeight: getScaleFactor() * 102,
+        }}
+        className="flex relative flex-row justify-between items-center px-6 bg-blue-600 shadow-sm">
         {(handleBackClick || onBack) && (
           <TouchableOpacity
             onPress={handleBackClick || onBack}
             className="absolute left-3 z-10"
           >
-            <Image
-              style={{ width: 69, height: 69 }}
-              source={require('../../assets/icons/left-arrow.png')}
+            <Image style={{ width: getScaleFactor() * 69, height: getScaleFactor() * 69 }}
+              source={icons.leftArrow}
               resizeMode="contain"
             />
           </TouchableOpacity>
@@ -52,7 +53,7 @@ export default function ScreenHeader({
 
         <View className="flex-1 justify-center items-center">
           <Text
-            style={{ fontSize: 32 }}
+            style={{ fontSize: getScaleFactor() * 32 }}
             className="font-semibold text-white">
             {title}
           </Text>

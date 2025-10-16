@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 
 interface CommentInputProps {
   onSendComment: (comment: string) => void;
@@ -54,7 +55,7 @@ export default function CommentInput({
              }}
            >
             <Image
-              source={require('../../assets/icons/send.png')}
+              source={icons.send}
               style={{ width: 22, height: 19 }}
               resizeMode="contain"
             />

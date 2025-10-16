@@ -2,6 +2,7 @@ import { useAppNavigation } from '@/contexts/NavigationContext';
 import { Lesson } from '@/data/lessonsMockData';
 import { useRouter } from 'expo-router';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 
 interface LessonCardProps {
     lesson: Lesson;
@@ -20,28 +21,17 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
     const subtitleTextColor = 'text-zinc-600';
 
     const handlePress = () => {
-        console.log('LessonCard pressed:', { 
-            lessonId: lesson.id, 
-            isExam, 
-            isLocked, 
-            title: lesson.title 
-        });
-        
         if (onPress) {
             onPress();
         } else if (!isLocked) {
             if (isExam) {
-                console.log('Navigating to history-exam for lesson:', lesson.id);
                 setSelectedLessonId(lesson.id);
                 setCurrentHomeScreen("history-exam");
             } else {
-                console.log('Navigating to video for lesson:', lesson.id);
                 setSelectedLessonId(lesson.id);
                 setCurrentHomeScreen("video");
             }
-        } else {
-            console.log('Lesson is locked, cannot navigate');
-        }
+        } 
     };
 
     return (
@@ -55,19 +45,19 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                 <View>
                     {isCompleted ? (
                         <Image
-                            source={require('../../assets/icons/check.png')}
+                            source={icons.check}
                             style={{ width: 48, height: 48 }}
                             resizeMode="contain"
                         />
                     ) : isExam ? (
                         <Image
-                            source={require('../../assets/icons/exam.png')}
+                            source={icons.exam}
                             style={{ width: 44, height: 63 }}
                             resizeMode="contain"
                         />
                     ) : (
                         <Image
-                            source={require('../../assets/icons/video.png')}
+                            source={icons.video}
                             style={{ width: 50, height: 43 }}
                             resizeMode="contain"
                         />
@@ -90,7 +80,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                     {/* Duration and Download Status Row */}
                     {!isExam && lesson.duration && <View className="flex-row gap-1 justify-start items-center">
                         <Image
-                            source={require('../../assets/icons/clock2.png')}
+                            source={icons.clock2}
                             style={{ width: 30, height: 30 }}
                             resizeMode="contain"
                         />
@@ -114,7 +104,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
 
                 <View className={`flex flex-col  h-full ${isExam ? 'justify-center' : 'justify-start'}`}>
                     <Image
-                        source={isDownloaded ? require('../../assets/icons/completed.png') : require('../../assets/icons/download.png')}
+                        source={isDownloaded ? icons.completed : icons.download}
                         style={{ width: 28, height: 28 }}
                         resizeMode="contain"
                     />

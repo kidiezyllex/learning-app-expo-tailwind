@@ -1,6 +1,7 @@
 import { Course } from '@/data/mockData';
 import { useState } from 'react';
 import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 import ProgressBar from '../HomeTab/ProgressBar';
 
 interface CourseCardProps {
@@ -34,7 +35,7 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
         className="absolute right-3 p-1"
       >
         <Image
-          source={require('../../assets/icons/chevron-right.png')}
+          source={icons.chevronRight}
           style={{ width: 10, height: 21 }}
           resizeMode="cover"
         />
@@ -48,7 +49,7 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       {/* User Info */}
       {course.userName && <View className="flex-row items-center mb-5">
         <Image
-          source={require('../../assets/icons/user.png')}
+          source={icons.user}
           style={{ width: 45, height: 45 }}
           resizeMode="cover"
         />

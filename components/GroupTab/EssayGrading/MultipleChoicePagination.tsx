@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { PanGestureHandler, PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler';
+import { icons } from '../../../assets/icons/icons';
 
 export interface PaginationItem {
   id: string;
@@ -182,7 +183,7 @@ export default function MultipleChoicePagination({
               height: 34,
               opacity: currentPage === 0 ? 0.5 : 1
             }}
-            source={require('../../../assets/icons/left-angle.png')}
+            source={icons.leftAngle}
             resizeMode="contain"
           />
         </TouchableOpacity>
@@ -220,7 +221,7 @@ export default function MultipleChoicePagination({
               height: 34,
               opacity: currentPage === totalPages - 1 ? 0.5 : 1
             }}
-            source={require('../../../assets/icons/right-angle.png')}
+            source={icons.rightAngle}
             resizeMode="contain"
           />
         </TouchableOpacity>

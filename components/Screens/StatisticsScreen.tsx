@@ -6,6 +6,7 @@ import { useAppNavigation } from '@/contexts/NavigationContext';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 import LearningTime from '../GroupTab/Statistics/LearningTime';
 import ExamResultScreen from './ExamResultScreen';
 import QuizResultScreen from './QuizResultScreen';
@@ -109,10 +110,10 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             title="Statistics"
             handleBackClick={() => onTabChange?.("statistics")}
             showRightIcons={true}
-            firstRightIcon={require('../../assets/icons/bell.png')}
+            firstRightIcon={icons.bell}
             firstRightIconWidth={51}
             firstRightIconHeight={51}
-            secondRightIcon={require('../../assets/icons/setting.png')}
+            secondRightIcon={icons.setting}
             secondRightIconWidth={43}
             secondRightIconHeight={45}
             handleFirstRightIconClick={() => {}}

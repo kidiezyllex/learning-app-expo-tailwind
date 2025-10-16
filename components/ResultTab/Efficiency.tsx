@@ -1,5 +1,6 @@
 import { exerciseResults } from '@/data/resultsMockData';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 
 export default function Efficiency() {
   return (
@@ -10,7 +11,7 @@ export default function Efficiency() {
         <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
-              source={require('../../assets/icons/clock3.png')}
+              source={icons.clock3}
               style={{ width: 50, height: 50 }}
               resizeMode="contain"
             />
@@ -28,7 +29,7 @@ export default function Efficiency() {
           <TouchableOpacity>
             <Image
               className='transform scale-125'
-              source={require('../../assets/icons/chevron-right.png')}
+              source={icons.chevronRight}
               style={{ width: 10, height: 21 }}
               resizeMode="contain"
             />
@@ -40,7 +41,7 @@ export default function Efficiency() {
         <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
-              source={require('../../assets/icons/book.png')}
+              source={icons.book}
               style={{ width: 40, height: 50 }}
               resizeMode="contain"
             />
@@ -55,7 +56,7 @@ export default function Efficiency() {
           <TouchableOpacity>
             <Image
               className='transform scale-125'
-              source={require('../../assets/icons/chevron-right.png')}
+              source={icons.chevronRight}
               style={{ width: 10, height: 21 }}
               resizeMode="contain"
             />
@@ -68,7 +69,7 @@ export default function Efficiency() {
               <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>
                 <View style={{ width: 62 }} className="justify-start">
                   <Image
-                    source={require('../../assets/icons/check.png')}
+                    source={icons.check}
                     style={{ width: 39, height: 39 }}
                     resizeMode="contain"
                   />
@@ -103,7 +104,7 @@ export default function Efficiency() {
         <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: 78 }} className="justify-start">
             <Image
-              source={require('../../assets/icons/clock3.png')}
+              source={icons.clock3}
               style={{ width: 50, height: 50 }}
               resizeMode="contain"
             />
@@ -118,7 +119,7 @@ export default function Efficiency() {
           <TouchableOpacity>
             <Image
               className='transform scale-125'
-              source={require('../../assets/icons/chevron-right.png')}
+              source={icons.chevronRight}
               style={{ width: 10, height: 21 }}
               resizeMode="contain"
             />
@@ -131,7 +132,7 @@ export default function Efficiency() {
               <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>
                 <View style={{ width: 62 }} className="justify-start">
                   <Image
-                    source={require('../../assets/icons/check.png')}
+                    source={icons.check}
                     style={{ width: 39, height: 39 }}
                     resizeMode="contain"
                   />

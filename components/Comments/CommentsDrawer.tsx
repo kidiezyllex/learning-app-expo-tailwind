@@ -2,6 +2,7 @@ import { Comment, commentsMockData } from '@/data/commentsMockData';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 import CommentCard from './CommentCard';
 import CommentInput from './CommentInput';
 
@@ -67,7 +68,7 @@ export default function CommentsDrawer({ isVisible, onClose }: CommentsDrawerPro
            onPress={handleClose}
          >
           <Image
-            source={require('../../assets/icons/close.png')}
+            source={icons.close}
             style={{ width: 25, height: 25 }}
             resizeMode="contain"
           />

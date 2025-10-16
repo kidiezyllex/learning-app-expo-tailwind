@@ -1,4 +1,5 @@
 import { Image, Text, View } from 'react-native';
+import { icons } from '../../../assets/icons/icons';
 import { QuizQuestion } from '../../../data/quizResultMockData';
 
 interface MultipleChoiceQuestionProps {
@@ -32,13 +33,6 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
           paddingVertical: 24, 
           gap: 20, 
           marginBottom: 24,
-          ...(answer.isSelected && answer.isCorrect ? {
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.05,
-            shadowRadius: 2,
-            elevation: 1,
-          } : {})
         }}
         key={answer.id}
         className={`flex-row items-center w-full border-2 ${bgColor} rounded-[10px] ${borderColor}`}
@@ -88,7 +82,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
         <View className="flex-row items-start">
           <Image
             style={{ width: 13, height: 17, marginRight: 12 }}
-            source={require('../../../assets/icons/bulb.png')}
+            source={icons.bulb}
             resizeMode="contain"
           />
           <View className="flex-1">

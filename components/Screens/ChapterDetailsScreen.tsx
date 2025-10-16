@@ -5,6 +5,7 @@ import { getChaptersByCourseId } from '@/data/chaptersMockData';
 import { getLessonsByChapterId } from '@/data/lessonsMockData';
 import { useCallback } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 
 export default function ChapterDetailsScreen() {
     const { selectedChapterId, setCurrentHomeScreen } = useAppNavigation();
@@ -37,7 +38,7 @@ export default function ChapterDetailsScreen() {
                 title={chapter.title.split(':')[0]}
                 handleBackClick={() => setCurrentHomeScreen("course-details")}
                 showRightIcons={true}
-                firstRightIcon={require('../../assets/icons/download2.png')}
+                firstRightIcon={icons.download2}
                 firstRightIconWidth={28}
                 firstRightIconHeight={28}
                 handleFirstRightIconClick={() => {}}

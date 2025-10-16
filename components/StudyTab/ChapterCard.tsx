@@ -1,5 +1,6 @@
 import { Chapter } from '@/data/chaptersMockData';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 interface ChapterCardProps {
     chapter: Chapter;
     onPress?: () => void;
@@ -22,19 +23,19 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                 <View>
                     {isExam ? (
                         <Image
-                            source={require('../../assets/icons/exam.png')}
+                            source={icons.exam}
                             style={{ width: 44, height: 63 }}
                             resizeMode="contain"
                         />
                     ) : isLocked ? (
                         <Image
-                            source={require('../../assets/icons/study.png')}
+                            source={icons.study}
                             style={{ width: 50, height: 40 }}
                             resizeMode="contain"
                         />
                     ) : (
                         <Image
-                            source={require('../../assets/icons/active-study.png')}
+                            source={icons.activeStudy}
                             style={{ width: 50, height: 40 }}
                             resizeMode="contain"
                         />
@@ -108,7 +109,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                 {/* Chevron Icon */}
                 <Image
                     className='transform scale-125'
-                    source={require('../../assets/icons/chevron-right.png')}
+                    source={icons.chevronRight}
                     style={{ width: 10, height: 21 }}
                     resizeMode="contain"
                 />

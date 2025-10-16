@@ -1,5 +1,6 @@
 import { usePathname, useRouter } from 'expo-router';
 import { View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 import { useAppNavigation } from '../../contexts/NavigationContext';
 import CustomTabTrigger from './CustomTabTrigger';
 
@@ -7,35 +8,35 @@ const navigationTabs = [
   {
     id: "home",
     label: "Home",
-    icon: require('../../assets/icons/home.png'),
+    icon: icons.home,
     route: "/(tabs)/",
     size: 59
   },
   {
     id: "group",
     label: "Group",
-    icon: require('../../assets/icons/archive-book.png'),
+    icon: icons.archiveBook,
     route: "/(tabs)/group",
     size: 58
   },
   {
     id: "study",
     label: "Study",
-    icon: require('../../assets/icons/book-saved.png'),
+    icon: icons.bookSaved,
     route: "/(tabs)/study",
     size: 65
   },
   {
     id: "results",
     label: "Result",
-    icon: require('../../assets/icons/chart.png'),
+    icon: icons.chart,
     route: "/(tabs)/results",
     size: 54
   },
   {
     id: "profile",
     label: "Profile",
-    icon: require('../../assets/icons/user.png'),
+    icon: icons.user,
     route: "/(tabs)/profile",
     size: 49
   }

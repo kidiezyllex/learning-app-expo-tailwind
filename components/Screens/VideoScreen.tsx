@@ -5,6 +5,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
 import { useEffect, useRef, useState } from 'react';
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import { icons } from '../../assets/icons/icons';
 import CommentsDrawer from '../Comments/CommentsDrawer';
 
 export default function VideoScreen() {
@@ -90,7 +91,7 @@ export default function VideoScreen() {
                     >
                         <Image
                             style={{ width: 69, height: 69 }}
-                            source={require('../../assets/icons/left-arrow.png')}
+                            source={icons.leftArrow}
                             resizeMode="contain"
                         />
                     </TouchableOpacity>
@@ -116,7 +117,7 @@ export default function VideoScreen() {
             >
                 <TouchableOpacity>
                     <Image
-                        source={require('../../assets/icons/heart.png')}
+                        source={icons.heart}
                         style={{ width: 59, height: 52 }}
                         resizeMode="contain"
                     />
@@ -129,7 +130,7 @@ export default function VideoScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleOpenComments}>
                     <Image
-                        source={require('../../assets/icons/comment.png')}
+                        source={icons.comment}
                         style={{ width: 62, height: 54 }}
                         resizeMode="contain"
                     />
@@ -142,14 +143,14 @@ export default function VideoScreen() {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
-                        source={require('../../assets/icons/save2.png')}
+                        source={icons.save2}
                         style={{ width: 42, height: 46 }}
                         resizeMode="contain"
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
-                        source={require('../../assets/icons/rotate.png')}
+                        source={icons.rotate}
                         style={{ width: 50, height: 50 }}
                         resizeMode="contain"
                     />

@@ -5,6 +5,7 @@ import { useCourse } from "@/contexts/CourseContext";
 import { useAppNavigation } from "@/contexts/NavigationContext";
 import { useCallback, useState } from "react";
 import { FlatList, RefreshControl, View } from "react-native";
+import { icons } from "../../assets/icons/icons";
 import ScreenHeader from "../Common/ScreenHeader";
 
 export default function HomeScreen() {
@@ -78,7 +79,7 @@ export default function HomeScreen() {
       <ScreenHeader
         title="Home"
         showRightIcons={true}
-        firstRightIcon={require('../../assets/icons/active-search.png')}
+        firstRightIcon={icons.activeSearch}
         firstRightIconWidth={50.81}
         firstRightIconHeight={50.81}
         handleFirstRightIconClick={() => {}}
