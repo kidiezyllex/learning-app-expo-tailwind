@@ -24,19 +24,19 @@ export default function CommentInput({
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View className="w-full bg-white border-t border-stone-300">
-        <View className="flex-row items-center" style={{ paddingHorizontal: 32, paddingVertical: 24 }}>
+        <View className="flex-row items-center" style={{ paddingHorizontal: getScaleFactor() * 32, paddingVertical: getScaleFactor() * 24 }}>
           {/* User Avatar */}
           <Image
             source={require('../../assets/images/sample-avatar.png')}
-            style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 50, marginRight: getScaleFactor() * 24 }}
+            style={{ width: getScaleFactor() * 60, height: getScaleFactor() * 60, marginRight: getScaleFactor() * 24 }}
             className="rounded-full"
             resizeMode="cover"
           />
 
           {/* Input Field */}
           <View
-            style={{ maxHeight: getScaleFactor() * 51, backgroundColor: '#F1F1F3', borderRadius: getScaleFactor() * 50, overflow: 'hidden'}}
-            className="flex-row flex-1 items-center px-5 py-3 mr-4"
+            style={{ maxHeight: getScaleFactor() * 60, backgroundColor: '#F1F1F3', borderRadius: getScaleFactor() * 50, overflow: 'hidden', paddingHorizontal: getScaleFactor() * 12, paddingVertical: getScaleFactor() * 8, marginRight: getScaleFactor() * 12}}
+            className="flex-row flex-1 items-center"
           >
             <TextInput
               value={comment}
@@ -57,7 +57,7 @@ export default function CommentInput({
            >
             <Image
               source={icons.send}
-              style={{ width: getScaleFactor() * 22, height: getScaleFactor() * 19 }}
+              style={{ width: getScaleFactor() * 28, height: getScaleFactor() * 24 }}
               resizeMode="contain"
             />
           </TouchableOpacity>

@@ -26,19 +26,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
         >
             {/* Thumbnail Image Container */}
             <View className="relative" style={{ height: getScaleFactor() * 225 }}>
-                <View
-                    style={{
-                      shadowColor: '#000',
-                      shadowOffset: {
-                        width: 0,
-                        height: 1,
-                      },
-                      shadowOpacity: 0.05,
-                      shadowRadius: 2,
-                      elevation: 2,
-                    }}
-                    className="w-full rounded-tl-[5px] rounded-tr-[5px]"
-                >
+                <View className="w-full rounded-tl-[5px] rounded-tr-[5px]">
                     <Image
                         source={course.thumbnail}
                         style={{ width: '100%', maxWidth: '100%', height: getScaleFactor() * 225 }}

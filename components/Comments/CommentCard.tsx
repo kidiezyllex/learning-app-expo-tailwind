@@ -9,12 +9,12 @@ interface CommentCardProps {
 
 export default function CommentCard({ comment, onLike }: CommentCardProps) {
   return (
-    <View className="mb-6 w-full">
+    <View className="mb-3 w-full">
       <View className="flex-row items-start">
         {/* Avatar */}
         <Image
            source={require('../../assets/images/sample-avatar.png')}
-          style={{ width: getScaleFactor() * 50, height: getScaleFactor() * 50 }}
+          style={{ width: getScaleFactor() * 60, height: getScaleFactor() * 60 }}
           className="mr-4 rounded-full"
           resizeMode="cover"
         />
