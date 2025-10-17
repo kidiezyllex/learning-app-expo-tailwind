@@ -5,8 +5,8 @@ import CoursesStatistics from '@/components/GroupTab/Statistics/CoursesStatistic
 import { useAppNavigation } from '@/contexts/NavigationContext';
 import { getScaleFactor } from '@/utils/scaling';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { useCallback, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
 import LearningTime from '../GroupTab/Statistics/LearningTime';
 import ExamResultScreen from './ExamResultScreen';
@@ -50,7 +50,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
     setCurrentResultScreen(null);
   };
 
-  const renderContent = () => {
+  const renderContent = useCallback(() => {
     switch (activeTab) {
       case "statistics":
         return (
@@ -61,7 +61,18 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
         );
       case "progress":
         return (
-          <View className="p-4 bg-white rounded-xl shadow-sm">
+          <View 
+            style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
+              elevation: 2,
+            }}
+            className="p-4 bg-white rounded-xl">
             <Text className="text-sm font-semibold text-center text-black">
               My Progress Content
             </Text>
@@ -72,7 +83,18 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
         );
       case "user":
         return (
-          <View className="p-4 bg-white rounded-xl shadow-sm">
+          <View 
+            style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
+              elevation: 2,
+            }}
+            className="p-4 bg-white rounded-xl">
             <Text className="text-sm font-semibold text-center text-black">
               User Content
             </Text>
@@ -98,9 +120,19 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
       default:
         return null;
     }
-  };
+  }, [activeTab, handleNavigateToResult, handleBackFromResult]);
 
   const isResultScreen = activeTab === 'exam-result' || activeTab === 'quiz-result';
+
+  const renderHeader = useCallback(() => (
+    <View className="px-4">
+      <TabSelector
+        col={4}
+        tabs={tabOptions}
+        onTabPress={handleTabPress}
+      />
+    </View>
+  ), [tabOptions, handleTabPress]);
 
   return (
     <View className="flex-1">
@@ -120,21 +152,15 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             handleSecondRightIconClick={() => {}}
           />
           {/* Scrollable Content */}
-          <ScrollView
-            className="flex-1"
+          <FlatList
+            data={[1]} // Single item to render the content
+            renderItem={() => renderContent()}
+            keyExtractor={() => 'content'}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 100 }}
-          >
-            <View className="px-4">
-              {/* Tab Selector */}
-              <TabSelector
-                col={4}
-                tabs={tabOptions}
-                onTabPress={handleTabPress}
-              />
-              {renderContent()}
-            </View>
-          </ScrollView>
+            ListHeaderComponent={renderHeader}
+            scrollEnabled={activeTab !== "eassay-grading"} // Disable scroll when essay grading tab is active to avoid conflicts
+          />
         </>
       )}
       {isResultScreen && renderContent()}

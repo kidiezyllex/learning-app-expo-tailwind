@@ -36,7 +36,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
           marginBottom: 24,
         }}
         key={answer.id}
-        className={`flex-row items-center w-full border-2 ${bgColor} rounded-[10px] ${borderColor}`}
+        className={`flex-row items-center w-full border ${bgColor} rounded-[5px] ${borderColor}`}
       >
         <View
           style={{ width: 24, height: 24, minWidth: 24, minHeight: 24, flexShrink: 0 }}
@@ -57,8 +57,16 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
         paddingVertical: 32, 
         paddingHorizontal: 64, 
         marginBottom: 24,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 2,
       }}
-      className="w-full bg-white rounded-2xl shadow-sm"
+      className="w-full bg-white rounded-2xl"
     >
       {/* Question Text */}
       <Text
@@ -78,7 +86,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
       {/* Explanation */}
       <View
         style={{ padding: 12, marginBottom: 24 }}
-        className={`w-full bg-amber-100 border-2 border-amber-400 rounded-[10px]`}
+        className={`w-full bg-amber-100 border border-amber-400 rounded-[5px]`}
       >
         <View className="flex-row items-start">
           <Image

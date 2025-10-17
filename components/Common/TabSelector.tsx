@@ -33,7 +33,7 @@ export default function TabSelector({ tabs, onTabPress, col = 3 }: TabSelectorPr
             onPressOut={() => !tab.isActive && setPressedTab(null)}
             disabled={tab.isActive}
             style={{ minHeight: col === 4 ? getScaleFactor() * 55 : getScaleFactor() * 65 }}
-            className={`rounded-[100px] border-2 justify-center items-center transform transition-transform ${pressedTab === tab.id && !tab.isActive ? 'scale-95' : 'scale-100'
+            className={`rounded-[100px] border justify-center items-center transform transition-transform ${pressedTab === tab.id && !tab.isActive ? 'scale-95' : 'scale-100'
               } ${tab.isActive
                 ? 'bg-blue-500 border-blue-500'
                 : 'bg-transparent border-zinc-500'

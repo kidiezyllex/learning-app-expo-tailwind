@@ -18,7 +18,6 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
     setCurrentQuestionIndex(index);
   };
 
-
   return (
     <View className="flex-1">
       {/* Header */}
@@ -32,7 +31,17 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
         <View className="px-11 pt-6">
           {/* Exam Info Card */}
           <View 
-            className="p-4 mb-10 w-full h-16 bg-white rounded-2xl shadow-sm">
+            style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
+              elevation: 2,
+            }}
+            className="p-4 mb-10 w-full h-16 bg-white rounded-2xl">
             <View className="flex-row justify-between items-center">
               <View className="flex-row flex-1 gap-1">
                 <Text className="text-base font-semibold text-black">
@@ -46,9 +55,16 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
                 style={{ 
                   height: 28, 
                   paddingHorizontal: 14,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+                  shadowOpacity: 0.05,
+                  shadowRadius: 2,
                   elevation: 3,
-                }} 
-                className="flex shadow-sm justify-center items-center bg-green-600 rounded-[3px]">
+                }}
+                className="flex justify-center items-center bg-green-600 rounded-[3px]">
                 <Text
                   className="text-xs font-medium text-center text-black"
                 >

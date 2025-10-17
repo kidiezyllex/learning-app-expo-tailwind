@@ -4,8 +4,10 @@ import CourseInfoTab from '@/components/StudyTab/CourseInfoTab';
 import { useCourse } from '@/contexts/CourseContext';
 import { useAppNavigation } from '@/contexts/NavigationContext';
 import { getCourseDetailById } from '@/data/courseDetailsMockData';
-import { useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { getScaleFactor } from '@/utils/scaling';
+import { useCallback, useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import ScreenHeader from '../Common/ScreenHeader';
 
 export default function CourseDetailsScreen() {
@@ -44,37 +46,19 @@ export default function CourseDetailsScreen() {
         );
     }
 
-    return (
-        <View className="flex-1">
-            <ScreenHeader
-                title="Course Details"
-                handleBackClick={handleBackPress}
-            />
-            <ScrollView
-                className="flex-1"
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingBottom: 180 }}
-            >
-                {/* Tab Selector */}
-                <View className="px-4">
-                    <TabSelector
-                        tabs={tabOptions}
-                        onTabPress={handleTabPress}
-                    />
-                </View>
-
-                {/* Course Info Tab Content */}
-                {activeTab === "course" && courseDetail && (
+    const renderContent = useCallback(() => {
+        switch (activeTab) {
+            case "course":
+                return courseDetail ? (
                     <CourseInfoTab
                         course={courseDetail}
                         selectedCourse={selectedCourse}
                         onEditPress={() => {
                         }}
                     />
-                )}
-
-                {/* Chapters Tab Content */}
-                {activeTab === "chapters" && (
+                ) : null;
+            case "chapters":
+                return (
                     <ChaptersTab
                         courseId={selectedCourse.id}
                         onChapterPress={(chapterId) => {
@@ -82,10 +66,9 @@ export default function CourseDetailsScreen() {
                             setCurrentHomeScreen("chapter-details");
                         }}
                     />
-                )}
-
-                {/* Scores Tab Content */}
-                {activeTab === "scores" && (
+                );
+            case "scores":
+                return (
                     <View className="px-4 py-8">
                         <Text
                             className="text-sm text-center text-gray-500"
@@ -93,8 +76,36 @@ export default function CourseDetailsScreen() {
                             Scores content coming soon...
                         </Text>
                     </View>
-                )}
-            </ScrollView>
+                );
+            default:
+                return null;
+        }
+    }, [activeTab, courseDetail, selectedCourse, setSelectedChapterId, setCurrentHomeScreen]);
+
+    const renderHeader = useCallback(() => (
+        <View className="px-4">
+            <TabSelector
+                tabs={tabOptions}
+                onTabPress={handleTabPress}
+            />
+        </View>
+    ), [tabOptions, handleTabPress]);
+
+    return (
+        <View className="flex-1">
+            <ScreenHeader
+                title="Course Details"
+                handleBackClick={handleBackPress}
+            />
+            <FlatList
+                data={[1]} 
+                renderItem={() => renderContent()}
+                keyExtractor={() => 'content'}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: getScaleFactor() * 180 }}
+                ListHeaderComponent={renderHeader}
+                scrollEnabled={activeTab !== "chapters"}
+            />
         </View>
     );
 }

@@ -155,7 +155,7 @@ export default function ProfileScreen() {
               </Text>
               
               <TouchableOpacity 
-                className="bg-blue-600 px-[70px] rounded-[10px] justify-center items-center"
+                className="bg-blue-600 px-[70px] rounded-[5px] justify-center items-center"
                 style={{ height: 60, paddingHorizontal: 70 }}
               >
                 <Text

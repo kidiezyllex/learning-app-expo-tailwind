@@ -17,12 +17,24 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
         <TouchableOpacity
             onPress={onPress}
             disabled={isLocked}
-            style={{ marginBottom: getScaleFactor() * 16, minHeight: getScaleFactor() * 140 }}
-            className={`w-full shadow-sm ${cardBgColor}`}
+            style={{
+                marginBottom: getScaleFactor() * 16,
+                minHeight: getScaleFactor() * 140,
+                shadowColor: '#000',
+                shadowOffset: {
+                    width: 0,
+                    height: 1,
+                },
+                shadowOpacity: 0.05,
+                shadowRadius: 2,
+                elevation: 2,
+                borderRadius: 5,
+            }}
+            className={`w-full ${cardBgColor}`}
         >
-            <View 
-            style={{ gap: getScaleFactor() * 28 }}
-            className="flex-row flex-1 justify-between items-center p-4 w-full">
+            <View
+                style={{ gap: getScaleFactor() * 28 }}
+                className="flex-row flex-1 justify-between items-center p-4 w-full">
                 {/* Icon */}
                 <View>
                     {isExam ? (
@@ -47,26 +59,26 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
                 </View>
 
                 {/* Content */}
-                <View 
-                style={{ maxWidth: getScaleFactor() * 480, width: getScaleFactor() * 480}}
-                className="flex-col gap-1 justify-between h-full">
-                  <View className='flex-col flex-1 justify-between h-full'>
-                      {/* Title Exam*/}
-                      {isExam && <Text
-                        className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
-                        numberOfLines={2}
-                    >
-                        {chapter.title}
-                    </Text>}
-                    {/* Title */}
-                    <Text
-                        className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
-                        numberOfLines={2}
-                    >
-                        {isExam ? 'Final Exam' : chapter.title}
-                    </Text>
+                <View
+                    style={{ maxWidth: getScaleFactor() * 480, width: getScaleFactor() * 480 }}
+                    className="flex-col gap-1 justify-between h-full">
+                    <View className='flex-col flex-1 justify-between h-full'>
+                        {/* Title Exam*/}
+                        {isExam && <Text
+                            className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
+                            numberOfLines={2}
+                        >
+                            {chapter.title}
+                        </Text>}
+                        {/* Title */}
+                        <Text
+                            className={`text-base font-semibold line-clamp-2 ${titleTextColor}`}
+                            numberOfLines={2}
+                        >
+                            {isExam ? 'Final Exam' : chapter.title}
+                        </Text>
 
-                  </View>
+                    </View>
                     {/* Video Count */}
                     {!isExam && chapter.videoCount > 0 && (
                         <View className="flex-row justify-end">
@@ -91,7 +103,7 @@ export default function ChapterCard({ chapter, onPress }: ChapterCardProps) {
 
                         {/* Progress Bar */}
                         {!isLocked && !isExam && (
-                            <View style={{height: getScaleFactor() * 32, width: getScaleFactor() * 288}} className="justify-center items-center rounded-lg bg-zinc-300">
+                            <View style={{ height: getScaleFactor() * 32, width: getScaleFactor() * 288 }} className="justify-center items-center rounded-lg bg-zinc-300">
                                 <View
                                     className="absolute h-full bg-blue-500 rounded-lg"
                                     style={{ width: `${chapter.progress}%` }}

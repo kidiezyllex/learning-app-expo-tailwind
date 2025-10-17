@@ -56,9 +56,16 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
           <View 
             style={{ 
               marginBottom: getScaleFactor() * 28,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
               elevation: 5,
-            }} 
-            className="w-full bg-white rounded-2xl shadow-sm">
+            }}
+            className="w-full bg-white rounded-2xl">
             <View
               style={{ paddingHorizontal: 16, paddingVertical: 24 }}
               className="flex-row justify-between items-center">
@@ -75,8 +82,16 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                 style={{ 
                   height: getScaleFactor() * 28, 
                   paddingHorizontal: getScaleFactor() * 14,
-                }} 
-                className="flex shadow-sm justify-center items-center bg-orange-400 rounded-[3px]">
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+                  shadowOpacity: 0.05,
+                  shadowRadius: 2,
+                  elevation: 2,
+                }}
+                className="flex justify-center items-center bg-orange-400 rounded-[3px]">
                 <Text
                   className="text-xs font-medium text-center text-black"
                 >

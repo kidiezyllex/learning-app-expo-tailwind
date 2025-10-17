@@ -19,12 +19,20 @@ export default function ProgressCard({ course, onPress, onMorePress }: CourseCar
       style={{
         borderRadius: getScaleFactor() * 10,
         backgroundColor: '#FFF',
-        minHeight: getScaleFactor() * 134
+        minHeight: getScaleFactor() * 134,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 2,
       }}
       onPress={onPress}
       onPressIn={() => setIsPressed(true)}
       onPressOut={() => setIsPressed(false)}
-      className={`flex flex-col justify-between bg-white rounded-[10px] shadow-sm p-4 relative transform transition-transform ${isPressed ? 'opacity-90 scale-98' : 'scale-100'
+      className={`flex flex-col justify-between bg-white rounded-[5px] p-4 relative transform transition-transform ${isPressed ? 'opacity-90 scale-98' : 'scale-100'
         }`}
     >
       {/* More Options Button */}

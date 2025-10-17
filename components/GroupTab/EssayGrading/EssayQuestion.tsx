@@ -15,8 +15,16 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
         paddingVertical: 32,
         paddingHorizontal: 64,
         marginBottom: 24,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 2,
       }}
-      className="w-full bg-white rounded-2xl shadow-sm"
+      className="w-full bg-white rounded-2xl"
     >
       {/* Question Text */}
       <Text
@@ -28,7 +36,7 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
 
       <View
         style={{ paddingVertical: 10, paddingHorizontal: 28, minHeight: 106, marginBottom: 24 }}
-        className={`w-full border-2 rounded-[10px] bg-neutral-100 border-zinc-300`}
+        className={`w-full border rounded-[5px] bg-neutral-100 border-zinc-300`}
       >
         <Text className="text-xs font-medium text-black">Student Answer Placeholder</Text>
       </View>
@@ -36,14 +44,14 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
       {/* Chấm điểm */}
       <View style={{ gap: 16, marginBottom: 24 }} className='flex-row items-center'>
         <Text className='text-xs italic font-semibold text-black'>Chấm điểm:</Text>
-        <View style={{ height: 36, minHeight: 36, paddingHorizontal: 32 }} className='flex-row items-center justify-center border-[2px] border-[#FF0000] rounded-[10px]'>
+        <View style={{ height: 36, minHeight: 36, paddingHorizontal: 32 }} className='flex-row items-center justify-center border-[2px] border-[#FF0000] rounded-[5px]'>
           <Text className='font-medium text-[#FF0000] text-xs'>{question.score || 'N/A'}/{question.maxScore || 'N/A'}</Text>
         </View>
       </View>
       {/* Answer Template */}
       <View
         style={{ padding: 12, marginBottom: 24 }}
-        className={`w-full bg-amber-100 border-2 border-amber-400 rounded-[10px]`}
+        className={`w-full bg-amber-100 border border-amber-400 rounded-[5px]`}
       >
         <View className="flex-row items-start">
           <Image
@@ -62,7 +70,7 @@ export default function EssayQuestion({ question }: EssayQuestionProps) {
 
       <View
         style={{ padding: 12 }}
-        className="w-full bg-green-100 rounded-[10px] border-2 border-lime-400">
+        className="w-full bg-green-100 rounded-[5px] border border-lime-400">
         <View className="flex-row items-start">
           <Image
             style={{ width: 15, height: 13, marginRight: 12 }}

@@ -49,7 +49,7 @@ export default function ChapterDetailsScreen() {
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 className="flex-1"
-                contentContainerStyle={{ paddingHorizontal: 24, paddingVertical: 16 }}
+                contentContainerStyle={{ padding: 16 }}
             />
         </View>
     );

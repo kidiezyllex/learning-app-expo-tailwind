@@ -7,7 +7,19 @@ export default function Efficiency() {
   return (
     <View className="w-full">
       {/* Efficiency Statistics */}
-      <View style={{ borderRadius: getScaleFactor() * 12 }} className="overflow-hidden mb-4 bg-white shadow-sm">
+      <View 
+        style={{ 
+          borderRadius: getScaleFactor() * 12,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.05,
+          shadowRadius: 2,
+          elevation: 2,
+        }} 
+        className="overflow-hidden mb-4 bg-white">
         {/* Tổng thời gian xem */}
         <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
           <View style={{ width: getScaleFactor() * 78 }} className="justify-start">

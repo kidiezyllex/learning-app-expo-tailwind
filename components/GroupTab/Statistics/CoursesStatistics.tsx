@@ -9,8 +9,16 @@ export default function CoursesStatistics() {
     style={{
       borderRadius: getScaleFactor() * 12,
       backgroundColor: '#FFF',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.05,
+      shadowRadius: 2,
+      elevation: 2,
     }}
-    className="p-4 mb-4 w-full bg-white shadow-sm">
+    className="p-4 mb-4 w-full bg-white">
       <Text className="mb-4 text-base font-semibold text-black">
         Courses Statistics
       </Text>

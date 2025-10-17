@@ -39,9 +39,27 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
         <TouchableOpacity
             onPress={handlePress}
             disabled={isLocked}
-            className={`mb-4 w-full shadow-sm min-h-[140px] ${cardBgColor} rounded-[10px]`}
+            style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
+              elevation: 2,
+              minHeight: getScaleFactor() * 140,
+              marginBottom: getScaleFactor() * 16,
+            }}
+            className={`w-full ${cardBgColor} rounded-[5px]`}
         >
-            <View className="flex-row flex-1 gap-7 justify-between items-center px-[30px] py-5 w-full">
+            <View 
+            style={{
+              paddingHorizontal: getScaleFactor() * 30,
+              paddingVertical: getScaleFactor() * 20,
+              gap: getScaleFactor() * 28,
+            }}
+            className="flex-row flex-1 justify-between items-center w-full">
                 {/* Icon */}
                 <View>
                     {isCompleted ? (
@@ -66,7 +84,12 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                 </View>
 
                 {/* Content */}
-                <View className="flex-col gap-1 justify-between max-w-[480px] w-[480px] h-full">
+                <View 
+                style={{
+                  maxWidth: getScaleFactor() * 480,
+                  width: getScaleFactor() * 480,
+                }}
+                className="flex-col gap-1 justify-between h-full">
                     {!isExam && <View className='flex-col flex-1 justify-between h-full'>
                         {/* Title */}
                         <Text
@@ -94,7 +117,7 @@ export default function LessonCard({ lesson, onPress }: LessonCardProps) {
                     {isExam && <View className='flex-col justify-center h-full'>
                         <Text
                         className={`font-semibold line-clamp-2 ${titleTextColor}`}
-                        style={{ fontSize: 36 }}
+                        style={{ fontSize: getScaleFactor() * 36 }}
                         numberOfLines={2}
                     >
                         {lesson.title}

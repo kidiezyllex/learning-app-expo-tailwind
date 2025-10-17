@@ -85,10 +85,11 @@ export default function VideoScreen() {
         <View className="overflow-hidden relative flex-1 bg-stone-900">
             {/* Header */}
             <View className="fixed top-0 right-0 left-0 z-50">
-                <View className="flex relative flex-row px-4 justify-between items-center h-[102px]">
+                <View className="flex relative flex-row justify-between items-center px-4" style={{ height: getScaleFactor() * 102 }}>
                     <TouchableOpacity
+                    style={{ left: getScaleFactor() * 12 }}
                         onPress={() => setCurrentHomeScreen("chapter-details")}
-                        className="absolute left-3 z-10"
+                        className="absolute z-10"
                     >
                         <Image
                             style={{ width: getScaleFactor() * 69, height: getScaleFactor() * 69 }}
@@ -219,7 +220,7 @@ export default function VideoScreen() {
                     <TouchableOpacity
                         onPress={skipForward}
                     >
-                        <MaterialIcons name="forward-10" size={56} color="white" />
+                        <MaterialIcons name="forward-10" size={getScaleFactor() * 56} color="white" />
                     </TouchableOpacity>
                 </View>
             </View>

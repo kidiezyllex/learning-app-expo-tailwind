@@ -61,8 +61,16 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
             style={{
                 gap: getScaleFactor() * 24,
                 padding: getScaleFactor() * 30,
+                shadowColor: '#000',
+                shadowOffset: {
+                    width: 0,
+                    height: 1,
+                },
+                shadowOpacity: 0.05,
+                shadowRadius: 2,
+                elevation: 2,
             }}
-            className="flex-row justify-between items-center w-full bg-white rounded-xl shadow-sm h-fit"
+            className="flex-row justify-between items-center w-full bg-white rounded-xl h-fit"
         >
             {/* Checkbox */}
             <Checkbox

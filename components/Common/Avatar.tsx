@@ -24,7 +24,7 @@ export default function Avatar({
       <TouchableOpacity onPress={onPress}>
         <Image
           source={require('../../assets/images/sample-avatar.png')}
-          className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
+          className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border border-white' : ''}`}
           resizeMode="cover"
         />
       </TouchableOpacity>
@@ -32,7 +32,7 @@ export default function Avatar({
       <View>
         <Image
           source={require('../../assets/images/sample-avatar.png')}
-          className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border-2 border-white' : ''}`}
+          className={`${sizeClasses[size]} rounded-full ${showBorder ? 'border border-white' : ''}`}
           resizeMode="cover"
         />
       </View>

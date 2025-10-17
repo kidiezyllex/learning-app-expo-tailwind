@@ -12,17 +12,37 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
     return (
         <TouchableOpacity
             onPress={() => onPress?.(course.id)}
-            className="w-full bg-neutral-100 rounded-[10px] shadow-sm"
+            style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.05,
+              shadowRadius: 2,
+              elevation: 2,
+            }}
+            className="w-full bg-neutral-100 rounded-[5px]"
         >
             {/* Thumbnail Image Container */}
             <View className="relative" style={{ height: getScaleFactor() * 225 }}>
                 <View
-                    className="w-full shadow-sm rounded-tl-[10px] rounded-tr-[10px]"
+                    style={{
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 1,
+                      },
+                      shadowOpacity: 0.05,
+                      shadowRadius: 2,
+                      elevation: 2,
+                    }}
+                    className="w-full rounded-tl-[5px] rounded-tr-[5px]"
                 >
                     <Image
                         source={course.thumbnail}
                         style={{ width: '100%', maxWidth: '100%', height: getScaleFactor() * 225 }}
-                        className="w-full rounded-tl-[10px] rounded-tr-[10px]"
+                        className="w-full rounded-tl-[5px] rounded-tr-[5px]"
                         resizeMode="cover"
                     />
                 </View>
@@ -57,7 +77,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                 {/* Duration Badge */}
                 <View 
                 style={{ height: getScaleFactor() * 32, bottom: getScaleFactor() * 16, right: getScaleFactor() * 16 }}
-                className="flex absolute flex-row gap-2 justify-center items-center px-1.5 rounded-md bg-black/50">
+                className="flex absolute flex-row gap-1 justify-center items-center px-1.5 rounded-md bg-black/50">
                     <Image
                         source={icons.clock}
                         style={{ width: getScaleFactor() * 22, height: getScaleFactor() * 22 }}
@@ -68,7 +88,7 @@ export default function CourseCard({ course, onPress }: CourseCardProps) {
                     </Text>
                 </View>
             </View>
-            <View className="flex flex-col flex-1 gap-2 p-1.5 w-full">
+            <View className="flex flex-col flex-1 gap-1 p-2 w-full">
                 <Text className="text-sm font-semibold text-black line-clamp-2">
                     {course.title}
                 </Text>

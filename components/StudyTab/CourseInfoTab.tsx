@@ -18,7 +18,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
             className="flex-1"
         >
             <View className="px-4">
-                <View className="flex-row" style={{ gap: getScaleFactor() * 50, marginBottom: getScaleFactor() * 24 }}>
+                <View className="flex-row" style={{ gap: 16, marginBottom: getScaleFactor() * 24 }}>
                     {/* Course Thumbnail */}
                     <View className="flex-1">
                         <View className="relative">
@@ -100,7 +100,7 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                                 <View 
                                 
                                 style={{ width: getScaleFactor() * 200 }}
-                                className='flex flex-col gap-2 justify-center items-center'>
+                                className='flex flex-col gap-1 justify-center items-center'>
                                     <Text
                                         className="text-xl italic font-bold text-black"
                                     >
@@ -159,13 +159,13 @@ export default function CourseInfoTab({ course, selectedCourse, onEditPress }: C
                         {course.reviews.map((review) => (
                             <View
                                 key={review.id}
-                                className="bg-white rounded-[10px] p-4"
+                                className="bg-white rounded-[5px] p-4"
                                 style={{ marginBottom: getScaleFactor() * 24 }}
                             >
                                 <View className="flex-row justify-between items-center" style={{ marginBottom: getScaleFactor() * 12 }}>
                                     <View className="flex-row flex-1 items-center">
                                         <View
-                                            className="flex flex-shrink-0 justify-center items-center rounded-full border-2 border-stone-500"
+                                            className="flex flex-shrink-0 justify-center items-center rounded-full border border-stone-500"
                                             style={{ 
                                                 width: getScaleFactor() * 48, 
                                                 height: getScaleFactor() * 48, 

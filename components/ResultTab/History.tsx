@@ -163,7 +163,19 @@ export default function History() {
 
   return (
     <View className="w-full">
-  <View style={{ borderRadius: 12 }} className="overflow-hidden bg-white shadow-sm">
+  <View 
+    style={{ 
+      borderRadius: 12,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.05,
+      shadowRadius: 2,
+      elevation: 2,
+    }} 
+    className="overflow-hidden bg-white">
         <Svg width={chartWidth} height={chartHeight}>
           <Rect
             x="0"

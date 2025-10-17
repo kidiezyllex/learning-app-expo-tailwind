@@ -32,19 +32,29 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
             <TouchableOpacity
               key={option.id}
               onPress={() => handleOptionPress(option.id)}
-              className={`w-full rounded-lg border-2 ${
+              style={{
+                minHeight: 64,
+                shadowColor: isSelected ? '#000' : 'transparent',
+                shadowOffset: {
+                  width: 0,
+                  height: 1,
+                },
+                shadowOpacity: isSelected ? 0.05 : 0,
+                shadowRadius: 2,
+                elevation: isSelected ? 2 : 0,
+              }}
+              className={`w-full rounded-lg border ${
                 isSelected 
-                  ? 'shadow-sm bg-slate-300 border-zinc-300' 
+                  ? 'bg-slate-300 border-zinc-300' 
                   : 'border-zinc-300'
               }`}
-              style={{ minHeight: 64 }}
             >
               <View className="flex-row items-center p-4">
                 {/* Custom Radio Button */}
                 <View className={`w-9 h-9 rounded-full mr-4 ${
                   isSelected 
                     ? 'bg-blue-600' 
-                    : 'border-2 border-zinc-400'
+                    : 'border border-zinc-400'
                 }`}>
                   {isSelected && (
                     <View className="m-auto w-4 h-4 rounded-full bg-neutral-100" />
