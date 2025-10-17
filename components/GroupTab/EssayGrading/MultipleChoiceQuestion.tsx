@@ -30,20 +30,20 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
     return (
       <View
         style={{ 
-          paddingHorizontal: 20, 
-          paddingVertical: 24, 
-          gap: 20, 
-          marginBottom: 24,
+          paddingHorizontal: getScaleFactor() * 20, 
+          paddingVertical: getScaleFactor() * 24, 
+          gap: getScaleFactor() * 20, 
+          marginBottom: getScaleFactor() * 24,
         }}
         key={answer.id}
         className={`flex-row items-center w-full border ${bgColor} rounded-[5px] ${borderColor}`}
       >
-        <View
-          style={{ width: 24, height: 24, minWidth: 24, minHeight: 24, flexShrink: 0 }}
+          <View
+            style={{ width: getScaleFactor() * 24, height: getScaleFactor() * 24, minWidth: getScaleFactor() * 24, minHeight: getScaleFactor() * 24, flexShrink: 0 }}
           className={`rounded-full ${answer.isSelected || answer.isCorrect ? dotColor : 'outline outline-2 outline-zinc-400'
             }`}
         />
-        <Text className="flex-1 text-xs font-medium text-black">
+        <Text className="flex-1 text-sm font-medium text-black">
           {answer.text}
         </Text>
       </View>
@@ -54,9 +54,9 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
     <View
       key={question.id}
       style={{ 
-        paddingVertical: 32, 
-        paddingHorizontal: 64, 
-        marginBottom: 24,
+        paddingVertical: getScaleFactor() * 32, 
+        paddingHorizontal: getScaleFactor() * 64, 
+        marginBottom: getScaleFactor() * 24,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
@@ -77,7 +77,7 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
       </Text>
 
       {/* Answer Options */}
-      <View style={{ marginBottom: 12 }}>
+      <View style={{ marginBottom: getScaleFactor() * 12 }}>
         {question.answers.map((answer, index) =>
           renderAnswerOption(answer, index)
         )}
@@ -85,17 +85,17 @@ export default function MultipleChoiceQuestion({ question }: MultipleChoiceQuest
 
       {/* Explanation */}
       <View
-        style={{ padding: 12, marginBottom: 24 }}
+        style={{ padding: getScaleFactor() * 12, marginBottom: getScaleFactor() * 24 }}
         className={`w-full bg-amber-100 border border-amber-400 rounded-[5px]`}
       >
         <View className="flex-row items-start">
           <Image
-            style={{ width: 13, height: 17, marginRight: 12 }}
+            style={{ width: getScaleFactor() * 13, height: getScaleFactor() * 17, marginRight: getScaleFactor() * 12 }}
             source={icons.bulb}
             resizeMode="contain"
           />
           <View className="flex-1">
-            <Text className="text-xs text-black">
+            <Text className="text-sm text-black">
               <Text style={{ fontStyle: 'italic', fontWeight: '600' }}>Explanation:</Text>
               {" "}{question.explanation}
             </Text>

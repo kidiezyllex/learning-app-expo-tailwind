@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { useState } from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { examResultMockData } from '../../data/examResultMockData';
@@ -26,9 +27,9 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}
+        contentContainerStyle={{ paddingBottom: getScaleFactor() * 100 }}
       >
-        <View className="px-11 pt-6">
+        <View style={{ paddingHorizontal: 16, paddingTop: getScaleFactor() * 24 }}>
           {/* Exam Info Card */}
           <View 
             style={{
@@ -40,8 +41,10 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
               shadowOpacity: 0.05,
               shadowRadius: 2,
               elevation: 2,
+              padding: getScaleFactor() * 16,
+              marginBottom: getScaleFactor() * 40,
             }}
-            className="p-4 mb-10 w-full h-16 bg-white rounded-2xl">
+            className="w-full bg-white rounded-2xl">
             <View className="flex-row justify-between items-center">
               <View className="flex-row flex-1 gap-1">
                 <Text className="text-base font-semibold text-black">
@@ -53,8 +56,8 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
               </View>
               <View 
                 style={{ 
-                  height: 28, 
-                  paddingHorizontal: 14,
+                  height: getScaleFactor() * 28, 
+                  paddingHorizontal: getScaleFactor() * 14,
                   shadowColor: '#000',
                   shadowOffset: {
                     width: 0,
@@ -75,7 +78,7 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
           </View>
 
           {/* Pagination */}
-          <View className="mb-10">
+          <View style={{ marginBottom: getScaleFactor() * 40 }}>
             <EssayPagination
               totalItems={data.questions.length}
               currentIndex={safeCurrentIndex}
@@ -87,7 +90,7 @@ export default function ExamResultScreen({ onBack }: ExamResultScreenProps) {
           {/* Student Info */}
           <View className="flex-row items-center" style={{ marginBottom: 28 }}>
             <Image
-              style={{ width: 52, height: 52, minWidth: 52, minHeight: 52, flexShrink: 0, marginRight: 20 }}
+              style={{ width: getScaleFactor() * 52, height: getScaleFactor() * 52, minWidth: getScaleFactor() * 52, minHeight: getScaleFactor() * 52, flexShrink: 0, marginRight: getScaleFactor() * 20 }}
               source={require('../../assets/images/sample-avatar.png')}
               className="rounded-full"
               resizeMode="cover"

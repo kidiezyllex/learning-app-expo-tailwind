@@ -57,14 +57,14 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
   const renderHeader = useCallback(() => (
     <View>
       {/* Tab Selector */}
-      <View className="px-4">
+      <View>
         <TabSelector
           tabs={tabOptions}
           onTabPress={handleTabPress}
         />
       </View>
 
-      <View className="px-4">
+      <View>
         <SearchBar
           placeholder="Search"
           onSearch={handleSearch}
@@ -94,7 +94,7 @@ export default function MyProgressScreen({ onTabChange }: MyProgressScreenProps)
         renderItem={renderCourseItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180, paddingHorizontal: 24, gap: 20 }}
+        contentContainerStyle={{ paddingBottom: getScaleFactor() * 180, paddingHorizontal: 16, gap: getScaleFactor() * 20 }}
         ListHeaderComponent={renderHeader}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />

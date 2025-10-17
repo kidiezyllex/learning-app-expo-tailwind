@@ -6,7 +6,6 @@ import Button from '../Common/Button';
 import ScreenHeader from '../Common/ScreenHeader';
 import MultipleChoicePagination from '../GroupTab/EssayGrading/MultipleChoicePagination';
 import MultipleChoiceQuestion from '../GroupTab/EssayGrading/MultipleChoiceQuestion';
-
 interface QuizResultScreenProps {
   onBack?: () => void;
 }
@@ -39,8 +38,6 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
     }
   };
 
-
-
   return (
     <View className="flex-1">
       {/* Header */}
@@ -49,9 +46,9 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}
+        contentContainerStyle={{ paddingBottom: getScaleFactor() * 100 }}
       >
-        <View style={{ paddingHorizontal: getScaleFactor() * 44, paddingTop: getScaleFactor() * 24 }}>
+        <View style={{ paddingHorizontal: 16, paddingTop: getScaleFactor() * 24 }}>
           {/* Quiz Info Card */}
           <View 
             style={{ 
@@ -67,7 +64,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
             }}
             className="w-full bg-white rounded-2xl">
             <View
-              style={{ paddingHorizontal: 16, paddingVertical: 24 }}
+              style={{ paddingHorizontal: getScaleFactor() * 16, paddingVertical: getScaleFactor() * 24 }}
               className="flex-row justify-between items-center">
               <View className="flex-row flex-1 gap-1">
                 <Text className="text-base font-semibold text-black">
@@ -99,10 +96,10 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
                 </Text>
               </View>
             </View>
-            <View className="w-full h-0 border border-stone-300" />
+            <View className="w-full h-[1px] bg-stone-300" />
             {/* Student Info */}
             <View
-              style={{ padding: 16 }}
+              style={{ padding: getScaleFactor() * 16 }}
               className="flex-row items-center">
               <TouchableOpacity
               >
@@ -131,7 +128,7 @@ export default function QuizResultScreen({ onBack }: QuizResultScreenProps) {
           )}
 
           {/* Grade Button */}
-          <View className="items-center mt-6">
+          <View style={{marginTop: getScaleFactor() * 24}} className="items-center">
             <Button
               style={{ width: getScaleFactor() * 310 }}
               text="Grade"

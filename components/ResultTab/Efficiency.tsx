@@ -20,8 +20,7 @@ export default function Efficiency() {
           elevation: 2,
         }} 
         className="overflow-hidden mb-4 bg-white">
-        {/* Tổng thời gian xem */}
-        <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: getScaleFactor() * 16, paddingRight: getScaleFactor() * 28 }}>
           <View style={{ width: getScaleFactor() * 78 }} className="justify-start">
             <Image
               source={icons.clock3}
@@ -31,10 +30,10 @@ export default function Efficiency() {
           </View>
 
           <View className="flex-1">
-            <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
+            <Text style={{ color: '#000', fontSize: getScaleFactor() * 26, fontWeight: '500' }}>
               Tổng thời gian xem
             </Text>
-            <Text style={{ color: '#737373', fontSize: 26, fontWeight: '500' }}>
+            <Text style={{ color: '#737373', fontSize: getScaleFactor() * 26, fontWeight: '500' }}>
               45 Giờ
             </Text>
           </View>
@@ -51,7 +50,7 @@ export default function Efficiency() {
         </View>
 
         {/* Bài tập của tôi */}
-        <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: getScaleFactor() * 16, paddingRight: getScaleFactor() * 28 }}>
           <View style={{ width: getScaleFactor() * 78 }} className="justify-start">
             <Image
               source={icons.book}
@@ -61,7 +60,7 @@ export default function Efficiency() {
           </View>
 
           <View className="flex-1">
-            <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
+            <Text style={{ color: '#000', fontSize: getScaleFactor() * 26, fontWeight: '500' }}>
               Bài tập của tôi
             </Text>
           </View>
@@ -79,7 +78,7 @@ export default function Efficiency() {
         <View >
           {exerciseResults.map((exercise, index) => (
             <View key={exercise.id}>
-              <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>
+              <View className="flex-row justify-between items-center" style={{ paddingLeft:getScaleFactor() * 80, paddingRight: getScaleFactor() * 60, paddingVertical: getScaleFactor() * 20 }}>
                 <View style={{ width: getScaleFactor() * 62 }} className="justify-start">
                   <Image
                     source={icons.check}
@@ -113,7 +112,7 @@ export default function Efficiency() {
         </View>
 
         {/* Trung bình ngày */}
-        <View className="flex-row justify-between items-center" style={{ padding: 16, paddingRight: 28 }}>
+        <View className="flex-row justify-between items-center" style={{ padding: getScaleFactor() * 16, paddingRight: getScaleFactor() * 28 }}>
           <View style={{ width: getScaleFactor() * 78 }} className="justify-start">
             <Image
               source={icons.clock3}
@@ -123,7 +122,7 @@ export default function Efficiency() {
           </View>
 
           <View className="flex-1">
-            <Text style={{ color: '#000', fontSize: 26, fontWeight: '500' }}>
+            <Text style={{ color: '#000', fontSize: getScaleFactor() * 26, fontWeight: '500' }}>
               Trung bình ngày
             </Text>
           </View>
@@ -141,7 +140,7 @@ export default function Efficiency() {
         <View >
           {exerciseResults.map((exercise, index) => (
             <View key={exercise.id}>
-              <View className="flex-row justify-between items-center" style={{ paddingLeft: 80, paddingRight: 60, paddingVertical: 20 }}>
+              <View className="flex-row justify-between items-center" style={{ paddingLeft: getScaleFactor() * 80, paddingRight: getScaleFactor() * 60, paddingVertical: getScaleFactor() * 20 }}>
                 <View style={{ width: getScaleFactor() * 62 }} className="justify-start">
                   <Image
                     source={icons.check}

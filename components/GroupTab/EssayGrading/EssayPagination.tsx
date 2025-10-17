@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { useCallback, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -88,7 +89,7 @@ export default function EssayPagination({
     
     return (
       <TouchableOpacity
-        style={{ height: 40, width: 40, minHeight: 40, minWidth: 40, flexShrink: 0 }}
+        style={{ height: getScaleFactor() * 60, width: getScaleFactor() * 60, minHeight: getScaleFactor() * 60, minWidth: getScaleFactor() * 60, flexShrink: 0 }}
         key={actualIndex}
         onPress={() => onItemSelect(actualIndex)}
         className={`rounded-full flex justify-center items-center border-[2px] bg-[#E5E5E5] ${
@@ -110,14 +111,14 @@ export default function EssayPagination({
         style={[animatedStyle]}
         className="flex-row justify-center items-center" 
       >
-        <View style={{ gap: 20 }} className="flex-row justify-center items-center">
+        <View style={{ gap: getScaleFactor() * 20 }} className="flex-row justify-center items-center">
           <TouchableOpacity
             onPress={handlePrevious}
             disabled={!canGoLeft}
             style={{ opacity: canGoLeft ? 1 : 0.3 }}
           >
             <Image
-              style={{ width: 20, height: 34 }}
+              style={{ width: getScaleFactor() * 20, height: getScaleFactor() * 34 }}
               source={icons.leftAngle}
               resizeMode="contain"
             />
@@ -131,7 +132,7 @@ export default function EssayPagination({
             style={{ opacity: canGoRight ? 1 : 0.3 }}
           >
             <Image
-              style={{ width: 20, height: 34 }}
+              style={{ width: getScaleFactor() * 20, height: getScaleFactor() * 34 }}
               source={icons.rightAngle}
               resizeMode="contain"
             />

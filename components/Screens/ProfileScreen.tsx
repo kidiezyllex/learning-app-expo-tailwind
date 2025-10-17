@@ -2,6 +2,7 @@ import Avatar from "@/components/Common/Avatar";
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import ScreenHeader from "@/components/Common/ScreenHeader";
 import { mockUser } from "@/data/mockData";
+import { getScaleFactor } from "@/utils/scaling";
 import { useCallback, useState } from "react";
 import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { icons } from "../../assets/icons/icons";
@@ -84,8 +85,8 @@ export default function ProfileScreen() {
         <Image
           source={item.icon}
           style={{
-            width: 28,
-            height: 28,
+            width: getScaleFactor() * 28,
+            height: getScaleFactor() * 28,
             tintColor: item.isDestructive ? '#ef4444' : '#6b7280'
           }}
           resizeMode="contain"
@@ -100,7 +101,9 @@ export default function ProfileScreen() {
       
       <View className="flex-row items-center">
         {item.badge && (
-          <View className="px-2 py-1 mr-2 bg-blue-100 rounded-full">
+          <View 
+          style={{width: getScaleFactor() * 40, height: getScaleFactor() * 40}}
+          className="flex justify-center items-center mr-2 bg-blue-100 rounded-full">
             <Text className="text-sm font-medium text-blue-800">{item.badge}</Text>
           </View>
         )}
@@ -108,8 +111,8 @@ export default function ProfileScreen() {
           <Image
             source={icons.chevronRight}
             style={{
-              width: 24,
-              height: 24,
+              width: getScaleFactor() * 24,
+              height: getScaleFactor() * 24,
               tintColor: '#9ca3af'
             }}
             resizeMode="contain"
@@ -128,13 +131,13 @@ export default function ProfileScreen() {
       <ScrollView 
         className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 180 }}
+        contentContainerStyle={{ paddingBottom: getScaleFactor() * 180 }}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
       >
         {isLoading ? (
-          <View className="flex-1 justify-center items-center py-20">
+          <View className="flex-1 justify-center items-center" style={{ paddingVertical: getScaleFactor() * 80 }}>
             <LoadingSpinner size="large" />
           </View>
         ) : (
@@ -155,8 +158,8 @@ export default function ProfileScreen() {
               </Text>
               
               <TouchableOpacity 
-                className="bg-blue-600 px-[70px] rounded-[5px] justify-center items-center"
-                style={{ height: 60, paddingHorizontal: 70 }}
+                className="bg-blue-600 rounded-[5px] justify-center items-center"
+                style={{ height: getScaleFactor() * 60, paddingHorizontal: getScaleFactor() * 70 }}
               >
                 <Text
                   className="text-base font-semibold text-white"
@@ -169,11 +172,17 @@ export default function ProfileScreen() {
             {/* Stats Grid */}
             <View className="mb-6">
               <Text className="mb-3 text-xl font-semibold text-center text-gray-900">Thống kê học tập</Text>
-              <View className="flex-row mb-3 space-x-3">
+              <View 
+              className="flex-row mb-3"
+              style={{ gap: getScaleFactor() * 12 }}
+              >
                 <StatCard title="Hoàn thành" value={profileStats.coursesCompleted} subtitle="khóa học" />
                 <StatCard title="Đang học" value={profileStats.coursesInProgress} subtitle="khóa học" />
               </View>
-              <View className="flex-row space-x-3">
+              <View 
+              className="flex-row"
+              style={{ gap: getScaleFactor() * 12 }}
+              >
                 <StatCard title="Thời gian học" value={`${profileStats.totalStudyHours}h`} />
                 <StatCard title="Điểm trung bình" value={`${profileStats.averageScore}%`} />
                 <StatCard title="Streak" value={`${profileStats.streak} ngày`} />

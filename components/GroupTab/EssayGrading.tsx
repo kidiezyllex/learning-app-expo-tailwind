@@ -69,6 +69,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                 shadowOpacity: 0.05,
                 shadowRadius: 2,
                 elevation: 2,
+                marginBottom: 16
             }}
             className="flex-row justify-between items-center w-full bg-white rounded-xl h-fit"
         >
@@ -168,7 +169,6 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                 renderItem={renderEssayItem}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ gap: getScaleFactor() * 40 }}
                 ListHeaderComponent={renderHeader}
                 ListFooterComponent={renderFooter}
             />

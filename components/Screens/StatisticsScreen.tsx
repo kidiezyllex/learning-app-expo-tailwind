@@ -125,7 +125,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
   const isResultScreen = activeTab === 'exam-result' || activeTab === 'quiz-result';
 
   const renderHeader = useCallback(() => (
-    <View className="px-4">
+    <View>
       <TabSelector
         col={4}
         tabs={tabOptions}
@@ -157,7 +157,7 @@ export default function StatisticsScreen({ onTabChange }: StatisticsScreenProps)
             renderItem={() => renderContent()}
             keyExtractor={() => 'content'}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 100 }}
+            contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 16 }}
             ListHeaderComponent={renderHeader}
             scrollEnabled={activeTab !== "eassay-grading"} // Disable scroll when essay grading tab is active to avoid conflicts
           />

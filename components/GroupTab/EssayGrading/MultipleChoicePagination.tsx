@@ -1,3 +1,4 @@
+import { getScaleFactor } from '@/utils/scaling';
 import { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { PanGestureHandler, PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler';
@@ -74,15 +75,15 @@ export default function MultipleChoicePagination({
     if (!item) {
       return {
         containerStyle: {
-          width: 44,
-          height: 44,
-          borderRadius: 22,
+          width: getScaleFactor() * 60,
+          height: getScaleFactor() * 60,
+          borderRadius: 100,
           backgroundColor: 'transparent',
           justifyContent: 'center' as const,
           alignItems: 'center' as const,
         },
         textStyle: {
-          fontSize: 24,
+          fontSize: getScaleFactor() * 24,
           fontWeight: 'bold' as const,
           textAlign: 'center' as const,
           color: '#3F93EA',
@@ -95,17 +96,17 @@ export default function MultipleChoicePagination({
     if (isCurrent) {
       return {
         containerStyle: {
-          width: 44,
-          height: 44,
-          borderRadius: 22,
+          width: getScaleFactor() * 60,
+          height: getScaleFactor() * 60,
+          borderRadius: 100,
           backgroundColor: '#FFD3D3',
-          borderWidth: 2,
+          borderWidth: 1,
           borderColor: '#428AE7',
           justifyContent: 'center' as const,
           alignItems: 'center' as const,
         },
         textStyle: {
-          fontSize: 20,
+          fontSize: getScaleFactor() * 20,
           fontWeight: 'bold' as const,
           textAlign: 'center' as const,
           color: '#F21818',
@@ -114,17 +115,17 @@ export default function MultipleChoicePagination({
     } else if (isCorrect) {
       return {
         containerStyle: {
-          width: 44,
-          height: 44,
-          borderRadius: 22,
+          width: getScaleFactor() * 60,
+          height: getScaleFactor() * 60,
+          borderRadius: 100,
           backgroundColor: '#C0F0BF',
-          borderWidth: 2,
+          borderWidth: 1,
           borderColor: '#C0F0BF',
           justifyContent: 'center' as const,
           alignItems: 'center' as const,
         },
         textStyle: {
-          fontSize: 20,
+          fontSize: getScaleFactor() * 20,
           fontWeight: 'bold' as const,
           textAlign: 'center' as const,
           color: '#1DBA2D',
@@ -133,17 +134,17 @@ export default function MultipleChoicePagination({
     } else {
       return {
         containerStyle: {
-          width: 44,
-          height: 44,
-          borderRadius: 22,
+          width: getScaleFactor() * 60,
+          height: getScaleFactor() * 60,
+          borderRadius: 100,
           backgroundColor: '#FFD3D3',
-          borderWidth: 2,
+          borderWidth: 1,
           borderColor: '#FFD3D3',
           justifyContent: 'center' as const,
           alignItems: 'center' as const,
         },
         textStyle: {
-          fontSize: 20,
+          fontSize: getScaleFactor() * 20,
           fontWeight: 'bold' as const,
           textAlign: 'center' as const,
           color: '#F21818',
@@ -173,14 +174,14 @@ export default function MultipleChoicePagination({
         flexDirection: 'row', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        marginBottom: 28,
-        gap: 20 
+        marginBottom: getScaleFactor() * 28,
+        gap: getScaleFactor() * 20 
       }}>
         <TouchableOpacity onPress={handlePrevious} disabled={currentPage === 0}>
           <Image
             style={{ 
-              width: 20, 
-              height: 34,
+              width: getScaleFactor() * 20, 
+              height: getScaleFactor() * 34,
               opacity: currentPage === 0 ? 0.5 : 1
             }}
             source={icons.leftAngle}
@@ -217,8 +218,8 @@ export default function MultipleChoicePagination({
         <TouchableOpacity onPress={handleNext} disabled={currentPage === totalPages - 1}>
           <Image
             style={{ 
-              width: 20, 
-              height: 34,
+              width: getScaleFactor() * 20, 
+              height: getScaleFactor() * 34,
               opacity: currentPage === totalPages - 1 ? 0.5 : 1
             }}
             source={icons.rightAngle}
