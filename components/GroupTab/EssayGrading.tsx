@@ -108,7 +108,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
 
                     {/* Time */}
                     <View className="flex-row justify-between items-center mb-2 ml-3">
-                        <Text className="mr-2 text-xs italic font-medium text-neutral-600">
+                        <Text className="mr-1 text-xs italic font-medium text-neutral-600">
                             Thời gian
                         </Text>
                         <Text className="text-xs font-medium text-neutral-600">
@@ -118,7 +118,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
 
                     {/* Scores */}
                     <View className="flex-row justify-between items-center mb-2 ml-3">
-                        <Text className="mr-2 text-xs italic font-medium text-neutral-600">
+                        <Text className="mr-1 text-xs italic font-medium text-neutral-600">
                             Trắc nghiệm
                         </Text>
                         <Text className="text-xs font-medium text-neutral-600">
@@ -127,7 +127,7 @@ export default function EssayGrading({ onNavigateToResult }: EssayGradingProps) 
                     </View>
 
                     <View className="flex-row justify-between items-center ml-3">
-                        <Text className="mr-2 text-xs italic font-medium text-neutral-600">
+                        <Text className="mr-1 text-xs italic font-medium text-neutral-600">
                             Tự luận
                         </Text>
                         {renderEssayScore(item.essayScore, item.isGraded)}

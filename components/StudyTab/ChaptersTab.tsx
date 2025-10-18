@@ -25,7 +25,7 @@ export default function ChaptersTab({ courseId, onChapterPress }: ChaptersTabPro
   ), [handleChapterPress]);
 
   return (
-    <View className="p-4">
+    <View className="px-4">
       <FlatList
         data={chapters}
         renderItem={renderChapter}

@@ -103,7 +103,7 @@ export default function ProfileScreen() {
         {item.badge && (
           <View 
           style={{width: getScaleFactor() * 40, height: getScaleFactor() * 40}}
-          className="flex justify-center items-center mr-2 bg-blue-100 rounded-full">
+          className="flex justify-center items-center mr-1 bg-blue-100 rounded-full">
             <Text className="text-sm font-medium text-blue-800">{item.badge}</Text>
           </View>
         )}

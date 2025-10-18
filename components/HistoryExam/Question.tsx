@@ -1,4 +1,5 @@
 import { Question as QuestionType } from '@/data/historyExamMockData';
+import { getScaleFactor } from '@/utils/scaling';
 import { Text, TouchableOpacity, View } from 'react-native';
 
 interface QuestionProps {
@@ -12,10 +13,10 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
   };
 
   return (
-    <View className="mb-8">
+    <View style={{ marginBottom: getScaleFactor() * 32 }}>
       {/* Question Header */}
-      <View className="flex-row items-center mb-14">
-        <Text className="mr-2 text-base font-semibold text-blue-600">
+      <View className="flex-row items-center" style={{ marginBottom: getScaleFactor() * 56 }}>
+        <Text className="mr-1 text-base font-semibold text-blue-600">
           Câu hỏi {question.questionNumber}:
         </Text>
         <Text className="flex-1 text-base font-medium text-black">
@@ -24,7 +25,7 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
       </View>
 
       {/* Answer Options */}
-      <View style={{ gap: 12 }} className="flex-col">
+      <View style={{ gap: getScaleFactor() * 12 }} className="flex-col">
         {question.options.map((option, index) => {
           const isSelected = question.selectedAnswer === option.id;
           
@@ -33,7 +34,7 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
               key={option.id}
               onPress={() => handleOptionPress(option.id)}
               style={{
-                minHeight: 64,
+                minHeight: getScaleFactor() * 64,
                 shadowColor: isSelected ? '#000' : 'transparent',
                 shadowOffset: {
                   width: 0,
@@ -49,15 +50,15 @@ export default function Question({ question, onAnswerSelect }: QuestionProps) {
                   : 'border-zinc-300'
               }`}
             >
-              <View className="flex-row items-center p-4">
+              <View style={{ padding: getScaleFactor() * 16 }} className="flex-row items-center">
                 {/* Custom Radio Button */}
-                <View className={`w-9 h-9 rounded-full mr-4 ${
+                <View style={{ width: getScaleFactor() * 36, height: getScaleFactor() * 36, marginRight: getScaleFactor() * 16 }} className={`rounded-full ${
                   isSelected 
                     ? 'bg-blue-600' 
                     : 'border border-zinc-400'
                 }`}>
                   {isSelected && (
-                    <View className="m-auto w-4 h-4 rounded-full bg-neutral-100" />
+                    <View style={{ width: getScaleFactor() * 16, height: getScaleFactor() * 16, margin: 'auto' }} className="rounded-full bg-neutral-100" />
                   )}
                 </View>
                 

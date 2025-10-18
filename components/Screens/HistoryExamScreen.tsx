@@ -42,7 +42,6 @@ export default function HistoryExamScreen() {
         data={questions}
         renderItem={renderQuestion}
         keyExtractor={(item) => item.id}
-        style={{ marginTop: getScaleFactor() * 32 }}
         className="flex-1"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: getScaleFactor() * 100, paddingHorizontal: getScaleFactor() * 24, paddingVertical: getScaleFactor() * 24 }}
