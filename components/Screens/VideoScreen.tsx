@@ -3,8 +3,8 @@ import { VideoData, videoMockData } from '@/data/videoMockData';
 import { getScaleFactor } from '@/utils/scaling';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
-import { useEffect, useRef, useState } from 'react';
+import { useVideoPlayer, VideoPlayer, VideoView } from 'expo-video';
+import { useEffect, useState } from 'react';
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { icons } from '../../assets/icons/icons';
 import CommentsDrawer from '../Comments/CommentsDrawer';
@@ -12,16 +12,24 @@ import CommentsDrawer from '../Comments/CommentsDrawer';
 export default function VideoScreen() {
     const { selectedLessonId, setCurrentHomeScreen } = useAppNavigation();
     const [videoData, setVideoData] = useState<VideoData>(videoMockData);
-    const [isPlaying, setIsPlaying] = useState(videoData.isPlaying);
     const [progress, setProgress] = useState(0);
-    const [duration, setDuration] = useState(0);
     const [isCommentsDrawerVisible, setIsCommentsDrawerVisible] = useState(false);
-    const videoRef = useRef<Video>(null);
     const screenWidth = Dimensions.get('window').width;
 
+    const player = useVideoPlayer('https://videos.pexels.com/video-files/4017060/4017060-uhd_2560_1440_30fps.mp4', (player: VideoPlayer) => {
+        player.loop = true;
+        player.pause();
+    });
+
     useEffect(() => {
-        setIsPlaying(false);
-    }, []);
+        const interval = setInterval(() => {
+            if (player.currentTime && player.duration) {
+                setProgress(player.currentTime / player.duration);
+            }
+        }, 100);
+
+        return () => clearInterval(interval);
+    }, [player]);
 
     if (!selectedLessonId) {
         return (
@@ -31,45 +39,31 @@ export default function VideoScreen() {
         );
     }
 
-    const togglePlayPause = async () => {
-        if (videoRef.current) {
-            try {
-                if (isPlaying) {
-                    await videoRef.current.pauseAsync();
-                    setIsPlaying(false);
-                } else {
-                    await videoRef.current.playAsync();
-                    setIsPlaying(true);
-                }
-            } catch (error) {
-                console.error('Error toggling play/pause:', error);
-            }
+    const togglePlayPause = () => {
+        if (player.playing) {
+            player.pause();
+        } else {
+            player.play();
         }
     };
 
-    const skipForward = async () => {
-        if (videoRef.current) {
-            const status = await videoRef.current.getStatusAsync();
-            if (status.isLoaded) {
-                const newPosition = Math.min(
-                    status.positionMillis + 10000,
-                    status.durationMillis || 0
-                );
-                await videoRef.current.setPositionAsync(newPosition);
-            }
+    const skipForward = () => {
+        if (player.currentTime !== undefined && player.duration !== undefined) {
+            const newPosition = Math.min(
+                player.currentTime + 10,
+                player.duration
+            );
+            player.currentTime = newPosition;
         }
     };
 
-    const skipBackward = async () => {
-        if (videoRef.current) {
-            const status = await videoRef.current.getStatusAsync();
-            if (status.isLoaded) {
-                const newPosition = Math.max(
-                    status.positionMillis - 10000,
-                    0
-                );
-                await videoRef.current.setPositionAsync(newPosition);
-            }
+    const skipBackward = () => {
+        if (player.currentTime !== undefined) {
+            const newPosition = Math.max(
+                player.currentTime - 10,
+                0
+            );
+            player.currentTime = newPosition;
         }
     };
 
@@ -171,22 +165,14 @@ export default function VideoScreen() {
                     zIndex: 1
                 }}
             >
-                <Video
-                    ref={videoRef}
-                    source={{ uri: 'https://videos.pexels.com/video-files/4017060/4017060-uhd_2560_1440_30fps.mp4' }}
+                <VideoView
+                    player={player}
                     style={{
                         width: '100%',
                         height: getScaleFactor() * 410
                     }}
-                    resizeMode={ResizeMode.CONTAIN}
-                    shouldPlay={isPlaying}
-                    isLooping={true}
-                    onPlaybackStatusUpdate={(status: AVPlaybackStatus) => {
-                        if (status.isLoaded && status.durationMillis) {
-                            setProgress(status.positionMillis / status.durationMillis);
-                            setDuration(status.durationMillis);
-                        }
-                    }}
+                    contentFit="contain"
+                    nativeControls={false}
                 />
 
                 {/* Video Controls Overlay */}
@@ -209,7 +195,7 @@ export default function VideoScreen() {
                     <TouchableOpacity
                         onPress={togglePlayPause}
                     >
-                        {isPlaying ? (
+                        {player.playing ? (
                             <MaterialCommunityIcons name="pause" size={getScaleFactor() * 72} color="white" />
                         ) : (
                             <MaterialIcons name="play-arrow" size={getScaleFactor() * 72} color="white" />

@@ -1,6 +1,7 @@
 import { getScaleFactor } from '@/utils/scaling';
 import { usePathname, useRouter } from 'expo-router';
 import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { icons } from '../../assets/icons/icons';
 import { useAppNavigation } from '../../contexts/NavigationContext';
 import CustomTabTrigger from './CustomTabTrigger';
@@ -47,6 +48,7 @@ export default function TabBarWrapper() {
   const pathname = usePathname();
   const router = useRouter();
   const { currentHomeScreen, currentResultScreen, setCurrentHomeScreen } = useAppNavigation();
+  const insets = useSafeAreaInsets();
 
   if (currentHomeScreen === "video" || currentHomeScreen === "history-exam" || 
       currentResultScreen === "exam-result" || currentResultScreen === "quiz-result") {
@@ -84,7 +86,7 @@ export default function TabBarWrapper() {
       left: 0,
       right: 0,
       backgroundColor: 'white',
-      height: getScaleFactor() * 124,
+      height: getScaleFactor() * 124 + insets.bottom,
       borderTopWidth: 0,
       elevation: 0,
       shadowOpacity: 0,
@@ -93,6 +95,7 @@ export default function TabBarWrapper() {
       width: '100%',
       margin: 0,
       padding: 0,
+      paddingBottom: insets.bottom,
     }}>
       {navigationTabs.map((tab) => (
         <CustomTabTrigger

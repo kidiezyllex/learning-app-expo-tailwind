@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import { FlatList, RefreshControl, View } from "react-native";
 import { icons } from "../../assets/icons/icons";
 import ScreenHeader from "../Common/ScreenHeader";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("recommended");
@@ -76,7 +77,7 @@ export default function HomeScreen() {
   ), [tabOptions, handleTabPress]);
 
   return (
-    <View className="flex-1">
+    <SafeAreaView className="flex-1" edges={['bottom', 'left', 'right']}>
       <ScreenHeader
         title="Home"
         showRightIcons={true}
@@ -98,6 +99,6 @@ export default function HomeScreen() {
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
       />
-    </View>
+    </SafeAreaView>
   );
 }
